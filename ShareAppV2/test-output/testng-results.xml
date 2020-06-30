@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="25" total="26" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="75298" started-at="2020-06-30T14:02:49 IST" finished-at="2020-06-30T14:04:05 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="75298" started-at="2020-06-30T14:02:49 IST" finished-at="2020-06-30T14:04:05 IST">
+      <class name="com.share.testscript.Registration">
+        <test-method status="PASS" signature="SetUp()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="SetUp" is-config="true" duration-ms="332" started-at="2020-06-30T14:02:49 IST" finished-at="2020-06-30T14:02:49 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SetUp -->
+        <test-method status="PASS" signature="CreateDriver()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="CreateDriver" is-config="true" duration-ms="27253" started-at="2020-06-30T14:02:49 IST" finished-at="2020-06-30T14:03:17 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CreateDriver -->
+        <test-method status="PASS" signature="TC_C_SU_001_004(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="TC_C_SU_001_004" duration-ms="46233" started-at="2020-06-30T14:03:17 IST" finished-at="2020-06-30T14:04:03 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.share.testscript.Registration.TC_C_SU_001_004(java.lang.reflect.Method)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC_C_SU_001_004 -->
+        <test-method status="PASS" signature="setTestResult(org.testng.ITestResult)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="setTestResult" is-config="true" duration-ms="1733" started-at="2020-06-30T14:04:03 IST" finished-at="2020-06-30T14:04:05 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC_C_SU_001_004 status=SUCCESS method=Registration.TC_C_SU_001_004(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setTestResult -->
+        <test-method status="PASS" signature="reportClose()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="reportClose" is-config="true" duration-ms="1188" started-at="2020-06-30T14:04:05 IST" finished-at="2020-06-30T14:04:06 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reportClose -->
+      </class> <!-- com.share.testscript.Registration -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

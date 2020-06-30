@@ -98,7 +98,7 @@ public class DriverSetUp extends DataDriven {
 
 		//FileInputStream file =new FileInputStream(projectPath+"/Global.properties");
 		prop=new Properties();
-		prop.load(new FileInputStream("/Users/sgopi/eclipse-workspace/ShareApp_V2.0/src/com/share/utility/Global.properties"));
+		prop.load(new FileInputStream("C:\\Users\\thi1907501\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\utility\\Global.properties"));
 		//		prop.get("StoreApp");
 		//		File appDir=new File("src");
 		//		File app=new File(appDir,(String) prop.get("StoreApp"));
