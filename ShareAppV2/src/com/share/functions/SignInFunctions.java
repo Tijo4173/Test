@@ -68,7 +68,7 @@ public class SignInFunctions extends DriverSetUp{
     }
 	
 	public void SignInUser(SignInPage signInPage) {
-		MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/tv_sign_in");
+		MobileElement element = (MobileElement) driver.findElementById("tv_sign_in");
 		Point p = element.getCenter();
 		int Xcord =p.getX();
 		int Ycord = p.getY();
@@ -81,7 +81,7 @@ public class SignInFunctions extends DriverSetUp{
 	}
 	
 	public void signInClick(SignInPage signInPage) {
-		MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/tv_sign_in");
+		MobileElement element = (MobileElement) driver.findElementById("tv_sign_in");
 		Point p = element.getCenter();
 		int Xcord =p.getX();
 		int Ycord = p.getY();
@@ -91,7 +91,7 @@ public class SignInFunctions extends DriverSetUp{
 }
 	
 	public void contactUs(SignInPage signInPage) {
-		MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/onboarding_contact_us");
+		MobileElement element = (MobileElement) driver.findElementById("onboarding_contact_us");
 		Point p = element.getCenter();
 		int Xcord =p.getX();
 		int Ycord = p.getY();

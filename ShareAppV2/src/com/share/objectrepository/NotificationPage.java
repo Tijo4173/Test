@@ -31,25 +31,25 @@ public class NotificationPage extends DriverSetUp  {
 	}
 	
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/onboarding_already_have_account_view")
+	@AndroidFindBy(id = "onboarding_already_have_account_view")
 	public AndroidElement SignInElement;
 	
 	@AndroidFindBy(xpath = "//*[@class='android.widget.TextView']")
 	public AndroidElement PageTitle;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_login_forget_password")
+	@AndroidFindBy(id = "tv_login_forget_password")
 	public AndroidElement ForgotPassword;
 	
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input' and @text='Email address']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='text_input_layout_input' and @text='Email address']")
 	public AndroidElement EmailField;
 	
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/change_password_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='change_password_button']")
 	public AndroidElement ResetPasswordButton;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/dialog_status_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='dialog_status_title']")
 	public AndroidElement DialogStatus;
 	
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/dialog_primary_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='dialog_primary_button']")
 	public AndroidElement ThanksButton;
 	
 	//@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.google.android.gm:id/open_search_bar_text_view']")
@@ -67,28 +67,28 @@ public class NotificationPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.google.android.gm:id/viewified_conversation_item_view' and @index='1']//android.widget.TextView[@resource-id='com.google.android.gm:id/date']")
 	public AndroidElement MailTime;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/dialog_status_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='dialog_status_description']")
 	public AndroidElement DialogDescription;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/textinput_error']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='textinput_error']")
 	public AndroidElement ErrorMessage;
 	
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/item_myaccount_family']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='item_myaccount_family']")
 	public AndroidElement FamilyGroup;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/my_account_points_balance_expanded']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='my_account_points_balance_expanded']")
 	public AndroidElement PointBalance;
 	
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@index='1']//android.widget.TextView[@resource-id='com.maf.sharesit:id/family_head_member_name' and @index='1']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@index='1']//android.widget.TextView[@resource-id='family_head_member_name' and @index='1']")
 	public AndroidElement FamilyMember;
 	
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement GiftPoint;
 	
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/gift_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='gift_button']")
 	public AndroidElement GiftPointButton;
 	
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/dialog_primary_button' and @text='THANKS']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='dialog_primary_button' and @text='THANKS']")
 	public AndroidElement Thanks;
 	
 }

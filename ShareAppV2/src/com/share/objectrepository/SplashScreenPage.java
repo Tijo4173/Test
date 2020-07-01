@@ -33,7 +33,7 @@ public class SplashScreenPage {
 	@AndroidFindBy(id = "com.maf.android.share:id/action_bar_root")
 	public AndroidElement splashScreen;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/buttonSkip")
+	@AndroidFindBy(id = "buttonSkip")
 	public AndroidElement splashScreenSkip;
 	
 }

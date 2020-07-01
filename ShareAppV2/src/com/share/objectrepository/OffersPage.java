@@ -38,64 +38,64 @@ public class OffersPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Offers\"]/android.view.ViewGroup/android.widget.TextView")
     public AndroidElement offers;
     
-    @AndroidFindBy(xpath = "//android.view.ViewGroup[3]/android.widget.TextView[@resource-id='com.maf.sharesit:id/offers_tab_button_text']")
+    @AndroidFindBy(xpath = "//android.view.ViewGroup[3]/android.widget.TextView[@resource-id='offers_tab_button_text']")
     public AndroidElement offers_activate;
 
-    @AndroidFindBy(id = "com.maf.sharesit:id/offers_title_text_view_expanded")
+    @AndroidFindBy(id = "offers_title_text_view_expanded")
     public AndroidElement offers_title;
     
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offers_tab_button_text' and @text='ACTIVATED']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offers_tab_button_text' and @text='ACTIVATED']")
     public AndroidElement ActivatedTab;
     
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/no_offers_text_vies' and @text='No Offers']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='no_offers_text_vies' and @text='No Offers']")
     public AndroidElement NoOffers;
     
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offers_title_text_view_expanded']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offers_title_text_view_expanded']")
     public AndroidElement Title;
     
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_banner_title']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offer_banner_title']")
     public AndroidElement ActivatedOffers;
     
     //testcase TC_Offers_003
    
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_banner_title")
+    @AndroidFindBy(id = "offer_banner_title")
     public AndroidElement offers_title_des;
     
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc=\"Offer Image\"]")
     public AndroidElement offers_image;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_remaining_days_text")
+    @AndroidFindBy(id = "offer_details_remaining_days_text")
     public AndroidElement days_remaining;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_dates")
+    @AndroidFindBy(id = "offer_details_dates")
     public AndroidElement expiry_date;
     
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_title")
+    @AndroidFindBy(id = "offer_details_title")
     public AndroidElement offers_title1;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_description_text")
+    @AndroidFindBy(id = "offer_details_description_text")
     public AndroidElement offers_des;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_share")
+    @AndroidFindBy(id = "offer_details_share")
     public AndroidElement offers_share;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_like")
+    @AndroidFindBy(id = "offer_details_like")
     public AndroidElement offers_like_save;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_location_icon")
+    @AndroidFindBy(id = "offer_details_location_icon")
     public AndroidElement offers_location;
     
-    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/offer_add_to_favorite_button' and @enabled='true']")
+    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='offer_add_to_favorite_button' and @enabled='true']")
     public AndroidElement UnActivatedOffer;
     
-    public String UnActivatedOfferXpath ="//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/offer_add_to_favorite_button' and @enabled='true']";
+    public String UnActivatedOfferXpath ="//android.widget.ImageButton[@resource-id='offer_add_to_favorite_button' and @enabled='true']";
     
   //test case TC_Offers_005
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_banner_title")
+    @AndroidFindBy(id = "offer_banner_title")
     public AndroidElement offers_click;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_share")
+    @AndroidFindBy(id = "offer_details_share")
     public AndroidElement offers_share1;
     
     
@@ -109,36 +109,36 @@ public class OffersPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Offer Image\"])[1]")
     public AndroidElement offer_image;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_like")
+    @AndroidFindBy(id = "offer_details_like")
     public AndroidElement activated_icon;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_share")
+    @AndroidFindBy(id = "offer_details_share")
     public AndroidElement offer_details_share;
 	
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_banner_title")
+    @AndroidFindBy(id = "offer_banner_title")
     public AndroidElement offer_title;
 	
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_details_title")
+    @AndroidFindBy(id = "offer_details_title")
     public AndroidElement offer_details_title;
 	
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_banner_title")
+    @AndroidFindBy(id = "offer_banner_title")
     public AndroidElement offer_banner_title;
  
     @AndroidFindBy(xpath = "//android.view.ViewGroup/android.widget.ImageButton")
     public AndroidElement offer_back_button;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_add_to_favorite_button")
+    @AndroidFindBy(id = "offer_add_to_favorite_button")
     public AndroidElement activated;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offers_tab_button_icon")
+    @AndroidFindBy(id = "offers_tab_button_icon")
     public AndroidElement activated_tab;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/offer_add_to_favorite_button")
+    @AndroidFindBy(id = "offer_add_to_favorite_button")
     public AndroidElement untick_offer;
     
     public String VerifyOffer(String ElementText)
     {
-           String Xpath="//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_banner_title' and @text='"+ElementText+"']";
+           String Xpath="//android.widget.TextView[@resource-id='offer_banner_title' and @text='"+ElementText+"']";
            return Xpath;
     }
  
@@ -148,10 +148,10 @@ public class OffersPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.view.ViewGroup[2]/android.widget.TextView")
     public AndroidElement carrefour;
     
-    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/offer_share_offer_button']")
+    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='offer_share_offer_button']")
     public AndroidElement share_button;
   
-    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/offer_add_to_favorite_button']")
+    @AndroidFindBy(xpath = "//android.widget.ImageButton[@resource-id='offer_add_to_favorite_button']")
     public AndroidElement carre_tick;
     
     @AndroidFindBy(xpath = "(//android.widget.ImageView[@content-desc=\"Offer Image\"])[1]")

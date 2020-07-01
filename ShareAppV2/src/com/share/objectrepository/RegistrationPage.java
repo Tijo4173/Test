@@ -30,62 +30,62 @@ public class RegistrationPage {
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@index='4']/android.view.View[@index='3']")
 	public AndroidElement onboardScrolld;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/buttonOnBoardingStartAction")
+	@AndroidFindBy(id = "buttonOnBoardingStartAction")
 	public AndroidElement startElement;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Email Address']")
 	public AndroidElement emailElement;
 
-	@AndroidFindBy(xpath ="//android.widget.EditText[contains(@resource-id,'com.maf.sharesit:id/et_email_address') and @index='0']")
+	@AndroidFindBy(xpath ="//android.widget.EditText[contains(@resource-id,'et_email_address') and @index='0']")
 	public AndroidElement emailidPresent;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@resource-id,'com.maf.sharesit:id/et_country_code') and @index='0']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[contains(@resource-id,'et_country_code') and @index='0']")
 	public AndroidElement countryElement;
 
 	@AndroidFindBy(xpath  = "//android.widget.EditText[@text='Phone number']")
 	public AndroidElement mobileNumElement;
 
-	@AndroidFindBy(xpath = "com.maf.sharesit:id/et_email_address")
+	@AndroidFindBy(xpath = "et_email_address")
 	public AndroidElement mobilenumPresent;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTINUE']")
 	public AndroidElement nextElement;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'com.maf.sharesit:id/btn_continue')and@enabled='false']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'btn_continue')and@enabled='false']")
 	public AndroidElement nextElementDisabled;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/rb_mr")
+	@AndroidFindBy(id = "rb_mr")
 	public AndroidElement titleMr;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/rb_mr")
+	@AndroidFindBy(id = "rb_mr")
 	public AndroidElement titleMrs;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/rb_miss")
+	@AndroidFindBy(id = "rb_miss")
 	public AndroidElement titleMiss;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/rb_ms")
+	@AndroidFindBy(id = "rb_ms")
 	public AndroidElement titleMs;
 
 	//@AndroidFindBy(xpath = "//android.widget.EditText[@text='Title']" )
 	@AndroidFindBy(xpath = "//android.widget.RadioButton[@checked='true']")
 	public AndroidElement titlePresent;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_first_name")
+	@AndroidFindBy(id = "et_first_name")
 	public AndroidElement firstNameElement;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_first_name")
+	@AndroidFindBy(id = "et_first_name")
 	public AndroidElement firstNamePresent;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_last_name")
+	@AndroidFindBy(id = "et_last_name")
 	public AndroidElement lastNameElement;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_last_name")
+	@AndroidFindBy(id = "et_last_name")
 	public AndroidElement lastNamePresent;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_nationality")
+	@AndroidFindBy(id = "et_nationality")
 	public AndroidElement nationalityElement;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/et_password" )
+	@AndroidFindBy(id = "et_password" )
 	public AndroidElement passwordElement;
 
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@index='1']/android.widget.LinearLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.EditText[@index='0']")
@@ -97,10 +97,10 @@ public class RegistrationPage {
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@index='3']/android.widget.LinearLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.EditText[@index='0']")
 	public AndroidElement confirmPasswordPresent;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/s_terms_and_policy")
+	@AndroidFindBy(id = "s_terms_and_policy")
 	public AndroidElement termsCheckboxElement;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/signup_promotional_and_offers_check")
+	@AndroidFindBy(id = "signup_promotional_and_offers_check")
 	public AndroidElement offersCheckboxElement;
 
 	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@index='1']/android.widget.Button[@text='THANKS']")
@@ -112,69 +112,69 @@ public class RegistrationPage {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='EMAIL ALREADY REGISTERED']")
 	public AndroidElement closeElement;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_num_of_characters') and (@checked='true')]")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_num_of_characters') and (@checked='true')]")
 	public AndroidElement passwordCriteriaA;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_num_of_characters') and (@checked='false')]")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_num_of_characters') and (@checked='false')]")
 	public AndroidElement passwordCriteriaADisabled;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_number') and (@checked='true']")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_number') and (@checked='true']")
 	public AndroidElement passwordCriteriaB;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_number') and (@checked='false']")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_number') and (@checked='false']")
 	public AndroidElement passwordCriteriaBDisabled;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_uppercase_lowercase') and (@checked='true']")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_uppercase_lowercase') and (@checked='true']")
 	public AndroidElement passwordCriteriaC;
 	
-	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'com.maf.sharesit:id/cb_password_uppercase_lowercase') and (@checked='false']")
+	@AndroidFindBy(xpath = "//android.widget.CheckBox[contains(@resource-id,'cb_password_uppercase_lowercase') and (@checked='false']")
 	public AndroidElement passwordCriteriaCDisabled;
 	
 	
-//	@AndroidFindBy(xpath = "//android.widget.ImageButton[contains(@resource-id,'com.maf.sharesit:id/text_input_end_icon')and(@checked='false']")
+//	@AndroidFindBy(xpath = "//android.widget.ImageButton[contains(@resource-id,'text_input_end_icon')and(@checked='false']")
 //	public AndroidElement showPassword;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/text_input_end_icon")
+	@AndroidFindBy(id = "text_input_end_icon")
 	public AndroidElement showPassword;
 	
-	@AndroidFindBy(xpath = "//android.widget.ImageButton[contains(@resource-id,'com.maf.sharesit:id/text_input_end_icon') and (@checked='true']")
+	@AndroidFindBy(xpath = "//android.widget.ImageButton[contains(@resource-id,'text_input_end_icon') and (@checked='true']")
 	public AndroidElement hidePassword;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_login_sign_up")
+	@AndroidFindBy(id = "tv_login_sign_up")
 	public AndroidElement alreadySignin;
 	
-	@AndroidFindBy(id="com.maf.sharesit:id/textinput_error")
+	@AndroidFindBy(id="textinput_error")
 	public AndroidElement ErrorMessage;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='This email address is not valid. Please check and try again.']")
 	public AndroidElement infobipError;
 	
-	@AndroidFindBy(id="com.maf.sharesit:id/btn_create_account")
+	@AndroidFindBy(id="btn_create_account")
 	public AndroidElement createAccount;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'com.maf.sharesit:id/btn_create_account')and@enabled='false']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'btn_create_account')and@enabled='false']")
 	public AndroidElement createAccountDisabled;
 	
 	//Calendar
 	@AndroidFindBy(xpath = "//android.widget.DatePicker[@index='2']")
 	public AndroidElement datePicker;
 	
-	@AndroidFindBy(id= "android:id/prev")
+	@AndroidFindBy(id= "prev")
 	public AndroidElement monthPrev;
 	
-	@AndroidFindBy(id= "android:id/next")
+	@AndroidFindBy(id= "next")
 	public AndroidElement monthNext;
 	
-	@AndroidFindBy(id= "android:id/date_picker_header_date")
+	@AndroidFindBy(id= "date_picker_header_date")
 	public AndroidElement currentMonth;
 	
-	@AndroidFindBy(id= "android:id/date_picker_header_year")
+	@AndroidFindBy(id= "date_picker_header_year")
 	public AndroidElement dobyear;
 	
-	@AndroidFindBy(id= "com.maf.sharesit:id/et_date_of_birth")
+	@AndroidFindBy(id= "et_date_of_birth")
 	public AndroidElement dateofbirth;
 	
-	@AndroidFindBy(id= "com.maf.sharesit:id/signup_date_of_birth_error_label")
+	@AndroidFindBy(id= "signup_date_of_birth_error_label")
 	public AndroidElement dateofbirthError;
 	
 	@AndroidFindBy(id= "android:id/button1")
@@ -184,7 +184,7 @@ public class RegistrationPage {
 	public AndroidElement dobError;
 	
 	//TC
-	 @AndroidFindBy(id = "com.maf.sharesit:id/s_terms_and_policy")
+	 @AndroidFindBy(id = "s_terms_and_policy")
      public AndroidElement TermsLink;
      
      @AndroidFindBy(xpath = "//*[@class='android.widget.TextView']")
@@ -194,36 +194,36 @@ public class RegistrationPage {
      public AndroidElement NavigateBack;
 
 
- 	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_positive_button")
+ 	@AndroidFindBy(id = "simple_dialog_answer_positive_button")
  	public AndroidElement GotItElement;
  	
- 	@AndroidFindBy(id = "com.maf.sharesit:id/tutorial_tip_stop_tutorial_button")
+ 	@AndroidFindBy(id = "tutorial_tip_stop_tutorial_button")
  	public AndroidElement StopTutorialElement;
  	
- 	@AndroidFindBy(id="com.maf.sharesit:id/home_bottom_navigation_bar")
+ 	@AndroidFindBy(id="home_bottom_navigation_bar")
 	public AndroidElement objHome;
  	
-	@AndroidFindBy(id="com.maf.sharesit:id/v_back_to_step_one")
+	@AndroidFindBy(id="v_back_to_step_one")
 	public AndroidElement backtoStep;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/btn_send_reset_link")
+	@AndroidFindBy(id = "btn_send_reset_link")
 	public AndroidElement sendAgain;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/textView6")
+	@AndroidFindBy(id = "textView6")
 	public AndroidElement registrationSuccess;
  	
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_home")
+	@AndroidFindBy(id = "option_home_home")
 	public AndroidElement HomeIcon;
 	
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/simple_dialog_answer_positive_button' and @text='CONFIRM']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='simple_dialog_answer_positive_button' and @text='CONFIRM']")
 	public AndroidElement ConfirmLogout;
 	
-	public String DropDownList="//android.widget.LinearLayout//android.widget.FrameLayout[@resource-id='com.maf.sharesit:id/et_country_code']";
+	public String DropDownList="//android.widget.LinearLayout//android.widget.FrameLayout[@resource-id='et_country_code']";
 
 	public String SelectCountry(int SelectedElement)
 	       {
 	              
-	              String Xpath="//android.widget.LinearLayout[@index='"+SelectedElement+"']//android.widget.FrameLayout[@resource-id='com.maf.sharesit:id/et_country_code']";
+	              String Xpath="//android.widget.LinearLayout[@index='"+SelectedElement+"']//android.widget.FrameLayout[@resource-id='et_country_code']";
 	              return Xpath;
 	       }
 

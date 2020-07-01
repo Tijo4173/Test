@@ -35,49 +35,49 @@ public class AssistantPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc='Assistant']/android.widget.ImageView")
 	public AndroidElement AssistantIcon;
 
-	@AndroidFindBy(xpath = "//*[@resource-id='com.maf.sharesit:id/widget_search_title']")
+	@AndroidFindBy(xpath = "//*[@resource-id='widget_search_title']")
 	public AndroidElement PageTitle;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_suggest_question_title' and @text ='Using SHARE']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Using SHARE']")
 	public AndroidElement usingShare;
 
-	@AndroidFindBy(xpath = "//*[@resource-id='com.maf.sharesit:id/item_question_description']")
+	@AndroidFindBy(xpath = "//*[@resource-id='item_question_description']")
 	public AndroidElement Description;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_suggest_question_title' and @text ='Using the SHARE Wallet']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Using the SHARE Wallet']")
 	public AndroidElement usingShareWallet;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_suggest_question_title' and @text ='Earning SHARE points']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Earning SHARE points']")
 	public AndroidElement earningSHAREPoints;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_suggest_question_title' and @text ='Redeeming SHARE points']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Redeeming SHARE points']")
 	public AndroidElement redeemingSHAREPoints;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/assistant_categories' and @text ='See our help categories']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_categories' and @text ='See our help categories']")
 	public AndroidElement helpCategories;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/categories_section_general']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='categories_section_general']")
 	public AndroidElement CategoryTitleText;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_help_category_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_help_category_title']")
 	public AndroidElement Categories;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/assistant_contact_us']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_contact_us']")
 	public AndroidElement ContactUs;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/assistant_phone']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_phone']")
 	public AndroidElement CallUs;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.google.android.dialer:id/digits']")
 	public AndroidElement Dialer;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/search_src_text']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='search_src_text']")
 	public AndroidElement Search;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/item_question_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_question_title']")
 	public AndroidElement Question;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/assistant_question_alert']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_question_alert']")
 	public AndroidElement Alert;
 
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Email address']")
@@ -92,40 +92,40 @@ public class AssistantPage extends DriverSetUp  {
 	@AndroidFindBy(xpath ="//android.widget.EditText[@text='Reason for contact']")
 	public AndroidElement assisatantReason;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/zendesk_description']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='zendesk_description']")
 	public AndroidElement assistantDesription;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/submit_button")
+	@AndroidFindBy(id = "submit_button")
 	public AndroidElement assistantSubmit;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/add_attachment_label")
+	@AndroidFindBy(id = "add_attachment_label")
 	public AndroidElement assistantAttachment;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/text_input_layout_input")
+	@AndroidFindBy(id = "text_input_layout_input")
 	public AndroidElement assistantEmailfield;
 
 	@AndroidFindBy(xpath = "//android.widget.ListView[@index='0']")
 	public AndroidElement assistantReasonlist;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/bt_allow")
+	@AndroidFindBy(id = "bt_allow")
 	public AndroidElement assistantallowAccess;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/zendesk_terms_conditions_label")
+	@AndroidFindBy(id = "zendesk_terms_conditions_label")
 	public AndroidElement assistantTC;
 	
-	@AndroidFindBy(id ="com.maf.sharesit:id/simple_dialog_answer_positive_button")
+	@AndroidFindBy(id ="simple_dialog_answer_positive_button")
 	public AndroidElement assistantOK;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_positive_button")
+	@AndroidFindBy(id = "simple_dialog_answer_positive_button")
 	public AndroidElement assistanSuccess;
 	
 	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Something else']")
 	public AndroidElement assistantSomething;
 	
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/zendesk_other_reason']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='zendesk_other_reason']")
 	public AndroidElement assistantOtherReason;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/assistant_email")
+	@AndroidFindBy(id = "assistant_email")
 	public AndroidElement assistantEmailUs;
 	
 }

@@ -19,21 +19,21 @@ public class OnboardingPage extends DriverSetUp {
 
 	}
 	
-			@AndroidFindBy(xpath ="//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/tip_next_image_button']")
+			@AndroidFindBy(xpath ="//android.widget.ImageButton[@resource-id='tip_next_image_button']")
 			public AndroidElement Nexttutorial;
 			
-			@AndroidFindBy(xpath ="//android.widget.ImageButton[@resource-id='com.maf.sharesit:id/tip_previous_image_button']")
+			@AndroidFindBy(xpath ="//android.widget.ImageButton[@resource-id='tip_previous_image_button']")
 			public AndroidElement Prevtutorial;
 			
-			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='com.maf.sharesit:id/tutorial_tip_title']")
+			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='tutorial_tip_title']")
 			public AndroidElement homeWelcome;
 			
 			
 			//count checking
-			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='com.maf.sharesit:id/tutorial_tips_progress']")
+			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='tutorial_tips_progress']")
 			public AndroidElement NumberCountTutorial;
 			
-			@AndroidFindBy(id="com.maf.sharesit:id/simple_dialog_answer_title")
+			@AndroidFindBy(id="simple_dialog_answer_title")
 			public AndroidElement StopTutorialText;
 			
 			
@@ -46,7 +46,7 @@ public class OnboardingPage extends DriverSetUp {
 			
 			
 
-			@AndroidFindBy(xpath="//android.widget.Button[@resource-id='com.maf.sharesit:id/tutorial_tip_action_button']")
+			@AndroidFindBy(xpath="//android.widget.Button[@resource-id='tutorial_tip_action_button']")
 			public AndroidElement GotitIcon;
 			
 			@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"Offers\"]/android.view.ViewGroup/android.widget.TextView")
@@ -57,7 +57,7 @@ public class OnboardingPage extends DriverSetUp {
 			@AndroidFindBy(xpath ="//android.widget.TextView[@text='SHARE Offers']")
 			public AndroidElement offersWelcome;
 			
-			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='com.maf.sharesit:id/tutorial_tips_progress']")
+			@AndroidFindBy(xpath ="//android.widget.TextView[@resource-id='tutorial_tips_progress']")
 			public AndroidElement NumberCountTutorialOffers;
 			
 			//Account

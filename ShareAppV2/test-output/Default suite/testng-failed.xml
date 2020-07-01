@@ -5,8 +5,10 @@
     <classes>
       <class name="com.share.testscript.Registration">
         <methods>
-          <include name="TC_C_SU_001_004"/>
+          <include name="TC_C_SU_012" invocation-numbers="0"/>
+          <include name="TC_C_SU_036" invocation-numbers="0"/>
           <include name="setTestResult"/>
+          <include name="TC_C_SU_008" invocation-numbers="0"/>
           <include name="SetUp"/>
           <include name="CreateDriver"/>
           <include name="reportClose"/>

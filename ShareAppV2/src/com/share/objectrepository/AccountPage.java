@@ -36,118 +36,118 @@ public class AccountPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='settings']")
 	public AndroidElement SettingsIcon;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/edit_profile_button")
+	@AndroidFindBy(id = "edit_profile_button")
 	public AndroidElement EditProfile;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_title_dropdown']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_title_dropdown']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileTitle;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_first_name']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_first_name']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileFirstName;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_surname']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_surname']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileSurName;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_phone_number']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_phone_number']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfilePhoneNum;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_date_of_birth']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_date_of_birth']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileDob;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_nationality']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_nationality']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileNationality;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/update_user_profile_country_code_drop_down']//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='update_user_profile_country_code_drop_down']//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement EditProfileCountryCode;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/update_user_profile_save_changes_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='update_user_profile_save_changes_button']")
 	public AndroidElement EditProfileSaveChanges;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_description']")
 	public AndroidElement EditProfileSaveChangesMsg;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/simple_dialog_answer_positive_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='simple_dialog_answer_positive_button']")
 	public AndroidElement EditProfileSaveChangesConfirm;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
 	public AndroidElement NavigateBack;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/simple_dialog_answer_positive_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='simple_dialog_answer_positive_button']")
 	public AndroidElement EditProfileDiscard;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_description']")
 	public AndroidElement EditProfileDiscardMsg;
 
 	@AndroidFindBy(xpath = "//*[@class='android.widget.TextView']")
 	public AndroidElement PageTitle;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/reset_password_button")
+	@AndroidFindBy(id = "reset_password_button")
 	public AndroidElement ResetPassword;
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.maf.sharesit:id/text_input_layout_input']")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='text_input_layout_input']")
 	public AndroidElement ResetPasswordEmail;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/change_password_button")
+	@AndroidFindBy(id = "change_password_button")
 	public AndroidElement ResetPasswordButton;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/notifications_button")
+	@AndroidFindBy(id = "notifications_button")
 	public AndroidElement Notifications;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/notification_settings_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='notification_settings_title']")
 	public AndroidElement NotificationsText;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/payment_methods_button")
+	@AndroidFindBy(id = "payment_methods_button")
 	public AndroidElement PaymentMethods;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/payment_methods_button")
+	@AndroidFindBy(id = "payment_methods_button")
 	public AndroidElement AddCard;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/number_layout']//android.widget.EditText[@resource-id='com.maf.sharesit:id/edtPanCw']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='number_layout']//android.widget.EditText[@resource-id='edtPanCw']")
 	public AndroidElement CardNumber;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/full_name_layout']//android.widget.EditText[@resource-id='com.maf.sharesit:id/edtFullNameCw']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='full_name_layout']//android.widget.EditText[@resource-id='edtFullNameCw']")
 	public AndroidElement NameOnCard;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/expiry_layout']//android.widget.EditText[@resource-id='com.maf.sharesit:id/edtExpiryCw']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='expiry_layout']//android.widget.EditText[@resource-id='edtExpiryCw']")
 	public AndroidElement Expiry;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/cvc_layout']//android.widget.EditText[@resource-id='com.maf.sharesit:id/edtCvcCw']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='cvc_layout']//android.widget.EditText[@resource-id='edtCvcCw']")
 	public AndroidElement CVV;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/btnSubmitCw")
+	@AndroidFindBy(id = "btnSubmitCw")
 	public AndroidElement SaveCard;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/viewTextInputLayout']//android.widget.EditText[@resource-id='com.maf.sharesit:id/edtVerifyAmountCw']")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='viewTextInputLayout']//android.widget.EditText[@resource-id='edtVerifyAmountCw']")
 	public AndroidElement TransactionAmount;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/edtSubmitVerifyCw")
+	@AndroidFindBy(id = "edtSubmitVerifyCw")
 	public AndroidElement SubmitTransactionAmount;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/viewTextMessage']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='viewTextMessage']")
 	public AndroidElement InformationText;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/payment_method_unverified_label']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='payment_method_unverified_label']")
 	public AndroidElement Unverified;
 
 	@AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc=\"Delete Card\"]")
 	public AndroidElement Delete;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_title']")
 	public AndroidElement Confrimation;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_description']")
 	public AndroidElement ConfrimationMessage;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_positive_button")
+	@AndroidFindBy(id = "simple_dialog_answer_positive_button")
 	public AndroidElement confirm;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/dialog_status_title")
+	@AndroidFindBy(id = "dialog_status_title")
 	public AndroidElement Status;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/dialog_primary_button")
+	@AndroidFindBy(id = "dialog_primary_button")
 	public AndroidElement Button;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/dialog_primary_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='dialog_primary_button']")
 	public AndroidElement ThanksButton;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.google.android.gm:id/open_search_bar_text_view']")
@@ -159,25 +159,25 @@ public class AccountPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.google.android.gm:id/viewified_conversation_item_view' and @index='1']//android.widget.TextView[@resource-id='com.google.android.gm:id/date']")
 	public AndroidElement MailTime;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/dialog_status_description")
+	@AndroidFindBy(id = "dialog_status_description")
 	public AndroidElement err_status;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/btnSubmitCw")
+	@AndroidFindBy(id = "btnSubmitCw")
 	public AndroidElement save_err;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/txtPanError")
+	@AndroidFindBy(id = "txtPanError")
 	public AndroidElement Invalid;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/dialog_status_description")
+	@AndroidFindBy(id = "dialog_status_description")
 	public AndroidElement error_message;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/txtNameError")
+	@AndroidFindBy(id = "txtNameError")
 	public AndroidElement Name_error;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/txtExprError")
+	@AndroidFindBy(id = "txtExprError")
 	public AndroidElement Expiry_error;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_negative_button")
+	@AndroidFindBy(id = "simple_dialog_answer_negative_button")
 	public AndroidElement card_cancel;
 
 
@@ -185,7 +185,7 @@ public class AccountPage extends DriverSetUp  {
 
 	//privacy policy
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/privacy_policy_button']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='privacy_policy_button']")
 	public AndroidElement privacy_icon;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Privacy policy']")
@@ -201,27 +201,27 @@ public class AccountPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
 	public AndroidElement BackButton;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/logout_button']")
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='logout_button']")
 	public AndroidElement logout_icon;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_negative_button")
+	@AndroidFindBy(id = "simple_dialog_answer_negative_button")
 	public AndroidElement logout_neg;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/simple_dialog_answer_positive_button")
+	@AndroidFindBy(id = "simple_dialog_answer_positive_button")
 	public AndroidElement logout_pos;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Already have an account? Sign In']")
 	public AndroidElement start_page;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/onboarding_already_have_account_view")
+	@AndroidFindBy(id = "onboarding_already_have_account_view")
 	public AndroidElement SignIn;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/tutorial_tip_action_button']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='tutorial_tip_action_button']")
 	public AndroidElement gotit;
 
 	//relogin
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/home_screen_expanded_title")
+	@AndroidFindBy(id = "home_screen_expanded_title")
 	public AndroidElement relogin;
 
 	//reset tutorial confirm and cancel
@@ -238,7 +238,7 @@ public class AccountPage extends DriverSetUp  {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Settings']")
 	public AndroidElement settings;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_description']")
 	public AndroidElement ResetConfrimation;
 
 
@@ -253,30 +253,30 @@ public class AccountPage extends DriverSetUp  {
 
 	public AndroidElement GetCardStatus(String CardNumber)
 	{
-		AndroidElement status = driver.findElementByXPath("//android.widget.TextView[@resource-id='com.maf.sharesit:id/payment_method_card_number' and contains(@text, '"+CardNumber+"')]//following::android.widget.TextView[@resource-id='com.maf.sharesit:id/payment_method_unverified_label']");
+		AndroidElement status = driver.findElementByXPath("//android.widget.TextView[@resource-id='payment_method_card_number' and contains(@text, '"+CardNumber+"')]//following::android.widget.TextView[@resource-id='payment_method_unverified_label']");
 		return status;
 	}
 
 	public AndroidElement SelectCards(String CardNumber)
 	{
-		AndroidElement Cards = driver.findElementByXPath("//android.widget.TextView[@resource-id='com.maf.sharesit:id/payment_method_card_number' and contains(@text, '"+CardNumber+"')]");
+		AndroidElement Cards = driver.findElementByXPath("//android.widget.TextView[@resource-id='payment_method_card_number' and contains(@text, '"+CardNumber+"')]");
 		return Cards;
 	}
 
 	@AndroidFindBy(xpath = "//*[@class='android.widget.ImageButton']")
 	public AndroidElement clickBack;
 
-	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='com.maf.sharesit:id/dialog_primary_button' and @text='TRY AGAIN']")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='dialog_primary_button' and @text='TRY AGAIN']")
 	public AndroidElement TryAgainButton;
 	
 	//About   
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/settings_item_label_text_view' and @text='About']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='settings_item_label_text_view' and @text='About']")
 	public AndroidElement Aboutclick;   
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/about_content_text']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='about_content_text']")
 	public AndroidElement Aboutcontent;
 	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/simple_dialog_answer_description']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='simple_dialog_answer_description']")
     public AndroidElement LogoutDescription;
    
    
@@ -285,10 +285,10 @@ public class AccountPage extends DriverSetUp  {
     
     //New feature_Sprint_20 to 23
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/item_myaccount_gift_points")
+    @AndroidFindBy(id = "item_myaccount_gift_points")
     public AndroidElement accountgift;
     
-    @AndroidFindBy(id = "com.maf.sharesit:id/retrieve_my_club_points")
+    @AndroidFindBy(id = "retrieve_my_club_points")
     public AndroidElement linktoMyClub;
     
     @AndroidFindBy(id = "my_club_card")

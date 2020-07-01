@@ -20,80 +20,80 @@ public class HomePage extends DriverSetUp {
 	}
 
 	//tc_home_006
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/home_screen_offer_list_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='home_screen_offer_list_title']")
 	public AndroidElement offertitleinhomepage;
 
-	@AndroidFindBy(id ="com.maf.sharesit:id/home_screen_offer_title")
+	@AndroidFindBy(id ="home_screen_offer_title")
 	public AndroidElement offertitleclick;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_details_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offer_details_title']")
 	public AndroidElement offertitleinofferdetailpage;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_banner_title']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offer_banner_title']")
 	public AndroidElement offertitleinactiavtedtab;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_details_share']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offer_details_share']")
 	public AndroidElement offerdetailshare;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_details_like']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offer_details_like']")
 	public AndroidElement offerdetaillike;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/offers_tab_button_text' and @text='ACTIVATED']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='offers_tab_button_text' and @text='ACTIVATED']")
 	public AndroidElement ActivatedTab;
 
 	@AndroidFindBy(xpath = "(//android.widget.ImageButton[@content-desc=\"Add to favorites\"])[1]")
 	public AndroidElement ActivatetickINaActiavtedtab;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/no_offers_text_vies']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='no_offers_text_vies']")
 	public AndroidElement NoOffersText;
 	
 	public String VerifyOffer(String ElementText)
 	{ 
-		String Xpath="//android.widget.TextView[@resource-id='com.maf.sharesit:id/offer_banner_title' and @text='"+ElementText+"']";
+		String Xpath="//android.widget.TextView[@resource-id='offer_banner_title' and @text='"+ElementText+"']";
 		return Xpath;
 	}
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_shop_online")
+	@AndroidFindBy(id = "tv_shop_online")
 	public AndroidElement homeShopEarn;
 
 
 	//tc_home_001 
-	@AndroidFindBy(id = "com.maf.sharesit:id/home_screen_expanded_title")
+	@AndroidFindBy(id = "home_screen_expanded_title")
 	public AndroidElement home_title;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/home_screen_expanded_points_balance")
+	@AndroidFindBy(id = "home_screen_expanded_points_balance")
 	public AndroidElement home_points;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/home_screen_expanded_value_aed")
+	@AndroidFindBy(id = "home_screen_expanded_value_aed")
 	public AndroidElement home_currency;
 
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/v_avatar")
+	@AndroidFindBy(id = "v_avatar")
 	public AndroidElement avatarHome;
 
 	//Submit Receipt
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_home")
+	@AndroidFindBy(id = "option_home_home")
 	public AndroidElement homeElement;
 
-	@AndroidFindBy(id ="com.maf.sharesit:id/iv_home_feature_submit_receipt")
+	@AndroidFindBy(id ="iv_home_feature_submit_receipt")
 	public AndroidElement receiptCamera;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_home_user_name")
+	@AndroidFindBy(id = "tv_home_user_name")
 	public AndroidElement userName;
 
-	@AndroidFindBy(id= "com.maf.sharesit:id/tv_home_points_balance")
+	@AndroidFindBy(id= "tv_home_points_balance")
 	public AndroidElement pointsBalance;
 
-	@AndroidFindBy(id= "com.maf.sharesit:id/tv_home_points")
+	@AndroidFindBy(id= "tv_home_points")
 	public AndroidElement pointshome;
 
-	@AndroidFindBy(id= "com.maf.sharesit:id/tv_home_points_value")
+	@AndroidFindBy(id= "tv_home_points_value")
 	public AndroidElement pointsAed;
 
-	@AndroidFindBy(id= "com.maf.sharesit:id/iv_home_feature_family")
+	@AndroidFindBy(id= "iv_home_feature_family")
 	public AndroidElement myFamily;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/home_screen_hint_messages_viewpager")
+	@AndroidFindBy(id = "home_screen_hint_messages_viewpager")
 	public AndroidElement scrollView;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'EXPERIENCES')and @clickable='true']")
@@ -108,32 +108,32 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.view.ViewGroup[@index='0']")
 	public AndroidElement offersList;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/offer_details_share")
+	@AndroidFindBy(id = "offer_details_share")
 	public AndroidElement offersShare;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/offer_details_like")
+	@AndroidFindBy(id = "offer_details_like")
 	public AndroidElement offersActivate;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/cb_dont_show_again")
+	@AndroidFindBy(id = "cb_dont_show_again")
 	public AndroidElement introCheckbox;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/btn_skip")
+	@AndroidFindBy(id = "btn_skip")
 	public AndroidElement introSkip;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/btn_next")
+	@AndroidFindBy(id = "btn_next")
 	public AndroidElement introNext;
 
-	@AndroidFindBy(xpath = "//com.maf.sharesit:id/btn_next[@text='DONE']")
+	@AndroidFindBy(xpath = "//btn_next[@text='DONE']")
 	public AndroidElement introDone;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/info")
+	@AndroidFindBy(id = "info")
 	public AndroidElement introInfo;
 
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/bt_allow")
+	@AndroidFindBy(id = "bt_allow")
 	public AndroidElement allowAccess;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/bt_not_now")
+	@AndroidFindBy(id = "bt_not_now")
 	public AndroidElement denyAccess;
 
 	@AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
@@ -142,31 +142,31 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
 	public AndroidElement denyPermission;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_close")
+	@AndroidFindBy(id = "iv_close")
 	public AndroidElement cameraClose;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_normal_receipt_type")
+	@AndroidFindBy(id = "tv_normal_receipt_type")
 	public AndroidElement normalReceiptButton;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_long_receipt_type")
+	@AndroidFindBy(id = "tv_long_receipt_type")
 	public AndroidElement longReceiptButton;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/bt_capture_receipt")
+	@AndroidFindBy(id = "bt_capture_receipt")
 	public AndroidElement buttonCaptureClick;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_submit_for_preview")
+	@AndroidFindBy(id = "iv_submit_for_preview")
 	public AndroidElement imageSubmit;
 
 	@AndroidFindBy(accessibility = "Navigate up")
 	public AndroidElement previewClose;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/menu_item_retake")
+	@AndroidFindBy(id = "menu_item_retake")
 	public AndroidElement previewRetake;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_submit_for_preview")
+	@AndroidFindBy(id = "iv_submit_for_preview")
 	public AndroidElement previewSubmit;
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_receipt_preview")
+	@AndroidFindBy(id = "iv_receipt_preview")
 	public AndroidElement submitReceipt;
 
 	@AndroidFindBy(id = "android:id/button2")
@@ -181,7 +181,7 @@ public class HomePage extends DriverSetUp {
 
 
 	//Gifting
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_home_feature_share_points")
+	@AndroidFindBy(id = "iv_home_feature_share_points")
 	public AndroidElement homeGifting;
 
 	@AndroidFindBy(xpath = "//android.view.View[@text='Access is denied due to invalid credentials.']")
@@ -192,27 +192,27 @@ public class HomePage extends DriverSetUp {
 
 	/// SHARE_ID////
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_home_feature_share_id")
+	@AndroidFindBy(id = "iv_home_feature_share_id")
 	public AndroidElement homeShareId;
 
 
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_share_id_barcode")
+	@AndroidFindBy(id = "tv_share_id_barcode")
 	public AndroidElement homeBarcode;
 
 	///All Tabs
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_experiences")
+	@AndroidFindBy(id = "option_home_experiences")
 	public AndroidElement shareExperiencesTab;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_pay")
+	@AndroidFindBy(id = "option_home_pay")
 	public AndroidElement sharePayTab;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_using_share")
+	@AndroidFindBy(id = "option_home_using_share")
 	public AndroidElement shareAssistantTab;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_account")
+	@AndroidFindBy(id = "option_home_account")
 	public AndroidElement shareAccountTab;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_home_feature_share_points")
+	@AndroidFindBy(id = "iv_home_feature_share_points")
 	public AndroidElement homeSharePoints;
 	
 	@AndroidFindBy(id = "points")
@@ -252,10 +252,10 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTEST']")
 	public AndroidElement homeContest;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/button_see_all_2")
+	@AndroidFindBy(id = "button_see_all_2")
 	public AndroidElement homeExpSeeAll;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/option_home_experiences")
+	@AndroidFindBy(id = "option_home_experiences")
 	public AndroidElement homeExpTab;
 	
 	//Updates
@@ -266,22 +266,22 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='UPDATES']")
 	public AndroidElement homeUpdatesScreen;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/button_see_all")
+	@AndroidFindBy(id = "button_see_all")
 	public AndroidElement homeupdateSeeAll;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/tvDate")
+	@AndroidFindBy(id = "tvDate")
 	public AndroidElement homeupdateDate;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_share")
+	@AndroidFindBy(id = "iv_share")
 	public AndroidElement homeupdateShare;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_experience_details_description")
+	@AndroidFindBy(id = "tv_experience_details_description")
 	public AndroidElement homeupdateDesc;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@index='1']")
 	public AndroidElement homeupdateNews;
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/iv_close")
+	@AndroidFindBy(id = "iv_close")
 	public AndroidElement homeupdateClose;
 	
 	
@@ -290,7 +290,7 @@ public class HomePage extends DriverSetUp {
 	
 	//offer Description screen
 	
-	@AndroidFindBy(id = "com.maf.sharesit:id/tv_experience_details_description")
+	@AndroidFindBy(id = "tv_experience_details_description")
 	public AndroidElement homeOffersDes;
 	
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@clickable='true']")
