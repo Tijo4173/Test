@@ -14,9 +14,7 @@ import com.share.functions.SignInFunctions;
 import com.share.functions.SplashScreenFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
-import com.share.objectrepository.AccountPage;
 import com.share.objectrepository.HomePage;
-import com.share.objectrepository.OffersPage;
 import com.share.objectrepository.RegistrationPage;
 import com.share.objectrepository.SignInPage;
 import com.share.objectrepository.SplashScreenPage;
@@ -216,8 +214,8 @@ public class Home extends DriverSetUp{
 			generalFunctions.isElementPresent(homePage.introNext, 90);
 			homeFunctions.introDone(homePage);
 			Thread.sleep(6000);
-//			homeFunctions.allowtoAccess(homePage);
-//			Thread.sleep(6000);
+			//			homeFunctions.allowtoAccess(homePage);
+			//			Thread.sleep(6000);
 			generalFunctions.isElementPresent(homePage.introInfo, 90);
 			if(homePage.introInfo.isDisplayed()==true)
 			{
@@ -662,8 +660,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -769,8 +767,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -865,8 +863,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -928,8 +926,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -993,8 +991,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -1080,8 +1078,8 @@ public class Home extends DriverSetUp{
 		driver.resetApp();
 		try
 		{	
-									generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-									signInFunctions.validUserLogin(signInPage);
+			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+			signInFunctions.validUserLogin(signInPage);
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 
 			homeFunctions.receiptCameraClick(homePage);
@@ -2504,432 +2502,3 @@ public class Home extends DriverSetUp{
 
 
 
-
-
-///////////////-----------V1 Script-------------//////
-//	@Test
-//	public void TC_Home_001(Method method) throws Exception
-//	{
-//		String TC_Method = method.getName();
-//		test = extent.createTest(TC_Method);
-//		test.log(Status.INFO, "Home");
-//		test.info("Verify Homepage Have User Profile Name");
-//		test.assignCategory("Home");
-//		System.out.println("Running Test"+" "+ TC_Method);
-//
-//		String EmailAddress=map.get("UserName").toString();
-//		String Pass=map.get("UserPassword").toString();
-//
-//		RegistrationPage registrationPage= new RegistrationPage(driver);
-//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-//		SignInPage signInPage = new SignInPage(driver);
-//		HomePage homepage = new HomePage(driver);
-//
-//		try
-//		{
-//			driver.activateApp("com.maf.sharesit");
-//			Thread.sleep(2000);
-//
-//			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-//			Thread.sleep(9000);
-//
-//			//Getting text
-//			String title = homepage.home_title.getText();
-//			System.out.println("Profile Name is:" +" "+ title);
-//
-//			if(title.contains(title))
-//			{
-//
-//				test.log(Status.PASS, " Profile Name Displayed in Homepage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Profile Name Not Displayed in Homepage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//				Assert.fail("Profile Name Not Displayed in Homepage");
-//			}
-//
-//			//String points = homepage.home_points.getText();
-//			//System.out.println("Points:" +points);
-//		}
-//		catch(Exception e)
-//		{
-//			test.log(Status.FAIL, e.getMessage());
-//			Assert.fail(e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	public void TC_Home_002(Method method) throws Exception
-//	{
-//		String TC_Method = method.getName();
-//		test = extent.createTest(TC_Method);
-//		test.log(Status.INFO, "Home");
-//		test.info("Verify Homepage Have Points and Currency");
-//		test.assignCategory("Home");
-//		System.out.println("Running Test"+" "+ TC_Method);
-//
-//		String EmailAddress=map.get("UserName").toString();
-//		String Pass=map.get("UserPassword").toString();
-//
-//		RegistrationPage registrationPage= new RegistrationPage(driver);
-//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-//		SignInPage signInPage = new SignInPage(driver);
-//		HomePage homepage = new HomePage(driver);
-//
-//		try
-//		{
-//			driver.activateApp("com.maf.sharesit");
-//			Thread.sleep(2000);
-//
-//			//LOGIN
-//			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-//			Thread.sleep(5000);
-//
-//			//Getting points
-//			String points = homepage.home_points.getText();
-//			System.out.println("Points:" +points);
-//
-//			if(points.contains(points))
-//			{
-//				test.log(Status.PASS, "Points Displayed in HomePage");
-//
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Points Not Displayed in HomePage");
-//				Assert.fail("Points Not Displayed in HomePage");
-//			}
-//
-//			Thread.sleep(5000);
-//			String currency = homepage.home_currency.getText();
-//			System.out.println("Currency:" +currency);
-//			if(currency.contains(currency))
-//			{
-//				test.log(Status.PASS, " Currency Displayed in HomePage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Currency Not Displayed in HomePage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//				Assert.fail("Currency Not Displayed in HomePage");
-//			}
-//		}	
-//		catch(Exception e)   
-//		{
-//			test.log(Status.FAIL, e.getMessage());
-//			Assert.fail(e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	public void TC_Home_003_to_TC_Home_004(Method method) throws IOException, Exception
-//	{
-//
-//		String TC_Method = method.getName();
-//		test = extent.createTest(TC_Method);
-//		test.log(Status.INFO, "Verify Home Submit Receipt able to Submit Receipt");
-//		test.log(Status.INFO, "Verify Home Submit Receipt Have Skip and Next Buttons");
-//		test.log(Status.INFO, "Verify Home Submit Camera have information Tooltip");
-//		test.log(Status.INFO, "Verify that the user is able to Go to Scanning Page");
-//		test.assignCategory("Home");
-//		System.out.println("Running Test"+" "+ TC_Method);
-//
-//		String EmailAddress=map.get("Offers_UserEmail").toString();
-//		String Pass=map.get("Offers_UserPassword").toString();
-//
-//		GeneralFunctions generalFunctions = new GeneralFunctions();
-//		AccountPage accountPage = new AccountPage(driver);
-//		HomePage homePage = new HomePage(driver);
-//		HomeFunctions homeFunctions = new HomeFunctions();
-//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-//		RegistrationPage registrationPage= new RegistrationPage(driver);
-//		SignInPage signInPage = new SignInPage(driver);
-//
-//		try {
-//
-//			driver.resetApp();
-//			Thread.sleep(2000);	
-//
-//			//LOGIN
-//			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-//			Thread.sleep(2000);	
-//
-//			generalFunctions.isElementPresent(accountPage.AccountIcon, 90);
-//			Thread.sleep(2000);
-//
-//			homeFunctions.receiptCameraClick(homePage);
-//			//generalFunctions.isElementPresent(accountPage.accountReceipt, 90);
-//			//accountFunctions.receiptScan(accountPage);
-//
-//			Thread.sleep(4000);
-//			//Verify Skip Button is Present
-//			if(homePage.introSkip.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "Submit Receipt Camera Intro Skip Button is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Submit Receipt Camera Have Intro Skip Button is Not Present");
-//				Assert.fail("Submit Receipt Camera Intro Skip Button is Not Present");
-//			}
-//
-//			generalFunctions.isElementPresent(homePage.introNext, 90);
-//			if(homePage.introNext.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "Submit Receipt Camera Have Intro Next Button is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Submit Receipt Receipt Camera Have Intro Next Button is Not Present");
-//				Assert.fail("Submit Receipt Camera Have Intro Next Button is Not Present");
-//			}
-//
-//			generalFunctions.isElementPresent(homePage.introSkip, 90);
-//			homePage.introSkip.click();
-//			Thread.sleep(6000);
-//			homeFunctions.allowtoAccess(homePage);
-//			Thread.sleep(6000);
-//			generalFunctions.isElementPresent(homePage.introInfo, 90);
-//			if(homePage.introInfo.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "Submit Receipt Camera Have IntroInfo icon is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Submit Receipt Camera Have IntroInfo icon is Not Present");
-//				Assert.fail("Submit Receipt Camera Have IntroInfo icon is Not Present");
-//			}
-//
-//			generalFunctions.isElementPresent(homePage.introInfo, 90);
-//			homePage.introInfo.click();
-//			Thread.sleep(8000);
-//			homeFunctions.introDone(homePage);
-//
-//			generalFunctions.isElementPresent(homePage.normalReceiptButton, 90);
-//			if(homePage.normalReceiptButton.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "NormalReceipt Scan Button is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "NormalReceipt Scan Button is Not  Present");
-//				Assert.fail("NormalReceipt Scan Button is Not Present");
-//			}
-//			Thread.sleep(7000);
-//			generalFunctions.isElementPresent(homePage.longReceiptButton, 90);
-//			if(homePage.longReceiptButton.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "LongReceipt Scan Button is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "LongReceipt Scan Button is Not Present");
-//				Assert.fail("LongReceipt Scan Button is Not Present");
-//			}
-//			Thread.sleep(7000);
-//			generalFunctions.isElementPresent(homePage.buttonCaptureClickButton, 90);
-//			if(homePage.buttonCaptureClickButton.isDisplayed()==true)
-//			{
-//				test.log(Status.PASS, "Capture Receipt Button is Present");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Capture Receipt Button is Not Present");
-//				Assert.fail("Capture Receipt Button is Not Present");
-//			}
-//
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//			test.log(Status.FAIL, e.getMessage());
-//			Assert.fail(e.getMessage());
-//		}
-//	}
-//
-//	@Test
-//	public void TC_Home_006(Method method) throws Exception
-//	{
-//
-//		String TC_Method = method.getName();
-//		test = extent.createTest(TC_Method);
-//		test.log(Status.INFO, "HomePage");
-//		test.info("1.Verify Homepage have Offers Listings");
-//		test.info("2.Activate Offer and Deactivate Offer From Homepage");
-//		test.assignCategory("Home");
-//		System.out.println("Running Test"+" "+ TC_Method);		
-//
-//		String EmailAddress=map.get("UserName").toString();
-//		String Pass=map.get("UserPassword").toString();
-//
-//		RegistrationPage registrationPage= new RegistrationPage(driver);
-//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-//		SignInPage signInPage = new SignInPage(driver);
-//		HomePage homepage = new HomePage(driver);
-//		OffersPage offersPage = new OffersPage(driver);
-//
-//		try
-//		{
-//			driver.activateApp("com.maf.sharesit");
-//			Thread.sleep(2000);
-//
-//			//LOGIN
-//			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-//			Thread.sleep(5000);
-//
-//			String OfferTitleHome = homepage.offertitleinhomepage.getText();
-//			System.out.println(OfferTitleHome);
-//
-//			if(OfferTitleHome.contains("OFFERS"))
-//			{
-//				test.log(Status.PASS, "List of Offers Present in Homepage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "List Of Offers Not Present in Homepage").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//				Assert.fail("List Of Offers Not Present in Homepage");
-//			}	
-//
-//			Thread.sleep(7000);
-//			String titlename1= homepage.offertitleclick.getText();
-//			System.out.println("Offertitle in homepage" +" "+titlename1);
-//			homepage.offertitleclick.click();
-//			Thread.sleep(7000);
-//
-//			String titlename2= homepage.offertitleinofferdetailpage.getText();
-//			System.out.println("Offertitle in offer detailpage is"+ " " +titlename2);
-//
-//			if(titlename1.equals(titlename2))
-//			{
-//				test.log(Status.PASS, "Offer Detailed Page is Displayed");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Offer Detail Page is Not Displayed");
-//				Assert.fail("Offer Detail Page is  Not Displayed");
-//			}
-//			Thread.sleep(7000);
-//
-//			if(homepage.offerdetailshare.isDisplayed()== true) {
-//
-//				test.log(Status.PASS, "Share Offer Icon is Present in Offer Details Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Share Offer Icon is Not Present in Offer Details Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-//				Assert.fail("Share Offer Icon is Not Present in Offer Details Page");
-//			}
-//			Thread.sleep(7000);
-//
-//			if(homepage.offerdetaillike.isDisplayed()== true) {
-//
-//				test.log(Status.PASS, "Activate Offer Icon is Present in Offer Details Page");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Activate Offer Icon is Not Present in Offer Details Page");
-//				Assert.fail("Activate Offer Icon is Not Present in Offer Details Page");
-//			}
-//
-//			homepage.offerdetaillike.click();
-//			Thread.sleep(6000);
-//
-//			offersPage.offers.click();
-//			Thread.sleep(9000);
-//
-//			homepage.ActivatedTab.click();
-//			Thread.sleep(6000);
-//			String titlename3= homepage.offertitleinactiavtedtab.getText();
-//			System.out.println("Offer name in Actiavted tab is " +" "+ titlename3);
-//
-//			if(titlename3.equals(titlename2))
-//			{	
-//				test.info("Navigated to Offers Actiaved Tab");
-//				test.log(Status.PASS, "Activated Offers is Present in Activated Tab");
-//			}
-//			else
-//			{
-//				test.log(Status.FAIL, "Activated Offers is Not present in Activated Tab");
-//				Assert.fail("Activated Offers is Not Present in Activated Tab");
-//			}
-//
-//			//Deactivate tick
-//			Thread.sleep(1000);	
-//			homepage.ActivatetickINaActiavtedtab.click();
-//
-//			Thread.sleep(3000);	
-//
-//			try
-//			{
-//				if(driver.findElementByXPath(homepage.VerifyOffer(titlename3)).isDisplayed()==true)
-//				{
-//					test.log(Status.FAIL, "Deactivated Offer is Present in Activated Tab");
-//					Assert.fail("Activated Offer is Present in Activated Tab");
-//				}
-//			}
-//			catch(Exception e)
-//			{
-//				test.log(Status.PASS, "Deactivated Offer Not is Present in Activated Tab");
-//			}	
-//		}
-//
-//		catch(Exception e)   
-//		{
-//			test.log(Status.FAIL, e.getMessage());
-//			Assert.fail(e.getMessage());
-//		}
-//
-//	}
-//	//New Feature_Sprint_20 to 23
-//	@Test
-//	public void TC_Home_007(Method method) throws Exception {
-//		String TC_Method = method.getName();
-//		test= extent.createTest(TC_Method).assignCategory("Home");
-//		test.log(Status.INFO, "Validat the error message is displayed for the user doesnt have point");
-//		String EmailAddress=map.get("UserName").toString();
-//		String Pass=map.get("UserPassword").toString();
-//
-//		RegistrationPage registrationPage= new RegistrationPage(driver);
-//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-//		SignInPage signInPage = new SignInPage(driver);
-//		SignInFunctions signInFunctions = new SignInFunctions();
-//		HomePage homepage = new HomePage(driver);
-//		GeneralFunctions generalFunctions = new GeneralFunctions();
-//		//try
-//		driver.resetApp();
-//		Thread.sleep(2000);	
-//
-//		//Logout if already logged in 
-//		generalFunctions.Logout();			
-//		Thread.sleep(5000);
-//
-//		generalFunctions.isElementPresent(registrationPage.onboardScreen, 90);
-//		registrationFunctions.onboardScreenDisplayed(registrationPage);			
-//		generalFunctions.isElementPresent(signInPage.signinPresent, 90);
-//		signInFunctions.SignInUser(signInPage);
-//
-//		//Home Click
-//		generalFunctions.isElementPresent(homepage.homeElement, 90);
-//		homepage.homeElement.click();
-//
-//		//Gifting and click Back button
-//		generalFunctions.isElementPresent(homepage.homeGifting, 90);
-//		homepage.homeGifting.click();
-//		generalFunctions.isElementPresent(registrationPage.NavigateBack, 90);
-//		registrationPage.NavigateBack.click();
-//		generalFunctions.isElementPresent(homepage.homeGifting, 90);
-//		test.log(Status.INFO, "Back button is Clickable");
-//		//Gifting and click Back button
-//		homepage.homeGifting.click();
-//		generalFunctions.isElementPresent(homepage.accessDenied, 90);
-//		if(homepage.accessDenied.isDisplayed()) {
-//			test.log(Status.PASS, "Access is denied due to invalid credentials alert is displayed");
-//			homepage.giftErrorDone.click();
-//		}else {
-//			test.log(Status.FAIL, "The Access denied alert is not displayed");
-//		}
-//
-//	}
-//
-//
-//
-//}

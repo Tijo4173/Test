@@ -17,7 +17,7 @@ public class SignInPage {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Email Address']")
+	@AndroidFindBy(id = "et_login_email")
 	public AndroidElement useridElement;
 
 
@@ -71,4 +71,35 @@ public class SignInPage {
 	
 	@AndroidFindBy(id="textinput_error")
 	public AndroidElement signErrorMessage;
+	
+	
+	
+	//Deepu
+	@AndroidFindBy(id = "com.maf.sharesit:id/buttonSkip")
+	public AndroidElement skipButton;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SIGN IN']")
+	public AndroidElement signinButton;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/et_login_email")
+	public AndroidElement emailAddress;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/et_login_password")
+	public AndroidElement password;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/btn_login_login")
+	public AndroidElement loginButton;
+	
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='CANCEL']")
+	public AndroidElement cancelButton;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/buttonSkip")
+	public AndroidElement skipUpdate;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/tv_home_user_name")
+	public AndroidElement username;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='HOME' and @resource-id='com.maf.sharesit:id/largeLabel']")
+	public AndroidElement homeIcon;
+	
 }

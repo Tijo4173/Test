@@ -31,101 +31,130 @@ public class AssistantPage extends DriverSetUp  {
 	}
 
 
-
-	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc='Assistant']/android.widget.ImageView")
+	//V2 START
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='ASSISTANT' and @resource-id='com.maf.sharesit:id/smallLabel']")
 	public AndroidElement AssistantIcon;
-
-	@AndroidFindBy(xpath = "//*[@resource-id='widget_search_title']")
-	public AndroidElement PageTitle;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Using SHARE']")
+	
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout//android.widget.TextView[@text='ASSISTANT']")
+	public AndroidElement assistantPage;
+	
+	@AndroidFindBy(xpath = "//android.widget.ImageView[@resource-id='com.maf.sharesit:id/imageViewSearchAction']")
+	public AndroidElement searchIcon;
+	
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.sharesit:id/linear_layout_assistant_topics']")
+	public AndroidElement topicSection;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewShareBasics']")
+	public AndroidElement shareBasicsSection;
+	
+	@AndroidFindBy(xpath = "//android.widget.RelativeLayout[@resource-id='com.maf.sharesit:id/relativeLayoutAssistantCallBubble']")
+	public AndroidElement callUsSection;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='SHARE WALLET']")
+	public AndroidElement ShareWalletTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[contains(@text,'REGISTRATION')]")
+	public AndroidElement RegistrationTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='ABOUT SHARE POINTS']")
+	public AndroidElement sharePointsTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='EARNING SHARE POINTS']")
+	public AndroidElement earningSharePointsTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='REDEEMING SHARE POINTS']")
+	public AndroidElement redeemSharePointsTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='SHARE FAMILY GROUP']")
+	public AndroidElement familyGroupTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='SHARE AT VOX CINEMAS']")
+	public AndroidElement shareAtVOXCinemasTopic;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantTopics']//android.widget.TextView[@text='SHARE AT CARREFOUR']")
+	public AndroidElement shareAtCarrefourTopic;
+	
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/toolbar']//android.widget.RelativeLayout//android.widget.TextView")
+	public AndroidElement pageTitle;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerCategoryQuestions']")
+	public AndroidElement questionsList;
+	
+	@AndroidFindBy(xpath = "//android.view.ViewGroup[@resource-id='com.maf.sharesit:id/toolbar']//android.widget.RelativeLayout//android.widget.ImageView")
+	public AndroidElement pageBack;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerCategoryQuestions']//android.widget.RelativeLayout[@index='0']//android.widget.TextView[@resource-id='com.maf.sharesit:id/text_view_category_question']")
+	public AndroidElement firstQuestion;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerCategoryQuestions']//android.widget.RelativeLayout[@index='0']//android.widget.TextView[@resource-id='com.maf.sharesit:id/textViewCategoryAnswer']")
+	public AndroidElement firstQuestionAnswer;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewShareBasics']//android.widget.TextView[@text='Using SHARE']")
 	public AndroidElement usingShare;
-
-	@AndroidFindBy(xpath = "//*[@resource-id='item_question_description']")
-	public AndroidElement Description;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Using the SHARE Wallet']")
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewShareBasics']//android.widget.TextView[@text='Using the SHARE Wallet']")
 	public AndroidElement usingShareWallet;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Earning SHARE points']")
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewShareBasics']//android.widget.TextView[@text='Earning SHARE points']")
 	public AndroidElement earningSHAREPoints;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_suggest_question_title' and @text ='Redeeming SHARE points']")
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewShareBasics']//android.widget.TextView[@text='Redeeming SHARE points']")
 	public AndroidElement redeemingSHAREPoints;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/text_view_question']//following-sibling::android.widget.TextView")
+	public AndroidElement Description;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/search_src_text")
+    public AndroidElement searchField;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantSearch']//android.view.ViewGroup[@index='1']//android.widget.ImageView[@resource-id='com.maf.sharesit:id/iv_search']/following-sibling::android.widget.TextView")
+	public AndroidElement recentSearchItem;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantSearch']//android.widget.ImageView[@resource-id='com.maf.sharesit:id/iv_search']/following-sibling::android.widget.TextView")
+	public AndroidElement recentSearchItems;
+	
+	@AndroidFindBy(id = "com.maf.sharesit:id/imageViewSearchClose")
+    public AndroidElement searchClear;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantSearch']//android.widget.TextView[@index='1']")
+	public AndroidElement searchResult;
+	
+	public String trySearches="//android.view.ViewGroup//android.widget.ImageView[@resource-id='com.maf.sharesit:id/iv_search']/following-sibling::android.widget.TextView";
+	
+	public AndroidElement recentSearches(String searchValue)
+	{
+		AndroidElement value = driver.findElementByXPath("//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantSearch']//android.widget.ImageView[@resource-id='com.maf.sharesit:id/iv_search']/following-sibling::android.widget.TextView[@text='"+searchValue+"']");
+		return value;
+	}
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/tvClear' and @text='CLEAR']")
+	public AndroidElement clearButton;
+	
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@resource-id='com.maf.sharesit:id/recyclerViewAssistantSearch']//android.widget.TextView[@text='TRY SEARCHING']")
+	public AndroidElement trySearching;
+	
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/text_view_question']")
+	public AndroidElement assistantQuestion;
+	
+	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.maf.sharesit:id/fragment_assistant_nav_host']")
+	public AndroidElement answerDetailsPage;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_categories' and @text ='See our help categories']")
-	public AndroidElement helpCategories;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='categories_section_general']")
-	public AndroidElement CategoryTitleText;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_help_category_title']")
-	public AndroidElement Categories;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_contact_us']")
-	public AndroidElement ContactUs;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_phone']")
-	public AndroidElement CallUs;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.google.android.dialer:id/digits']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.sharesit:id/tv_title' and @text='SORRY, NO RESULT FOUND']")
+	public AndroidElement noResult;
+	
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='com.android.dialer:id/digits']")
 	public AndroidElement Dialer;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='search_src_text']")
-	public AndroidElement Search;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='item_question_title']")
-	public AndroidElement Question;
-
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='assistant_question_alert']")
-	public AndroidElement Alert;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Email address']")
-	public AndroidElement assistantEmail;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Country code']")
-	public AndroidElement assistantCountrycode;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Phone number']")
-	public AndroidElement assistantPhonenumber;
-
-	@AndroidFindBy(xpath ="//android.widget.EditText[@text='Reason for contact']")
-	public AndroidElement assisatantReason;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='zendesk_description']")
-	public AndroidElement assistantDesription;
-
-	@AndroidFindBy(id = "submit_button")
-	public AndroidElement assistantSubmit;
-
-	@AndroidFindBy(id = "add_attachment_label")
-	public AndroidElement assistantAttachment;
-
-	@AndroidFindBy(id = "text_input_layout_input")
-	public AndroidElement assistantEmailfield;
-
-	@AndroidFindBy(xpath = "//android.widget.ListView[@index='0']")
-	public AndroidElement assistantReasonlist;
 	
-	@AndroidFindBy(id = "bt_allow")
-	public AndroidElement assistantallowAccess;
+	@AndroidFindBy(xpath = "//androidx.viewpager.widget.ViewPager[@resource-id='com.maf.sharesit:id/onBoardingViewpager']")
+	public AndroidElement onBoarding;
 	
-	@AndroidFindBy(id = "zendesk_terms_conditions_label")
-	public AndroidElement assistantTC;
 	
-	@AndroidFindBy(id ="simple_dialog_answer_positive_button")
-	public AndroidElement assistantOK;
+	//V2 END
 	
-	@AndroidFindBy(id = "simple_dialog_answer_positive_button")
-	public AndroidElement assistanSuccess;
+
+
 	
-	@AndroidFindBy(xpath = "//android.widget.EditText[@text='Something else']")
-	public AndroidElement assistantSomething;
-	
-	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='zendesk_other_reason']")
-	public AndroidElement assistantOtherReason;
-	
-	@AndroidFindBy(id = "assistant_email")
-	public AndroidElement assistantEmailUs;
 	
 }

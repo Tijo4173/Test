@@ -18,21 +18,7 @@ public class AssistantFunctions extends DriverSetUp {
 	String countryCode = map.get("CountryCode").toString();
 	String assistdescription = map.get("description").toString();
 
-
-	public void assistantemailid(AssistantPage assistantPage) {
-		assistantPage.assistantEmailfield.sendKeys(username);
-	}
-	public void assistdesc(AssistantPage assistantPage) {
-		assistantPage.assistantDesription.sendKeys(assistdescription);
-	}
-
-	/*public void reason(AssistantPage assistantPage) {
-		assistantPage.assisatantReason.click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		//driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Title\"))").click();
-		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"Mrs\"))").click();
-	}
-*/
+	
 
 	public void reasonRandom(AssistantPage assistantPage) {
 		
@@ -56,22 +42,8 @@ public class AssistantFunctions extends DriverSetUp {
 	}
 	
 	
-	public void allowtoAccess(AssistantPage assistantPage) {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		//homePage.allowAccess.click();
-		try{
-			if(assistantPage.assistantallowAccess.isDisplayed()==true) {
-				assistantPage.assistantallowAccess.click();
-				
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		//homePage.cameraClose.click();
-	}
 	
-	public boolean assistantOk(AssistantPage assistantPage) {
-		return assistantPage.assistantOK.isDisplayed();
-	}
+	
+	
 
 }

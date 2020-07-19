@@ -32,6 +32,7 @@ public class DataDriven  {
 	public static String strDeviceUDID = null;
 	public static int intRow = 0;
 	public static Map mapDevice;
+	public static Map mapdata;
 
 
 	//This method is to set the File path and to open the Excel file, Pass Excel Path and Sheetname as Arguments to this method    
@@ -145,6 +146,42 @@ public class DataDriven  {
 		
 		
 	}
+	
+	
+//////////////////Map Data//////////////////
+	
+	
+	public static Map getCellMapData() {
+		mapdata = null;
+		try {
+			mapdata = new HashMap<String,String>();
+			int col = ExcelWSheet.getRow(0).getPhysicalNumberOfCells();
+			for(int i=0;i<col;i++) {
+				String key = ExcelWSheet.getRow(0).getCell(i).getStringCellValue();
+				String value = "";
+				if(ExcelWSheet.getRow(1).getCell(i).getCellType() == Cell.CELL_TYPE_NUMERIC) 
+					value = String.valueOf(ExcelWSheet.getRow(1).getCell(i).getNumericCellValue());
+				else
+					value = ExcelWSheet.getRow(1).getCell(i).getStringCellValue();
+				mapdata.put(key,value); 
+			}
+			return mapdata;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return mapdata;
+		}
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 ////------Iteration---
 	
 

@@ -18,14 +18,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
-import com.share.functions.AssistantFunctions;
 import com.share.functions.HomeFunctions;
 import com.share.functions.RegistrationFunctions;
 import com.share.functions.SignInFunctions;
 import com.share.functions.SplashScreenFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
-import com.share.objectrepository.AssistantPage;
 import com.share.objectrepository.HomePage;
 import com.share.objectrepository.NotificationPage;
 import com.share.objectrepository.RegistrationPage;
@@ -42,9 +40,6 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class SignIn extends DriverSetUp
 {
-
-
-
 
 	//Launch the shareapp and click on "Sign in" button
 	@Test()
@@ -77,7 +72,6 @@ public class SignIn extends DriverSetUp
 				test.log(Status.FAIL, "SignIn is not Successful");
 				Assert.fail("The Sign In is not Successful");
 			}
-
 
 		}catch(Exception e) {
 			e.printStackTrace();
