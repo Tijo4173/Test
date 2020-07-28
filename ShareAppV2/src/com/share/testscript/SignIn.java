@@ -49,7 +49,7 @@ public class SignIn extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SignIn");
-		test.info("Launch the shareapp and click on Sign in button");
+		test.info("Launch the share app and click on Sign in button");
 		//driver.resetApp();
 		System.out.println(TC_Method);
 		RegistrationPage registrationPage = new RegistrationPage(driver);
@@ -79,7 +79,7 @@ public class SignIn extends DriverSetUp
 			e.getMessage();
 		}
 	}
-
+/*
 	//Verify user lands on Home screen
 	@Test()
 	public void TC_SignIn_002(Method method) throws Exception
@@ -481,7 +481,7 @@ public class SignIn extends DriverSetUp
 		}
 	}
 	
-	
+*/	
 	
 	
 	

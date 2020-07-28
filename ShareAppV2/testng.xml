@@ -5,8 +5,8 @@
  <parameter name="deviceName_" value="PixelXL"/>
  <parameter name="UDID_" value="emulator-5554"/>
  <parameter name="platformVersion_" value="10"/>
- <parameter name="systemPort" value="8200"/>
- <parameter name="URL_" value="0.0.0.0:4723/wd/hub"/>
+ <parameter name="systemPort" value="100"/>
+ <parameter name="URL_" value="4723"/>
     <classes>
       <class name="com.share.testscript.SignIn"/>
     </classes>
@@ -16,8 +16,8 @@
  <parameter name="deviceName_" value="Galaxy S10"/>
  <parameter name="UDID_" value="192.168.94.102:5555"/>
  <parameter name="platformVersion_" value="9"/>
-  <parameter name="systemPort" value="8201"/>
- <parameter name="URL_" value="0.0.0.0:5000/wd/hub"/>
+  <parameter name="systemPort" value="200"/>
+ <parameter name="URL_" value="5000"/>
  <classes>
   <class name="com.share.testscript.SignIn"/>
  </classes>

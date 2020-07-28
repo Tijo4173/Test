@@ -3,16 +3,15 @@
 <suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
   <test thread-count="2" name="Test1(failed)" parallel="tests">
     <parameter name="platformVersion_" value="10"/>
-    <parameter name="URL_" value="0.0.0.0:4723/wd/hub"/>
+    <parameter name="URL_" value="4723"/>
     <parameter name="UDID_" value="emulator-5554"/>
     <parameter name="deviceName_" value="PixelXL"/>
-    <parameter name="systemPort" value="8200"/>
+    <parameter name="systemPort" value="100"/>
     <classes>
       <class name="com.share.testscript.SignIn">
         <methods>
           <include name="TC_SignIn_001_007"/>
           <include name="setTestResult"/>
-          <include name="TC_SignIn_015"/>
           <include name="SetUp"/>
           <include name="createAndroidDriver"/>
           <include name="reportClose"/>

@@ -80,7 +80,6 @@ public class DriverSetUp extends DataDriven {
 		htmlReporter.config().setReportName("Automation Suite Execution Report");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
-		//extent.setSystemInfo(strDeviceName, strDeviceUDID);
 		extent.setSystemInfo("Automation", "Android");
 		extent.setSystemInfo("QA", "Smithin");
 		extent.setSystemInfo("Application", "Share");
@@ -170,16 +169,19 @@ public class DriverSetUp extends DataDriven {
 		cap.setCapability("platformVersion", platformVersion_);
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
 		cap.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
+		System.out.println(deviceName_+":"+UDID_+":"+platformVersion_+":"+URL_+":"+systemPort);
 		cap.setCapability("appPackage", "com.maf.dl.sharesit");
 		cap.setCapability("appActivity", "com.maf.android.share.presentation.splash.SplashActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("noSign", "true");
 		cap.setCapability("autoGrantPermissions","true");
-		driver = new AndroidDriver<AndroidElement>(new URL("http://"+URL_), cap);
+		driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:" +URL_+ "/wd/hub"), cap);
+		//System.out.println(deviceName_+":"+UDID_+":"+platformVersion_+":"+URL_+":"+systemPort);
 		driver.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
 		Thread.sleep(30000);
 	}
-*/
+	*/
+
 	@AfterMethod(alwaysRun=true)
 	public void setTestResult(ITestResult result) throws Exception {
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

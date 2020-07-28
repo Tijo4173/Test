@@ -68,6 +68,9 @@ public class ProfilePage extends DriverSetUp {
 		@AndroidFindBy(id = "btn_continue")
 		public AndroidElement upadateButton;
 		
+		@AndroidFindBy(id = "tv_card_number")
+		public AndroidElement existCard;
+		
 		@AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='‎‏‎‎‎‎‎‏‎‏‏‏‎‎‎‎‎‏‎‎‏‎‎‎‎‏‏‏‏‏‎‏‏‎‏‏‎‎‎‎‏‏‏‏‏‏‏‎‏‏‏‏‏‎‏‎‎‏‏‎‏‎‎‎‎‎‏‏‏‎‏‎‎‎‎‎‏‏‎‏‏‎‎‏‎‏‎‏‏‏‏‏‎‎Navigate up‎‏‎‎‏‎']")
 		public AndroidElement navigateBack;
 		
@@ -224,6 +227,12 @@ public class ProfilePage extends DriverSetUp {
 		
 		@AndroidFindBy(id = "button1")
 		public AndroidElement resetResetPin;
+		
+		@AndroidFindBy(id = "message")
+		public AndroidElement resetAlert;
+		
+		@AndroidFindBy(id = "tv_enter_pin_title")
+		public AndroidElement resetSuccessAlert;
 		
 		//Toast
 		

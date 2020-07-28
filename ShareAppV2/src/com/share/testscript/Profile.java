@@ -1765,6 +1765,8 @@ public class Profile extends DriverSetUp
 		}
 	}
 
+
+
 	//*************************************************Passcode for Existing Users**************************************//
 
 	//Verify Enter PIN code screen is displayed if an existing user trying to add new card
@@ -1874,7 +1876,82 @@ public class Profile extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
+	//Verify the user can reset Pin using forgot Pin
+	@Test
+	public void TC_80_to_83(Method method) throws IOException, Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "PaymentMethods:Forgot Passcode").assignCategory("PROFILE");
+		test.info("Verify the user can reset Pin using forgot Pin");
+		System.out.println(TC_Method);
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		HomePage homePage = new HomePage(driver);
 
+		//SignIn New User and click on Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
+		profilePage.paymentMethods.click();
+		generalFunctions.isElementPresent(profilePage.setUpPin, 30);
+
+		if(generalFunctions.isElementPresent(profilePage.forgotPin, 30)) {
+			test.log(Status.PASS, "The Forgot Pin button is visible");
+			profilePage.forgotPin.click();
+		}else {
+			test.log(Status.FAIL, "The Forgot Pin button is not visible");
+		}
+		if(generalFunctions.isElementPresent(profilePage.resetAlert, 30)) {
+			test.log(Status.PASS, "The reset Alert displayed");
+		}else {
+			test.log(Status.FAIL, "The reset Alert is NOT displayed");
+		}
+		profilePage.resetCancel.click();
+		if(generalFunctions.isElementPresent(profilePage.forgotPin, 30)) {
+			test.log(Status.PASS, "User tap on Cancel button and dismissed the alert");
+		}else {
+			test.log(Status.FAIL, "User tap on Cancel button and alert is NOT dismissed");
+		}
+		profilePage.forgotPin.click();
+		if(generalFunctions.isElementPresent(profilePage.resetAlert, 30)) {
+			test.log(Status.PASS, "The reset Alert displayed");
+			profilePage.resetResetPin.click();
+		}else {
+			test.log(Status.FAIL, "The reset Alert is NOT displayed");
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "New pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1111");
+
+		}else {
+			test.log(Status.FAIL, "New pin setup Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1111");
+		}else {
+			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1111");
+		}else {
+			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.pinChangeSuccess, 30)) {
+			test.log(Status.PASS, "Displayed Reset Pin Success"+profilePage.resetSuccessAlert).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.pinChangeSuccess.click();
+		}else {
+			test.log(Status.FAIL, "Reset Pin Success screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 30)) {
+
+			test.log(Status.PASS, "Completed the Reset Pin journey Successfully");
+
+		}else {
+			test.log(Status.FAIL, "Reset Pin journey is NOT Successfull");
+		}		
+	}
 
 
 	////*********************************CHANGE PIN CODE**************************/////////
@@ -2031,7 +2108,7 @@ public class Profile extends DriverSetUp
 			test.log(Status.FAIL, "The card is not removed from the Wallet");
 		}
 	}
-	////--need to check
+
 	//Verify the Card removed from SharePayWallet and the passcode should be updated 
 	@Test
 	public void TC_49_to_50(Method method) throws IOException, Exception {
@@ -2049,22 +2126,189 @@ public class Profile extends DriverSetUp
 		//Go to Payment Methods
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 		generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
+		sharePayPage.shareWalletButton.click();
+		if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 30)) {
+			test.log(Status.PASS, "The New Card link is displayed");
+			sharePayPage.AddANewCardLink.click();
+		}else {
+			test.log(Status.FAIL, "The new Card link is NOT displayed");
+		}
 		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
 			test.log(Status.PASS, "Enter your PIN code screen displayed");
 		}else {
 			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
 		}
-		profilePage.setUpPin.sendKeys("1234");
+		profilePage.setUpPin.sendKeys("1237");
 		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
 			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}else {
 			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
-		profileFunctions.newPin(profilePage);
-		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
+		//profileFunctions.newPin(profilePage);
+		profilePage.setUpPin.sendKeys("1234");
+		if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
 			test.log(Status.PASS, "The Card is removed from the wallet");
 		}else {
 			test.log(Status.FAIL, "The card is not removed from the Wallet");
 		}
 	}
+
+
+	//Verify "Change PIN code for Share Pay " Journey" for remove card option selected as NO
+	@Test
+	public void TC_33_to_44(Method method) throws IOException, Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+		test.info("Verify Change PIN code for Share Pay button is visible if the user already set PIN code");
+		System.out.println(TC_Method);
+		SharePayPage sharePayPage = new SharePayPage(driver);
+		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		HomePage homePage = new HomePage(driver);
+
+		//SignIn and click on Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+
+		if(generalFunctions.isElementPresent(profilePage.changePin, 30)) {
+			test.log(Status.PASS, "The Change PIN code for Share Pay button is displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.changePin.click();
+		}else {
+			test.log(Status.FAIL, "The Change PIN code for Share Pay button is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+
+		}
+		if(generalFunctions.isElementPresent(profilePage.existingPinScreen, 30)) {
+			test.log(Status.PASS, "The Enter PIN code screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+
+		}else {
+			test.log(Status.FAIL, "The Enter PIN code screen is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		profilePage.setUpPin.sendKeys("0005");
+		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(5000);
+		profileFunctions.existPin(profilePage);
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "New pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profileFunctions.newPin(profilePage);
+			test.log(Status.PASS, "New Pin code screen accepts numericals");
+		}else {
+			test.log(Status.FAIL, "New Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+
+		}else {
+			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		profilePage.setUpPin.sendKeys("0005");
+		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(5000);
+
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			profileFunctions.newPin(profilePage);
+			test.log(Status.PASS, "Confirm Pin code screen accepts numericals");
+		}else {
+			test.log(Status.FAIL, "New Pin set up screen not displayed");
+		}
+		if(generalFunctions.isElementPresent(profilePage.removeCardAlert, 30)) {
+			test.log(Status.PASS, "The Remove card alert displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.noOption.click();
+		}else {
+			test.log(Status.FAIL, "The Remove Card option not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.pinChangeSuccess, 30)) {
+			test.log(Status.PASS, "The New Pin has been set successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.pinChangeSuccess.click();
+		}else {
+			test.log(Status.FAIL, "The New Pin not set Successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 10)) {
+			test.log(Status.PASS, "User directs to PaymentMethods");
+		}else {
+			test.log(Status.FAIL, "User not directs to the Payment Methods");
+		}
+	}
+
+
+
+	//Verify the Card is not removed and the passcode should be updated on Payment Methods
+	@Test
+	public void TC_51(Method method) throws IOException, Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+		test.info("Verify the Card is not removed and the passcode should be updated on Payment Methods");
+		System.out.println(TC_Method);
+		SharePayPage sharePayPage = new SharePayPage(driver);
+		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		HomePage homePage = new HomePage(driver);
+
+		//Go to Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
+		profilePage.paymentMethods.click();
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Enter your PIN code screen displayed");
+		}else {
+			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
+		}
+		profileFunctions.newPin(profilePage);
+		if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
+			test.log(Status.PASS, "The Card is available in the wallet");
+		}else {
+			test.log(Status.FAIL, "The card is not available in the wallet");
+		}
+	}
+
+	//Verify the Card is not removed and the passcode should be updated on SharePay 
+	@Test
+	public void TC_52(Method method) throws IOException, Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+		test.info("Verify the Card is not removed and the passcode should be updated on SharePay");
+		System.out.println(TC_Method);
+		SharePayPage sharePayPage = new SharePayPage(driver);
+		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		HomePage homePage = new HomePage(driver);
+
+		//Go to Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
+		sharePayPage.shareWalletButton.click();
+		if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 30)) {
+			test.log(Status.PASS, "The New Card link is displayed");
+			sharePayPage.AddANewCardLink.click();
+		}else {
+			test.log(Status.FAIL, "The new Card link is NOT displayed");
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Enter your PIN code screen displayed");
+		}else {
+			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
+		}
+		profileFunctions.newPin(profilePage);
+		if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
+			test.log(Status.PASS, "The Card is available in the wallet");
+		}else {
+			test.log(Status.FAIL, "The card is not available in the wallet");
+		}
+	}
+
+
 }

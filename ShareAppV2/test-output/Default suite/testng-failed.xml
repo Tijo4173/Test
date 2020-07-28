@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.share.testscript.Profile">
+      <class name="com.share.testscript.Family">
         <methods>
+          <include name="TC_Family_003" invocation-numbers="0"/>
           <include name="setTestResult"/>
           <include name="SetUp"/>
-          <include name="TC_33_to_43_45"/>
           <include name="CreateDriver"/>
           <include name="reportClose"/>
         </methods>
-      </class> <!-- com.share.testscript.Profile -->
+      </class> <!-- com.share.testscript.Family -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
