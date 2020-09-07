@@ -206,7 +206,7 @@ public class DriverSetUp extends DataDriven {
 		extent.flush();
 		System.out.println("Test Complete");
 		//appiumServer.stopServer();
-		System.out.println("Server Stopped");
+		//System.out.println("Server Stopped");
 
 	}
 
