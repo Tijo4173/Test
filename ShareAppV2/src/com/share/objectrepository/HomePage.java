@@ -46,9 +46,9 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='no_offers_text_vies']")
 	public AndroidElement NoOffersText;
-	
+
 	public String VerifyOffer(String ElementText)
-	{ 
+	{
 		String Xpath="//android.widget.TextView[@resource-id='offer_banner_title' and @text='"+ElementText+"']";
 		return Xpath;
 	}
@@ -57,7 +57,7 @@ public class HomePage extends DriverSetUp {
 	public AndroidElement homeShopEarn;
 
 
-	//tc_home_001 
+	//tc_home_001
 	@AndroidFindBy(id = "home_screen_expanded_title")
 	public AndroidElement home_title;
 
@@ -202,98 +202,155 @@ public class HomePage extends DriverSetUp {
 	///All Tabs
 	@AndroidFindBy(id = "option_home_experiences")
 	public AndroidElement shareExperiencesTab;
-	
+
 	@AndroidFindBy(id = "option_home_pay")
 	public AndroidElement sharePayTab;
-	
+
 	@AndroidFindBy(id = "option_home_using_share")
 	public AndroidElement shareAssistantTab;
-	
+
 	@AndroidFindBy(id = "option_home_account")
 	public AndroidElement shareAccountTab;
-	
+
 	@AndroidFindBy(id = "iv_home_feature_share_points")
 	public AndroidElement homeSharePoints;
-	
+
 	@AndroidFindBy(id = "points")
 	public AndroidElement homePointsField;
-	
+
 	@AndroidFindBy(id = "reciever")
 	public AndroidElement homePointsEmail;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='SUBMIT']")
 	public AndroidElement homePointsSubmit;
 
 	@AndroidFindBy(xpath = "//android.view.View[@text='Points balance']")
 	public AndroidElement homePointsBalance;
-	
+
 	@AndroidFindBy(xpath = "//android.view.View[@text='POINTS']")
 	public AndroidElement homePointsPoints;
-	
+
 	@AndroidFindBy(xpath = "//android.view.View[@index='4']")
 	public AndroidElement homePointsAed;
-	
+
 	@AndroidFindBy(xpath = "//android.view.View[@text='Enter the points you want to share (starting from 10 points).']")
 	public AndroidElement homePointsError;
-	
+
 	@AndroidFindBy(xpath = "//android.view.View[@text='Enter recipient's email address.']")
 	public AndroidElement homePointsEmailError;
-	
+
 	//Experiences 4 Tabs
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='OFFERS']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR OFFERS']")
 	public AndroidElement homeOffers;
-	
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CHARITY']")
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='default']")
 	public AndroidElement homeCharity;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='DISCOUNTS']")
 	public AndroidElement homeDiscounts;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTEST']")
 	public AndroidElement homeContest;
-	
+
 	@AndroidFindBy(id = "button_see_all_2")
 	public AndroidElement homeExpSeeAll;
-	
+
 	@AndroidFindBy(id = "option_home_experiences")
 	public AndroidElement homeExpTab;
-	
+
 	//Updates
-	
+
 	@AndroidFindBy(xpath = "//androidx.appcompat.app.ActionBar.Tab[@content-desc='UPDATES']")
 	public AndroidElement homeUpdates;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='UPDATES']")
 	public AndroidElement homeUpdatesScreen;
-	
+
 	@AndroidFindBy(id = "button_see_all")
 	public AndroidElement homeupdateSeeAll;
-	
+
 	@AndroidFindBy(id = "tvDate")
 	public AndroidElement homeupdateDate;
-	
+
 	@AndroidFindBy(id = "iv_share")
 	public AndroidElement homeupdateShare;
-	
+
 	@AndroidFindBy(id = "tv_experience_details_description")
 	public AndroidElement homeupdateDesc;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[@index='1']")
 	public AndroidElement homeupdateNews;
-	
+
 	@AndroidFindBy(id = "iv_close")
 	public AndroidElement homeupdateClose;
-	
-	
+
+
 	@AndroidFindBy(id = "android:id/chooser_header")
 	public AndroidElement homeupdateShareOptions;
-	
+
 	//offer Description screen
-	
+
 	@AndroidFindBy(id = "tv_experience_details_description")
 	public AndroidElement homeOffersDes;
-	
+
 	@AndroidFindBy(xpath = "//android.widget.ImageView[@clickable='true']")
 	public AndroidElement homeOfferClose;
+
+	//Shop online and earn
+
+	@AndroidFindBy(id = "tv_shop_online")
+	public AndroidElement shopOnlineHeaders;
+
+	@AndroidFindBy(id = "rv_shop_online")
+	public AndroidElement shopOnlineHeadersList;
+
+	@AndroidFindBy(className  = "android.view.ViewGroup")
+	public AndroidElement shopOnlineList;
+
+	@AndroidFindBy(id = "android:id/button1")
+	public AndroidElement previewRetakebutton;
+
+	@AndroidFindBy(id = "android:id/button1")
+	public AndroidElement submitReceiptButtonOk;
+
+	@AndroidFindBy(id = "android:id/alertTitle")
+	public AndroidElement successMessageInhome;
+
+	@AndroidFindBy(id = "bt_submit_receipt")
+	public AndroidElement submitReceiptButton;
+
+	@AndroidFindBy(xpath = "//android.view.View[@text='Enter the points you want to share (starting from 10 points).']")
+	public AndroidElement homePointsFieldplaceholder;
+
+	@AndroidFindBy(xpath = "//android.widget.Spinner[@resource-id='options-menu']")
+	public AndroidElement homePointsOption;
+
+	@AndroidFindBy(xpath = "//android.view.View[@text='Share with a family/friend']")
+	public AndroidElement PointsOptionFamily;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='CONFIRM']")
+	public AndroidElement homePointsSubmitConfirm;
+
+	@AndroidFindBy(xpath = "//android.view.View[@text='Success!']")
+	public AndroidElement PointsSuccess;
+
+	@AndroidFindBy(xpath = "//android.widget.Button[@text='DONE']")
+	public AndroidElement PointsDoneButton;
+
+	@AndroidFindBy(xpath = "//android.view.View[@text='Invalid field.']")
+	public AndroidElement homePointsError1;
+
+	//Experiences 4 Tabs
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR OFFERS']")
+	public AndroidElement homeOffers1;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='default']")
+	public AndroidElement homeOffers2;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER BENEFITS']")
+	public AndroidElement homeOffers3;
+
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER BENEFITS']")
+	public AndroidElement homeOffers4;
 
 }

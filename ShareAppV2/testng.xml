@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" parallel="tests" thread-count="2">
-<test name="Test1">
- <parameter name="deviceName_" value="PixelXL"/>
- <parameter name="UDID_" value="emulator-5554"/>
- <parameter name="platformVersion_" value="10"/>
- <parameter name="systemPort" value="100"/>
- <parameter name="URL_" value="4723"/>
-    <classes>
-      <class name="com.share.testscript.SignIn"/>
-    </classes>
-  </test> <!-- Test1 -->
-
-<test name="Test2">
- <parameter name="deviceName_" value="Galaxy S10"/>
- <parameter name="UDID_" value="192.168.94.102:5555"/>
- <parameter name="platformVersion_" value="9"/>
-  <parameter name="systemPort" value="200"/>
- <parameter name="URL_" value="5000"/>
- <classes>
-  <class name="com.share.testscript.SignIn"/>
- </classes>
- </test> <!-- Test2 -->
+<suite name="ShareAppAutomationSuite" thread-count="2">
+	<test name="Regression">
+		<classes>
+			<class name="com.share.testscript.Home" />
+			<class name="com.share.testscript.Profile" />
+			<class name="com.share.testscript.Family" />
+			<class name="com.share.testscript.Experiences" />
+			<class name="com.share.testscript.SplashScreen" />
+			<class name="com.share.testscript.NeedHelp" />
+			<class name="com.share.testscript.Registration" />
+			<class name="com.share.testscript.SignIn" />
+			<class name="com.share.testscript.SharePay" />
+			<class name="com.share.testscript.Assistant" />
+			<class name="com.share.testscript.Transactions" />
+		</classes>
+	</test> <!-- Test2 -->
 </suite> <!-- Suite -->

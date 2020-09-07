@@ -6,51 +6,70 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.share.functions.RegistrationFunctions;
+import com.share.functions.SplashScreenFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
+import com.share.general.GeneralFunctions.Directions;
 import com.share.objectrepository.RegistrationPage;
 import com.share.objectrepository.SplashScreenPage;
-import com.share.utility.Utilities;
 
 public class SplashScreen extends DriverSetUp {
 
+	GeneralFunctions generalFunctions = new GeneralFunctions();
 
 	@Test
-	public void TC_001_SplashScreen(Method method) {
+	public void TC_SplashScreen_001_002(Method method) {
 		try{
 			String Tc_method = method.getName();
 			test = extent.createTest(Tc_method);
-			test.log(Status.INFO, "Scenario:Splash Screen");
-			test.log(Status.INFO, "TestCase:Verify user is displayed four Carousel Screens is displayed and Swipe");
-			test.assignCategory("Registration");
-			//driver.resetApp();
-			/*driver.activateApp("com.maf.sharesit");
+			test.log(Status.INFO, "Scenario:Splash Screen").assignCategory("REGISTRATION");
+			test.log(Status.INFO, "TestCase:Verify carousel screen is able to swipe");
 			driver.resetApp();
-			driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-			driver.activateApp("om.maf.android.share");*/
 			RegistrationPage registrationPage = new RegistrationPage(driver);
 			RegistrationFunctions registrationFunctions = new RegistrationFunctions();
-			GeneralFunctions generalFunctions = new GeneralFunctions();
-			generalFunctions.isElementPresent(registrationPage.onboardScreen, 90);
-			//	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-			registrationFunctions.onboardScreenDisplayed(registrationPage);
-			//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		//	registrationFunctions.onBoardScroll(registrationPage);
-				if(registrationFunctions.lastScrollScreen(registrationPage)==true) {
-				test.log(Status.PASS, "The Carousel Screen is able to swipe");
+			SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+			SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			if(generalFunctions.isElementPresent(registrationPage.onboardScreen, 10)) {
+				test.log(Status.PASS, "The Onboard screen displayed");
+			for(int i=0;i<=3;i++) {
+				Directions dir = Directions.LEFT;
+				System.out.println("Enum");
+				generalFunctions.swipeScreen(dir);
+			}
+				if(generalFunctions.isElementPresent(registrationPage.onboardScrolld, 30)){
+				test.log(Status.PASS, "The Carousel Last Screen displayed ");
 				//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 			}else {
 				test.log(Status.FAIL, "The Carousel screen is not able to swipe");
-			} 
+			}
+			}else {
+				test.log(Status.FAIL, "The Onboard screen not present");
+			}
+
+			if(generalFunctions.isElementPresent(registrationPage.onboardScrolld, 30)) {
+				test.log(Status.PASS, "The Last screen displayed");
+			for(int i=0;i<=3;i++) {
+				Directions dir = Directions.RIGHT;
+				System.out.println("Enum");
+				generalFunctions.swipeScreen(dir);
+			}
+				if(generalFunctions.isElementPresent(registrationPage.onboardScrolla, 30)){
+				test.log(Status.PASS, "The Carousel First Screen displayed ");
+				//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+			}else {
+				test.log(Status.FAIL, "The Carousel screen is not able to swipe");
+			}
+			}else {
+				test.log(Status.FAIL, "The Last screen not present");
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 			test.log(Status.FAIL, e.getCause());
 			test.log(Status.FAIL, e.getMessage());
 		}
 	}
-
-
-
+/*
 	@Test
 	public void TC_002_003_SplashScreen(Method method) {
 
@@ -95,6 +114,14 @@ public class SplashScreen extends DriverSetUp {
 		}
 
 	}
+	*/
 
+
+public void splashScreenSkip() {
+	driver.resetApp();
+	SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+	SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+	splashScreenFunctions.splashScreenSkip(splashScreenPage);
+}
 
 }

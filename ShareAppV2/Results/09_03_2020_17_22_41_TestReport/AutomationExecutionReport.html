@@ -1,0 +1,3597 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset='utf-8' /> 
+	<meta name='description' content='' />
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta id="timeStampFormat" name="timeStampFormat" content='MMM d, yyyy hh:mm:ss a'/>
+	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css' />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+		<link href='https://cdn.rawgit.com/anshooarora/extentreports-java/b4a58fcfd1e137bd9287244035a7c80d3d73b3af/dist/css/extent.css' type='text/css' rel='stylesheet' />
+	
+	<title>ExtentReports</title>
+
+	<style type='text/css'>
+	</style>
+</head>
+
+	<body class='extent standard default hide-overflow '>
+		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
+			<span><i class='material-icons'>desktop_windows</i></span>
+		</div>
+
+<nav>
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo blue darken-3">Extent</a>
+
+		<!-- slideout menu -->
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
+						<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
+			<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
+			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></i></a></li>
+		</ul>
+
+		<!-- report name -->
+		<span class='report-name'>Automation Suite Execution Report</span>
+		
+		<!-- report headline -->
+		<span class='report-headline'></span>
+
+		<!-- nav-right -->
+		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
+			<li>
+                <a href='#!'>
+                    <span class='label suite-start-time blue darken-3'>Sep 3, 2020 05:22:41 PM</span>
+				</a>
+			</li>
+			<li>
+                <a href='#!'>
+                    <span class='label blue darken-3'>3.1.5</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+		<!-- container -->
+		<div class='container'>
+
+<div id='test-view' class='view'>
+				
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- test toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+					<i class='material-icons'>warning</i> Status
+				</a>
+				<ul id='tests-toggle' class='dropdown-content'>
+											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+						<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+					<li class='divider'></li>
+					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
+				</ul>
+			</div>
+			<!-- test toggle -->
+
+			<!-- category toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button category-toggle' data-activates='category-toggle' data-constrainwidth='false' data-beloworigin='true' data-hover='true' href='#'>
+					<i class='material-icons'>local_offer</i> Category
+				</a>
+				<ul id='category-toggle' class='dropdown-content'>
+					<li><a href='#'>SIGNIN</a></li>
+					<li><a href='#'>SHAREPAY</a></li>
+					<li><a href='#'>ASSISTANT</a></li>
+					<li class='divider'></li>
+					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
+				</ul>
+			</div>
+			<!-- category toggle -->
+
+			<!-- clear filters -->
+			<div class='chip transparent hide'>
+				<a class='' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+					<i class='material-icons'>close</i> Clear
+				</a>
+			</div>
+			<!-- clear filters -->
+
+			<!-- enable dashboard -->
+			<div id='toggle-test-view-charts' class='chip transparent'>
+				<a class='pink-text' id='enable-dashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+					<i class='material-icons'>track_changes</i> Dashboard
+				</a>
+			</div>
+			<!-- enable dashboard -->
+
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+					<i class='material-icons'>search</i> Search
+				</a>
+
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+				
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+
+
+<div id='test-view-charts' class='subview-full'>
+	<div id='charts-row' class='row nm-v nm-h'>
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Tests</div>
+				<div class='chart-box'>
+					<canvas id='parent-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='83.871%'><span class='strong'>26</span> test(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='16.129%'>5</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+				</div>
+			</div>
+		</div>
+		
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Steps</div>
+				<div class='chart-box'>
+					<canvas id='child-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='77.627%'><span class='strong'>229</span> step(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='6.102%'>18</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='16.271%'>48</span> others
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+	<div class='subview-left left'>
+		
+		<div class='view-summary'>
+			<h5>Tests</h5>
+			<ul id='test-collection' class='test-collection'>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_015</span>
+						<span class='test-time'>Sep 3, 2020 05:22:55 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:22:55 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:23:15 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 20s+33ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:22:55 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:22:55 PM</td>
+					<td class='step-details'>Verify user is navigated to sign up page when clicking on sign up hyperlink in login screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:11 PM</td>
+					<td class='step-details'>Navigates to Registration screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:15 PM</td>
+					<td class='step-details'>TC_SignIn_015</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:15 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@4b629f13</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052311.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052311.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052311.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052313.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052313.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_01520200903052313.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:23:15 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:23:15 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:23:31 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 15s+400ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:15 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:15 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:16 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:20 PM</td>
+					<td class='step-details'>Email id field Present: ramsshana@gmail.com</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:22 PM</td>
+					<td class='step-details'>Password field Present: Test@123</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:23 PM</td>
+					<td class='step-details'>SignIn Button Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:27 PM</td>
+					<td class='step-details'>Username or Password is invalid and Error message displayed: Email not found.</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:31 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:31 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@3a45c42a</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052327.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052327.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052327.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052329.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052329.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052329.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:23:31 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:23:31 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:23:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 9s+807ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:31 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:31 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:31 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:34 PM</td>
+					<td class='step-details'>Email id field Present: rams.shana@gmail.com</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:36 PM</td>
+					<td class='step-details'>Password field Present:</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:37 PM</td>
+					<td class='step-details'>SignIn Button NOT Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:41 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:41 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@17f460bb</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052337.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052337.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052337.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052339.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052339.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052339.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='4'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:23:41 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:23:41 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:23:51 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 10s+389ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:41 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:41 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:41 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:45 PM</td>
+					<td class='step-details'>Email id field Present:</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:47 PM</td>
+					<td class='step-details'>Password field Present: Test@123</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:47 PM</td>
+					<td class='step-details'>SignIn Button NOT Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:51 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:51 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@df1cff6</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052347.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052347.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052347.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052349.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052349.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052349.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='5'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:23:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:23:51 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:24:05 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 14s+485ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:51 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:23:51 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:51 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:55 PM</td>
+					<td class='step-details'>Email id field Present: ramsshana@gmail.com</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:57 PM</td>
+					<td class='step-details'>Password field Present: Test1234</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:23:58 PM</td>
+					<td class='step-details'>SignIn Button Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:01 PM</td>
+					<td class='step-details'>Username or Password is invalid and Error message displayed: Email not found.</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:05 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:05 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@1ec7d8b3</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052401.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052401.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052401.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052403.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052403.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052403.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='6'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:24:05 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:24:05 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:24:16 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 10s+69ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:05 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:05 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:06 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:10 PM</td>
+					<td class='step-details'>Email id field Present:</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:11 PM</td>
+					<td class='step-details'>Password field Present:</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:12 PM</td>
+					<td class='step-details'>SignIn Button NOT Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:16 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:16 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@abbc908</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052412.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052412.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052412.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052413.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052413.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052413.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='7'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_009_to_014</span>
+						<span class='test-time'>Sep 3, 2020 05:24:16 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:24:16 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:24:29 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 13s+596ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:16 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:16 PM</td>
+					<td class='step-details'>Sign in using invalid combinations</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:16 PM</td>
+					<td class='step-details'>SignIn Button Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:19 PM</td>
+					<td class='step-details'>Email id field Present: rams.shana@gmail.com</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:20 PM</td>
+					<td class='step-details'>Password field Present: Test@8544</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:21 PM</td>
+					<td class='step-details'>SignIn Button Enabled</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:25 PM</td>
+					<td class='step-details'>Username or Password is invalid and Error message displayed: Wrong email or password.</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:29 PM</td>
+					<td class='step-details'>TC_SignIn_009_to_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:24:29 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@51ec2df1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052425.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052425.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052425.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052427.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052427.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_009_to_01420200903052427.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='8'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_008</span>
+						<span class='test-time'>Sep 3, 2020 05:24:29 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:24:29 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:25:43 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 13s+643ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:29 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:24:29 PM</td>
+					<td class='step-details'>Verify user can view the password by clicking on the eye icon</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:25:42 PM</td>
+					<td class='step-details'>The Password is displayedTest@1234</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:25:43 PM</td>
+					<td class='step-details'>TC_SignIn_008</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:25:43 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@7a2e0858</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00820200903052542.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00820200903052542.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00820200903052542.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='9'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_003_004</span>
+						<span class='test-time'>Sep 3, 2020 05:25:43 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:25:43 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:26:58 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 15s+725ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:25:43 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:25:43 PM</td>
+					<td class='step-details'>Verify user can reset Password</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:26:53 PM</td>
+					<td class='step-details'>Forgot Password is working and displayed Forgot Password success Screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:26:58 PM</td>
+					<td class='step-details'>The Reset Password linke sent to the email id:We have sent you a link to reset your password</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:26:58 PM</td>
+					<td class='step-details'>TC_SignIn_003_004</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:26:58 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@359b650b</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_003_00420200903052658.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_003_00420200903052658.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_003_00420200903052658.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='10'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_005</span>
+						<span class='test-time'>Sep 3, 2020 05:26:58 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:26:58 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:28:15 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 16s+868ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:26:58 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:26:58 PM</td>
+					<td class='step-details'>Verify user receiving reset password mail when the user do send again</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:28:08 PM</td>
+					<td class='step-details'>Forgot Password is working and displayed Forgot Password success Screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:28:15 PM</td>
+					<td class='step-details'>Able to resend the mail: We have sent you a link to reset
+your password</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:28:15 PM</td>
+					<td class='step-details'>TC_SignIn_005</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:28:15 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@15f2eda3</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00520200903052815.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00520200903052815.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_00520200903052815.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='11'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SignIn_001_002_007</span>
+						<span class='test-time'>Sep 3, 2020 05:28:15 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:28:15 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:30:36 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 20s+921ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SIGNIN</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:28:15 PM</td>
+					<td class='step-details'>Module: Sign In</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:28:15 PM</td>
+					<td class='step-details'>Launch the share app and click on Sign in button</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:30:35 PM</td>
+					<td class='step-details'>SignIn Successful and Home Screen Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:30:36 PM</td>
+					<td class='step-details'>TC_SignIn_001_002_007</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:30:36 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@6107165</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_001_002_00720200903053035.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_001_002_00720200903053035.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SignIn_001_002_00720200903053035.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='12'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_001_002</span>
+						<span class='test-time'>Sep 3, 2020 05:30:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:30:36 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:32:54 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 17s+877ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:30:36 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:48 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:50 PM</td>
+					<td class='step-details'>OnBoarding Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:50 PM</td>
+					<td class='step-details'>Continue Button Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:51 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:54 PM</td>
+					<td class='step-details'>TC_SharePay_001_002</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:54 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@acdcf71</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_001_00220200903053253.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_001_00220200903053253.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_001_00220200903053253.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='13'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_003</span>
+						<span class='test-time'>Sep 3, 2020 05:32:54 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:32:54 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:33:02 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 7s+925ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:32:54 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:54 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:56 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:59 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:59 PM</td>
+					<td class='step-details'>Add Card Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:32:59 PM</td>
+					<td class='step-details'>Point Balance Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:00 PM</td>
+					<td class='step-details'>AED Value Displayed::0.00 AED</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:02 PM</td>
+					<td class='step-details'>TC_SharePay_003</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:02 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@1290c49</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_00320200903053301.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_00320200903053301.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_00320200903053301.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='14'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_009_to_010</span>
+						<span class='test-time'>Sep 3, 2020 05:33:02 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:33:02 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:33:15 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 13s+317ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:02 PM</td>
+					<td class='step-details'>SharePay:Passcode setup</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:02 PM</td>
+					<td class='step-details'>Verify New User is able to set up PIN later by selecting SET UP PIN CODE LATER</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:03 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:05 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:07 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:10 PM</td>
+					<td class='step-details'>User is not able to Proceed with Share Wallet - Add card without setting up PIN</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:13 PM</td>
+					<td class='step-details'>User navigates back to the Share Wallet Screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:15 PM</td>
+					<td class='step-details'>TC_SharePay_009_to_010</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:15 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@e042c99</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053310.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053310.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053310.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053314.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053314.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_009_to_01020200903053314.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='15'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_013_014</span>
+						<span class='test-time'>Sep 3, 2020 05:33:15 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:33:15 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:33:37 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 21s+740ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:15 PM</td>
+					<td class='step-details'>SharePay:Passcode setup</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:15 PM</td>
+					<td class='step-details'>Verify User is navigating to the previous screen when he clicks back arrow on any of the screens</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:16 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:18 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:20 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:25 PM</td>
+					<td class='step-details'>User navigate back to the SET UP PIN CODE screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:30 PM</td>
+					<td class='step-details'>User navigate back to the previous screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:37 PM</td>
+					<td class='step-details'>TC_SharePay_013_014</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:37 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@7ceb4478</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053325.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053325.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053325.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053330.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053330.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053330.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053336.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053336.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_013_01420200903053336.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='16'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_011_012</span>
+						<span class='test-time'>Sep 3, 2020 05:33:37 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:33:37 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:33:56 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 19s+89ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:37 PM</td>
+					<td class='step-details'>SharePay:Passcode setup</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:37 PM</td>
+					<td class='step-details'>Verify Error message is displayed when PIN on the first set up screen does not match with the PIN on the confirm screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:38 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:40 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:43 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:48 PM</td>
+					<td class='step-details'>Passcode Mismatch Error displayed: PIN code does not match. Please try again</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:51 PM</td>
+					<td class='step-details'>User navigate back to the previous screen</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:56 PM</td>
+					<td class='step-details'>TC_SharePay_011_012</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:56 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@33634f04</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053348.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053348.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053348.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053355.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053355.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_011_01220200903053355.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='17'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_004_to_008</span>
+						<span class='test-time'>Sep 3, 2020 05:33:56 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:33:56 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:34:21 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 24s+923ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:56 PM</td>
+					<td class='step-details'>SharePay:Passcode setup</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:33:56 PM</td>
+					<td class='step-details'>Verify New User is able to set up PIN on selecting Share Wallet - Add Card</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:56 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:33:58 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:01 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:03 PM</td>
+					<td class='step-details'>SET UP PIN CODE Button is Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:04 PM</td>
+					<td class='step-details'>SET UP PIN CODE LATER Button is Present</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:05 PM</td>
+					<td class='step-details'>Setup PINCODE Screen dispalyed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:09 PM</td>
+					<td class='step-details'>Confirm PINCODE Screen displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:13 PM</td>
+					<td class='step-details'>SUCCESS:PIN code has been set up successfully.</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:16 PM</td>
+					<td class='step-details'>Add Card Screen displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:21 PM</td>
+					<td class='step-details'>TC_SharePay_004_to_008</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:21 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@1491344a</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053403.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053403.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053403.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053405.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053405.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053405.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053409.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053409.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053409.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053413.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053413.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053413.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053416.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053416.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053416.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053420.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053420.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_004_to_00820200903053420.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='18'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_018</span>
+						<span class='test-time'>Sep 3, 2020 05:34:21 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:34:21 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:34:37 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 15s+684ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:34:21 PM</td>
+					<td class='step-details'>SharePay:Passcode Error</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:34:21 PM</td>
+					<td class='step-details'>Verify the error message is showing for incorrect pin</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:21 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:23 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:26 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:30 PM</td>
+					<td class='step-details'>Passcode Mismatch Error displayed: Incorrect PIN Code. Try again</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:37 PM</td>
+					<td class='step-details'>TC_SharePay_018</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:37 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@5762658b</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053430.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053430.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053430.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053436.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053436.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01820200903053436.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='19'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_015_to_017</span>
+						<span class='test-time'>Sep 3, 2020 05:34:37 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:34:37 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:34:51 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 14s+83ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:34:37 PM</td>
+					<td class='step-details'>SharePay:Passcode setup</td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:34:37 PM</td>
+					<td class='step-details'>Verify User is navigating to the previous screen when he clicks back arrow on any of the screens</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:37 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:39 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:42 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:47 PM</td>
+					<td class='step-details'>The Add new card screen displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:51 PM</td>
+					<td class='step-details'>TC_SharePay_015_to_017</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:34:51 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@53ed80d3</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053447.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053447.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053447.png'></li>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053450.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053450.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_015_to_01720200903053450.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='20'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_019</span>
+						<span class='test-time'>Sep 3, 2020 05:34:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:34:51 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:37:19 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 27s+715ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:34:51 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:04 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:10 PM</td>
+					<td class='step-details'>OnBoarding Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:10 PM</td>
+					<td class='step-details'>Continue Button Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:12 PM</td>
+					<td class='step-details'>Location Access Required Message Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:14 PM</td>
+					<td class='step-details'>Switch On Location Button Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:16 PM</td>
+					<td class='step-details'>Allow All The Time Button Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:17 PM</td>
+					<td class='step-details'>Bluetooth Access Required Message Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:18 PM</td>
+					<td class='step-details'>Switch On Bluetooth Button Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:19 PM</td>
+					<td class='step-details'>TC_SharePay_019</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:37:19 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@53ce2392</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01920200903053718.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01920200903053718.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_01920200903053718.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='21'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_020</span>
+						<span class='test-time'>Sep 3, 2020 05:37:19 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:37:19 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:38:19 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 0s+361ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:37:19 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:38:19 PM</td>
+					<td class='step-details'>Share Pay Icon Not Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:38:19 PM</td>
+					<td class='step-details'>TC_SharePay_020</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:38:19 PM</td>
+					<td class='step-details'><pre>java.lang.AssertionError: Share Pay Icon Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_020(SharePay.java:908)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:38:19 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@36ab3814</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_02020200903053819.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_02020200903053819.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_02020200903053819.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='22'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_021_022_023_024</span>
+						<span class='test-time'>Sep 3, 2020 05:38:19 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:38:19 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:39:20 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 0s+852ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:38:19 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:39:20 PM</td>
+					<td class='step-details'>Share Pay Icon Not Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:39:20 PM</td>
+					<td class='step-details'>TC_SharePay_021_022_023_024</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:39:20 PM</td>
+					<td class='step-details'><pre>java.lang.AssertionError: Share Pay Icon Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_021_022_023_024(SharePay.java:1005)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:39:20 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@1da4b3f9</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_021_022_023_02420200903053920.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_021_022_023_02420200903053920.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_021_022_023_02420200903053920.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='23'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_SharePay_025_026_027</span>
+						<span class='test-time'>Sep 3, 2020 05:39:20 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:39:20 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:42:59 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 3m 39s+167ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>SHAREPAY</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:39:20 PM</td>
+					<td class='step-details'>Beam Wallet - SHARE Pay</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:39:34 PM</td>
+					<td class='step-details'>Share Pay Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:39:36 PM</td>
+					<td class='step-details'>Share Pay Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:39:40 PM</td>
+					<td class='step-details'>Add A New Card Link Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:39:45 PM</td>
+					<td class='step-details'>The Add new card screen displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:39:45 PM</td>
+					<td class='step-details'>Add New Card page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:10 PM</td>
+					<td class='step-details'>Verify Card page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:11 PM</td>
+					<td class='step-details'>Transaction Amount Field Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:20 PM</td>
+					<td class='step-details'>Share Wallet Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:20 PM</td>
+					<td class='step-details'>Card Status Displayed and verified in Share Wallet</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:29 PM</td>
+					<td class='step-details'>Payment Methods Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:34 PM</td>
+					<td class='step-details'>Payment Methods page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:37 PM</td>
+					<td class='step-details'>Card Status Displayed and verified</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:41 PM</td>
+					<td class='step-details'>Verify Card page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:40:46 PM</td>
+					<td class='step-details'>Payment Methods page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:41:58 PM</td>
+					<td class='step-details'>Card Deleted Successfully</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:42:58 PM</td>
+					<td class='step-details'>Payment Methods Not Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:42:59 PM</td>
+					<td class='step-details'>TC_SharePay_025_026_027</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:42:59 PM</td>
+					<td class='step-details'><pre>java.lang.AssertionError: Payment Methods Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_025_026_027(SharePay.java:1608)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:42:59 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@4db77402</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_025_026_02720200903054258.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_025_026_02720200903054258.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_SharePay_025_026_02720200903054258.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='24'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_001_002</span>
+						<span class='test-time'>Sep 3, 2020 05:42:59 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:42:59 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:45:23 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 24s+426ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:42:59 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:21 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:22 PM</td>
+					<td class='step-details'>Search Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:22 PM</td>
+					<td class='step-details'>Topic Section Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:22 PM</td>
+					<td class='step-details'>Share Basics Section Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:23 PM</td>
+					<td class='step-details'>Call Us Section Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:23 PM</td>
+					<td class='step-details'>TC_Assistant_001_002</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:23 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@3c19592c</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_001_00220200903054523.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_001_00220200903054523.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_001_00220200903054523.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='25'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_003</span>
+						<span class='test-time'>Sep 3, 2020 05:45:23 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:45:23 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:46:29 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 5s+769ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:45:23 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:45:25 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:46:25 PM</td>
+					<td class='step-details'>Registration Topic Not Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:25 PM</td>
+					<td class='step-details'>Share Wallet Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:26 PM</td>
+					<td class='step-details'>About Share Points Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:26 PM</td>
+					<td class='step-details'>Earning Share Points Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:27 PM</td>
+					<td class='step-details'>Redeem Share Points Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:27 PM</td>
+					<td class='step-details'>Share Family Group Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:28 PM</td>
+					<td class='step-details'>Share At VOX Cinemas Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:28 PM</td>
+					<td class='step-details'>Share At Carrefour Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:29 PM</td>
+					<td class='step-details'>TC_Assistant_003</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:29 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@7fd99443</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_00320200903054628.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_00320200903054628.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_00320200903054628.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='26'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_004_005</span>
+						<span class='test-time'>Sep 3, 2020 05:46:29 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:46:29 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:47:00 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 30s+400ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:46:29 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:30 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:31 PM</td>
+					<td class='step-details'>Share Wallet Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:32 PM</td>
+					<td class='step-details'>SHARE WALLET related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:32 PM</td>
+					<td class='step-details'>SHARE WALLET related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:34 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:35 PM</td>
+					<td class='step-details'>About Share Points Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:36 PM</td>
+					<td class='step-details'>ABOUT SHARE POINTS related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:37 PM</td>
+					<td class='step-details'>ABOUT SHARE POINTS related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:38 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:39 PM</td>
+					<td class='step-details'>Earning Share Points Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:41 PM</td>
+					<td class='step-details'>EARNING SHARE POINTS related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:41 PM</td>
+					<td class='step-details'>EARNING SHARE POINTS related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:42 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:43 PM</td>
+					<td class='step-details'>Redeem Share Points Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:45 PM</td>
+					<td class='step-details'>REDEEMING SHARE POINTS related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:45 PM</td>
+					<td class='step-details'>REDEEMING SHARE POINTS related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:46 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:47 PM</td>
+					<td class='step-details'>Share Family Group Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:49 PM</td>
+					<td class='step-details'>SHARE FAMILY GROUP related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:49 PM</td>
+					<td class='step-details'>SHARE FAMILY GROUP related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:50 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:51 PM</td>
+					<td class='step-details'>Share At VOX Cinemas Topic Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:53 PM</td>
+					<td class='step-details'>'SHARE ID' related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:53 PM</td>
+					<td class='step-details'>SHARE ID related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:54 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:55 PM</td>
+					<td class='step-details'>Share At Carrefour Topic Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:57 PM</td>
+					<td class='step-details'>YOUR SHARE WORLD related questions page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:57 PM</td>
+					<td class='step-details'>YOUR SHARE WORLD related questions list Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:46:58 PM</td>
+					<td class='step-details'>Answer Displayed for the selected question</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:00 PM</td>
+					<td class='step-details'>TC_Assistant_004_005</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:00 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@3404e5c4</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_004_00520200903054659.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_004_00520200903054659.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_004_00520200903054659.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='27'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_006_007</span>
+						<span class='test-time'>Sep 3, 2020 05:47:00 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:47:00 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:49:10 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 2m 10s+798ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:47:00 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:01 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:01 PM</td>
+					<td class='step-details'>Share Basics Section Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:01 PM</td>
+					<td class='step-details'>Using Share - Share Basics Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:03 PM</td>
+					<td class='step-details'>SHARE BASICS page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:03 PM</td>
+					<td class='step-details'>Using Share Description Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:04 PM</td>
+					<td class='step-details'>Using the SHARE Wallet - Share Basics Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:06 PM</td>
+					<td class='step-details'>SHARE BASICS page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:06 PM</td>
+					<td class='step-details'>Using the SHARE Wallet Description Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:07 PM</td>
+					<td class='step-details'>Earning SHARE points - Share Basics Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:08 PM</td>
+					<td class='step-details'>SHARE BASICS page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:47:09 PM</td>
+					<td class='step-details'>Earning SHARE points Description Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:48:09 PM</td>
+					<td class='step-details'>Number of points Earned - Share Basics Not Displayed</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:49:10 PM</td>
+					<td class='step-details'>Can't locate an element by this strategy: By.chained({By.xpath: //android.widget.TextView[@text='Number of points earned']})</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:49:10 PM</td>
+					<td class='step-details'>TC_Assistant_006_007</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:49:10 PM</td>
+					<td class='step-details'><pre>java.lang.AssertionError: Can't locate an element by this strategy: By.chained({By.xpath: //android.widget.TextView[@text='Number of points earned']})
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.Assistant.TC_Assistant_006_007(Assistant.java:830)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>5:49:10 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@197ce367</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_006_00720200903054910.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_006_00720200903054910.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_006_00720200903054910.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='28'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_008_009_010</span>
+						<span class='test-time'>Sep 3, 2020 05:49:10 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:49:10 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:49:34 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 23s+103ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:49:10 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:12 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:12 PM</td>
+					<td class='step-details'>Search Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:13 PM</td>
+					<td class='step-details'>SEARCH page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:18 PM</td>
+					<td class='step-details'>Search Result Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:19 PM</td>
+					<td class='step-details'>Recent Search Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:24 PM</td>
+					<td class='step-details'>Search Result Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:30 PM</td>
+					<td class='step-details'>Search Result Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:32 PM</td>
+					<td class='step-details'>Recent 3 Search keywords Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:33 PM</td>
+					<td class='step-details'>Try Searching Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:34 PM</td>
+					<td class='step-details'>TC_Assistant_008_009_010</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:34 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@2026fbff</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_008_009_01020200903054933.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_008_009_01020200903054933.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_008_009_01020200903054933.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='29'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_010</span>
+						<span class='test-time'>Sep 3, 2020 05:49:34 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:49:34 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:49:48 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 14s+710ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:49:34 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:35 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:35 PM</td>
+					<td class='step-details'>Search Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:36 PM</td>
+					<td class='step-details'>SEARCH page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:44 PM</td>
+					<td class='step-details'>Search Result Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:46 PM</td>
+					<td class='step-details'>Search Result Details screen Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:46 PM</td>
+					<td class='step-details'>Search Result Question Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:47 PM</td>
+					<td class='step-details'>SEARCH page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:48 PM</td>
+					<td class='step-details'>TC_Assistant_010</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:48 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@1231a1be</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01020200903054947.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01020200903054947.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01020200903054947.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='30'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_011</span>
+						<span class='test-time'>Sep 3, 2020 05:49:48 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:49:48 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:50:00 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 12s+38ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:49:48 PM</td>
+					<td class='step-details'>Assistant Faq</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:50 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:50 PM</td>
+					<td class='step-details'>Search Icon Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:51 PM</td>
+					<td class='step-details'>SEARCH page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:49:57 PM</td>
+					<td class='step-details'>SORRY, NO RESULT FOUND message displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:00 PM</td>
+					<td class='step-details'>TC_Assistant_011</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:00 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@5834198f</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01120200903054959.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01120200903054959.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01120200903054959.png'></li>
+							</ul>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='31'>
+					<div class='test-heading'>
+						<span class='test-name'>TC_Assistant_012</span>
+						<span class='test-time'>Sep 3, 2020 05:50:00 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Sep 3, 2020 05:50:00 PM</span>
+	<span class='label end-time'>Sep 3, 2020 05:50:13 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 13s+181ms</span>
+</div>
+	<div class='test-attributes'>
+			<div class='category-list'>
+				<span class='category label white-text'>ASSISTANT</span>
+			</div>
+	</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>5:50:00 PM</td>
+					<td class='step-details'>Assistant - Call us</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:03 PM</td>
+					<td class='step-details'>Assistant Page Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:03 PM</td>
+					<td class='step-details'>Call Us Section Displayed</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:13 PM</td>
+					<td class='step-details'>Dialer Displayed with Phone Number</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:13 PM</td>
+					<td class='step-details'>TC_Assistant_012</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>5:50:13 PM</td>
+					<td class='step-details'>Screen Shot : com.aventstack.extentreports.ExtentTest@636dbfe7</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+							<ul class='screenshots'>
+								<li><img data-featherlight='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01220200903055013.png' width='10%' src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01220200903055013.png' data-src='C:\Users\thi1907501\git\ShareAppV2\ShareAppV2/Screenshots/TC_Assistant_01220200903055013.png'></li>
+							</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- subview left -->
+
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='test-name'></h5>
+
+			<div id='step-filters' class="right">
+				<span class="blue-text" status="info" alt="info" title="info"><i class="material-icons">info_outline</i></span>
+				<span class="green-text" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></span>
+				<span class="red-text" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></span>
+				<span class="red-text text-darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></span>
+				<span class="pink-text text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></span>
+				<span class="orange-text" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></span>
+				<span class="teal-text" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></span>
+				<span status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></span>
+			</div>
+		</div>
+	</div>
+	<!-- subview right -->
+
+</div>
+<!-- test view -->
+<div id='category-view' class='view hide'>
+
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+					<i class='material-icons'>search</i> Search
+				</a>
+				
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+				
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+
+	<div class='subview-left left'>
+		
+		<div class='view-summary'>
+			<h5>Categories</h3>
+			<ul id='category-collection' class='category-collection'>
+				
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>SIGNIN</span>
+						<span class='category-status right'>
+							<span class='label pass'>11</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 11</span>
+							
+							
+						</div>
+					
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Sep 3, 2020 05:22:55 PM</td>
+										<td class='linked' test-id='1'>TC_SignIn_015</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:23:15 PM</td>
+										<td class='linked' test-id='2'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:23:31 PM</td>
+										<td class='linked' test-id='3'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:23:41 PM</td>
+										<td class='linked' test-id='4'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:23:51 PM</td>
+										<td class='linked' test-id='5'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:24:05 PM</td>
+										<td class='linked' test-id='6'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:24:16 PM</td>
+										<td class='linked' test-id='7'>TC_SignIn_009_to_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:24:29 PM</td>
+										<td class='linked' test-id='8'>TC_SignIn_008</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:25:43 PM</td>
+										<td class='linked' test-id='9'>TC_SignIn_003_004</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:26:58 PM</td>
+										<td class='linked' test-id='10'>TC_SignIn_005</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:28:15 PM</td>
+										<td class='linked' test-id='11'>TC_SignIn_001_002_007</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>SHAREPAY</span>
+						<span class='category-status right'>
+							<span class='label pass'>9</span>
+							<span class='label fail'>3</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 9</span>
+							<span class='label red lighten-1 white-text'>Failed: 3</span>
+							
+						</div>
+					
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Sep 3, 2020 05:30:36 PM</td>
+										<td class='linked' test-id='12'>TC_SharePay_001_002</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:32:54 PM</td>
+										<td class='linked' test-id='13'>TC_SharePay_003</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:33:02 PM</td>
+										<td class='linked' test-id='14'>TC_SharePay_009_to_010</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:33:15 PM</td>
+										<td class='linked' test-id='15'>TC_SharePay_013_014</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:33:37 PM</td>
+										<td class='linked' test-id='16'>TC_SharePay_011_012</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:33:56 PM</td>
+										<td class='linked' test-id='17'>TC_SharePay_004_to_008</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:34:21 PM</td>
+										<td class='linked' test-id='18'>TC_SharePay_018</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:34:37 PM</td>
+										<td class='linked' test-id='19'>TC_SharePay_015_to_017</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:34:51 PM</td>
+										<td class='linked' test-id='20'>TC_SharePay_019</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:37:19 PM</td>
+										<td class='linked' test-id='21'>TC_SharePay_020</td>
+										<td><span class='test-status fail'>fail</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:38:19 PM</td>
+										<td class='linked' test-id='22'>TC_SharePay_021_022_023_024</td>
+										<td><span class='test-status fail'>fail</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:39:20 PM</td>
+										<td class='linked' test-id='23'>TC_SharePay_025_026_027</td>
+										<td><span class='test-status fail'>fail</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>ASSISTANT</span>
+						<span class='category-status right'>
+							<span class='label pass'>6</span>
+							<span class='label fail'>2</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span class='label green accent-4 white-text'>Passed: 6</span>
+							<span class='label red lighten-1 white-text'>Failed: 2</span>
+							
+						</div>
+					
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Sep 3, 2020 05:42:59 PM</td>
+										<td class='linked' test-id='24'>TC_Assistant_001_002</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:45:23 PM</td>
+										<td class='linked' test-id='25'>TC_Assistant_003</td>
+										<td><span class='test-status fail'>fail</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:46:29 PM</td>
+										<td class='linked' test-id='26'>TC_Assistant_004_005</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:47:00 PM</td>
+										<td class='linked' test-id='27'>TC_Assistant_006_007</td>
+										<td><span class='test-status fail'>fail</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:49:10 PM</td>
+										<td class='linked' test-id='28'>TC_Assistant_008_009_010</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:49:34 PM</td>
+										<td class='linked' test-id='29'>TC_Assistant_010</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:49:48 PM</td>
+										<td class='linked' test-id='30'>TC_Assistant_011</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+									<tr>
+										<td>Sep 3, 2020 05:50:00 PM</td>
+										<td class='linked' test-id='31'>TC_Assistant_012</td>
+										<td><span class='test-status pass'>pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='category-name'></h5>
+		</div>
+	</div>
+</div>
+<!-- category view -->
+<div id='exception-view' class='view hide'>
+
+    <section id='controls'>
+        <div class='controls grey lighten-4'>
+            <!-- search -->
+            <div class='chip transparent' alt='Search Tests' title='Search Tests'>
+                <a href="#" class='search-div'>
+                    <i class='material-icons'>search</i> Search
+                </a>
+
+                <div class='input-field left hide'>
+                    <input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+                </div>
+
+            </div>
+            <!-- search -->
+        </div>
+    </section>
+
+    <div class='subview-left left'>
+
+        <div class='view-summary'>
+            <h5>Exceptions</h3>
+                <ul id='exception-collection' class='exception-collection'>
+
+                        <li class='exception displayed active'>
+                            <div class='exception-heading'>
+                                <span class='exception-name'>java.lang.AssertionError</span>
+                                <span class='exception-count right'><span class='label red lighten-1 white-text'>4</span></span>
+                            </div>
+                            <div class='exception-content hide'>
+                                <div class='exception-tests'>
+                                    <table class='bordered table-results'>
+                                        <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>TestName</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                                    <tr>
+                                                        <td>Sep 3, 2020 05:37:19 PM</td>
+                                                        <td class='linked' test-id='21'>TC_SharePay_020</td>
+                                                        <td><pre><pre>java.lang.AssertionError: Share Pay Icon Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_020(SharePay.java:908)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></pre></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sep 3, 2020 05:38:19 PM</td>
+                                                        <td class='linked' test-id='22'>TC_SharePay_021_022_023_024</td>
+                                                        <td><pre><pre>java.lang.AssertionError: Share Pay Icon Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_021_022_023_024(SharePay.java:1005)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></pre></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sep 3, 2020 05:39:20 PM</td>
+                                                        <td class='linked' test-id='23'>TC_SharePay_025_026_027</td>
+                                                        <td><pre><pre>java.lang.AssertionError: Payment Methods Not Displayed
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.SharePay.TC_SharePay_025_026_027(SharePay.java:1608)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></pre></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sep 3, 2020 05:47:00 PM</td>
+                                                        <td class='linked' test-id='27'>TC_Assistant_006_007</td>
+                                                        <td><pre><pre>java.lang.AssertionError: Can't locate an element by this strategy: By.chained({By.xpath: //android.widget.TextView[@text='Number of points earned']})
+	at org.testng.Assert.fail(Assert.java:97)
+	at com.share.testscript.Assistant.TC_Assistant_006_007(Assistant.java:830)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.util.ArrayList.forEach(Unknown Source)
+	at org.testng.TestRunner.privateRun(TestRunner.java:770)
+	at org.testng.TestRunner.run(TestRunner.java:591)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+	at org.testng.TestNG.runSuites(TestNG.java:1032)
+	at org.testng.TestNG.run(TestNG.java:1000)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></pre></td>
+                                                    </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </li>
+                </ul>
+        </div>
+    </div>
+
+    <div class='subview-right left'>
+        <div class='view-summary'>
+            <h5 class='exception-name'></h5>
+        </div>
+    </div>
+</div>
+<!-- exception view -->
+<div id='dashboard-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>Dashboard</h5>
+
+		<div class='row'>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Tests
+					<div class='panel-lead'>31</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Steps
+					<div class='panel-lead'>295</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Start
+					<div class='panel-lead'>Sep 3, 2020 05:22:41 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+			 		End
+			 		<div class='panel-lead'>Sep 3, 2020 05:50:14 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Time Taken
+					<div class='panel-lead'>0h 27m 32s+162ms</div>
+				</div>
+			</div>
+			<div class='col s4'>
+				<div class='card-panel dashboard-environment'>
+					<span class='right label cyan white-text'>Environment</span><p>&nbsp;</p>
+					
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+						</tr>
+							<tr>
+								<td>Author</td>
+								<td>Smithin</td>
+							</tr>
+							<tr>
+								<td>Application</td>
+								<td>ShareV2</td>
+							</tr>
+							<tr>
+								<td>DeviceName</td>
+								<td>SM-N960F</td>
+							</tr>
+							<tr>
+								<td>PlatformName</td>
+								<td>samsung</td>
+							</tr>
+							<tr>
+								<td>PlatformVersion</td>
+								<td>8.1.0</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+			<div class='col s6'>
+				<div class='card-panel dashboard-categories'>
+					<span class='right label cyan white-text'>Categories</span><p>&nbsp;</p>
+					
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Passed</th>
+							<th>Failed</th>
+							<th>Others</th>
+							<th>Passed %</th>
+						</tr>
+						<tr>
+							<td>SIGNIN</td>
+							<td>11</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>SHAREPAY</td>
+							<td>9</td>
+							<td>3</td>
+							<td>0</td>
+							<td>
+									75%
+							</td>
+						</tr>
+						<tr>
+							<td>ASSISTANT</td>
+							<td>6</td>
+							<td>2</td>
+							<td>0</td>
+							<td>
+									75%
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- dashboard view -->
+<!-- testrunner-logs view -->
+		</div>
+		<!-- container -->
+
+		<script>
+			var statusGroup = {
+				passParent: 26,
+				failParent: 5,
+				fatalParent: 0,
+				errorParent: 0,
+				warningParent: 0,
+				skipParent: 0,
+				exceptionsParent: 5,
+				
+				passChild: 229,
+				failChild: 18,
+				fatalChild: 0,
+				errorChild: 0,
+				warningChild: 0,
+				skipChild: 0,
+				infoChild: 48,
+				exceptionsChild: 18,
+				
+				passGrandChild: 0,
+				failGrandChild: 0,
+				fatalGrandChild: 0,
+				errorGrandChild: 0,
+				warningGrandChild: 0,
+				skipGrandChild: 0,
+				infoGrandChild: 0,
+				exceptionsGrandChild: 0,
+			};
+		</script>
+		
+			<script src='https://cdn.rawgit.com/anshooarora/extentreports-java/fca20fb7653aade98810546ab96a2a4360e3e712/dist/js/extent.js' type='text/javascript'></script>
+		
+		
+ 		<script type='text/javascript'>
+ 		</script>
+	</body>
+	
+</html>

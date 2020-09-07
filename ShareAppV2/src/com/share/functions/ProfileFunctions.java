@@ -1,34 +1,25 @@
 package com.share.functions;
 
 
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
-import static io.appium.java_client.touch.offset.PointOption.point;
+import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
+import static io.appium.java_client.touch.offset.ElementOption.element;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.interactions.touch.TouchActions;
 
+import com.aventstack.extentreports.Status;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
+import com.share.objectrepository.ExperiencesPage;
 import com.share.objectrepository.HomePage;
 import com.share.objectrepository.ProfilePage;
 import com.share.objectrepository.SignInPage;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.android.AndroidTouchAction;
-import io.appium.java_client.touch.LongPressOptions;
-import io.appium.java_client.touch.offset.ElementOption;
-
-import static io.appium.java_client.touch.LongPressOptions.longPressOptions;
-import static io.appium.java_client.touch.offset.ElementOption.element;
-import io.appium.java_client.TouchAction;
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 
 public class ProfileFunctions extends DriverSetUp
@@ -102,6 +93,79 @@ public class ProfileFunctions extends DriverSetUp
 
 	public void newPin(ProfilePage profilePage ) {
 		profilePage.setUpPin.sendKeys(newPin);
+	}
+
+	public void fingerPrintSwitch() {
+		ProfilePage profilePage = new ProfilePage(driver);
+		List<MobileElement>switchButton = profilePage.profileFrame.findElementsByClassName("android.view.ViewGroup");
+		switchButton.get(10).click();
+//		System.out.println("JJJJJJJJJJJJ");
+	//AndroidElement switchButton = switches.findElement(By.className("android.widget.Switch")).click();
+	}
+
+	public void skipbiometric() throws Exception
+	 {
+
+		ProfilePage profilePage = new ProfilePage(driver);
+	    Thread.sleep(1000);
+		try
+		{
+		if(generalFuntions.isElementPresent(profilePage.cancelBioinPasscode, 30))
+			{
+				System.out.println("Biometric Access Asked ");
+				profilePage.cancelBioinPasscode.click();
+			}else {
+				System.out.println("Biometric Access NoT Asked");
+			}
+			}
+			catch(Exception x)
+			{
+				System.out.println("Biometric Access NoT Asked");
+			}
+	    }
+
+	public void spayOnboardinskip() throws Exception
+	 {
+		ExperiencesPage objExperiencesPage = new ExperiencesPage(driver);
+		GeneralFunctions generalFunctions = new GeneralFunctions();
+	    Thread.sleep(1000);
+		try
+		{
+			//Verify Continue button displayed
+			if(objExperiencesPage.OnBoardingContinue.isDisplayed()==true)
+			{
+				test.log(Status.PASS, "Continue Button Displayed");
+				generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30);
+				objExperiencesPage.OnBoardingContinue.click();
+			}
+		}
+			catch(Exception x)
+			{
+				System.out.println("OnBoarding Not Displayed, User already seen the onboarding");
+			}
+	    }
+
+	public void newUserSign() throws Exception {
+
+		SignInPage signInPage = new SignInPage(driver);
+
+		HomePage homePage = new HomePage(driver);
+
+		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
+		signInPage.signinPresent.click();
+		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
+		generalFuntions.skipupdate();
+		generalFuntions.isElementPresent(signInPage.useridElement, 90);
+		signInPage.useridElement.sendKeys(newUserPasscode);
+		signInPage.userpassElement.sendKeys(newUserPassword);
+		signInPage.signinElement.click();
+		generalFuntions.isElementPresent(signInPage.biocancel, 30);
+		signInPage.biocancel.click();
+		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
+		generalFuntions.skipupdate();
+		generalFuntions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+
 	}
 }
 

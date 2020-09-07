@@ -1,87 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="2" total="3" passed="0">
+<testng-results skipped="0" failed="0" ignored="26" total="27" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="74939" started-at="2020-07-28T19:00:30 IST" finished-at="2020-07-28T19:01:45 IST">
+  <suite name="Default suite" duration-ms="80768" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:12:16 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="74939" started-at="2020-07-28T19:00:30 IST" finished-at="2020-07-28T19:01:45 IST">
-      <class name="com.share.testscript.Family">
-        <test-method status="PASS" signature="SetUp()[pri:0, instance:com.share.testscript.Family@27808f31]" name="SetUp" is-config="true" duration-ms="580" started-at="2020-07-28T19:00:30 IST" finished-at="2020-07-28T19:00:30 IST">
+    <test name="Default test" duration-ms="80768" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:12:16 IST">
+      <class name="com.share.testscript.Registration">
+        <test-method status="PASS" signature="SetUp()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="SetUp" is-config="true" duration-ms="12300" started-at="2020-09-06T23:10:43 IST" finished-at="2020-09-06T23:10:55 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method status="PASS" signature="CreateDriver()[pri:0, instance:com.share.testscript.Family@27808f31]" name="CreateDriver" is-config="true" duration-ms="38517" started-at="2020-07-28T19:00:30 IST" finished-at="2020-07-28T19:01:09 IST">
+        <test-method status="PASS" signature="CreateDriver()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="CreateDriver" is-config="true" duration-ms="25381" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:11:21 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CreateDriver -->
-        <test-method status="FAIL" signature="TC_Family_003(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Family@27808f31]" name="TC_Family_003" duration-ms="34518" started-at="2020-07-28T19:01:09 IST" finished-at="2020-07-28T19:01:44 IST">
+        <test-method status="PASS" signature="TC_Registration_052(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="TC_Registration_052" duration-ms="54672" started-at="2020-09-06T23:11:21 IST" finished-at="2020-09-06T23:12:15 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.share.testscript.Family.TC_Family_003(java.lang.reflect.Method) throws java.lang.Exception]]>
+                <![CDATA[public void com.share.testscript.Registration.TC_Registration_052(java.lang.reflect.Method) throws java.lang.Exception]]>
               </value>
             </param>
           </params>
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[AddNewMemberButton Not Displayed]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: AddNewMemberButton Not Displayed
-at org.testng.Assert.fail(Assert.java:97)
-at com.share.functions.FamilyFunctions.FamilyInviteExistingMember(FamilyFunctions.java:139)
-at com.share.testscript.Family.TC_Family_003(Family.java:191)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
-at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
-at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
-at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
-at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-at java.util.ArrayList.forEach(Unknown Source)
-at org.testng.TestRunner.privateRun(TestRunner.java:770)
-at org.testng.TestRunner.run(TestRunner.java:591)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
-at org.testng.SuiteRunner.run(SuiteRunner.java:304)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
-at org.testng.TestNG.runSuites(TestNG.java:1032)
-at org.testng.TestNG.run(TestNG.java:1000)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_Family_003 -->
-        <test-method status="PASS" signature="setTestResult(org.testng.ITestResult)[pri:0, instance:com.share.testscript.Family@27808f31]" name="setTestResult" is-config="true" duration-ms="1831" started-at="2020-07-28T19:01:44 IST" finished-at="2020-07-28T19:01:45 IST">
+        </test-method> <!-- TC_Registration_052 -->
+        <test-method status="PASS" signature="setTestResult(org.testng.ITestResult)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="setTestResult" is-config="true" duration-ms="669" started-at="2020-09-06T23:12:15 IST" finished-at="2020-09-06T23:12:16 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TC_Family_003 status=FAILURE method=Family.TC_Family_003(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Family@27808f31] output={null}]]]>
+                <![CDATA[[TestResult name=TC_Registration_052 status=SUCCESS method=Registration.TC_Registration_052(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setTestResult -->
-        <test-method status="PASS" signature="reportClose()[pri:0, instance:com.share.testscript.Family@27808f31]" name="reportClose" is-config="true" duration-ms="607" started-at="2020-07-28T19:01:45 IST" finished-at="2020-07-28T19:01:46 IST">
+        <test-method status="PASS" signature="reportClose()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="reportClose" is-config="true" duration-ms="545" started-at="2020-09-06T23:12:16 IST" finished-at="2020-09-06T23:12:17 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportClose -->
-      </class> <!-- com.share.testscript.Family -->
+      </class> <!-- com.share.testscript.Registration -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

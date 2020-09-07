@@ -3,15 +3,17 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.share.testscript.Family">
+      <class name="com.share.testscript.SharePay">
         <methods>
-          <include name="TC_Family_003" invocation-numbers="0"/>
           <include name="setTestResult"/>
+          <include name="TC_SharePay_025_026_027"/>
+          <include name="TC_SharePay_020" invocation-numbers="0"/>
           <include name="SetUp"/>
+          <include name="TC_SharePay_021_022_023_024"/>
           <include name="CreateDriver"/>
           <include name="reportClose"/>
         </methods>
-      </class> <!-- com.share.testscript.Family -->
+      </class> <!-- com.share.testscript.SharePay -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

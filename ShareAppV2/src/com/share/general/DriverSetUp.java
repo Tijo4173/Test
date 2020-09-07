@@ -2,8 +2,6 @@ package com.share.general;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -20,7 +18,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -29,12 +26,10 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.share.testdata.DataDriven;
 import com.share.utility.Utilities;
 
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 @Listeners(com.share.listener.ITListeners.class)
@@ -49,7 +44,8 @@ public class DriverSetUp extends DataDriven {
 	public static Map map;
 	public static Map mapdata;
 	public static ExtentTest testlog;
-	
+	public static AppiumServer appiumServer = new AppiumServer();
+
 	/*
 	protected final String package_production= "com.maf.share";
 	protected final String package_sit  = "com.maf.sharesit";
@@ -60,10 +56,11 @@ public class DriverSetUp extends DataDriven {
 		return is_production?package_production:package_sit;
 
 	}*/
-	
+
 
 	@BeforeSuite
 	public void SetUp() throws MalformedURLException {
+		//appiumServer.startServer();
 		DateFormat currTimeDate = new SimpleDateFormat("MM_dd_yyyy_HH_mm_ss");
 		Date date = new Date();
 		String dateTD= currTimeDate.format(date);
@@ -80,13 +77,11 @@ public class DriverSetUp extends DataDriven {
 		htmlReporter.config().setReportName("Automation Suite Execution Report");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
-		extent.setSystemInfo("Automation", "Android");
-		extent.setSystemInfo("QA", "Smithin");
-		extent.setSystemInfo("Application", "Share");
-		extent.setSystemInfo("AndroidVersion", "9.0");
+		extent.setSystemInfo("Author", "Testhouse");
+		extent.setSystemInfo("Application", "ShareV2");
+		extent.setSystemInfo("Build Version", "2.1.2");
+			}
 
-	}
-	
 	@BeforeTest(alwaysRun=true)
 	public void CreateDriver() throws Exception {
 
@@ -124,13 +119,14 @@ public class DriverSetUp extends DataDriven {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		//String device=(String) prop.get("Device");
 		cap.setCapability("device", "Android");
-		cap.setCapability("deviceName","192.168.94.102:5555");
+		cap.setCapability("deviceName","27d9009175217ece");
 		//cap.setCapability("udid", strDeviceUDID);
 		cap.setCapability("appPackage", "com.maf.dl.sharesit");
 		cap.setCapability("appActivity", "com.maf.android.share.presentation.splash.SplashActivity");
 		cap.setCapability("noReset", "true");
 		cap.setCapability("noSign", "true");
 		cap.setCapability("autoGrantPermissions","true");
+		cap.setCapability("adbExecTimeout", 50000);
 		//cap.setCapability("unicodeKeyboard", "true");
 		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 120);
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
@@ -195,6 +191,7 @@ public class DriverSetUp extends DataDriven {
 			test.log(Status.PASS, result.getName());
 			test.pass("Screen Shot : " + test.addScreenCaptureFromPath(destination));
 		} else if (result.getStatus() == ITestResult.SKIP) {
+			test.log(Status.SKIP, result.getName());
 			test.skip("Test Case : " + result.getName() + " has been skipped");
 		}
 
@@ -202,8 +199,15 @@ public class DriverSetUp extends DataDriven {
 
 	@AfterSuite
 	public void reportClose() {
+		GeneralFunctions.deviceInfo();
+		extent.setSystemInfo("DeviceName", GeneralFunctions.deviceName);
+		extent.setSystemInfo("PlatformName", GeneralFunctions.brandName);
+		extent.setSystemInfo("PlatformVersion", GeneralFunctions.osVersion);
 		extent.flush();
 		System.out.println("Test Complete");
+		//appiumServer.stopServer();
+		System.out.println("Server Stopped");
+
 	}
 
 

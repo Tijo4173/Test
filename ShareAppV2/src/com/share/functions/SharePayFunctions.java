@@ -9,6 +9,7 @@ import com.share.objectrepository.HomePage;
 import com.share.objectrepository.ProfilePage;
 import com.share.objectrepository.SharePayPage;
 import com.share.objectrepository.SignInPage;
+import com.share.objectrepository.SplashScreenPage;
 
 public class SharePayFunctions extends DriverSetUp {
 	GeneralFunctions generalFunctions = new GeneralFunctions();
@@ -18,21 +19,26 @@ public class SharePayFunctions extends DriverSetUp {
 
 
 	//Passcode for New user
-	public void newUserPassPay() {
+	public void newUserPassPay() throws Exception {
 		SignInPage signInPage = new SignInPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		HomePage homePage = new HomePage(driver);
+		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		ProfilePage profilePage =  new ProfilePage(driver);
+		System.out.println(newUserPasscodePay);
+		splashScreenFunctions.splashScreenSkip(splashScreenPage);
 		generalFunctions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
 		generalFunctions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(newUserPasscodePay);
 		signInPage.userpassElement.sendKeys(newUserPasswordPay);
 		signInPage.signinElement.click();
-		generalFunctions.isElementPresent(homePage.homeElement, 20);			
+		generalFunctions.skipupdate();
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
 
 	}
-	
+
 	//Function for ShareWallet to Add card Payment
 	public void shareToAddPayment() throws InterruptedException {
 
@@ -77,8 +83,8 @@ public class SharePayFunctions extends DriverSetUp {
 				test.log(Status.PASS, "Continue Button Displayed");
 				sharePayPage.OnBoardingContinue.click();
 				Thread.sleep(4000);
-				
-				
+
+
 			}
 		}
 		catch(Exception x)
@@ -87,7 +93,7 @@ public class SharePayFunctions extends DriverSetUp {
 			Assert.fail("Continue Button Not Displayed");
 		}
 
-		
+
 			generalFunctions.isElementPresent(sharePayPage.addCardAgain, 60);
 			if(sharePayPage.addCardAgain.isDisplayed()==true)
 			{

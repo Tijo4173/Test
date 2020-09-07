@@ -3,14 +3,20 @@ package com.share.functions;
 import java.util.concurrent.TimeUnit;
 
 import com.share.general.DriverSetUp;
+import com.share.general.GeneralFunctions;
 import com.share.objectrepository.HomePage;
+import com.share.objectrepository.SignInPage;
 
 import io.appium.java_client.android.AndroidElement;
 
 
 
-public class HomeFunctions extends DriverSetUp 
+public class HomeFunctions extends DriverSetUp
 {
+
+
+	String newUserPasscode = mapdata.get("newUserPasscode").toString();
+	String newUserPassword = mapdata.get("newUserPassword").toString();
 	public void introDone(HomePage homePage) {
 
 		AndroidElement next = homePage.introNext;
@@ -67,6 +73,23 @@ public class HomeFunctions extends DriverSetUp
 			e.getMessage();
 		}
 
+	}
+	public void zeroPointuser() throws Exception {
+		GeneralFunctions generalFuntions = new GeneralFunctions();
+
+		SignInPage signInPage = new SignInPage(driver);
+		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
+		signInPage.signinPresent.click();
+		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
+		generalFuntions.skipupdate();
+		generalFuntions.isElementPresent(signInPage.useridElement, 90);
+		signInPage.useridElement.sendKeys(newUserPasscode);
+		signInPage.userpassElement.sendKeys(newUserPassword);
+		signInPage.signinElement.click();
+//		generalFuntions.isElementPresent(signInPage.biocancel, 30);
+//		signInPage.biocancel.click();
+		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
+		generalFuntions.skipupdate();
 	}
 
 }

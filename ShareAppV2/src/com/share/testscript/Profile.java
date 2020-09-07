@@ -2,6 +2,7 @@ package com.share.testscript;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -9,14 +10,16 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.share.functions.ProfileFunctions;
-import com.share.functions.SharePayFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
-import com.share.objectrepository.ProfilePage;
 import com.share.objectrepository.HomePage;
+import com.share.objectrepository.ProfilePage;
 import com.share.objectrepository.SharePayPage;
 import com.share.objectrepository.SignInPage;
 import com.share.utility.Utilities;
+
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class Profile extends DriverSetUp
 {
@@ -24,188 +27,160 @@ public class Profile extends DriverSetUp
 	GeneralFunctions generalFunctions = new GeneralFunctions();
 
 
-	@Test
-	public void TC_01(Method method) throws Exception
+              //Profile - Landing screen
+	@Test(priority=1)
+	public void TC_Profile_001(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile - Landing screen");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
+		ProfileFunctions profileFunctions = new ProfileFunctions();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");	
+			driver.resetApp();
+			profileFunctions.newUserSign();
 
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
+			if(generalFunctions.isElementPresent(profilePage.avatar, 30))
+			{
+				test.log(Status.PASS, "Navigated To Profile Page");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Not Navigated To Profile Page");
+				Assert.fail("Not Navigated To Profile Page");
+			}
 
-			//Click on Avatar icon
-			profilePage.avatar.click();
-			Thread.sleep(4000);
 
 			//Full Name
-			try
+			if(generalFunctions.isElementPresent(profilePage.fullname, 30))
 			{
-				if(profilePage.fullname.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Full Name Displayed");
-				}
+				test.log(Status.PASS, "Full Name Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Full Name Not Displayed");
 				Assert.fail("Full Name Not Displayed");
 			}
 
 			//Joining Date
-			try
+			if(generalFunctions.isElementPresent(profilePage.joiningDate, 30))
 			{
-				if(profilePage.joiningDate.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Joining Date Displayed");
-				}
+				test.log(Status.PASS, "Joining Date Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Joining Date Not Displayed");
 				Assert.fail("Joining Date Not Displayed");
 			}
 
 			//Avatar
-			try
+			if(generalFunctions.isElementPresent(profilePage.AvatarName, 30))
 			{
-				if(profilePage.AvatarName.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Avatar Displayed");
-				}
+				test.log(Status.PASS, "Avatar Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Avatar Not Displayed");
 				Assert.fail("Avatar Not Displayed");
 			}
 
 			//Personal Details
-			try
+			if(generalFunctions.isElementPresent(profilePage.personalDetails, 30))
 			{
-				if(profilePage.personalDetails.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Personal Details Displayed");
-				}
+				test.log(Status.PASS, "Personal Details Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Personal Details Not Displayed");
 				Assert.fail("Personal Details Not Displayed");
 			}
 
 			//Payment Methods
-			try
+			if(generalFunctions.isElementPresent(profilePage.paymentMethods, 30))
 			{
-				if(profilePage.paymentMethods.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Payment Methods Displayed");
-				}
+				test.log(Status.PASS, "Payment Methods Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Payment Methods Not Displayed");
 				Assert.fail("Payment Methods Not Displayed");
-			}		
+			}
 
 			//Notifications
-			try
+			if(generalFunctions.isElementPresent(profilePage.notifications, 30))
 			{
-				if(profilePage.notifications.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Notifications Displayed");
-				}
+				test.log(Status.PASS, "Notifications Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Notifications Not Displayed");
 				Assert.fail("Notifications Not Displayed");
-			}		
+			}
 
 			//Reset Password
-			try
+			if(generalFunctions.isElementPresent(profilePage.resetPassword, 30))
 			{
-				if(profilePage.resetPassword.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Reset Password Displayed");
-				}
+				test.log(Status.PASS, "Reset Password Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Reset Password Not Displayed");
 				Assert.fail("Reset Password Not Displayed");
-			}		
+			}
+
+			generalFunctions.SimplyScrollDown();
 
 			//Terms & Conditions
-			try
+			if(generalFunctions.isElementPresent(profilePage.termsNconditions, 30))
 			{
-				if(profilePage.termsNconditions.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Terms & Conditions Displayed");
-				}
+				test.log(Status.PASS, "Terms & Conditions Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Terms & Conditions Not Displayed");
 				Assert.fail("Terms & Conditions Not Displayed");
-			}	
+			}
 
 			//Privacy Policy
-			try
+			if(generalFunctions.isElementPresent(profilePage.privacyPolicy, 30))
 			{
-				if(profilePage.privacyPolicy.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Privacy Policy Displayed");
-				}
+				test.log(Status.PASS, "Privacy Policy Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Privacy Policy Not Displayed");
 				Assert.fail("Privacy Policy Not Displayed");
-			}		
+			}
 
 			//Logout
-			try
+			if(generalFunctions.isElementPresent(profilePage.Logout, 30))
 			{
-				if(profilePage.Logout.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Logout Displayed");
-				}
+			     test.log(Status.PASS, "Logout Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Logout Not Displayed");
 				Assert.fail("Logout Not Displayed");
-			}	
+			}
 
-			generalFunctions.ScrollDown("Version");
 
 			//App Version
-			try
+			if(generalFunctions.isElementPresent(profilePage.version, 30))
 			{
-				if(profilePage.version.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "App Version Displayed");
-				}
+				test.log(Status.PASS, "App Version Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "App Version Not Displayed");
 				Assert.fail("App Version Not Displayed");
-			}	
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -215,32 +190,27 @@ public class Profile extends DriverSetUp
 
 	}
 
-
-	@Test
-	public void TC_02(Method method) throws Exception
+               //Profile - Avatar Initials
+	@Test(priority=2)
+	public void TC_Profile_002(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile - Avatar Initials");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
+		//HomePage homepage = new HomePage(driver);
 
 		try
 		{
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
 
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 
 			//Full Name
 			try
@@ -301,6 +271,7 @@ public class Profile extends DriverSetUp
 				test.log(Status.FAIL, "Avatar Name Not Displayed Correctly");
 				Assert.fail("Avatar Name Not Displayed Correctly");
 			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -310,32 +281,26 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_03(Method method) throws Exception
+	@Test(priority=3)
+	public void TC_Profile_003(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
 
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(8000);
+			Thread.sleep(2000);
 
 			//Full Name
 			try
@@ -364,7 +329,7 @@ public class Profile extends DriverSetUp
 				test.log(Status.FAIL, "Joining Date Not Displayed");
 				Assert.fail("Joining Date Not Displayed");
 			}
-
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -375,33 +340,27 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_04(Method method) throws Exception
+                //Profile - Personal Details
+	@Test(priority=4)
+	public void TC_Profile_004(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile - Personal Details");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 		String FirstName=map.get("FirstName").toString();
 		String Surname=map.get("Surname").toString();
 
 		try
 		{
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(8000);
+			Thread.sleep(2000);
 
 			//Personal Details
 			try
@@ -417,7 +376,7 @@ public class Profile extends DriverSetUp
 				Assert.fail("Personal Details Not Displayed");
 			}
 
-			//click on Personal Details 
+			//click on Personal Details
 			profilePage.personalDetails.click();
 			Thread.sleep(4000);
 
@@ -433,7 +392,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Edit Details Not Displayed");
 				Assert.fail("Edit Details Not Displayed");
-			}	
+			}
 
 			//Enter First name
 			profilePage.editFName.sendKeys(FirstName);
@@ -445,7 +404,7 @@ public class Profile extends DriverSetUp
 			profilePage.upadateButton.click();
 			Thread.sleep(15000);
 
-			//click on Personal Details 
+			//click on Personal Details
 			profilePage.personalDetails.click();
 			Thread.sleep(4000);
 
@@ -477,41 +436,35 @@ public class Profile extends DriverSetUp
 
 			profilePage.navigateBack.click();
 			Thread.sleep(4000);
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
+
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}			
+		}
 	}
 
 
-	@Test
-	public void TC_05(Method method) throws Exception
+             //Verify user able to see  notifications and Biometric icons from Profile- Settings.
+	@Test(priority=5)
+	public void TC_Profile_005(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile-Settings");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
-
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 
 			//Notifications
 			try
@@ -525,7 +478,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Notifications Icon Not Displayed");
 				Assert.fail("Notifications Icon Not Displayed");
-			}	
+			}
 
 			//Fingerprint
 			try
@@ -539,7 +492,8 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Fingerprint Icon Not Displayed");
 				Assert.fail("Fingerprint Icon Not Displayed");
-			}	
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}
 		catch(Exception e)
@@ -551,32 +505,25 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_06(Method method) throws Exception
+             //Notification Setting
+	@Test(priority=6)
+	public void TC_Profile_006(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile-Settings");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
-
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);
+			Thread.sleep(2000);
+
 
 			//Notifications
 			try
@@ -590,7 +537,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Notifications Icon Not Displayed");
 				Assert.fail("Notifications Icon Not Displayed");
-			}	
+			}
 
 			//Click on Notifications Icon
 			profilePage.notificationSwitch.click();
@@ -607,7 +554,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Notifications Settings Not Displayed");
 				Assert.fail("Notifications Settings Not Displayed");
-			}	
+			}
 
 		}
 		catch(Exception e)
@@ -619,32 +566,24 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_12(Method method) throws Exception
+              //Biometric Settings
+	@Test(priority=7)
+	public void TC_Profile_007(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile-Settings");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
-
+		ProfileFunctions profileFunctions = new ProfileFunctions();
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
-			//Click on Avatar icon
-			profilePage.avatar.click();
-			Thread.sleep(4000);
+			driver.resetApp();
+			profileFunctions.newUserSign();
 
 			//Fingerprint
 			try
@@ -658,7 +597,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Fingerprint Icon Not Displayed");
 				Assert.fail("Fingerprint Icon Not Displayed");
-			}	
+			}
 
 			//Click on Fingerprint Switch
 			profilePage.fingerprintSwitch.click();
@@ -676,8 +615,8 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Fingerprint Promt Not Displayed");
 				Assert.fail("Fingerprint Promt Not Displayed");
-			}	
-
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -688,33 +627,28 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_14(Method method) throws Exception
+              //Verify user able to view the Terms and conditions and privacy policy  icons under the General section  in Profile page.
+	@Test(priority=8)
+	public void TC_Profile_008(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "T&Cs, Privacy Policy");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
 
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
-
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);		
+			Thread.sleep(2000);
 
+			generalFunctions.SimplyScrollDown();
 			//Terms & Conditions
 			try
 			{
@@ -727,7 +661,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Terms & Conditions Not Displayed");
 				Assert.fail("Terms & Conditions Not Displayed");
-			}	
+			}
 
 			//Privacy Policy
 			try
@@ -741,7 +675,8 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Privacy Policy Not Displayed");
 				Assert.fail("Privacy Policy Not Displayed");
-			}		
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}
 		catch(Exception e)
@@ -753,32 +688,28 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_15(Method method) throws Exception
+              //Terms and Conditions
+	@Test(priority=9)
+	public void TC_Profile_009(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "T&Cs, Privacy Policy");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);		
+			Thread.sleep(2000);
+
+			generalFunctions.SimplyScrollDown();
 
 			//Terms & Conditions
 			try
@@ -792,7 +723,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Terms & Conditions Not Displayed");
 				Assert.fail("Terms & Conditions Not Displayed");
-			}	
+			}
 
 			//Click on Terms & Conditions
 			profilePage.termsNconditions.click();
@@ -812,6 +743,7 @@ public class Profile extends DriverSetUp
 			}
 
 			profilePage.navigateBack.click();
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}
 		catch(Exception e)
@@ -823,32 +755,29 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_16(Method method) throws Exception
+               //Privacy Policy
+	@Test(priority=10)
+	public void TC_Profile_010(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "T&Cs, Privacy Policy");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
 
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);		
+			Thread.sleep(2000);
+
+			generalFunctions.SimplyScrollDown();
 
 			//Privacy Policy
 			try
@@ -878,46 +807,41 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Privacy Policy page Not Displayed");
 				Assert.fail("Privacy Policy page Not Displayed");
-			}		
+			}
 
 			profilePage.navigateBack.click();
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}				
+		}
 	}
 
 
-	@Test
-	public void TC_17_18(Method method) throws Exception
+	@Test(priority=11)
+	public void TC_Profile_011_012(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Logout");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
 
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
-
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
 
 			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);		
-			generalFunctions.ScrollDown("Version");
+			Thread.sleep(2000);
+			generalFunctions.SimplyScrollDown();
 
 			//Logout
 			try
@@ -931,10 +855,10 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Logout Not Displayed");
 				Assert.fail("Logout Not Displayed");
-			}	
+			}
 
 			profilePage.Logout.click();
-			Thread.sleep(5000);	
+			Thread.sleep(5000);
 
 			//Logout Confirmation
 			try
@@ -952,6 +876,7 @@ public class Profile extends DriverSetUp
 
 			//Click Yes
 			profilePage.ConfirmYES.click();
+			generalFunctions.skipupdate();
 
 			try
 			{
@@ -971,36 +896,29 @@ public class Profile extends DriverSetUp
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}				
+		}
 	}
 
-
-	@Test
-	public void TC_19_20_21(Method method) throws Exception
+              //Reset Password
+	@Test(priority=12)
+	public void TC_Profile_013_014_015(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Reset Password");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
-		ProfilePage profilePage = new ProfilePage(driver);
 
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
-			//Click on Avatar icon
-			profilePage.avatar.click();
-			Thread.sleep(4000);
+			driver.resetApp();
+			profileFunctions.newUserSign();
+			Thread.sleep(2000);
 
 			//Reset Password
 			try
@@ -1014,7 +932,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Reset Password Not Displayed");
 				Assert.fail("Reset Password Not Displayed");
-			}		
+			}
 
 			profilePage.resetPassword.click();
 			Thread.sleep(2000);
@@ -1030,7 +948,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Reset Password Confirmation Alert Not Displayed");
 				Assert.fail("Reset Password Confirmation Alert Not Displayed");
-			}	
+			}
 
 			profilePage.confirmNO.click();
 			Thread.sleep(2000);
@@ -1046,8 +964,8 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "User Not retured to Profile page");
 				Assert.fail("User Not retured to Profile page");
-			}	
-
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -1058,32 +976,24 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_22_23(Method method) throws Exception
+	@Test(priority=13)
+	public void TC_Profile_016_017(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Reset Password");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
 
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
-			//Click on Avatar icon
+			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 
 			//Reset Password
 			try
@@ -1097,7 +1007,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Reset Password Not Displayed");
 				Assert.fail("Reset Password Not Displayed");
-			}		
+			}
 
 			profilePage.resetPassword.click();
 			Thread.sleep(2000);
@@ -1113,7 +1023,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Reset Password Confirmation Alert Not Displayed");
 				Assert.fail("Reset Password Confirmation Alert Not Displayed");
-			}	
+			}
 
 			profilePage.ConfirmYES.click();
 			Thread.sleep(25000);
@@ -1129,7 +1039,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Reset Password Confirmation page Not Displayed");
 				Assert.fail("Reset Password Confirmation page Not Displayed");
-			}	
+			}
 
 			try
 			{
@@ -1142,14 +1052,13 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Check Your Email Message Not Displayed");
 				Assert.fail("Check Your Email Message Not Displayed");
-			}	
+			}
 
 			//Send Again
 			profilePage.sendAgain.click();
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 
 			profilePage.navigateBack.click();
-
 
 		}
 		catch(Exception e)
@@ -1161,13 +1070,202 @@ public class Profile extends DriverSetUp
 	}
 
 
-	@Test
-	public void TC_25_To_31(Method method) throws Exception
+
+
+	////-------------Passcode------////
+	//Verify New User is able to set up PIN later by selecting "SET UP PIN CODE LATER"
+	//Verify User is not able to Proceed with Profile - Payment Methods without setting up PIN
+
+	@Test(priority=14)
+	public void TC_Profile_031_032(Method method) throws Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "PaymentMethods;Passcode Setup Later").assignCategory("PROFILE");
+		test.info("Verify New User is able to set up PIN later by selecting SET UP PIN CODE LATER");
+		System.out.println(TC_Method);
+		driver.resetApp();
+		//SignInPage signInPage = new SignInPage(driver);
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//SignIn New User and click on Payment Methods
+		profileFunctions.newUserPass();
+
+		if(generalFunctions.isElementPresent(profilePage.setupPinCode, 20)) {
+			test.log(Status.PASS, "The Passcode Setup Screen displayed when user tap on Payment Methods").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else {
+				test.log(Status.FAIL, "The Passcode screen not displayed and user can able to add card").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			generalFunctions.isElementPresent(profilePage.setupPinCodeLater, 30);
+			profilePage.setupPinCodeLater.click();
+
+			if(generalFunctions.isElementPresent(profilePage.paymentMethods, 30)) {
+				test.log(Status.PASS, "User navigates back to the Profile section");
+			}else{
+				test.log(Status.FAIL, "Profile Screen NOT displayed");
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+		}
+
+	//Verify Error message is displayed when PIN on the first set up screen does not match with the PIN on the confirm screen
+	@Test(priority=15)
+	public void TC_Profile_030(Method method) throws InterruptedException {
+		try {
+			String TC_Method = method.getName();
+			test = extent.createTest(TC_Method);
+			test.log(Status.INFO, "Payment Methods: Passcode Mismatch").assignCategory("PROFILE");
+			test.info("Verify Error message is displayed when PIN on the first set up screen does not match with the PIN on the confirm screen");
+			System.out.println(TC_Method);
+			driver.resetApp();
+			//SignInPage signInPage = new SignInPage(driver);
+			ProfilePage profilePage = new ProfilePage(driver);
+			ProfileFunctions profileFunctions = new ProfileFunctions();
+			//SignIn New User and click on Payment Methods
+			profileFunctions.newUserPass();
+			generalFunctions.isElementPresent(profilePage.setupPinCode, 30);
+			profilePage.setupPinCode.click();
+			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
+			profilePage.setUpPin.sendKeys("1234");
+			Thread.sleep(500);
+			generalFunctions.isElementPresent(profilePage.confirmPassScreen, 30);
+			profilePage.setUpPin.sendKeys("1434");
+			//String toast = profilePage.pinErrortoast.getText();
+			if(generalFunctions.isElementPresence(By.id("snackbar_text"), 30)) {
+				test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast());
+			}else {
+				test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed");
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		}catch(Exception e) {
+			e.printStackTrace();
+			e.getCause();
+			Assert.fail(e.getMessage());
+		}
+	}
+
+
+	//Verify New User is able to set up PIN on selecting Payment methods
+	@Test(priority=16)
+	public void TC_Profile_025_to_029(Method method) throws Exception   {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method).assignCategory("PROFILE");
+		test.log(Status.INFO, "Payment Method:Passcode Set up");
+		test.info("Verify New User is able to set up PIN on selecting Payment methods");
+		System.out.println(TC_Method);
+		driver.resetApp();
+
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//SignIn New User and click on Payment Methods
+		profileFunctions.newUserPass();
+		Thread.sleep(1000);
+
+		//SetPinCode
+		if(generalFunctions.isElementPresent(profilePage.setupPinCode, 30)) {
+			test.log(Status.PASS, "SET UP PIN CODE Button is Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "SET UP PIN CODE Button is NOT Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.setupPinCodeLater, 30)) {
+			test.log(Status.PASS, "SET UP PIN CODE LATER Button is Present");
+		}else {
+			test.log(Status.FAIL, "SET UP PIN CODE LATER Button is NOT Present");
+		}
+		profilePage.setupPinCode.click();
+		//PINCODE SCREEN
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Setup PINCODE Screen dispalyed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1234");
+		}else {
+			test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+
+		//PINCODE CONFIRM SCREEN
+		if(generalFunctions.isElementPresent(profilePage.confirmPassScreen, 30)) {
+			test.log(Status.PASS, "Confirm PINCODE Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1234");
+		}else {
+			test.log(Status.FAIL, "Confirm PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+
+		//PINCODE SUCCESS
+		if(generalFunctions.isElementPresent(profilePage.pinSuccess, 30)) {
+			test.log(Status.PASS, "SUCCESS:"+profilePage.pinSuccess.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.pinDone.click();
+		}else {
+			test.log(Status.FAIL, "SUCCESS Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(1000);
+
+		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
+			test.log(Status.PASS, "Payment Methods Screen displayed");
+		}else {
+			test.log(Status.FAIL, "Payment Methods Screen NOT displayed");
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+	}
+
+
+	//*************************************************Passcode for Existing Users**************************************//
+
+	//Verify Enter PIN code screen is displayed if an existing user trying to add new card
+	@Test(priority=17)
+	public void TC_Profile_033_to_035(Method method) throws Exception   {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method).assignCategory("PROFILE");
+		test.log(Status.INFO, "Payment Method:Passcode Set up");
+		test.info("Verify Enter PIN code screen is displayed if an existing user trying to add new card");
+		test.info("Verify the Add New card details screen is displayed");
+		System.out.println(TC_Method);
+		//SignInPage signInPage = new SignInPage(driver);
+		ProfilePage profilePage = new ProfilePage(driver);
+		HomePage homePage = new HomePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+
+		//SignIn New User and click on Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
+		profilePage.paymentMethods.click();
+
+		//PINCODE SCREEN
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Setup PINCODE Screen dispalyed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.setUpPin.sendKeys("1234");
+		}else {
+			test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		profileFunctions.skipbiometric();
+		Thread.sleep(1000);
+		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
+			test.log(Status.PASS, "Payment Methods Screen displayed");
+		}else {
+			test.log(Status.FAIL, "Payment Methods Screen NOT displayed");
+		}
+
+		profilePage.addNewPaymentMethod.click();
+		Thread.sleep(1000);
+		if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
+			test.log(Status.PASS, "Add card details Screen displayed");
+		}else {
+			test.log(Status.FAIL, "Add card details Screen NOT displayed");
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+	}
+
+
+	@Test(priority = 18)
+	public void TC_Proile_18_To_24(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile - Payment methods");
-		test.assignCategory("Profile");
+		test.assignCategory("PROFILE");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
@@ -1184,14 +1282,9 @@ public class Profile extends DriverSetUp
 		try
 		{
 
-			driver.activateApp("com.maf.sharesit");
-
-			//Login to the App
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
 
 			//Click on Avatar icon
 			profilePage.avatar.click();
-			Thread.sleep(4000);
 
 			//Payment Methods
 			try
@@ -1205,10 +1298,10 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods Not Displayed");
 				Assert.fail("Payment Methods Not Displayed");
-			}		
+			}
 
-			profilePage.paymentMethods.click();		
-			Thread.sleep(5000);	
+			profilePage.paymentMethods.click();
+			Thread.sleep(5000);
 
 			try
 			{
@@ -1221,7 +1314,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods page Not Displayed");
 				Assert.fail("Payment Methods page Not Displayed");
-			}		
+			}
 
 			//Add New Payment Method
 			profilePage.addNewPaymentMethod.click();
@@ -1238,7 +1331,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Add New Card page Not Displayed");
 				Assert.fail("Add New Card page Not Displayed");
-			}	
+			}
 
 			//Enter Card Number
 			profilePage.CardNumber.click();
@@ -1281,7 +1374,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Verify Card page Not Displayed");
 				Assert.fail("Verify Card page Not Displayed");
-			}	
+			}
 
 			//Verify the Transaction Amount Field displayed
 			if(profilePage.TransactionAmount.isDisplayed()==true)
@@ -1292,7 +1385,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Transaction Amount Field Not Displayed");
 				Assert.fail("Transaction Amount Field Not Displayed");
-			}		
+			}
 
 			//Verify the submit button
 			if(profilePage.SubmitTransactionAmount.isEnabled()==false)
@@ -1306,7 +1399,7 @@ public class Profile extends DriverSetUp
 			}
 
 			profilePage.goBack.click();
-			Thread.sleep(4000);		
+			Thread.sleep(4000);
 
 			try
 			{
@@ -1319,7 +1412,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods page Not Displayed");
 				Assert.fail("Payment Methods page Not Displayed");
-			}		
+			}
 
 			//Verify the Card Details Tag
 			String CardTag= profilePage.GetCardStatus(lastDigits).getText();
@@ -1350,7 +1443,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Verify Card page Not Displayed");
 				Assert.fail("Verify Card page Not Displayed");
-			}	
+			}
 
 			profilePage.TransactionAmount.sendKeys(TransactionAmount);
 			driver.hideKeyboard();
@@ -1369,7 +1462,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods page Not Displayed");
 				Assert.fail("Payment Methods page Not Displayed");
-			}	
+			}
 
 			profilePage.navigateBack.click();
 			Thread.sleep(4000);
@@ -1385,7 +1478,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods Not Displayed");
 				Assert.fail("Payment Methods Not Displayed");
-			}	
+			}
 
 			profilePage.backFromProfile.click();
 			Thread.sleep(4000);
@@ -1401,7 +1494,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Share Pay Not Displayed");
 				Assert.fail("Share Pay Not Displayed");
-			}	
+			}
 
 			profilePage.sharePay.click();
 			Thread.sleep(10000);
@@ -1416,7 +1509,7 @@ public class Profile extends DriverSetUp
 			catch(Exception x)
 			{
 				test.log(Status.PASS, "Share Pay page Not Displayed");
-			}	
+			}
 
 			try
 			{
@@ -1428,7 +1521,7 @@ public class Profile extends DriverSetUp
 			}
 			catch(Exception x)
 			{
-				test.log(Status.PASS, "Continue Button  Not Displayed");			
+				test.log(Status.PASS, "Continue Button  Not Displayed");
 			}
 
 			try
@@ -1456,7 +1549,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Added Card Not Displayed in Share Wallet");
 				Assert.fail("Added Card Not Displayed in Share Wallet");
-			}	
+			}
 
 			profilePage.backFromShareWallet.click();
 			Thread.sleep(4000);
@@ -1477,10 +1570,10 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods Not Displayed");
 				Assert.fail("Payment Methods Not Displayed");
-			}		
+			}
 
-			profilePage.paymentMethods.click();		
-			Thread.sleep(5000);	
+			profilePage.paymentMethods.click();
+			Thread.sleep(5000);
 
 			try
 			{
@@ -1493,7 +1586,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods page Not Displayed");
 				Assert.fail("Payment Methods page Not Displayed");
-			}		
+			}
 
 			try
 			{
@@ -1506,13 +1599,13 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Card Not Displayed in Payment Methods");
 				Assert.fail("Card Not Displayed in Payment Methods");
-			}	
+			}
 
 			profilePage.editButton.click();
-			Thread.sleep(2000);	
+			Thread.sleep(2000);
 
 			profilePage.deleteCard(lastDigits).click();
-			Thread.sleep(2000);	
+			Thread.sleep(2000);
 
 			try
 			{
@@ -1528,12 +1621,12 @@ public class Profile extends DriverSetUp
 			}
 
 			profilePage.ConfirmYES.click();
-			Thread.sleep(6000);	
+			Thread.sleep(6000);
 
 			try
 			{
 				if(profilePage.SelectCards(lastDigits).isDisplayed()==true)
-				{						
+				{
 					test.log(Status.FAIL, "Card Not Deleted");
 					Assert.fail("Card Not Deleted");
 				}
@@ -1541,7 +1634,7 @@ public class Profile extends DriverSetUp
 			catch(Exception x)
 			{
 				test.log(Status.PASS, "Card Deleted Successfully");
-			}	
+			}
 
 			profilePage.navigateBack.click();
 			Thread.sleep(4000);
@@ -1557,7 +1650,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Payment Methods Not Displayed");
 				Assert.fail("Payment Methods Not Displayed");
-			}	
+			}
 
 			profilePage.backFromProfile.click();
 			Thread.sleep(4000);
@@ -1573,7 +1666,7 @@ public class Profile extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Share Pay Not Displayed");
 				Assert.fail("Share Pay Not Displayed");
-			}	
+			}
 
 			profilePage.sharePay.click();
 			Thread.sleep(10000);
@@ -1588,7 +1681,7 @@ public class Profile extends DriverSetUp
 			catch(Exception x)
 			{
 				test.log(Status.PASS, "Share Pay page Not Displayed");
-			}	
+			}
 
 			try
 			{
@@ -1600,7 +1693,7 @@ public class Profile extends DriverSetUp
 			}
 			catch(Exception x)
 			{
-				test.log(Status.PASS, "Continue Button  Not Displayed");			
+				test.log(Status.PASS, "Continue Button  Not Displayed");
 			}
 
 			try
@@ -1620,7 +1713,7 @@ public class Profile extends DriverSetUp
 			try
 			{
 				if(profilePage.SelectCards(lastDigits).isDisplayed()==true)
-				{						
+				{
 					test.log(Status.FAIL, "Card Not Removed from Share Wallet");
 					Assert.fail("Card Not Removed from Share Wallet");
 				}
@@ -1628,10 +1721,10 @@ public class Profile extends DriverSetUp
 			catch(Exception x)
 			{
 				test.log(Status.PASS, "Card Removed from Share Wallet");
-			}	
+			}
 
 			profilePage.backFromShareWallet.click();
-			Thread.sleep(4000);			
+			Thread.sleep(4000);
 
 		}
 		catch(Exception e)
@@ -1642,183 +1735,18 @@ public class Profile extends DriverSetUp
 
 	}
 
-	////-------------Passcode------////
-
-	//Verify New User is able to set up PIN on selecting Payment methods
-	@Test
-	public void TC_59_to_63(Method method) throws Exception   {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method).assignCategory("PROFILE");
-		test.log(Status.INFO, "Payment Method:Passcode Set up");
-		test.info("Verify New User is able to set up PIN on selecting Payment methods");
-		System.out.println(TC_Method);
-		SignInPage signInPage = new SignInPage(driver);
-		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		//SignIn New User and click on Payment Methods
-		profileFunctions.newUserPass();
-
-		//SetPinCode
-		if(generalFunctions.isElementPresent(profilePage.setupPinCode, 30)) {
-			test.log(Status.PASS, "SET UP PIN CODE Button is Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "SET UP PIN CODE Button is NOT Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.setupPinCodeLater, 30)) {
-			test.log(Status.PASS, "SET UP PIN CODE LATER Button is Present");
-		}else {
-			test.log(Status.FAIL, "SET UP PIN CODE LATER Button is NOT Present");
-		}
-		profilePage.setupPinCode.click();
-		//PINCODE SCREEN
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Setup PINCODE Screen dispalyed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1234");
-		}else {
-			test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-
-		//PINCODE CONFIRM SCREEN
-		if(generalFunctions.isElementPresent(profilePage.confirmPassScreen, 30)) {
-			test.log(Status.PASS, "Confirm PINCODE Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1234");
-		}else {
-			test.log(Status.FAIL, "Confirm PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-
-		//PINCODE SUCCESS
-		if(generalFunctions.isElementPresent(profilePage.pinSuccess, 30)) {
-			test.log(Status.PASS, "SUCCESS:"+profilePage.pinSuccess.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.pinDone.click();
-		}else {
-			test.log(Status.FAIL, "SUCCESS Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-
-		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
-			test.log(Status.PASS, "Payment Methods Screen displayed");
-		}else {
-			test.log(Status.FAIL, "Payment Methods Screen NOT displayed");
-		}
-	}
-
-	//Verify Error message is displayed when PIN on the first set up screen does not match with the PIN on the confirm screen
-	@Test // run before the above tc
-	public void TC_70(Method method) throws InterruptedException {
-		try {
-			String TC_Method = method.getName();
-			test = extent.createTest(TC_Method);
-			test.log(Status.INFO, "Payment Methods: Passcode Mismatch").assignCategory("PROFILE");
-			test.info("Verify Error message is displayed when PIN on the first set up screen does not match with the PIN on the confirm screen");
-			System.out.println(TC_Method);
-			SignInPage signInPage = new SignInPage(driver);
-			ProfilePage profilePage = new ProfilePage(driver);
-			ProfileFunctions profileFunctions = new ProfileFunctions();
-			//SignIn New User and click on Payment Methods
-			profileFunctions.newUserPass();
-			generalFunctions.isElementPresent(profilePage.setupPinCode, 30);
-			profilePage.setupPinCode.click();
-			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
-			profilePage.setUpPin.sendKeys("1234");
-			Thread.sleep(500);
-			generalFunctions.isElementPresent(profilePage.confirmPassScreen, 30);
-			profilePage.setUpPin.sendKeys("1434");
-			//String toast = profilePage.pinErrortoast.getText();
-			if(generalFunctions.isElementPresence(By.id("snackbar_text"), 30)) {
-				test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast());
-			}else {
-				test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			e.getCause();
-			Assert.fail(e.getMessage());
-		}
-	}
-	//Verify New User is able to set up PIN later by selecting "SET UP PIN CODE LATER"
-	//Verify User is not able to Proceed with Profile - Payment Methods without setting up PIN
-	//Need new user for running the script
-	@Test
-	public void TC_073_074(Method method) throws Exception {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "PaymentMethods;Passcode Setup Later").assignCategory("PROFILE");
-		test.info("Verify New User is able to set up PIN later by selecting SET UP PIN CODE LATER");
-		System.out.println(TC_Method);
-		SignInPage signInPage = new SignInPage(driver);
-		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		//SignIn New User and click on Payment Methods
-		profileFunctions.newUserPass();
-
-		if(generalFunctions.isElementPresent(profilePage.setupPinCode, 20)) {
-			test.log(Status.PASS, "The Passcode Setup Screen displayed when user tap on Payment Methods").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "The Passcode screen not displayed and user can able to add card").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		generalFunctions.isElementPresent(profilePage.setupPinCodeLater, 30);
-		profilePage.setupPinCodeLater.click();
-
-		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 30)) {
-			test.log(Status.PASS, "User navigates back to the Profile section");
-		}else{
-			test.log(Status.FAIL, "Profile Screen NOT displayed");
-		}
-	}
-
-
-
-	//*************************************************Passcode for Existing Users**************************************//
-
-	//Verify Enter PIN code screen is displayed if an existing user trying to add new card
-	@Test
-	public void TC_75_to_77(Method method) throws Exception   {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method).assignCategory("PROFILE");
-		test.log(Status.INFO, "Payment Method:Passcode Set up");
-		test.info("Verify Enter PIN code screen is displayed if an existing user trying to add new card");
-		test.info("Verify the Add New card details screen is displayed");
-		System.out.println(TC_Method);
-		SignInPage signInPage = new SignInPage(driver);
-		ProfilePage profilePage = new ProfilePage(driver);
-		HomePage homePage = new HomePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		//SignIn New User and click on Payment Methods
-		generalFunctions.isElementPresent(homePage.homeElement, 20);
-		homePage.avatarHome.click();
-		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
-		profilePage.paymentMethods.click();
-
-		//PINCODE SCREEN
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Setup PINCODE Screen dispalyed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1234");
-		}else {
-			test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
-			test.log(Status.PASS, "Payment Methods Screen displayed");
-		}else {
-			test.log(Status.FAIL, "Payment Methods Screen NOT displayed");
-		}
-		profilePage.addNewPaymentMethod.click();
-		if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
-			test.log(Status.PASS, "Add card details Screen displayed");
-		}else {
-			test.log(Status.FAIL, "Add card details Screen NOT displayed");
-		}
-	}
 	//Verify New User is navigating to the previous screen when he clicks back arrow on the PIN code screens
-	@Test
-	public void TC_078(Method method) throws Exception   {
+	@Test(priority=19)
+	public void TC_Profile_036(Method method) throws Exception   {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("PROFILE");
 		test.log(Status.INFO, "Payment Method:Passcode Set up");
 		test.info("Verify New User is navigating to the previous screen when he clicks back arrow on the PIN code screens");
 		System.out.println(TC_Method);
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
 		HomePage homePage = new HomePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
 		//SignIn New User and click on Payment Methods
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 		homePage.avatarHome.click();
@@ -1832,23 +1760,26 @@ public class Profile extends DriverSetUp
 			test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
 		profilePage.backButton.click();
+		Thread.sleep(1000);
 		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 30)) {
 			test.log(Status.PASS, "Payment Methods Screen displayed");
 		}else {
 			test.log(Status.FAIL, "Payment Methods Screen NOT displayed");
 		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
+
 	//Verify the error message is showing for incorrect pin
-	@Test
-	public void TC_79(Method method) throws Exception {
+	@Test(priority=20)
+	public void TC_Profile_037(Method method) throws Exception {
 		try {
 			String TC_Method = method.getName();
 			test = extent.createTest(TC_Method);
 			test.log(Status.INFO, "SharePay:Passcode Error").assignCategory("PROFILE");
 			test.info("Verify the error message is showing for incorrect pin");
 			System.out.println(TC_Method);
-			SharePayPage sharePayPage = new SharePayPage(driver);
-			SharePayFunctions sharePayFunctions = new SharePayFunctions();
+			//SharePayPage sharePayPage = new SharePayPage(driver);
+			//SharePayFunctions sharePayFunctions = new SharePayFunctions();
 			ProfilePage profilePage = new ProfilePage(driver);
 			ProfileFunctions profileFunctions = new ProfileFunctions();
 			HomePage homePage = new HomePage(driver);
@@ -1870,6 +1801,8 @@ public class Profile extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed");
 			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1877,18 +1810,17 @@ public class Profile extends DriverSetUp
 		}
 	}
 	//Verify the user can reset Pin using forgot Pin
-	@Test
-	public void TC_80_to_83(Method method) throws IOException, Exception {
+	@Test(priority=25)
+	public void TC_Profile_038_to_041(Method method) throws IOException, Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "PaymentMethods:Forgot Passcode").assignCategory("PROFILE");
 		test.info("Verify the user can reset Pin using forgot Pin");
 		System.out.println(TC_Method);
 		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homePage = new HomePage(driver);
 
-		//SignIn New User and click on Payment Methods
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 		homePage.avatarHome.click();
 		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
@@ -1906,35 +1838,34 @@ public class Profile extends DriverSetUp
 		}else {
 			test.log(Status.FAIL, "The reset Alert is NOT displayed");
 		}
+		generalFunctions.isElementPresent(profilePage.resetCancel, 30);
 		profilePage.resetCancel.click();
 		if(generalFunctions.isElementPresent(profilePage.forgotPin, 30)) {
 			test.log(Status.PASS, "User tap on Cancel button and dismissed the alert");
 		}else {
 			test.log(Status.FAIL, "User tap on Cancel button and alert is NOT dismissed");
 		}
+		generalFunctions.isElementPresent(profilePage.forgotPin, 30);
 		profilePage.forgotPin.click();
+
 		if(generalFunctions.isElementPresent(profilePage.resetAlert, 30)) {
 			test.log(Status.PASS, "The reset Alert displayed");
+			generalFunctions.isElementPresent(profilePage.resetResetPin, 30);
 			profilePage.resetResetPin.click();
 		}else {
 			test.log(Status.FAIL, "The reset Alert is NOT displayed");
 		}
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+		if(generalFunctions.isElementPresent(profilePage.pincodeSetupscreens, 30)) {
 			test.log(Status.PASS, "New pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1111");
+			profilePage.setUpPin.sendKeys("1234");
 
 		}else {
 			test.log(Status.FAIL, "New pin setup Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
+
 		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
 			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1111");
-		}else {
-			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.setUpPin.sendKeys("1111");
+			profilePage.setUpPin.sendKeys("1234");
 		}else {
 			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
@@ -1950,7 +1881,9 @@ public class Profile extends DriverSetUp
 
 		}else {
 			test.log(Status.FAIL, "Reset Pin journey is NOT Successfull");
-		}		
+
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 
@@ -1958,17 +1891,17 @@ public class Profile extends DriverSetUp
 
 
 	//Verify "Change PIN code for Share Pay " button is  NOT visible if the user is not Set the PIN code"
-	@Test
-	public void TC_32(Method method) {
+	@Test(priority=21)
+	public void TC_Profile_042(Method method) throws Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
 		test.info("Verify Change PIN code for Share Pay  button is  NOT visible if the user is not Set the PIN code");
 		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		//SharePayPage sharePayPage = new SharePayPage(driver);
+		//SharePayFunctions sharePayFunctions = new SharePayFunctions();
 		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homePage = new HomePage(driver);
 		//New User login
 		//sharePayFunctions.newUserPassPay();
@@ -1976,194 +1909,27 @@ public class Profile extends DriverSetUp
 		//SignIn New User and click on Payment Methods
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 		homePage.avatarHome.click();
+		Thread.sleep(2000);
 
 		if(generalFunctions.isElementPresent(profilePage.changePin, 30)) {
-			test.log(Status.FAIL, "The Change PIN code for Share Pay button is displayed");
+			test.log(Status.PASS, "The Change PIN code for Share Pay button is displayed");
 		}else {
-			test.log(Status.PASS, "The Change PIN code for Share Pay button is NOT displayed");
-
+			test.log(Status.FAIL, "The Change PIN code for Share Pay button is NOT displayed");
 		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
-
-
-	//Verify "Change PIN code for Share Pay " Journey"
-	@Test
-	public void TC_33_to_43_45(Method method) throws IOException, Exception {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
-		test.info("Verify Change PIN code for Share Pay button is visible if the user already set PIN code");
-		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
-		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		HomePage homePage = new HomePage(driver);
-
-		//SignIn and click on Payment Methods
-		generalFunctions.isElementPresent(homePage.homeElement, 20);
-		homePage.avatarHome.click();
-
-		if(generalFunctions.isElementPresent(profilePage.changePin, 30)) {
-			test.log(Status.PASS, "The Change PIN code for Share Pay button is displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.changePin.click();
-		}else {
-			test.log(Status.FAIL, "The Change PIN code for Share Pay button is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
-		}
-		if(generalFunctions.isElementPresent(profilePage.existingPinScreen, 30)) {
-			test.log(Status.PASS, "The Enter PIN code screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
-		}else {
-			test.log(Status.FAIL, "The Enter PIN code screen is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		profilePage.setUpPin.sendKeys("0005");
-		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
-			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		Thread.sleep(5000);
-		profileFunctions.existPin(profilePage);
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "New pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profileFunctions.newPin(profilePage);
-			test.log(Status.PASS, "New Pin code screen accepts numericals");
-		}else {
-			test.log(Status.FAIL, "New Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
-		}else {
-			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		profilePage.setUpPin.sendKeys("0005");
-		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
-			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		Thread.sleep(5000);
-
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			profileFunctions.newPin(profilePage);
-			test.log(Status.PASS, "Confirm Pin code screen accepts numericals");
-		}else {
-			test.log(Status.FAIL, "New Pin set up screen not displayed");
-		}
-		if(generalFunctions.isElementPresent(profilePage.removeCardAlert, 30)) {
-			test.log(Status.PASS, "The Remove card alert displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.yesOption.click();
-		}else {
-			test.log(Status.FAIL, "The Remove Card option not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.pinChangeSuccess, 30)) {
-			test.log(Status.PASS, "The New Pin has been set successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			profilePage.pinChangeSuccess.click();
-		}else {
-			test.log(Status.FAIL, "The New Pin not set Successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 10)) {
-			test.log(Status.PASS, "User directs to PaymentMethods");
-		}else {
-			test.log(Status.FAIL, "User not directs to the Payment Methods");
-		}
-	}
-
-	//Verify the Card removed from Wallet and the passcode should be updated on Payment Methods
-	@Test
-	public void TC_46_to_48(Method method) throws IOException, Exception {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
-		test.info("Verify the Card removed from Wallet and the passcode should be updated on Payment Methods");
-		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
-		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		HomePage homePage = new HomePage(driver);
-
-		//Go to Payment Methods
-		generalFunctions.isElementPresent(homePage.homeElement, 20);
-		homePage.avatarHome.click();
-		generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
-		profilePage.paymentMethods.click();
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Enter your PIN code screen displayed");
-		}else {
-			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
-		}
-		profilePage.setUpPin.sendKeys("1234");
-		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
-			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		profileFunctions.newPin(profilePage);
-		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
-			test.log(Status.PASS, "The Card is removed from the wallet");
-		}else {
-			test.log(Status.FAIL, "The card is not removed from the Wallet");
-		}
-	}
-
-	//Verify the Card removed from SharePayWallet and the passcode should be updated 
-	@Test
-	public void TC_49_to_50(Method method) throws IOException, Exception {
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
-		test.info("Verify the Card removed from SharePayWallet and the passcode should be updated");
-		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
-		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-		HomePage homePage = new HomePage(driver);
-
-		//Go to Payment Methods
-		generalFunctions.isElementPresent(homePage.homeElement, 20);
-		generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
-		sharePayPage.shareWalletButton.click();
-		if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 30)) {
-			test.log(Status.PASS, "The New Card link is displayed");
-			sharePayPage.AddANewCardLink.click();
-		}else {
-			test.log(Status.FAIL, "The new Card link is NOT displayed");
-		}
-		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
-			test.log(Status.PASS, "Enter your PIN code screen displayed");
-		}else {
-			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
-		}
-		profilePage.setUpPin.sendKeys("1237");
-		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
-			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}else {
-			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-		}
-		//profileFunctions.newPin(profilePage);
-		profilePage.setUpPin.sendKeys("1234");
-		if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
-			test.log(Status.PASS, "The Card is removed from the wallet");
-		}else {
-			test.log(Status.FAIL, "The card is not removed from the Wallet");
-		}
-	}
-
 
 	//Verify "Change PIN code for Share Pay " Journey" for remove card option selected as NO
-	@Test
-	public void TC_33_to_44(Method method) throws IOException, Exception {
+	//user with card needed to check this
+	@Test(priority=22)
+	public void TC_Profile_036_to_048(Method method) throws IOException, Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
 		test.info("Verify Change PIN code for Share Pay button is visible if the user already set PIN code");
 		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		//SharePayPage sharePayPage = new SharePayPage(driver);
+		//SharePayFunctions sharePayFunctions = new SharePayFunctions();
 		ProfilePage profilePage = new ProfilePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homePage = new HomePage(driver);
@@ -2237,20 +2003,178 @@ public class Profile extends DriverSetUp
 		}else {
 			test.log(Status.FAIL, "User not directs to the Payment Methods");
 		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
-
-
-
 	//Verify the Card is not removed and the passcode should be updated on Payment Methods
-	@Test
-	public void TC_51(Method method) throws IOException, Exception {
+		@Test(priority=23)
+		public void TC_Profile_061(Method method) throws IOException, Exception {
+			String TC_Method = method.getName();
+			test = extent.createTest(TC_Method);
+			test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+			test.info("Verify the Card is not removed and the passcode should be updated on Payment Methods");
+			System.out.println(TC_Method);
+			//SharePayPage sharePayPage = new SharePayPage(driver);
+			//SharePayFunctions sharePayFunctions = new SharePayFunctions();
+			ProfilePage profilePage = new ProfilePage(driver);
+			ProfileFunctions profileFunctions = new ProfileFunctions();
+			HomePage homePage = new HomePage(driver);
+
+			//Go to Payment Methods
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+			homePage.avatarHome.click();
+			generalFunctions.isElementPresent(profilePage.paymentMethods, 20);
+			profilePage.paymentMethods.click();
+			if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+				test.log(Status.PASS, "Enter your PIN code screen displayed");
+			}else {
+				test.log(Status.FAIL, "The PIN code screen is NOT displayed");
+				Assert.fail("The PIN code screen is NOT displayed");
+			}
+			profileFunctions.newPin(profilePage);
+			Thread.sleep(1000);
+			if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
+				test.log(Status.PASS, "The Card is available in the wallet");
+			}else {
+				test.log(Status.FAIL, "The card is not available in the wallet");
+				Assert.fail("The card is not available in the wallet");
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		}
+
+		//Verify the Card is not removed and the passcode should be updated on SharePay
+		@Test(priority=24)
+		public void TC_Profile_062(Method method) throws IOException, Exception {
+			String TC_Method = method.getName();
+			test = extent.createTest(TC_Method);
+			test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+			test.info("Verify the Card is not removed and the passcode should be updated on SharePay");
+			System.out.println(TC_Method);
+			SharePayPage sharePayPage = new SharePayPage(driver);
+			//SharePayFunctions sharePayFunctions = new SharePayFunctions();
+			ProfilePage profilePage = new ProfilePage(driver);
+			//ProfileFunctions profileFunctions = new ProfileFunctions();
+			HomePage homePage = new HomePage(driver);
+
+			//Go to Payment Methods
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+			generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
+			sharePayPage.shareWalletButton.click();
+			Thread.sleep(1000);
+			//if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 30)) {
+				//test.log(Status.PASS, "The New Card link is displayed");
+				//sharePayPage.AddANewCardLink.click();
+		//	}else {
+				//test.log(Status.FAIL, "The new Card link is NOT displayed");
+			//}
+			//if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+				//test.log(Status.PASS, "Enter your PIN code screen displayed");
+			//}else {
+				//test.log(Status.FAIL, "The PIN code screen is NOT displayed");
+			//}
+			//profileFunctions.newPin(profilePage);
+			if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
+				test.log(Status.PASS, "The Card is available in the wallet");
+			}else {
+				test.log(Status.FAIL, "The card is not available in the wallet");
+			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		}
+
+	//Verify "Change PIN code for Share Pay " Journey"
+	@Test(priority=26)
+	public void TC_33_to_43_45(Method method) throws IOException, Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
-		test.info("Verify the Card is not removed and the passcode should be updated on Payment Methods");
+		test.info("Verify Change PIN code for Share Pay button is visible if the user already set PIN code");
 		System.out.println(TC_Method);
-		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		//SharePayPage sharePayPage = new SharePayPage(driver);
+		//SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		HomePage homePage = new HomePage(driver);
+
+		//SignIn and click on Payment Methods
+		generalFunctions.isElementPresent(homePage.homeElement, 20);
+		homePage.avatarHome.click();
+
+		if(generalFunctions.isElementPresent(profilePage.changePin, 30)) {
+			test.log(Status.PASS, "The Change PIN code for Share Pay button is displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.changePin.click();
+		}else {
+			test.log(Status.FAIL, "The Change PIN code for Share Pay button is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.existingPinScreen, 30)) {
+			test.log(Status.PASS, "The Enter PIN code screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+
+		}else {
+			test.log(Status.FAIL, "The Enter PIN code screen is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		profilePage.setUpPin.sendKeys("0005");
+		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 30)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(2000);
+		profileFunctions.existPin(profilePage);
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "New pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profileFunctions.newPin(profilePage);
+			test.log(Status.PASS, "New Pin code screen accepts numericals");
+		}else {
+			test.log(Status.FAIL, "New Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			test.log(Status.PASS, "Confirm pin setup Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Confirm Pin set up screen not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		profilePage.setUpPin.sendKeys("0005");
+		if(generalFunctions.isElementPresence(By.id("snackbar_text"), 90)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(1000);
+
+		if(generalFunctions.isElementPresent(profilePage.setUpPin, 30)) {
+			profileFunctions.newPin(profilePage);
+			test.log(Status.PASS, "Confirm Pin code screen accepts numericals");
+		}else {
+			test.log(Status.FAIL, "New Pin set up screen not displayed");
+		}
+		if(generalFunctions.isElementPresent(profilePage.removeCardAlert, 30)) {
+			test.log(Status.PASS, "The Remove card alert displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.yesOption.click();
+		}else {
+			test.log(Status.FAIL, "The Remove Card option not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.pinChangeSuccess, 30)) {
+			test.log(Status.PASS, "The New Pin has been set successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			profilePage.pinChangeSuccess.click();
+		}else {
+			test.log(Status.FAIL, "The New Pin not set Successfully").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		if(generalFunctions.isElementPresent(profilePage.paymentMethods, 10)) {
+			test.log(Status.PASS, "User directs to PaymentMethods");
+		}else {
+			test.log(Status.FAIL, "User not directs to the Payment Methods");
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+	}
+
+	//Verify the Card removed from Wallet and the passcode should be updated on Payment Methods
+	@Test(priority=27)
+	public void TC_Profile_056_to_058(Method method) throws IOException, Exception {
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
+		test.info("Verify the Card removed from Wallet and the passcode should be updated on Payment Methods");
+		System.out.println(TC_Method);
+		//SharePayPage sharePayPage = new SharePayPage(driver);
+		//SharePayFunctions sharePayFunctions = new SharePayFunctions();
 		ProfilePage profilePage = new ProfilePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homePage = new HomePage(driver);
@@ -2265,32 +2189,44 @@ public class Profile extends DriverSetUp
 		}else {
 			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
 		}
-		profileFunctions.newPin(profilePage);
-		if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
-			test.log(Status.PASS, "The Card is available in the wallet");
+		profilePage.setUpPin.sendKeys("1234");
+		if(generalFunctions.isElementPresence(profilePage.pinErrorToast, 90)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}else {
-			test.log(Status.FAIL, "The card is not available in the wallet");
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
+		profileFunctions.newPin(profilePage);
+		Thread.sleep(1000);
+
+		if(generalFunctions.isElementPresent(profilePage.addNewPaymentMethod, 30)) {
+			test.log(Status.PASS, "The Card is removed from the wallet").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "The card is not removed from the Wallet").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		Thread.sleep(1000);
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
 	}
 
-	//Verify the Card is not removed and the passcode should be updated on SharePay 
-	@Test
-	public void TC_52(Method method) throws IOException, Exception {
+	//Verify the Card removed from SharePayWallet and the passcode should be updated
+	@Test(priority=28)
+	public void TC_Profile_059_060(Method method) throws IOException, Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile:Change PIN Code").assignCategory("PROFILE");
-		test.info("Verify the Card is not removed and the passcode should be updated on SharePay");
+		test.info("Verify the Card removed from SharePayWallet and the passcode should be updated");
 		System.out.println(TC_Method);
 		SharePayPage sharePayPage = new SharePayPage(driver);
-		SharePayFunctions sharePayFunctions = new SharePayFunctions();
 		ProfilePage profilePage = new ProfilePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homePage = new HomePage(driver);
 
-		//Go to Payment Methods
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 		generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
 		sharePayPage.shareWalletButton.click();
+		profileFunctions.spayOnboardinskip();
+		Thread.sleep(1000);
 		if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 30)) {
 			test.log(Status.PASS, "The New Card link is displayed");
 			sharePayPage.AddANewCardLink.click();
@@ -2302,13 +2238,21 @@ public class Profile extends DriverSetUp
 		}else {
 			test.log(Status.FAIL, "The PIN code screen is NOT displayed");
 		}
-		profileFunctions.newPin(profilePage);
-		if(generalFunctions.isElementPresent(profilePage.existCard, 30)) {
-			test.log(Status.PASS, "The Card is available in the wallet");
+		profilePage.setUpPin.sendKeys("1237");
+		if(generalFunctions.isElementPresence(profilePage.pinErrorToast, 90)) {
+			test.log(Status.PASS, "Passcode Mismatch Error displayed: "+profileFunctions.toast()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}else {
-			test.log(Status.FAIL, "The card is not available in the wallet");
+			test.log(Status.FAIL, "Passcode Mismatch Error is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
+		profileFunctions.newPin(profilePage);
+		//profilePage.setUpPin.sendKeys("1234");
+		profileFunctions.skipbiometric();
+		if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
+			test.log(Status.PASS, "The Card is removed from the wallet");
+		}else {
+			test.log(Status.FAIL, "The card is not removed from the Wallet");
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
-
-
 }

@@ -1,25 +1,23 @@
 package com.share.functions;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static io.appium.java_client.touch.offset.PointOption.point;
+
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
+import com.share.general.GeneralFunctions.Directions;
 import com.share.objectrepository.HomePage;
-import com.share.objectrepository.OnboardingPage;
 import com.share.objectrepository.RegistrationPage;
 import com.share.objectrepository.SignInPage;
 //import com.sun.jdi.Location;
@@ -72,21 +70,26 @@ public class RegistrationFunctions extends DriverSetUp{
 	public	String eemail = map.get("eemail").toString();
 	public	String efirstname = map.get("efirstname").toString();
 	public	String elastname = map.get("elastname").toString();
+	public	String invalidusername =  map.get("InvalidEmailid").toString();
+	public String clearemail = map.get("clearEmail").toString();
+	public String reenterEmail = map.get("reEnterEmail").toString();
+	public String modifyEmail = map.get("modifyEmail").toString();
+
 
 	GeneralFunctions generalFunctions = new GeneralFunctions();
 
-	public boolean nextEnabled(RegistrationPage registrationPage) {	
-		return registrationPage.nextElement.isDisplayed();
-	}
-	public boolean nextbuttonEnabled(RegistrationPage registrationPage) {	
-		return registrationPage.nextElement.isEnabled();
+//	public boolean nextEnabled(RegistrationPage registrationPage) {
+//		return registrationPage.continueButton.isDisplayed();
+//	}
+	public boolean nextbuttonEnabled(RegistrationPage registrationPage) {
+		return registrationPage.continueButton.isEnabled();
 	}
 	public void onBoardScreen(RegistrationPage registrationPage) {
 		registrationPage.onboardScreen.click();
 	}
 
 	public void nextButton(RegistrationPage registrationPage) {
-		registrationPage.nextElement.click();
+		registrationPage.continueButton.click();
 	}
 
 	public void startButton(RegistrationPage registrationPage) {
@@ -120,7 +123,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		registrationPage.emailElement.sendKeys(dvroemail);
 	}
 	public void emailidClear(RegistrationPage registrationPage) {
-		registrationPage.emailidPresent.clear();		
+		registrationPage.emailidPresent.clear();
 	}
 	public boolean emailidPresent(RegistrationPage registrationPage) {
 		return registrationPage.emailidPresent.isDisplayed();
@@ -133,15 +136,31 @@ public class RegistrationFunctions extends DriverSetUp{
 
 	}
 	public void countryCode(RegistrationPage registrationPage) {
-		registrationPage.countryElement.click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		registrationPage.countryCode.click();
+		generalFunctions.isElementPresent(registrationPage.countryCodeFrame, 60);
 		//System.out.println(countryCode);
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"+93\").instance(0))"));
-		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"+263\").instance(0))"));
+		//driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"+93\").instance(0))"));
+		//driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"+263\").instance(0))"));
 		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+cCode+"\"))").click();
 		//driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"+91\"))").click();
 		//System.out.println(countryCode);
 
+	}
+
+	public void countryCodeData(String code) {
+		RegistrationPage registrationPage = new RegistrationPage(driver);
+		registrationPage.countryCode.click();
+		generalFunctions.isElementPresent(registrationPage.countryCodeFrame, 60);
+		driver.findElement(MobileBy.AndroidUIAutomator(
+				"new UiScrollable(new UiSelector().resourceIdMatches(\".*rv_country_code.*\").scrollable(true))" +
+				".scrollIntoView(new UiSelector().text(\""+code+"\"))")).click();
+
+	}
+
+	public void countryCodeDefault(RegistrationPage registrationPage) {
+		registrationPage.countryCode.click();
+		generalFunctions.isElementPresent(registrationPage.countryCodeFrame, 60);
+		driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"+971\").instance(0))")).click();
 	}
 	public boolean mobileNumberFieldPresent(RegistrationPage registrationPage) {
 		return registrationPage.mobileNumElement.isDisplayed();
@@ -298,7 +317,7 @@ public class RegistrationFunctions extends DriverSetUp{
 
 	}
 	public boolean onboardScreenDisplayed(RegistrationPage registrationPage) {
-		return registrationPage.onboardScreen.isDisplayed();		
+		return registrationPage.onboardScreen.isDisplayed();
 	}
 	public boolean lastScrollScreen(RegistrationPage registrationPage) {
 		return registrationPage.onboardScrolld.isDisplayed();
@@ -322,8 +341,8 @@ public class RegistrationFunctions extends DriverSetUp{
 	}
 	public String GetMessage(RegistrationPage registrationPage)
 	{
-		String objMessage = registrationPage.ErrorMessage.getText();
-		return objMessage;		
+		String objMessage = registrationPage.errorMessage.getText();
+		return objMessage;
 	}
 
 	public String getErrorMessage(RegistrationPage registrationPage) {
@@ -340,7 +359,7 @@ public class RegistrationFunctions extends DriverSetUp{
 	{
 		List<AndroidElement> allitems= driver.findElementsById("com.maf.sharesit:id/title");
 
-		return allitems;		
+		return allitems;
 	}
 	public Boolean GetValues(RegistrationPage registrationPage)
 	{
@@ -359,10 +378,10 @@ public class RegistrationFunctions extends DriverSetUp{
 			System.out.println("titles : "+titles);
 			if(titles.contains("Mr")||titles.contains("Miss")||titles.contains("Ms")||titles.contains("Mrs"))
 			{
-				found = true;       	
-			}	        
+				found = true;
+			}
 		}
-		return found; 
+		return found;
 	}
 	public boolean datePicker(RegistrationPage registrationPage) {
 		return registrationPage.datePicker.isDisplayed();
@@ -372,7 +391,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Month");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='0']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='0']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			//System.out.println(st);
 			String a = month;
@@ -402,7 +421,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Date");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			int b = Integer.parseInt(st);
 			//System.out.println(st);
@@ -413,7 +432,7 @@ public class RegistrationFunctions extends DriverSetUp{
 			List<MobileElement> scrollUp = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='2']"));
 			String sv = scrollUp.get(0).getText().toString();
 			int d = Integer.parseInt(sv);
-			//System.out.println(sv);		
+			//System.out.println(sv);
 			int a = Integer.parseInt(date);
 			System.out.println(date);
 			if(a<c) {
@@ -438,7 +457,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Year");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			int b = Integer.parseInt(st);
 			//System.out.println(st);
@@ -449,7 +468,7 @@ public class RegistrationFunctions extends DriverSetUp{
 			List<MobileElement> scrollUp = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='2']"));
 			String sv = scrollUp.get(0).getText().toString();
 			int d = Integer.parseInt(sv);
-			//System.out.println(sv);		
+			//System.out.println(sv);
 			int a = Integer.parseInt(year);
 			if(a<c) {
 				for(int i=a;i<c;i++) {
@@ -474,7 +493,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Date");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			int b = Integer.parseInt(st);
 			//System.out.println(st);
@@ -485,7 +504,7 @@ public class RegistrationFunctions extends DriverSetUp{
 			List<MobileElement> scrollUp = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='1']/android.widget.Button[@index='2']"));
 			String sv = scrollUp.get(0).getText().toString();
 			int d = Integer.parseInt(sv);
-			//System.out.println(sv);		
+			//System.out.println(sv);
 			int a = Integer.parseInt(date);
 			System.out.println(date);
 			if(a<c) {
@@ -509,7 +528,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Month");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='0']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='0']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			//System.out.println(st);
 			String a = month;
@@ -537,7 +556,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		try {
 			System.out.println("Year");
 			MobileElement dropDown = driver.findElement(By.xpath("//android.widget.DatePicker[@index='2']"));
-			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='0']")); 
+			List<MobileElement> scrollDown = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='0']"));
 			String st = scrollDown.get(0).getText().toString();
 			int b = Integer.parseInt(st);
 			//System.out.println(st);
@@ -548,7 +567,7 @@ public class RegistrationFunctions extends DriverSetUp{
 			List<MobileElement> scrollUp = dropDown.findElements(By.xpath("//android.widget.NumberPicker[@index='2']/android.widget.Button[@index='2']"));
 			String sv = scrollUp.get(0).getText().toString();
 			int d = Integer.parseInt(sv);
-			//System.out.println(sv);		
+			//System.out.println(sv);
 			int a = Integer.parseInt(bvyear);
 			if(a<c) {
 				for(int i=a;i<c;i++) {
@@ -577,14 +596,14 @@ public class RegistrationFunctions extends DriverSetUp{
 		AndroidElement element = null;
 		int numberOfTimes = 40;
 		Dimension size = driver.manage().window().getSize();
-		int anchor = (int)(size.width / 2);
+		int anchor = size.width / 2;
 		//Swipe up to scroll down
-		int startPoint = (int)(size.height - 5);
+		int startPoint = size.height - 5;
 		int endPoint = 300;
 
 		System.out.println("point "+startPoint+","+endPoint);
 
-		for (int i = 0; i < numberOfTimes; i++) 
+		for (int i = 0; i < numberOfTimes; i++)
 		{
 			try
 			{
@@ -592,12 +611,12 @@ public class RegistrationFunctions extends DriverSetUp{
 				.longPress(point(anchor, startPoint)) //.press(point(anchor, startPoint)) if used press need proper waiting time
 				//.waitAction(waitOptions(ofMillis(miliseconds)))
 				.moveTo(point(anchor, endPoint)).release().perform();
-				element = (AndroidElement) driver.findElementByXPath("//android.widget.TextView[@text='"+Sector+"']");
+				element = driver.findElementByXPath("//android.widget.TextView[@text='"+Sector+"']");
 				i = numberOfTimes;
-			} 
+			}
 			catch (Exception ex)
 			{
-				System.out.println(String.format("Element not available. Scrolling (%s) times�", i + 1));
+				System.out.println(String.format("Element not available. Scrolling (%s) times", i + 1));
 			}
 		}
 
@@ -615,11 +634,385 @@ public class RegistrationFunctions extends DriverSetUp{
 
 	public void LoginFun(RegistrationPage registrationPage,String username,String password,SignInPage signInPage) throws Exception
 	{
-		//WebDriverWait wait = new WebDriverWait(driver, 15);
-		//driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+		HomePage homePage = new HomePage(driver);
+
+
+		try {
+			//User already Login case
+			if(generalFunctions.isElementPresent(homePage.homeElement, 10)) {
+				System.out.println("User already Login");
+			}else  {
+				System.out.println("User NOT Logged in");
+				splashScreenFunctions.splashScreenSkip(splashScreenPage);
+				generalFunctions.isElementPresent(signInPage.signinPresent, 90);
+				signInPage.signinPresent.click();
+				generalFunctions.isElementPresent(signInPage.useridElement, 20);
+				signInPage.useridElement.sendKeys(username);
+				signInPage.userpassElement.sendKeys(password);
+				signInPage.signinElement.click();
+				generalFunctions.isElementPresent(registrationPage.HomeIcon, 90);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	//		try
+	//		{
+	//
+	//			try
+	//			{
+	//				//Click Stop Tutorial
+	//				//if(registrationPage.StopTutorialElement.isDisplayed()==true)
+	//				if(onboardPage.homeWelcome.isDisplayed()==true)
+	//				{
+	//					System.out.println("Test");
+	//					registrationPage.StopTutorialElement.click();
+	//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//					//Click Got It
+	//					registrationPage.GotItElement.click();
+	//				}
+	//			}
+	//			catch(Exception x)
+	//			{
+	//				System.out.println("Stop Tutorial Not Displayed");
+	//			}
+	//
+	//			if(registrationPage.objHome.isDisplayed()==true)
+	//			{
+	//				System.out.println("User already logged in");
+	//			}
+	//
+	//			try
+	//			{
+	//				if(generalFunctions.isElementPresent(registrationPage.StopTutorialElement, 10)==true)
+	//					//Thread.sleep(10000);
+	//					//Click Stop Tutorial
+	//					//	if(registrationPage.StopTutorialElement.isDisplayed()==true)
+	//				{
+	//					registrationPage.StopTutorialElement.click();
+	//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//					//Click Got It
+	//					registrationPage.GotItElement.click();
+	//				}
+	//			}
+	//			catch(Exception x)
+	//			{
+	//				System.out.println("Stop Tutorial Not Displayed");
+	//			}
+	//		}
+	//		catch(Exception ex)
+	//		{
+	//
+	//			System.out.println("User Login Flow");
+	//
+	//			//registrationFunctions.onboardscreenDisexxplay(registrationPage);
+	//			try
+	//			{
+	//
+	//				if(registrationPage.onboardScreen.isDisplayed()==true)
+	//				{
+	//					System.out.println("onboard Screen Displayed");
+	//				}
+	//			}
+	//			catch(Exception e)
+	//			{
+	//				Assert.fail("onboard Screen Not Displayed");
+	//			}
+	//
+	//			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	//
+	//			//registrationFunctions.startButtonActive(registrationPage);
+	//			try
+	//			{
+	//
+	//				if(registrationPage.startElement.isDisplayed()==true)
+	//				{
+	//					System.out.println("GET STARTED Button Displayed");
+	//				}
+	//			}
+	//			catch(Exception e)
+	//			{
+	//				Assert.fail("GET STARTED Button Not Displayed");
+	//			}
+	//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//			//Click on Sign In
+	//			/*
+	//			AndroidElement element= driver.findElementById("com.maf.sharesit:id/onboarding_already_have_account_view");
+	//			Point objPont =element.getLocation();
+	//			int Xcord =objPont.getX();
+	//			int Ycord = objPont.getY();
+	//			 */
+	//			MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/onboarding_already_have_account_view");
+	//			Point p = element.getCenter();
+	//			int Xcord =p.getX();
+	//			int Ycord = p.getY();
+	//			System.out.println("Cords "+Xcord+","+Ycord);
+	//			TouchAction action= new TouchAction(driver).tap(point(Xcord+200,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+	//
+	//			//Enter User Name
+	//			signInPage.useridElement.sendKeys(username);
+	//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//			//Enter Password
+	//			signInPage.userpassElement.sendKeys(password);
+	//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//			//Click Sign In button
+	//			signInPage.signinElement.click();
+	//			driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+	//
+	//			try
+	//			{
+	//				//Click Stop Tutorial
+	//				if(registrationPage.StopTutorialElement.isDisplayed()==true)
+	//				{
+	//					registrationPage.StopTutorialElement.click();
+	//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	//
+	//					//Click Got It
+	//					registrationPage.GotItElement.click();
+	//				}
+	//			}
+	//			catch(Exception x)
+	//			{
+	//				System.out.println("Stop Tutorial Not Displayed");
+	//			}
+	//
+	//			//Verify home page displayed
+	//			if(registrationPage.HomeIcon.isDisplayed())
+	//			{
+	//				System.out.println("Home page Displayed");
+	//			}
+	//			else
+	//			{
+	//				Assert.fail("Home page Not Displayed");
+	//			}
+	//		}
+	//}
+	public void onBoardScroll(RegistrationPage registrationPage) {
+
+		MobileElement el= driver.findElement(By.id("com.maf.android.share:id/textViewOnBoardingMessage"));
+		int start = el.getLocation().getX();
+		int end  = el.getLocation().getY();
+		int wid = el.getSize().getWidth();
+		int heig = el.getSize().getHeight();
+		System.out.println(start+"|"+end+"|"+wid+"|"+heig);
+
+		TouchAction t = new TouchAction(driver);
+		t.press(point(wid, heig))
+		.waitAction(waitOptions(Duration.ofMillis(2000)))
+		.moveTo(point(wid, heig))
+		.release().perform();
+
+	}
+
+	public String SelectDate(int selectEle)
+	{
+
+		String Xpath="//android.view.View[@index='"+selectEle+"']";
+		return Xpath;
+	}
+
+
+	public String selectYear(int selectYear)
+	{
+
+		String Xpath="//android.widget.TextView[contains(@resource-id,'android:id/text1') and@index='"+selectYear+"']";
+		return Xpath;
+	}
+
+//	public void userYear(RegistrationPage registrationPage) throws Exception {
+//		GeneralFunctions generalFunctions = new GeneralFunctions();
+//		generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
+//		registrationPage.dateofbirth.click();
+//		generalFunctions.isElementPresent(registrationPage.dobyear, 90);
+//		registrationPage.dobyear.click();
+//		String currentYear = registrationPage.dobyear.getText();
+//		int currentvalue = Integer.parseInt(currentYear);
+//		String xpath = "//android.widget.TextView[@text=\""+year+"\"]";
+//		int uservalue = Integer.parseInt(year);
+//		test.log(Status.INFO, "Year is: "+uservalue);
+//		System.out.println(year);
+//		if(currentvalue>uservalue) {
+//			generalFunctions.calendardown(xpath);
+//		}else {
+//			generalFunctions.calendarUp(xpath);
+//		}
+//	}
+
+	public void userYear(RegistrationPage registrationPage) {
+		generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
+		registrationPage.dateofbirth.click();
+		generalFunctions.isElementPresent(registrationPage.dobyear, 90);
+		registrationPage.dobyear.click();
+		String currentYear = registrationPage.dobyear.getText();
+		int currentvalue = Integer.parseInt(currentYear);
+		//String xpath = "//android.widget.TextView[@text=\""+year+"\"]";
+		int uservalue = Integer.parseInt(year);
+		test.log(Status.INFO, "Year is: "+uservalue);
+		System.out.println(year);
+		AndroidElement el = driver.findElementByXPath("//android.widget.ListView[@index='0']");
+		if(currentvalue>uservalue) {
+			try {
+				Directions dir = Directions.DOWN;
+				generalFunctions.swipeElementAndroid(el, dir, year);
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll down Error");
+			}
+
+		}else {
+			try {
+				Directions dir = Directions.UP;
+				generalFunctions.swipeElementAndroid(el, dir, year);
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll Up Error");
+			}
+
+		}
+
+	}
+
+	public void userinvalidYear(RegistrationPage registrationPage) throws Exception {
+		GeneralFunctions generalFunctions = new GeneralFunctions();
+		generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
+		registrationPage.dateofbirth.click();
+		generalFunctions.isElementPresent(registrationPage.dobyear, 90);
+		registrationPage.dobyear.click();
+		String currentYear = registrationPage.dobyear.getText();
+		int currentvalue = Integer.parseInt(currentYear);
+		String xpath = "//android.widget.TextView[@text=\""+invalidyear+"\"]";
+		int uservalue = Integer.parseInt(invalidyear);
+		test.log(Status.INFO, "Year is: "+uservalue);
+		System.out.println(invalidyear);
+		AndroidElement el = driver.findElementByXPath("//android.widget.ListView[@index='0']");
+		if(currentvalue>uservalue) {
+			try {
+				Directions dir = Directions.DOWN;
+				generalFunctions.swipeElementAndroid(el, dir, invalidyear);
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll down Error");
+			}
+
+		}else {
+			try {
+				Directions dir = Directions.UP;
+				generalFunctions.swipeElementAndroid(el, dir, invalidyear);
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll Up Error");
+			}
+
+		}
+	}
+
+	public void userMonth(RegistrationPage registrationPage) {
+
+	}
+
+	public void quickDOB(RegistrationPage registrationPage) {
+		GeneralFunctions generalFunctions = new GeneralFunctions();
+		generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
+		registrationPage.dateofbirth.click();
+		generalFunctions.isElementPresent(registrationPage.dobyear, 90);
+		registrationPage.dobyear.click();
+		driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"2009\"))").click();
+		registrationPage.calendarOK.click();
+
+
+	}
+
+	public void tcClick(RegistrationPage registrationPage) {
+		MobileElement element = driver.findElementById("tv_terms_and_policy");
+		generalFunctions.isElementPresent(element, 10);
+		int Xcord = element.getLocation().getX();
+		int Ycord = element.getLocation().getY();
+		System.out.println("Cords "+Xcord+","+Ycord);
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+750,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+
+	}
+	public void ppClick(RegistrationPage registrationPage) {
+		MobileElement element = driver.findElementById("tv_terms_and_policy");
+		generalFunctions.isElementPresent(element, 10);
+		int Xcord = element.getLocation().getX();
+		int Ycord = element.getLocation().getY();
+		System.out.println("Cords "+Xcord+","+Ycord);
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+350,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+
+	}
+	public void infoClick(RegistrationPage registrationPage) {
+		MobileElement element = driver.findElementById("et_date_of_birth");
+		generalFunctions.isElementPresent(element, 10);
+		Point p = element.getCenter();
+		int Xcord =p.getX();
+		int Ycord = p.getY();
+		System.out.println("Cords "+Xcord+","+Ycord);
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+410,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+
+	}
+
+	/// ***********************Year Iteration*******************//
+	public void userYeariter(RegistrationPage registrationPage, String slctYear) throws Exception {
+		System.out.println(slctYear);
+		generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
+		registrationPage.dateofbirth.click();
+		generalFunctions.isElementPresent(registrationPage.dobyear, 90);
+		registrationPage.dobyear.click();
+		String currentYear = registrationPage.dobyear.getText();
+		int currentvalue = Integer.parseInt(currentYear);
+		//String xpath = "//android.widget.TextView[@text=\""+slctYear+"\"]";
+		int uservalue = Integer.parseInt(slctYear);
+		AndroidElement el = driver.findElementByXPath("//android.widget.ListView[@index='0']");
+		if(currentvalue>uservalue) {
+			try {
+				Directions dir = Directions.DOWN;
+				generalFunctions.swipeElementAndroid(el, dir, slctYear);
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll down Error");
+			}
+
+		}else {
+			try {
+				Directions dir = Directions.UP;
+				generalFunctions.swipeElementAndroid(el, dir, year);
+
+			} catch (Exception e) {
+			    e.printStackTrace();
+			    System.out.println("Scroll Up Error");
+			}
+
+		}
+	}
+
+
+	public boolean errorStatus(RegistrationPage registrationPage) {
+		return registrationPage.errorMessage.isDisplayed();
+	}
+
+	//Use the function for normal user
+	public void signInUser() {
+
+		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+		RegistrationPage registrationPage = new RegistrationPage(driver);
+		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInPage signInPage = new SignInPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		HomePage homePage = new HomePage(driver);
@@ -628,295 +1021,19 @@ public class RegistrationFunctions extends DriverSetUp{
 
 		try {
 			//User already Login case
-			if(homePage.homeElement.isDisplayed()) {
+			if(generalFunctions.isElementPresent(homePage.homeElement, 20)) {
 				System.out.println("User already Login");
 			}else  {
 				System.out.println("User NOT Logged in");
 				splashScreenFunctions.splashScreenSkip(splashScreenPage);
 				generalFunctions.isElementPresent(signInPage.signinPresent, 90);
-					signInFunctions.validUserLogin(signInPage);
-					generalFunctions.isElementPresent(registrationPage.HomeIcon, 90);
-				}
-			}catch(Exception e) {
-					e.printStackTrace();
-				}
-
+				signInFunctions.validUserLogin();
+				generalFunctions.isElementPresent(registrationPage.HomeIcon, 90);
 			}
-
-			//		try
-			//		{
-			//
-			//			try
-			//			{
-			//				//Click Stop Tutorial
-			//				//if(registrationPage.StopTutorialElement.isDisplayed()==true)
-			//				if(onboardPage.homeWelcome.isDisplayed()==true)
-			//				{
-			//					System.out.println("Test");
-			//					registrationPage.StopTutorialElement.click();
-			//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//					//Click Got It
-			//					registrationPage.GotItElement.click();
-			//				}
-			//			}
-			//			catch(Exception x)
-			//			{
-			//				System.out.println("Stop Tutorial Not Displayed");
-			//			}
-			//
-			//			if(registrationPage.objHome.isDisplayed()==true)
-			//			{
-			//				System.out.println("User already logged in");
-			//			}
-			//
-			//			try
-			//			{
-			//				if(generalFunctions.isElementPresent(registrationPage.StopTutorialElement, 10)==true)
-			//					//Thread.sleep(10000);
-			//					//Click Stop Tutorial
-			//					//	if(registrationPage.StopTutorialElement.isDisplayed()==true)
-			//				{
-			//					registrationPage.StopTutorialElement.click();
-			//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//					//Click Got It
-			//					registrationPage.GotItElement.click();
-			//				}
-			//			}
-			//			catch(Exception x)
-			//			{
-			//				System.out.println("Stop Tutorial Not Displayed");
-			//			}
-			//		}
-			//		catch(Exception ex)
-			//		{
-			//
-			//			System.out.println("User Login Flow");
-			//
-			//			//registrationFunctions.onboardscreenDisexxplay(registrationPage);
-			//			try
-			//			{
-			//
-			//				if(registrationPage.onboardScreen.isDisplayed()==true)
-			//				{
-			//					System.out.println("onboard Screen Displayed");
-			//				}
-			//			}
-			//			catch(Exception e)
-			//			{
-			//				Assert.fail("onboard Screen Not Displayed");
-			//			}
-			//
-			//			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			//
-			//			//registrationFunctions.startButtonActive(registrationPage);
-			//			try
-			//			{
-			//
-			//				if(registrationPage.startElement.isDisplayed()==true)
-			//				{
-			//					System.out.println("GET STARTED Button Displayed");
-			//				}
-			//			}
-			//			catch(Exception e)
-			//			{
-			//				Assert.fail("GET STARTED Button Not Displayed");
-			//			}
-			//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//			//Click on Sign In
-			//			/*
-			//			AndroidElement element= driver.findElementById("com.maf.sharesit:id/onboarding_already_have_account_view");
-			//			Point objPont =element.getLocation();
-			//			int Xcord =objPont.getX();
-			//			int Ycord = objPont.getY();
-			//			 */
-			//			MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/onboarding_already_have_account_view");
-			//			Point p = element.getCenter();
-			//			int Xcord =p.getX();
-			//			int Ycord = p.getY();
-			//			System.out.println("Cords "+Xcord+","+Ycord);
-			//			TouchAction action= new TouchAction(driver).tap(point(Xcord+200,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
-			//
-			//			//Enter User Name
-			//			signInPage.useridElement.sendKeys(username);
-			//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//			//Enter Password
-			//			signInPage.userpassElement.sendKeys(password);
-			//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//			//Click Sign In button
-			//			signInPage.signinElement.click();
-			//			driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
-			//
-			//			try
-			//			{
-			//				//Click Stop Tutorial
-			//				if(registrationPage.StopTutorialElement.isDisplayed()==true)
-			//				{
-			//					registrationPage.StopTutorialElement.click();
-			//					driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-			//
-			//					//Click Got It
-			//					registrationPage.GotItElement.click();
-			//				}
-			//			}
-			//			catch(Exception x)
-			//			{
-			//				System.out.println("Stop Tutorial Not Displayed");
-			//			}
-			//
-			//			//Verify home page displayed
-			//			if(registrationPage.HomeIcon.isDisplayed())
-			//			{
-			//				System.out.println("Home page Displayed");
-			//			}
-			//			else
-			//			{
-			//				Assert.fail("Home page Not Displayed");
-			//			}
-			//		}									
-		//}
-		public void onBoardScroll(RegistrationPage registrationPage) {
-
-			MobileElement el= (MobileElement) driver.findElement(By.id("com.maf.android.share:id/textViewOnBoardingMessage"));
-			int start = el.getLocation().getX();
-			int end  = el.getLocation().getY();
-			int wid = el.getSize().getWidth();
-			int heig = el.getSize().getHeight();
-			System.out.println(start+"|"+end+"|"+wid+"|"+heig);
-
-			TouchAction t = new TouchAction(driver);
-			t.press(point(wid, heig))
-			.waitAction(waitOptions(Duration.ofMillis(2000)))
-			.moveTo(point(wid, heig))
-			.release().perform();
-
-		}	
-
-		public String SelectDate(int selectEle)
-		{
-
-			String Xpath="//android.view.View[@index='"+selectEle+"']";
-			return Xpath;
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 
-
-		public String selectYear(int selectYear)
-		{
-
-			String Xpath="//android.widget.TextView[contains(@resource-id,'android:id/text1') and@index='"+selectYear+"']";
-			return Xpath;
-		}
-
-		public void userYear(RegistrationPage registrationPage) throws Exception {
-			GeneralFunctions generalFunctions = new GeneralFunctions();
-			generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
-			registrationPage.dateofbirth.click();
-			generalFunctions.isElementPresent(registrationPage.dobyear, 90);
-			registrationPage.dobyear.click();
-			String currentYear = registrationPage.dobyear.getText();
-			int currentvalue = Integer.parseInt(currentYear);
-			String xpath = "//android.widget.TextView[@text=\""+year+"\"]";
-			int uservalue = Integer.parseInt(year);
-			test.log(Status.INFO, "Year is: "+uservalue);
-			System.out.println(year);
-			if(currentvalue>uservalue) {
-				generalFunctions.calendardown(xpath);
-			}else {
-				generalFunctions.calendarUp(xpath);
-			}
-		}
-
-		public void userinvalidYear(RegistrationPage registrationPage) throws Exception {
-			GeneralFunctions generalFunctions = new GeneralFunctions();
-			generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
-			registrationPage.dateofbirth.click();
-			generalFunctions.isElementPresent(registrationPage.dobyear, 90);
-			registrationPage.dobyear.click();
-			String currentYear = registrationPage.dobyear.getText();
-			int currentvalue = Integer.parseInt(currentYear);
-			String xpath = "//android.widget.TextView[@text=\""+invalidyear+"\"]";
-			int uservalue = Integer.parseInt(invalidyear);
-			test.log(Status.INFO, "Year is: "+uservalue);
-			System.out.println(invalidyear);
-			if(currentvalue>uservalue) {
-				generalFunctions.calendardown(xpath);
-			}else {
-				generalFunctions.calendarUp(xpath);
-			}
-
-
-		}
-
-
-
-		public void userMonth(RegistrationPage registrationPage) {
-
-		}
-
-		public void quickDOB(RegistrationPage registrationPage) {
-			GeneralFunctions generalFunctions = new GeneralFunctions();
-			generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
-			registrationPage.dateofbirth.click();
-			generalFunctions.isElementPresent(registrationPage.dobyear, 90);
-			registrationPage.dobyear.click();
-			driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\"2009\"))").click();
-			registrationPage.calendarOK.click();
-
-
-		}
-
-		public void tcClick(RegistrationPage registrationPage) {
-			MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/tv_terms_and_policy");
-			generalFunctions.isElementPresent(element, 10);
-			int Xcord = element.getLocation().getX();
-			int Ycord = element.getLocation().getY();
-			System.out.println("Cords "+Xcord+","+Ycord);
-			TouchAction action= new TouchAction(driver).tap(point(Xcord+750,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
-
-		}
-		public void ppClick(RegistrationPage registrationPage) {
-			MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/tv_terms_and_policy");
-			generalFunctions.isElementPresent(element, 10);
-			int Xcord = element.getLocation().getX();
-			int Ycord = element.getLocation().getY();
-			System.out.println("Cords "+Xcord+","+Ycord);
-			TouchAction action= new TouchAction(driver).tap(point(Xcord+350,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
-
-		}
-		public void infoClick(RegistrationPage registrationPage) {
-			MobileElement element = (MobileElement) driver.findElementById("com.maf.sharesit:id/et_date_of_birth");
-			generalFunctions.isElementPresent(element, 10);
-			Point p = element.getCenter();
-			int Xcord =p.getX();
-			int Ycord = p.getY();
-			System.out.println("Cords "+Xcord+","+Ycord);
-			TouchAction action= new TouchAction(driver).tap(point(Xcord+550,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
-
-		}
-		public void userYeariter(RegistrationPage registrationPage, String slctYear) throws Exception {
-			System.out.println(slctYear);
-			generalFunctions.isElementPresent(registrationPage.dateofbirth, 90);
-			registrationPage.dateofbirth.click();
-			generalFunctions.isElementPresent(registrationPage.dobyear, 90);
-			registrationPage.dobyear.click();
-			String currentYear = registrationPage.dobyear.getText();
-			int currentvalue = Integer.parseInt(currentYear);
-			String xpath = "//android.widget.TextView[@text=\""+slctYear+"\"]";
-			int uservalue = Integer.parseInt(slctYear);
-			if(currentvalue>uservalue) {
-				generalFunctions.calendardown(xpath);
-			}else {
-				generalFunctions.calendarUp(xpath);
-			}
-		}
-
-
-		public boolean errorStatus(RegistrationPage registrationPage) {
-			return registrationPage.ErrorMessage.isDisplayed();
-		}
 	}
+}
 

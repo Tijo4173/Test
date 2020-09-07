@@ -1,188 +1,144 @@
 package com.share.testscript;
 
-
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-
-import java.time.LocalDateTime;
-
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.NoSuchElementException;
-import org.testng.annotations.Test;
-import com.aventstack.extentreports.Status;
-import com.share.functions.HomeFunctions;
-import com.share.functions.RegistrationFunctions;
-import com.share.general.DriverSetUp;
-import com.share.general.GeneralFunctions;
-import com.share.objectrepository.HomePage;
-import com.share.objectrepository.ProfilePage;
-import com.share.objectrepository.ExperiencesPage;
-import com.share.objectrepository.RegistrationPage;
-import com.share.objectrepository.SignInPage;
-import com.share.utility.Utilities;
 
 import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.Status;
+import com.share.functions.SignInFunctions;
+import com.share.general.DriverSetUp;
+import com.share.general.GeneralFunctions;
+import com.share.general.GeneralFunctions.Directions;
+import com.share.objectrepository.ExperiencesPage;
+import com.share.objectrepository.HomePage;
+import com.share.objectrepository.SignInPage;
+
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class Experiences extends DriverSetUp
 {
 	GeneralFunctions generalFunctions = new GeneralFunctions();
-	
-	
-	
+
+
 	// V2 START
-	
-	
+
+	//Verify user able to view on-boarding screen & able to swipe
+
 	@Test
-	public void TC_01_01(Method method) throws Exception
+	public void TC_Experience_001(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences - Onboarding screens");
+		test.log(Status.INFO, "Verify user able to view on-boarding screen & able to swipe");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		SignInFunctions signInFunctions = new SignInFunctions();
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-		
-		//Logout
-		//generalFunctions.Logout();
-		
+
 		driver.resetApp();
-		driver.activateApp("com.maf.sharesit");
-		
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+		signInFunctions.validUserLogin();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(5000);
-		
+		Thread.sleep(1000);
+
 		//Verify OnBoarding displayed
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoarding, 30))
 		{
-			if(objExperiencesPage.OnBoarding.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "OnBoarding Displayed");
-			}
+			test.log(Status.PASS, "OnBoarding Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "OnBoarding Not Displayed");
 			Assert.fail("OnBoarding Not Displayed");
 		}
-		
+
 		//Swipe left
 		generalFunctions.swipeHorizontal(0.9,0.01,0.5);
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
 		{
-			if(objExperiencesPage.OnBoardingSkip.isDisplayed()==true)
-			{
-				test.log(Status.FAIL, "Failed to swipe through the Onboarding screens");
-				Assert.fail("Failed to swipe through the Onboarding screens");
-			}
+			test.log(Status.FAIL, "Failed to swipe through the Onboarding screens");
+			Assert.fail("Failed to swipe through the Onboarding screens");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.PASS, "User should is able to swipe through the Onboarding screens");
 		}
-		
 		}
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
+
 	}
-	
-	
+
+
+            //	Verify user able to view continue button in onboarding screens
 	@Test
-	public void TC_01_02(Method method) throws Exception
+	public void TC_Experience_002(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences - Onboarding screens");
+		test.log(Status.INFO, "Verify user able to view continue button in onboarding screens");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		SignInFunctions signInFunctions = new SignInFunctions();
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-		
-		//Logout
-		//generalFunctions.Logout();
-		
+
 		driver.resetApp();
-		driver.activateApp("com.maf.sharesit");
-		
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+		signInFunctions.validUserLogin();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(5000);
-		
-		//Verify OnBoarding displayed
-		try
-		{
-			if(objExperiencesPage.OnBoarding.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "OnBoarding Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "OnBoarding Not Displayed");
-			Assert.fail("OnBoarding Not Displayed");
-		}
-		
+		Thread.sleep(2000);
+
 		//Verify Continue button displayed
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30))
 		{
-			if(objExperiencesPage.OnBoardingContinue.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Continue Button Displayed");
-			}
+			test.log(Status.PASS, "Continue Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Continue Button Not Displayed");
 			Assert.fail("Continue Button Not Displayed");
 		}
-		
+
+		generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30);
 		objExperiencesPage.OnBoardingContinue.click();
-		Thread.sleep(4000);
-		
-		try
+		Thread.sleep(1000);
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
 		{
-			if(objExperiencesPage.OnBoardingSkip.isDisplayed()==true)
-			{
-				test.log(Status.FAIL, "Failed to Continue to the next Onboarding screen");
-				Assert.fail("Failed to Continue to the next Onboarding screen");
-			}
+			test.log(Status.FAIL, "Failed to Continue to the next Onboarding screen");
+			Assert.fail("Failed to Continue to the next Onboarding screen");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.PASS, "User is able to Continue to the next Onboarding screen");
 		}
-		
 		}
 		catch(Exception e)
 		{
@@ -190,102 +146,90 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
+	//Verify that the user is able to skip the onboarding screen in the experience section.
 	@Test
-	public void TC_01_03(Method method) throws Exception
+	public void TC_Experience_003(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences - Onboarding screens");
+		test.log(Status.INFO, "Verify user able to skip the onboarding screens");
+		test.log(Status.INFO, "Verify user able to view device location access for offer listing ");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		SignInFunctions signInFunctions = new SignInFunctions();
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-		
-		//Logout
-		//generalFunctions.Logout();
-		
 		driver.resetApp();
-		driver.activateApp("com.maf.sharesit");
-		
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+		signInFunctions.validUserLogin();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
 		Thread.sleep(5000);
-		
+
 		//Verify OnBoarding displayed
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoarding, 30))
 		{
-			if(objExperiencesPage.OnBoarding.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "OnBoarding Displayed");
-			}
+			test.log(Status.PASS, "OnBoarding Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "OnBoarding Not Displayed");
 			Assert.fail("OnBoarding Not Displayed");
 		}
-		
+
 		//Verify Skip button displayed
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
 		{
-			if(objExperiencesPage.OnBoardingSkip.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Skip Button Displayed");
-			}
+			test.log(Status.PASS, "Skip Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Skip Button Not Displayed");
 			Assert.fail("Skip Button Not Displayed");
 		}
-		
+
 		objExperiencesPage.OnBoardingSkip.click();
-		Thread.sleep(4000);
-		
+		Thread.sleep(5000);
+
 		try
 		{
-		if(objExperiencesPage.AllowAllTheTime.isDisplayed()==true)
-		{
-			System.out.println("Location Access Displayed");
-			test.log(Status.PASS, "Location Access Displayed");
-		}
-		}
-		catch(Exception e)
-		{
-			System.out.println("Location Access Not Displayed");
-		}
-		
-		objExperiencesPage.AllowAllTheTime.click();
-		
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		
-		//Verify SHARE EXPERIENCES displayed
-		try
-		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
+			generalFunctions.isElementPresent(objExperiencesPage.AllowAllTheTime, 30);
+			if(objExperiencesPage.AllowAllTheTime.isDisplayed()== true)
 			{
-				test.log(Status.PASS, "SHARE EXPERIENCES Displayed");
+				test.log(Status.PASS, "Location Access Displayed");
+				objExperiencesPage.AllowAllTheTime.click();
+		     }
+		    }
+			catch(Exception x)
+			{
+				test.log(Status.INFO, "Location Access Already Enabled in Device");
+				System.out.println("Location Access Already enabled in device");
 			}
+
+		Thread.sleep(2000);
+
+		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
+
+		//Verify SHARE EXPERIENCES displayed
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
+		{
+			test.log(Status.PASS, "SHARE EXPERIENCES Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "SHARE EXPERIENCES Not Displayed");
 			Assert.fail("SHARE EXPERIENCES Not Displayed");
 		}
-		
 		}
 		catch(Exception e)
 		{
@@ -293,50 +237,57 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view share experiences
 	@Test
-	public void TC_02_01(Method method) throws Exception
+	public void TC_Experience_004(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to view share experiences");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		//SignInFunctions signInFunctions = new SignInFunctions();
+		HomePage homepage = new HomePage(driver);
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-						
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		//signInFunctions.validUserLogin();
+		//Thread.sleep(1000);
+
+		// Click Experiences
+		//generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30);
+		//objExperiencesPage.OnBoardingSkip.click();
+		//Thread.sleep(4000);
+
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(5000);
-				
+		Thread.sleep(2000);
+
 		//Verify SHARE EXPERIENCES displayed
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES Not Displayed");
-			Assert.fail("SHARE EXPERIENCES Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
+
 		}
 		catch(Exception e)
 		{
@@ -344,10 +295,11 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
-	@Test
-	public void TC_02_02(Method method) throws Exception
+
+
+   /* //Descoped
+    //Experiences-Landing Page
+	public void TC_Experience_005(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -355,42 +307,147 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		SignInFunctions signInFunctions = new SignInFunctions();
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");	
-		
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		//signInFunctions.validUserLogin();
+
+
+		//dismiss biometric
+		///generalFunctions.isElementPresent(signInPage.biocancel, 30);
+		//signInPage.biocancel.click();
+
+
+		// Click Experiences
+		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
+		objExperiencesPage.Experiences.click();
+		Thread.sleep(2000);
+
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		generalFunctions.ScrollDown("SEE ALL");
-		
+
 		//Click on SEE ALL
-		objExperiencesPage.seeAll.click();
-			
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 25);				
+		//objExperiencesPage.allOffers.click();
+
+
 		//Verify SHARE EXPERIENCES displayed
+		if(generalFunctions.isElementPresent(objExperiencesPage.category1iconshareoffer, 30))
+		{
+			test.log(Status.PASS, "Able To Scroll Down and View Other Offers");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Not Able To Scroll Down and View Other Offers");
+			Assert.fail("Not Able To Scroll Down and View Other Offers");
+		}
+
+		}
+		catch(Exception e)
+		{
+			test.log(Status.FAIL, e.getMessage());
+			Assert.fail(e.getMessage());
+		}
+	} */
+
+	//Verify user able to view 4 categories in experiences
+	@Test
+	public void TC_Experience_006(Method method) throws Exception
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Verify user able to view 4 categories in experiences");
+		test.assignCategory("Experiences");
+		System.out.println(TC_Method);
+
+		//SignInPage signInPage = new SignInPage(driver);
+		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
+		HomePage homepage = new HomePage(driver);
+
+
 		try
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES Page Displayed");
-			}
-		}
-		catch(Exception x)
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		//signInFunctions.validUserLogin();
+
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
+		// Click Experiences
+		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
+		objExperiencesPage.Experiences.click();
+		Thread.sleep(2000);
+
+		//Verify SHARE EXPERIENCES page displayed
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES Page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES Page Not Displayed");
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-					
+		else
+		{
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
+		}
+
+		//Categories
+
+			String Shopping = objExperiencesPage.shareOffers.getText();
+		 	if(generalFunctions.isElementPresent(objExperiencesPage.shareOffers, 30))
+		 	{
+		 		test.log(Status.PASS, Shopping+" "+"Category Displayed");
+		 	}
+		 	else
+		 	{
+		 		test.log(Status.FAIL, "Share Offers Category Not Displayed");
+		 		Assert.fail("Share Offers Category Not Displayed");
+		 	}
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
+			{
+				test.log(Status.PASS, "Carrefour Offers Category Displayed");
+			}
+
+			else
+		    {
+				test.log(Status.FAIL, "Carrefour Offers Category Not Displayed");
+				Assert.fail("Carrefour Offers Category Not Displayed");
+		    }
+
+
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.memberContests, 30))
+			{
+				test.log(Status.PASS, "Member Contests Category Displayed");
+			}
+
+			else
+			{
+				test.log(Status.FAIL, "Member Contests Category Not Displayed");
+				Assert.fail("Member Contests Category Not Displayed");
+			}
+
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.memberBenefits, 30))
+			{
+				test.log(Status.PASS, "Member Benefits Category Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Member Benefits Category Not Displayed");
+				Assert.fail("Member Benefits Category Not Displayed");
+			}
+
 		}
 		catch(Exception e)
 		{
@@ -398,130 +455,68 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view carrefour offers in carrefour category tab
 	@Test
-	public void TC_02_03(Method method) throws Exception
+	public void TC_Experience_007(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to view carrefour offers in carrefour category tab");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		HomePage homepage = new HomePage(driver);
+		String categorySelection="CARREFOUR OFFER";
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(5000);
-				
+		Thread.sleep(4000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
+
 		//Categories
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
 		{
-			if(objExperiencesPage.carrefourOffers.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "carrefour Offers Category Displayed");
-			}
+			test.log(Status.PASS, "carrefour Offers Category Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "carrefour Offers Category Not Displayed");
 			Assert.fail("carrefour Offers Category Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.selectCategory(categorySelection)==true)
 		{
-			if(objExperiencesPage.productDiscounts.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Product Discounts Category Displayed");
-			}
+			test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+"category");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "Product Discounts Category Not Displayed");
-			Assert.fail("Product Discounts Category Not Displayed");
+			test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
+			//Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
 		}
-		
-		try
-		{
-			if(objExperiencesPage.contests.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Contests Category Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Contests Category Not Displayed");
-			Assert.fail("Contests Category Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.redeemNEarn.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Redeem & Earn Category Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Redeem & Earn Category Not Displayed");
-			Assert.fail("Redeem & Earn Category Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.charity.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Charity Category Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Charity Category Not Displayed");
-			Assert.fail("Charity Category Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.shareBenefits.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Share Benefits Category Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Share Benefits Category Not Displayed");
-			Assert.fail("Share Benefits Category Not Displayed");
-		}
-				
+
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -529,66 +524,60 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
+               //Verify user able to view carrefour category offers detail page
 	@Test
-	public void TC_02_04(Method method) throws Exception
+	public void TC_Experience_008(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to view carrefour category offers detail page");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
+		HomePage homepage = new HomePage(driver);
+
 		String categorySelection="CARREFOUR OFFERS";
-		
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-						
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(5000);
-				
+		Thread.sleep(2000);
+
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
+
 		//Categories
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
 		{
-			if(objExperiencesPage.carrefourOffers.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "carrefour Offers Category Displayed");
-			}
+			test.log(Status.PASS, "carrefour Offers Category Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "carrefour Offers Category Not Displayed");
 			Assert.fail("carrefour Offers Category Not Displayed");
 		}
-		
+
 		if(generalFunctions.selectCategory(categorySelection)==true)
 		{
 			test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+"category");
@@ -598,122 +587,36 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
 			Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
 		}
-		
-		}
-		catch(Exception e)
-		{
-			test.log(Status.FAIL, e.getMessage());
-			Assert.fail(e.getMessage());
-		}
-	}
-	
-	
-	@Test
-	public void TC_02_05_To_10(Method method) throws Exception
-	{
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
-		test.assignCategory("Experiences");
-		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
-		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		String categorySelection="CARREFOUR OFFERS";
-		
-		try
-		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
-		// Click Experiences
-		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
-		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
-		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
-		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
-		}
-				
-		//Categories
-		try
-		{
-			if(objExperiencesPage.carrefourOffers.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "carrefour Offers Category Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "carrefour Offers Category Not Displayed");
-			Assert.fail("carrefour Offers Category Not Displayed");
-		}
-		
-		if(generalFunctions.selectCategory(categorySelection)==true)
-		{
-			test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+"category");
-		}
-		else
-		{
-			test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
-			Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
-		}
-		
 		//Offers
-		generalFunctions.isElementPresent(objExperiencesPage.firstOffer, 40);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.firstOffer, 40))
 		{
-			if(objExperiencesPage.firstOffer.isDisplayed()==true)
-			{
-				test.log(Status.PASS, ""+categorySelection+ " Offers Displayed");
-			}
+			test.log(Status.PASS, ""+categorySelection+ " Offers Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, ""+categorySelection+ " Offers Not Displayed");
 			Assert.fail(""+categorySelection+ " Offers Not Displayed");
 		}
-		
+
 		generalFunctions.isElementPresent(objExperiencesPage.firstOfferTitle, 40);
 		String OfferTitle =generalFunctions.getText(objExperiencesPage.firstOfferTitle);
-		
+
 		objExperiencesPage.firstOfferTitle.click();
 		Thread.sleep(5000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30))
 		{
-			if(objExperiencesPage.DetailedOfferTitle.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Details Displayed");
-			}
+			test.log(Status.PASS, "Offer Details Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Details Not Displayed");
 			Assert.fail("Offer Details Not Displayed");
 		}
-		
+
 		String DetailedOfferTitle =generalFunctions.getText(objExperiencesPage.DetailedOfferTitle);
-		
+
 		if(DetailedOfferTitle.contains(OfferTitle))
 		{
 			test.log(Status.PASS, "Offer Title verified in the Offer Details Screen");
@@ -723,6 +626,11 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Offer Title verification Failed in the Offer Details Screen");
 			Assert.fail("Offer Title verification Failed in the Offer Details Screen");
 		}
+		generalFunctions.isElementPresent(objExperiencesPage.activatedOfferClose, 20);
+		objExperiencesPage.activatedOfferClose.click();
+		generalFunctions.isElementPresent(objExperiencesPage.backarrow, 20);
+		objExperiencesPage.backarrow.click();
+
 		}
 		catch(Exception e)
 		{
@@ -730,142 +638,117 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view the offer title,offer image,offer startdate and enddate,sharebutton and activate toggle
 	@Test
-	public void TC_02_19(Method method) throws Exception
+	public void TC_Experience_009(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to view the offer title,offer image,offer start-date& end-date,offer sharebutton and activate toggle");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();	
-		
+		HomePage homepage = new HomePage(driver);
+
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2500);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
-		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
+				test.log(Status.PASS, "Navigate To SHARE EXPERIENCES");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
-		}
-		generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 30);		
-		try
-		{
-			if(objExperiencesPage.offerTitle.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+				Assert.fail("Not Navigated To SHARE EXPERIENCES");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 30))
 			{
 				test.log(Status.PASS, "Offer Title Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Title Not Displayed");
-			Assert.fail("Offer Title Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerImage.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer Title Not Displayed");
+				Assert.fail("Offer Title Not Displayed");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerImage, 30))
 			{
 				test.log(Status.PASS, "Offer Image Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Image Not Displayed");
-			Assert.fail("Offer Image Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerStartDate.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer Image Not Displayed");
+				Assert.fail("Offer Image Not Displayed");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerStartDate, 30))
 			{
 				test.log(Status.PASS, "Offer Start Date Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Start Date Not Displayed");
-			Assert.fail("Offer Start Date Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerEndDate.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer Start Date Not Displayed");
+				Assert.fail("Offer Start Date Not Displayed");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerEndDate, 30))
 			{
 				test.log(Status.PASS, "Offer End Date Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer End Date Not Displayed");
-			Assert.fail("Offer End Date Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerSponsorLogo.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer End Date Not Displayed");
+				Assert.fail("Offer End Date Not Displayed");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerSponsorLogo, 30))
 			{
 				test.log(Status.PASS, "Offer Sponsor Logo Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Sponsor Logo Not Displayed");
-			Assert.fail("Offer Sponsor Logo Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerShareButton.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer Sponsor Logo Not Displayed");
+				Assert.fail("Offer Sponsor Logo Not Displayed");
+		    }
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerShareButton, 30))
 			{
 				test.log(Status.PASS, "Offer Share Button Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Share Button Not Displayed");
-			Assert.fail("Offer Share Button Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.offerActivateSwitch.isDisplayed()==true)
+			else
+			{
+				test.log(Status.FAIL, "Offer Share Button Not Displayed");
+				Assert.fail("Offer Share Button Not Displayed");
+			}
+			//
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerActivateSwitch, 30))
 			{
 				test.log(Status.PASS, "Offer Activate Button Displayed");
 			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Activate Button Not Displayed");
-			Assert.fail("Offer Activate Button Not Displayed");
-		}
-		
+			else
+			{
+				test.log(Status.FAIL, "Offer Activate Button Not Displayed");
+				Assert.fail("Offer Activate Button Not Displayed");
+			}
+
 		}
 		catch(Exception e)
 		{
@@ -873,97 +756,122 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
+	//TC: Verify that user able to view collapsed category icons
 	@Test
-	public void TC_02_20(Method method) throws Exception
+	public void TC_Experience_010(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify that user able to view collapsed category icons");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();	
-		
+		HomePage homepage = new HomePage(driver);
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(15000);
-				
+		Thread.sleep(1000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated to SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated to SHARE EXPERIENCES");
+			Assert.fail("Not Navigated to SHARE EXPERIENCES");
 		}
-		generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 30);		
-		
-		
+		generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 20);
 		generalFunctions.SimplyScrollDown();
-		
-		generalFunctions.isElementPresent(objExperiencesPage.categoryIconBar, 30);	
-				
-		try
+		generalFunctions.isElementPresent(objExperiencesPage.categoryIconBar, 30);
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.categoryName, 30))
 		{
-			if(objExperiencesPage.categoryName.isDisplayed()==true)
-			{
-				
-				test.log(Status.FAIL, "Offer Category icon with Name section Not Collapsed");
-				Assert.fail("Offer Category icon with Name section Not Collapsed");
-			}
+			test.log(Status.FAIL, "Offer Category Icons Section Not Collapsed");
+			Assert.fail("Offer Category Icons Section Not Collapsed");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.PASS, "Offer Category icon with Name section Collapsed");
+			test.log(Status.PASS, "Offer Category Icon Section Collapsed");
 		}
-						
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.categoryIconBar, 30))
 		{
-			if(objExperiencesPage.categoryIconBar.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Category icon section Displayed");
-			}
+			test.log(Status.PASS, "Offer Category icon section Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Category icon section Not Displayed");
 			Assert.fail("Offer Category icon section Not Displayed");
 		}
-		
-		int CategoryIcons=generalFunctions.elementCount(objExperiencesPage.categoryIcons);
-		System.out.println("Icons "+CategoryIcons);
-		
-		if(CategoryIcons==6)
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.category1iconshareoffer, 30))
 		{
-			test.log(Status.PASS, "6 Offer Category icon section Displayed");
+			test.log(Status.PASS, "Collapsed Shareoffer Icon Displayed");
 		}
 		else
 		{
-			test.log(Status.FAIL, "6 Offer Category icon section Not Displayed");
-			Assert.fail("6 Offer Category icon section Not Displayed");
+			test.log(Status.FAIL, "Collapsed Shareoffer Icon Not Displayed");
+			Assert.fail("Collapsed Shareoffer Icon Section NotDisplayed");
 		}
-		
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.category2iconmembercontests, 30))
+		{
+			test.log(Status.PASS, "Collapsed Member Contests Icon Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Collapsed Member Contests Icon Not Displayed");
+			Assert.fail("Collapsed Member Contests Icon Not Displayed");
+		}
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.category3iconcarrefouroffers, 30))
+		{
+			test.log(Status.PASS, "Collapsed Carrefour Icon Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Collapsed Carrefour Icon Not Displayed");
+			Assert.fail("Collapsed Carrefour Icon Not Displayed");
+		}
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.category4iconmemberbenefits, 30))
+		{
+			test.log(Status.PASS, "Collapsed Member Benefits Icon Displayed");
+			test.log(Status.INFO, "All 4 Collapsed Icons Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Collapsed Member Benefits  Icon Not Displayed");
+			Assert.fail("Collapsed Member Benefits Icon Not Displayed");
+		}
+
+		//int CategoryIcons=generalFunctions.elementCount(objExperiencesPage.categoryIcons);
+		//System.out.println("Icons "+CategoryIcons);
+
+		//if(CategoryIcons==4)
+		//{
+			//test.log(Status.PASS, "4 Offer Category icon section Displayed");
+		//}
+		//else
+		//{
+			//test.log(Status.FAIL, "4 Offer Category icon section Not Displayed");
+			//Assert.fail("4 Offer Category icon section Not Displayed");
+		//}
+
 		}
 		catch(Exception e)
 		{
@@ -971,10 +879,127 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
+            //Verify user able to activate offer from experience page & Deactivate it from activated tab
 	@Test
-	public void TC_02_23(Method method) throws Exception
+    public void TC_Experience_011(Method method) throws Exception
+    {
+        String TC_Method = method.getName();
+        test = extent.createTest(TC_Method);
+        test.log(Status.INFO, "Verify user able to activate offer from experience page & Deactivate it from activated tab");
+        test.assignCategory("Experiences");
+        System.out.println(TC_Method);
+
+        SignInPage signInPage = new SignInPage(driver);
+		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
+
+
+        try
+        {
+        	driver.resetApp();
+    		//Login to the App
+    		signInFunctions.validUserLogin();
+
+    		// Click Experiences
+    		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
+    		objExperiencesPage.Experiences.click();
+    		Thread.sleep(1000);
+
+    		//Verify OnBoarding displayed
+    		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoarding, 30))
+    		{
+    			test.log(Status.PASS, "OnBoarding Displayed");
+    		}
+    		else
+    		{
+    			test.log(Status.FAIL, "OnBoarding Not Displayed");
+    			Assert.fail("OnBoarding Not Displayed");
+    		}
+    		objExperiencesPage.OnBoardingSkip.click();
+
+
+            //Verify SHARE EXPERIENCES page displayed
+            if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
+    		{
+    			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
+    		}
+    		else
+    		{
+    			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+    			Assert.fail("Not Navigated To SHARE EXPERIENCES");
+    		}
+            generalFunctions.isElementPresent(objExperiencesPage.allOffers, 30);
+            String OfferTitle=generalFunctions.getText(objExperiencesPage.offerTitle);
+            if(generalFunctions.isElementPresent(objExperiencesPage.activateSwitch, 30))
+            {
+                test.log(Status.PASS, "Offer Activate Button Displayed");
+            }else {
+                test.log(Status.FAIL, "Offer Activate Button Not Displayed");
+            }
+
+            String ActivateStatus =generalFunctions.getText(objExperiencesPage.activateSwitch);
+            if(ActivateStatus.contains("ON"))
+            {
+                System.out.println("Offer Already Activated");
+                objExperiencesPage.activateSwitch.click();
+                Thread.sleep(2000);
+            }
+            objExperiencesPage.activateSwitch.click();
+            Thread.sleep(4000);
+            String ActivatedOffer =generalFunctions.getText(objExperiencesPage.activateSwitch);
+            if(ActivatedOffer.contains("ON"))
+            {
+                test.log(Status.PASS, "Offer Activated");
+            }
+            else{
+                test.log(Status.FAIL, "Offer Not Activated");
+                Assert.fail("Offer Not Activated");
+            }
+            Directions dir = Directions.DOWN;
+            generalFunctions.swipeScreen(dir);
+            generalFunctions.isElementPresent(objExperiencesPage.activatedOffer, 60);
+            objExperiencesPage.activatedOffer.click();
+            if(generalFunctions.isElementPresent(objExperiencesPage.activatedOfferPage, 60))
+            {
+                test.log(Status.PASS, "ACTIVATED OFFERS page Displayed");
+            }else{
+                test.log(Status.FAIL, "ACTIVATED OFFERS page Not Displayed");
+
+
+
+            }
+            generalFunctions.isElementPresent(objExperiencesPage.firstOfferTitle, 30);
+            System.out.println("Test:...."+OfferTitle);
+            if(OfferTitle.contains(generalFunctions.getText(objExperiencesPage.firstOfferTitle)))
+            {
+                test.log(Status.PASS, "Activated offer Displayed in ACTIVATED OFFERS page");
+            }
+            else{
+                test.log(Status.FAIL, "Activated offer Not Displayed in ACTIVATED OFFERS page");
+                Assert.fail("Activated offer Not Displayed in ACTIVATED OFFERS page");
+            }
+            AndroidElement activatedOffer = objExperiencesPage.checkOfferTitle(OfferTitle);
+            objExperiencesPage.offerActivateSwitch.click();
+            Thread.sleep(500);
+            if(generalFunctions.isElementPresent(activatedOffer, 30))
+            {
+                test.log(Status.FAIL, "Deactivated offer Not removed from Activated Offers page");
+            }else {
+                test.log(Status.PASS, "Deactivated offer removed from Activated Offers page");
+            }
+        }
+        catch(Exception e)
+        {
+            test.log(Status.FAIL, e.getMessage());
+            Assert.fail(e.getMessage());
+        }
+    }
+
+	/*
+	//de scoped category
+	public void TC_Experience_012(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -984,154 +1009,21 @@ public class Experiences extends DriverSetUp
 
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
-		try
-		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
-		// Click Experiences
-		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
-		objExperiencesPage.Experiences.click();
-		Thread.sleep(15000);
-				
-		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
-		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
-		}
-		generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 80);		
-		
-		String OfferTitle=generalFunctions.getText(objExperiencesPage.offerTitle);
-		
-		try
-		{
-			if(objExperiencesPage.offerActivateSwitch.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Activate Button Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Offer Activate Button Not Displayed");
-			Assert.fail("Offer Activate Button Not Displayed");
-		}
-		
-		generalFunctions.isElementPresent(objExperiencesPage.offerActivateSwitch, 60);	
-		String ActivateStatus =generalFunctions.getText(objExperiencesPage.offerActivateSwitch);
-		if(ActivateStatus.contains("ON"))
-		{
-			System.out.println("Offer Already Activated");
-			objExperiencesPage.offerActivateSwitch.click();
-			Thread.sleep(2000);
-		}
-			objExperiencesPage.offerActivateSwitch.click();			
-			Thread.sleep(4000);
-			String ActivatedOffer =generalFunctions.getText(objExperiencesPage.offerActivateSwitch);
-			if(ActivatedOffer.contains("ON"))
-			{
-				test.log(Status.PASS, "Offer Activated");
-			}
-			else
-			{
-				test.log(Status.FAIL, "Offer Not Activated");
-				Assert.fail("Offer Not Activated");
-			}
-			
-			objExperiencesPage.activatedOffer.click();
-			Thread.sleep(4000);
-			
-			try
-			{
-				if(objExperiencesPage.activatedOfferPage.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "ACTIVATED OFFERS page Displayed");
-				}
-			}
-			catch(Exception x)
-			{
-				test.log(Status.FAIL, "ACTIVATED OFFERS page Not Displayed");
-				Assert.fail("ACTIVATED OFFERS page Not Displayed");
-			}
-			
-			generalFunctions.isElementPresent(objExperiencesPage.firstOfferTitle, 30);
-			if(OfferTitle.contains(generalFunctions.getText(objExperiencesPage.firstOfferTitle)))
-			{
-				test.log(Status.PASS, "Activated offer Displayed in ACTIVATED OFFERS page");
-			}
-			else
-			{
-				test.log(Status.FAIL, "Activated offer Not Displayed in ACTIVATED OFFERS page");
-				Assert.fail("Activated offer Not Displayed in ACTIVATED OFFERS page");
-			}
-			
-			objExperiencesPage.ActivateSwitch.click();
-			
-			try
-			{
-				if(objExperiencesPage.checkOfferTitle(OfferTitle).isDisplayed()==true)
-				{					
-					test.log(Status.FAIL, "Deactiavted offer Not removed from Activated Offers page");
-					Assert.fail("Deactiavted offer Not removed from Activated Offers page");
-				}
-			}
-			catch(Exception x)
-			{
-				test.log(Status.PASS, "Deactiavted offer removed from Activated Offers page");
-			}							
-										
-		}
-		catch(Exception e)
-		{
-			test.log(Status.FAIL, e.getMessage());
-			Assert.fail(e.getMessage());
-		}
-	}
-	
 
-	@Test
-	public void TC_02_25(Method method) throws Exception
-	{
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
-		test.assignCategory("Experiences");
-		System.out.println(TC_Method);
-
-		SignInPage signInPage = new SignInPage(driver);
-		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
 		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();	
-		
+		String Password=map.get("UserPassword").toString();
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
+
+		//Login to the App
 		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
 		Thread.sleep(15000);
-				
+
 		//Verify SHARE EXPERIENCES page displayed
 		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
 		try
@@ -1146,13 +1038,13 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
 			Assert.fail("SHARE EXPERIENCES page Not Displayed");
 		}
-				
-		objExperiencesPage.charity.click();
-		
+
+		//objExperiencesPage.charity.click();
+
 		try
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.charityPage, 30);
-			if(objExperiencesPage.charityPage.isDisplayed()==true)
+			//generalFunctions.isElementPresent(objExperiencesPage.charityPage, 30);
+			//if(objExperiencesPage.charityPage.isDisplayed()==true)
 			{
 				test.log(Status.PASS, "Charity page Displayed");
 			}
@@ -1162,7 +1054,7 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Charity page Not Displayed");
 			Assert.fail("Charity page Not Displayed");
 		}
-		
+
 		try
 		{
 			generalFunctions.isElementPresent(objExperiencesPage.firstOffer, 20);
@@ -1187,8 +1079,8 @@ public class Experiences extends DriverSetUp
 				test.log(Status.FAIL, "Not Available Message Not Displayed");
 				Assert.fail("Not Available Message Not Displayed");
 			}
-			
-			
+
+
 			try
 			{
 				if(objExperiencesPage.exploreOtherExperiences.isDisplayed()==true)
@@ -1201,12 +1093,12 @@ public class Experiences extends DriverSetUp
 				test.log(Status.FAIL, "EXPLORE OTHER EXPERIENCES option Not Displayed");
 				Assert.fail("EXPLORE OTHER EXPERIENCES option Not Displayed");
 			}
-			
+
 			//objExperiencesPage.exploreOtherExperiences.click();
-			
-						
+
+
 		}
-						
+
 		}
 		catch(Exception e)
 		{
@@ -1214,82 +1106,70 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+	*/
+
+	//Verify user able to share the offer from experiences
 	@Test
-	public void TC_02_30(Method method) throws Exception
+	public void TC_Experience_013(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to share the offer from experiences");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();	
-		
+		HomePage homepage = new HomePage(driver);
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+    	homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(15000);
-				
+		Thread.sleep(2000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offer, 40))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offer, 40);
-			if(objExperiencesPage.offer.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Displayed");
-			}
+			test.log(Status.PASS, "Offer Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Not Displayed");
 			Assert.fail("Offer Not Displayed");
 		}
-								
-		
+
+
 		objExperiencesPage.offerShareButton.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareOptions, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.shareOptions, 30);
-			if(objExperiencesPage.shareOptions.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Share referral medium pop-up Displayed");
-			}
+			test.log(Status.PASS, "Share Referral Pop-Up Displayed");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "Share referral medium pop-up Not Displayed");
-			Assert.fail("Share referral medium pop-up Not Displayed");
+			test.log(Status.FAIL, "Share Referral Pop-Up Not Displayed");
+			Assert.fail("Share Referral Pop-Up Not Displayed");
 		}
-										
+
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -1297,76 +1177,64 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view detailed offer screen and share referal icon
 	@Test
-	public void TC_02_31(Method method) throws Exception
+	public void TC_Experience_014(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Experiences-Landing Page");
+		test.log(Status.INFO, "Verify user able to view detailed offer screen and share refferal icon");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
-		
-		
+		HomePage homepage = new HomePage(driver);
+
 		try
 		{
-		
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+	    homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2000);
+
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		
+
 		generalFunctions.isElementPresent(objExperiencesPage.offerTitle, 40);
 		String OfferTitle =generalFunctions.getText(objExperiencesPage.offerTitle);
-		
+
 		objExperiencesPage.offerTitle.click();
-		Thread.sleep(5000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30);
-		
-		try
+		Thread.sleep(2000);
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30))
 		{
-			if(objExperiencesPage.DetailedOfferTitle.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Details Displayed");
-			}
+			test.log(Status.PASS, "Offer Details Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Details Not Displayed");
 			Assert.fail("Offer Details Not Displayed");
 		}
-		
+
 		String DetailedOfferTitle =generalFunctions.getText(objExperiencesPage.DetailedOfferTitle);
-		
+
 		if(DetailedOfferTitle.contains(OfferTitle))
 		{
 			test.log(Status.PASS, "Offer Title verified in the Offer Details Screen");
@@ -1376,39 +1244,31 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Offer Title verification Failed in the Offer Details Screen");
 			Assert.fail("Offer Title verification Failed in the Offer Details Screen");
 		}
-		
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.detailedOfferShareIcon, 40))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.detailedOfferShareIcon, 40);
-			if(objExperiencesPage.detailedOfferShareIcon.isDisplayed()==true)
-			{
 				test.log(Status.PASS, "Share Icon Displayed");
-			}
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Share Icon Not Displayed");
 			Assert.fail("Share Icon Not Displayed");
 		}
-								
-		
 		objExperiencesPage.detailedOfferShareIcon.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareOptions, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.shareOptions, 30);
-			if(objExperiencesPage.shareOptions.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Share referral medium pop-up Displayed");
-			}
+			test.log(Status.PASS, "Share referral medium pop-up Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Share referral medium pop-up Not Displayed");
 			Assert.fail("Share referral medium pop-up Not Displayed");
 		}
-												
-		
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
+		//navigate back to share experience page for next script
+		objExperiencesPage.activatedOfferClose.click();
+
 		}
 		catch(Exception e)
 		{
@@ -1416,135 +1276,111 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view filter and filter options
 	@Test
-	public void TC_03_01_02_03(Method method) throws Exception
+	public void TC_Experience_015_to_017(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Filters and filtered view (Offer)");
+		test.log(Status.INFO, "Verify user able to view filter and filter options");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("UserName").toString();
-		String Password=map.get("UserPassword").toString();
-				
+		HomePage homepage = new HomePage(driver);
+
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+	    //generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(1000);
+
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-				
-		try
+
+		if(objExperiencesPage.locationDubai.isDisplayed()&&objExperiencesPage.locationAbuDhabi.isDisplayed()&&objExperiencesPage.locationAjman.isDisplayed()
+		&&objExperiencesPage.locationRasAlKhaimah.isDisplayed()&&objExperiencesPage.locationSharjah.isDisplayed()&&objExperiencesPage.locationUmmAlQuwain.isDisplayed()&&objExperiencesPage.locationFujairah.isDisplayed()	)
 		{
-			if(objExperiencesPage.locationDubai.isDisplayed()&&objExperiencesPage.locationAbuDhabi.isDisplayed()&&objExperiencesPage.locationAjman.isDisplayed()
-			&&objExperiencesPage.locationRasAlKhaimah.isDisplayed()&&objExperiencesPage.locationSharjah.isDisplayed()&&objExperiencesPage.locationUmmAlQuwain.isDisplayed()	)
-			{
-				test.log(Status.PASS, "User is Not able to see all the Emirates Location");
-			}
+			test.log(Status.PASS, "User is Not able to see all the Emirates Location");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "User is Not able to see all the Emirates Location");
 			Assert.fail("User is Not able to see all the Emirates Location");
 		}
-		
-		try
+
+		objExperiencesPage.locationDubai.click();
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.nearby, 60))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.nearby, 30);
-			if(objExperiencesPage.nearby.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Nearby option Displayed");
-			}
+			test.log(Status.PASS, "Nearby option Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Nearby option Not Displayed");
 			Assert.fail("Nearby option Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.clearAll, 30))
 		{
-			if(objExperiencesPage.clearAll.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Clear All Button Displayed");
-			}
+			test.log(Status.PASS, "Clear All Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Clear All Button Not Displayed");
 			Assert.fail("Clear All Button Not Displayed");
 		}
-		
-		try
+		if(objExperiencesPage.showExperiences.isDisplayed()==true)
 		{
-			if(objExperiencesPage.showExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Show Experiences Button Displayed");
-			}
+			test.log(Status.PASS, "Show Experiences Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Show Experiences Button Not Displayed");
 			Assert.fail("Show Experiences Button Not Displayed");
 		}
-						
+
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -1552,152 +1388,122 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view the locations in filter
 	@Test
-	public void TC_03_05(Method method) throws Exception
+	public void TC_Experience_018_019(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Filters and filtered view (Offer)");
+		test.log(Status.INFO, "Verify user able to view the locations in filter");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-				
+		HomePage homepage = new HomePage(driver);
+
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-				
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.locationDubai, 30))
 		{
-			if(objExperiencesPage.locationDubai.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "User is Not able to see all the Emirates Location");
-			}
+			test.log(Status.PASS, "User is Not able to see all the Emirates Location");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "User is Not able to see all the Emirates Location");
 			Assert.fail("User is Not able to see all the Emirates Location");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.clearAll, 30))
 		{
-			if(objExperiencesPage.clearAll.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Clear All Button Displayed");
-			}
+			test.log(Status.PASS, "Clear All Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Clear All Button Not Displayed");
 			Assert.fail("Clear All Button Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.clearAll, 30))
 		{
-			if(objExperiencesPage.clearAll.isEnabled()==false)
-			{
-				test.log(Status.PASS, "Clear All Button is Disabled by Default");
-			}
+			test.log(Status.PASS, "Clear All Button is Disabled by Default");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Clear All Button is Not Disabled by Default");
 			Assert.fail("Clear All Button is Not Disabled by Default");
 		}
-				
+
 		objExperiencesPage.locationDubai.click();
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.clearAll, 30))
 		{
-			if(objExperiencesPage.clearAll.isEnabled()==true)
-			{
-				test.log(Status.PASS, "Clear All Button is Enabled when user selects a filter option");
-			}
+			test.log(Status.PASS, "Clear All Button is Enabled when user selects a filter option");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Clear All Button is Not Enabled even after user selects a filter option");
 			Assert.fail("Clear All Button is Not Enabled even after user selects a filter option");
 		}
-		
+
 		objExperiencesPage.clearAll.click();
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.locationDubai, 60))
 		{
-			if(objExperiencesPage.locationDubai.isEnabled()==false)
-			{
-				test.log(Status.PASS, "Selected filter is cleared");
-			}
+			test.log(Status.PASS, "Selected filter is cleared");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Selected filter is Not cleared");
 			Assert.fail("Selected filter is Not cleared");
-		}		
-						
+		}
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -1705,176 +1511,138 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to filter by Earn only
 	@Test
-	public void TC_03_10(Method method) throws Exception
+	public void TC_Experience_020(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Filters and filtered view (Offer)");
+		test.log(Status.INFO, "Verify user able to filter by Earn only");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-				
+		HomePage homepage = new HomePage(driver);
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
 				test.log(Status.PASS, "Filter icon Displayed");
-			}
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-				
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerType, 30))
 		{
-			if(objExperiencesPage.offerType.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Type Filter Displayed");
-			}
+			test.log(Status.PASS, "Offer Type Filter Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Type Filter Not Displayed");
 			Assert.fail("Offer Type Filter Not Displayed");
 		}
-		
-		try
+
+		if(objExperiencesPage.earnOnly.isDisplayed()==true)
 		{
-			if(objExperiencesPage.earnOnly.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Earn Only Option Displayed");
-			}
+			test.log(Status.PASS, "Earn Only Option Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Earn Only Option Not Displayed");
 			Assert.fail("Earn Only Option Not Displayed");
-		}			
-				
+		}
+
 		objExperiencesPage.earnOnly.click();
 		Thread.sleep(2000);
-						
+
 		objExperiencesPage.showExperiences.click();
 		Thread.sleep(4000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-		
+
 		objExperiencesPage.clearAll.click();
-		
+
 		objExperiencesPage.showExperiences.click();
 		Thread.sleep(4000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-		
 		}
 		catch(Exception e)
 		{
@@ -1882,176 +1650,137 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to filter by online availability
 	@Test
-	public void TC_03_12(Method method) throws Exception
+	public void TC_Experience_21(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Filters and filtered view (Offer)");
+		test.log(Status.INFO, "Verify user able to filter by online availability");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-				
+		HomePage homepage = new HomePage(driver);
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
 		objExperiencesPage.offerFilter.click();
-		
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-				
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.availability, 30))
 		{
-			if(objExperiencesPage.availability.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Availability Type Filter Displayed");
-			}
+			test.log(Status.PASS, "Availability Type Filter Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Availability Type Filter Not Displayed");
 			Assert.fail("Availability Type Filter Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.online, 30))
 		{
-			if(objExperiencesPage.online.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Online Availability Filter Option Displayed");
-			}
+			test.log(Status.PASS, "Online Availability Filter Option Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Online Availability Filter Option Not Displayed");
 			Assert.fail("Online Availability Filter Option Not Displayed");
-		}			
-				
+		}
+
 		objExperiencesPage.online.click();
 		Thread.sleep(2000);
-						
+
 		objExperiencesPage.showExperiences.click();
-		Thread.sleep(4000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		Thread.sleep(3000);
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-		
+
 		objExperiencesPage.clearAll.click();
-		
+
 		objExperiencesPage.showExperiences.click();
 		Thread.sleep(4000);
-		
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated Back To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated Back To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated Back To SHARE EXPERIENCES");
 		}
-		
 		}
 		catch(Exception e)
 		{
@@ -2059,10 +1788,10 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
-	@Test
-	public void TC_03_13(Method method) throws Exception
+
+
+	/*//Expiry Category Descoped
+	public void TC_Experience_022(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -2070,83 +1799,67 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-				
+
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(1000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-								
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
-			if(objExperiencesPage.offerFilter.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filter icon Displayed");
-			}
+			test.log(Status.PASS, "Filter icon Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
-			if(objExperiencesPage.filtersPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Filters page Displayed");
-			}
+			test.log(Status.PASS, "Filters page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-				
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.expiry, 30))
 		{
-			if(objExperiencesPage.expiry.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Expiry Filter Displayed");
-			}
+			test.log(Status.PASS, "Expiry Filter Displayed");
 		}
-		catch(Exception x)
+		else
+
 		{
 			test.log(Status.FAIL, "Expiry Filter Not Displayed");
 			Assert.fail("Expiry Filter Not Displayed");
 		}
-		
+
 		try
 		{
 			if(objExperiencesPage.expirySeekBar.isDisplayed()==true)
@@ -2158,15 +1871,15 @@ public class Experiences extends DriverSetUp
 		{
 			test.log(Status.FAIL, "Expiry SeekBar Filter Option Not Displayed");
 			Assert.fail("Expiry SeekBar Filter Option Not Displayed");
-		}			
-				
+		}
+
 		objExperiencesPage.expirySeekBar.sendKeys("51");
 
 		Thread.sleep(2000);
-						
+
 		objExperiencesPage.showExperiences.click();
 		Thread.sleep(4000);
-		
+
 		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
 		try
 		{
@@ -2180,7 +1893,7 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
 			Assert.fail("SHARE EXPERIENCES page Not Displayed");
 		}
-		
+
 		try
 		{
 			generalFunctions.isElementPresent(objExperiencesPage.offerFilter, 30);
@@ -2194,9 +1907,9 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Filter icon Not Displayed");
 			Assert.fail("Filter icon Not Displayed");
 		}
-		
+
 		objExperiencesPage.offerFilter.click();
-		
+
 		try
 		{
 			generalFunctions.isElementPresent(objExperiencesPage.filtersPage, 30);
@@ -2210,12 +1923,12 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Filters page Not Displayed");
 			Assert.fail("Filters page Not Displayed");
 		}
-		
+
 		objExperiencesPage.clearAll.click();
-		
+
 		objExperiencesPage.showExperiences.click();
 		Thread.sleep(4000);
-		
+
 		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
 		try
 		{
@@ -2229,95 +1942,82 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
 			Assert.fail("SHARE EXPERIENCES page Not Displayed");
 		}
-		
+
 		}
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
-	}
-	
-	
+	} */
+
+
 	@Test
-	public void TC_04_01_02(Method method) throws Exception
+	public void TC_Experience_023_024(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Offer Details screen");
+		test.log(Status.INFO, "Verify user able to view offer detail page offer");
+		test.log(Status.INFO, "Verify offer detail page have offer title,image,startdate & end date,offer logo and share button ");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		HomePage homepage = new HomePage(driver);
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(2000);
+
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
-		generalFunctions.isElementPresent(objExperiencesPage.offer, 30);		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.offer, 30))
 		{
-			if(objExperiencesPage.offer.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Displayed");
-			}
+			test.log(Status.PASS, "Offer Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Not Displayed");
 			Assert.fail("Offer Not Displayed");
 		}
-		
+
 		String OfferTitle =generalFunctions.getText(objExperiencesPage.offerTitle);
 		System.out.println(OfferTitle);
 		objExperiencesPage.offerTitle.click();
-				
-		generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30))
 		{
-			if(objExperiencesPage.DetailedOfferTitle.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Details Displayed");
-			}
+			test.log(Status.PASS, "Offer Details Page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "Offer Details Not Displayed");
-			Assert.fail("Offer Details Not Displayed");
+			test.log(Status.FAIL, "Offer Details Page Not Displayed");
+			Assert.fail("Offer Details Page Not Displayed");
 		}
-		
+
 		String DetailedOfferTitle =generalFunctions.getText(objExperiencesPage.DetailedOfferTitle);
 		System.out.println(DetailedOfferTitle);
-		
+
 		/*if(OfferTitle.contains(DetailedOfferTitle))
 		{
 			test.log(Status.PASS, "Offer Title verified in the Offer Details Screen");
@@ -2327,85 +2027,69 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Offer Title verification Failed in the Offer Details Screen");
 			Assert.fail("Offer Title verification Failed in the Offer Details Screen");
 		}*/
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferImage, 30))
 		{
-			if(objExperiencesPage.DetailedOfferImage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Image Displayed");
-			}
+			test.log(Status.PASS, "Offer Image Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Image Not Displayed");
 			Assert.fail("Offer Image Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferStartDate, 30))
 		{
-			if(objExperiencesPage.DetailedOfferStartDate.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Start Date Displayed");
-			}
+			test.log(Status.PASS, "Offer Start Date Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Start Date Not Displayed");
 			Assert.fail("Offer Start Date Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferEndDate, 30))
 		{
-			if(objExperiencesPage.DetailedOfferEndDate.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer End Date Displayed");
-			}
+			test.log(Status.PASS, "Offer End Date Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer End Date Not Displayed");
 			Assert.fail("Offer End Date Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferLogo, 30))
 		{
-			if(objExperiencesPage.DetailedOfferLogo.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Sponsor Logo Displayed");
-			}
+			test.log(Status.PASS, "Offer Sponsor Logo Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Sponsor Logo Not Displayed");
 			Assert.fail("Offer Sponsor Logo Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.detailedOfferShareIcon, 30))
 		{
-			if(objExperiencesPage.detailedOfferShareIcon.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Share Button Displayed");
-			}
+			test.log(Status.PASS, "Offer Share Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Share Button Not Displayed");
 			Assert.fail("Offer Share Button Not Displayed");
 		}
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferActivate, 30))
 		{
-			if(objExperiencesPage.DetailedOfferActivate.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Offer Activate Button Displayed");
-			}
+			test.log(Status.PASS, "Offer Activate Button Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Offer Activate Button Not Displayed");
 			Assert.fail("Offer Activate Button Not Displayed");
 		}
-			
+
+		objExperiencesPage.activatedOfferClose.click();
+
 		}
 		catch(Exception e)
 		{
@@ -2413,199 +2097,159 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
 	@Test
-	public void TC_05_01_To_05(Method method) throws Exception
+	public void TC_Experience_025_to_029(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Search Functionality");
+		test.log(Status.INFO, "Verify user able to search different keywords in search page");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
-		
+		HomePage homepage = new HomePage(driver);
+
 		String searchKeyWord="dubai";
 		String searchKeyWord2="offer";
 		String searchKeyWord3="discount";
-		
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-											
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
 		Thread.sleep(10000);
-				
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
-		catch(Exception x)
+		else
 		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
+
 		generalFunctions.isElementPresent(objExperiencesPage.searchIcon, 30);
-		
 		objExperiencesPage.searchIcon.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchPage, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.searchPage, 30);
-			if(objExperiencesPage.searchPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search page Displayed");
-			}
+			test.log(Status.PASS, "Search page Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Search page Not Displayed");
 			Assert.fail("Search page Not Displayed");
 		}
-		
-		try
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchField, 30))
 		{
-			if(objExperiencesPage.searchField.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search field Displayed");
-			}
+			test.log(Status.PASS, "Search field Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Search field Not Displayed");
 			Assert.fail("Search field Not Displayed");
 		}
-		
 		objExperiencesPage.searchField.click();
 		objExperiencesPage.searchField.sendKeys(searchKeyWord);
-		
+
 		generalFunctions.pressSearch();
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30);
-			if(objExperiencesPage.searchResult.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search Result Displayed");
-			}
+			test.log(Status.PASS, "Search Result Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Search Result Not Displayed");
 			Assert.fail("Search Result Not Displayed");
 		}
-		
+
 		objExperiencesPage.searchClear.click();
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.recentSearchItem, 20))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.recentSearchItem, 20);
-			if(objExperiencesPage.recentSearchItem.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Recent Search Displayed");
-			}
+			test.log(Status.PASS, "Recent Search Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Recent Search Not Displayed");
 			Assert.fail("Recent Search Not Displayed");
-		}				
-						
+		}
+
 		objExperiencesPage.searchField.click();
 		objExperiencesPage.searchField.sendKeys(searchKeyWord2);
-		
+
 		generalFunctions.pressSearch();
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30);
-			if(objExperiencesPage.searchResult.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search Result Displayed");
-			}
+			test.log(Status.PASS, "Search Result Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Search Result Not Displayed");
 			Assert.fail("Search Result Not Displayed");
 		}
-		
+
 		objExperiencesPage.searchClear.click();
-		
+
 		objExperiencesPage.searchField.click();
 		objExperiencesPage.searchField.sendKeys(searchKeyWord3);
-		
+
 		generalFunctions.pressSearch();
 		Thread.sleep(4000);
-		
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30))
 		{
-			generalFunctions.isElementPresent(objExperiencesPage.searchResult, 30);
-			if(objExperiencesPage.searchResult.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search Result Displayed");
-			}
+			test.log(Status.PASS, "Search Result Displayed");
 		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Search Result Not Displayed");
 			Assert.fail("Search Result Not Displayed");
 		}
-		
+
 		objExperiencesPage.searchClear.click();
-		
-		try
-		{
+
 		if(objExperiencesPage.recentSearches(searchKeyWord).isDisplayed()&&objExperiencesPage.recentSearches(searchKeyWord2).isDisplayed()
 				&&objExperiencesPage.recentSearches(searchKeyWord3).isDisplayed())
 		{
 			test.log(Status.PASS, "Recent 3 Search keywords Displayed");
 		}
-		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.FAIL, "Recent 3 Search keywords Not Displayed");
 			Assert.fail("Recent 3 Search keywords Not Displayed");
 		}
-		
-		
 		objExperiencesPage.clearButton.click();
 		Thread.sleep(4000);
-		
-		try
-		{
+
 		if(objExperiencesPage.recentSearches(searchKeyWord).isDisplayed()&&objExperiencesPage.recentSearches(searchKeyWord2).isDisplayed()
 				&&objExperiencesPage.recentSearches(searchKeyWord3).isDisplayed())
 		{
 			test.log(Status.FAIL, "Recent Search keywords Not Cleared");
 			Assert.fail("Recent Search keywords Not Cleared");
 		}
-		}
-		catch(Exception x)
+		else
 		{
 			test.log(Status.PASS, "Recent 3 Search keywords Cleared");
 		}
-		
-		
+
 		int trySearches = generalFunctions.elementCount(objExperiencesPage.trySearch);
 		if(trySearches==4)
 		{
@@ -2616,6 +2260,8 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "4 Try Search options Not Displayed");
 			Assert.fail("4 Try Search options Not Displayed");
 		}
+
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)
 		{
@@ -2623,98 +2269,103 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+
 	@Test
-	public void TC_05_06(Method method) throws Exception
+	public void TC_Experience_030(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Search Functionality");
+		test.log(Status.INFO, "Verify user not able find results in search page while giving special characters");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
+		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
+		HomePage homepage = new HomePage(driver);
+
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
 		String searchKeyWord="@#&*";
 
-		
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-		
-		//Login to the App				
-		generalFunctions.SignIn(EmailAddress, Password, signInPage);
-		
+
+		//Login to the App
+		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
+		generalFunctions.isElementPresent(homepage.homeElement, 10);
+		homepage.homeElement.click();
+
 		// Click Experiences
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
-		Thread.sleep(10000);
-				
+		Thread.sleep(1000);
+
 		//Verify SHARE EXPERIENCES page displayed
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		try
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
-			if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-			Assert.fail("SHARE EXPERIENCES page Not Displayed");
-		}
-				
-		generalFunctions.isElementPresent(objExperiencesPage.searchIcon, 30);
-		
-		objExperiencesPage.searchIcon.click();
-		
-		try
-		{
-			generalFunctions.isElementPresent(objExperiencesPage.searchPage, 30);
-			if(objExperiencesPage.searchPage.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search page Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Search page Not Displayed");
-			Assert.fail("Search page Not Displayed");
-		}
-		
-		try
-		{
-			if(objExperiencesPage.searchField.isDisplayed()==true)
-			{
-				test.log(Status.PASS, "Search field Displayed");
-			}
-		}
-		catch(Exception x)
-		{
-			test.log(Status.FAIL, "Search field Not Displayed");
-			Assert.fail("Search field Not Displayed");
-		}
-		
-		objExperiencesPage.searchField.click();
-		objExperiencesPage.searchField.sendKeys(searchKeyWord);
-		Thread.sleep(2000);
-		
-		if(generalFunctions.getText(objExperiencesPage.searchField).contains(searchKeyWord))
-		{
-			test.log(Status.FAIL, "Special Characters are allowing in Search field");
-			Assert.fail("Special Characters are allowing in Search field");
+			test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 		}
 		else
 		{
-			test.log(Status.PASS, "Special Characters are Not allowing in Search field");
+			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-		
+
+		generalFunctions.isElementPresent(objExperiencesPage.searchIcon, 30);
+		objExperiencesPage.searchIcon.click();
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchPage, 30))
+		{
+			test.log(Status.PASS, "Search Page Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Search Page Not Displayed");
+			Assert.fail("Search Page Not Displayed");
+		}
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.searchField, 30))
+		{
+			test.log(Status.PASS, "Search Field Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Search Field Not Displayed");
+			Assert.fail("Search Field Not Displayed");
+		}
+
+		objExperiencesPage.searchField.click();
+		objExperiencesPage.searchField.sendKeys(searchKeyWord);
+		Thread.sleep(2000);
+
+		generalFunctions.pressSearch();
+		Thread.sleep(3000);
+
+		if(generalFunctions.isElementPresent(objExperiencesPage.noResultfound, 30))
+		{
+		   test.log(Status.PASS, "No Results Found For Special Characters");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Fail! Results Found For Special Characters");
+			Assert.fail("Fail! Results Found For Special Characters");
+		}
+
+		//if(generalFunctions.getText(objExperiencesPage.searchField).contains(searchKeyWord))
+		//{
+			//test.log(Status.FAIL, "Special Characters are allowing in Search field");
+			//Assert.fail("Special Characters are allowing in Search field");
+		//}
+		//else
+		//{
+			//test.log(Status.PASS, "Special Characters are Not allowing in Search field");
+		//}
+
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
 		}
 		catch(Exception e)
 		{
@@ -2722,82 +2373,87 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-		
-	
+
+
 	@Test
-	public void TC_06_01_To_05(Method method) throws Exception
+	public void TC_Experience_031_035(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Activated offers section");
+		test.log(Status.INFO, "Verify user able deactivate offers from activated tab");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
+		//SignInPage signInPage = new SignInPage(driver);
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
+		SignInFunctions signInFunctions = new SignInFunctions();
 
-		
+		//String EmailAddress=map.get("TransactionUser").toString();
+		//String Password=map.get("TransactionUserPassword").toString();
+
+
 		try
 		{
-			
-			driver.activateApp("com.maf.sharesit");
-											
-			//Login to the App				
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-			
+			driver.resetApp();
+			signInFunctions.ActivatedOfferUser();
+			Thread.sleep(2000);
+
 			// Click Experiences
 			generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 			objExperiencesPage.Experiences.click();
-			Thread.sleep(10000);
-					
+			Thread.sleep(2000);
+
+			//Verify Skip button displayed
+			if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
+			{
+				test.log(Status.PASS, "Skip Button Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Skip Button Not Displayed");
+				Assert.fail("Skip Button Not Displayed");
+			}
+
+			objExperiencesPage.OnBoardingSkip.click();
+			Thread.sleep(4000);
+
 			//Verify SHARE EXPERIENCES page displayed
 			generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-			try
+			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 			{
-				if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-				}
+				test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 			}
-			catch(Exception x)
+			else
 			{
-				test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-				Assert.fail("SHARE EXPERIENCES page Not Displayed");
+				test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+				Assert.fail("Not Navigated To SHARE EXPERIENCES");
 			}
-					
-			generalFunctions.isElementPresent(objExperiencesPage.offer, 30);		
-			try
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.offer, 30))
 			{
-				if(objExperiencesPage.offer.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Offer Displayed");
-				}
+				test.log(Status.PASS, "Offer Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Offer Not Displayed");
 				Assert.fail("Offer Not Displayed");
 			}
-			
+
 			String OfferTitle =generalFunctions.getText(objExperiencesPage.offerTitle);
 			System.out.println(OfferTitle);
 
-			try
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.offerActivateSwitch, 30))
 			{
-				if(objExperiencesPage.offerActivateSwitch.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Offer Activate Button Displayed");
-				}
+				test.log(Status.PASS, "Offer Activate Button Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Offer Activate Button Not Displayed");
 				Assert.fail("Offer Activate Button Not Displayed");
 			}
-			
+
 			String ActivateStatus =generalFunctions.getText(objExperiencesPage.offerActivateSwitch);
 			if(ActivateStatus.contains("ON"))
 			{
@@ -2805,49 +2461,43 @@ public class Experiences extends DriverSetUp
 				objExperiencesPage.offerActivateSwitch.click();
 				Thread.sleep(2000);
 			}
-			
-				objExperiencesPage.offerActivateSwitch.click();			
+
+			objExperiencesPage.offerActivateSwitch.click();
+			Thread.sleep(4000);
+
+			String ActivatedOffer =generalFunctions.getText(objExperiencesPage.offerActivateSwitch);
+			if(ActivatedOffer.contains("ON"))
+			{
+				test.log(Status.PASS, "Offer Activated");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Offer Not Activated");
+				Assert.fail("Offer Not Activated");
+			}
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.activatedOffer, 60))
+			{
+				test.log(Status.PASS, "You have Activated Offers- message is displayed in the experience landing page");
+				objExperiencesPage.activatedOffer.click();
 				Thread.sleep(4000);
-				
-				String ActivatedOffer =generalFunctions.getText(objExperiencesPage.offerActivateSwitch);
-				if(ActivatedOffer.contains("ON"))
-				{
-					test.log(Status.PASS, "Offer Activated");
-				}
-				else
-				{
-					test.log(Status.FAIL, "Offer Not Activated");
-					Assert.fail("Offer Not Activated");
-				}
-				
-				try
-				{
-					if(objExperiencesPage.activatedOffer.isDisplayed()==true)
-					{
-						test.log(Status.PASS, "You have Activated Offers- message is displayed in the experience landing page");
-						objExperiencesPage.activatedOffer.click();
-						Thread.sleep(4000);
-					}
-				}
-				catch(Exception x)
-				{
-					test.log(Status.FAIL, "You have Activated Offers- message is Not displayed in the experience landing page");
-					Assert.fail("You have Activated Offers- message is Not displayed in the experience landing page");
-				}				
-				
-				try
-				{
-					if(objExperiencesPage.activatedOfferPage.isDisplayed()==true)
-					{
-						test.log(Status.PASS, "ACTIVATED OFFERS page Displayed");
-					}
-				}
-				catch(Exception x)
-				{
-					test.log(Status.FAIL, "ACTIVATED OFFERS page Not Displayed");
-					Assert.fail("ACTIVATED OFFERS page Not Displayed");
-				}
-				
+			}
+			else
+			{
+				test.log(Status.FAIL, "You have Activated Offers- message is Not displayed in the experience landing page");
+				Assert.fail("You have Activated Offers- message is Not displayed in the experience landing page");
+			}
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.activatedOfferPage, 30))
+			{
+				test.log(Status.PASS, "ACTIVATED OFFERS page Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "ACTIVATED OFFERS page Not Displayed");
+				Assert.fail("ACTIVATED OFFERS page Not Displayed");
+			}
+
 				generalFunctions.isElementPresent(objExperiencesPage.firstOfferTitle, 30);
 				if(OfferTitle.contains(generalFunctions.getText(objExperiencesPage.firstOfferTitle)))
 				{
@@ -2858,43 +2508,40 @@ public class Experiences extends DriverSetUp
 					test.log(Status.FAIL, "Activated offer Not Displayed in ACTIVATED OFFERS page");
 					Assert.fail("Activated offer Not Displayed in ACTIVATED OFFERS page");
 				}
-				
+
 				objExperiencesPage.firstOfferTitle.click();
 				generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30);
-				
-				try
+
+
+				if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30))
 				{
-					if(objExperiencesPage.DetailedOfferTitle.isDisplayed()==true)
-					{
-						test.log(Status.PASS, "ACTIVATED OFFERS details page Displayed");
-					}
+					test.log(Status.PASS, "ACTIVATED OFFERS details page Displayed");
 				}
-				catch(Exception x)
+				else
 				{
 					test.log(Status.FAIL, "ACTIVATED OFFERS details page Not Displayed");
 					Assert.fail("ACTIVATED OFFERS details page Not Displayed");
 				}
-				
+
 				objExperiencesPage.activatedOfferClose.click();
 				Thread.sleep(4000);
-				
-				generalFunctions.isElementPresent(objExperiencesPage.ActivateSwitch, 20);
-				objExperiencesPage.ActivateSwitch.click();
-				
-				try
-				{
-					if(objExperiencesPage.checkOfferTitle(OfferTitle).isDisplayed()==true)
-					{					
-						test.log(Status.FAIL, "Deactiavted offer Not removed from Activated Offers page");
-						Assert.fail("Deactiavted offer Not removed from Activated Offers page");
-					}
-				}
-				catch(Exception x)
+
+				generalFunctions.isElementPresent(objExperiencesPage.activateSwitch, 20);
+				objExperiencesPage.activateSwitch.click();
+
+				String OfferTitle2 =generalFunctions.getText(objExperiencesPage.offerTitlecompare);
+				System.out.println(OfferTitle2);
+
+				if(OfferTitle2.contains(generalFunctions.getText(objExperiencesPage.offerTitle)))
 				{
 					test.log(Status.PASS, "Deactiavted offer removed from Activated Offers page");
 				}
-				
-							
+				else
+				{
+					test.log(Status.FAIL, "Deactiavted offer Not removed from Activated Offers page");
+					Assert.fail("Deactiavted offer Not removed from Activated Offers page");
+				}
+
 		}
 		catch(Exception e)
 		{
@@ -2902,52 +2549,59 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
+
+	//Verify user able to view carrefour detail page and able to activate offer from carrefour category
 	@Test
-	public void TC_06_06_To_08(Method method) throws Exception
+	public void TC_Experience_36_To_38(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Activated offers section");
+		test.log(Status.INFO, "Verify user able to view carrefour detail page and able to activate offer from carrefour category");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
 		SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		
-		String EmailAddress=map.get("TransactionUser").toString();
-		String Password=map.get("TransactionUserPassword").toString();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		String categorySelection="CARREFOUR OFFERS";
-		
+
 		try
 		{
-			
-		driver.activateApp("com.maf.sharesit");
-			
-			//Login to the App				
-			generalFunctions.SignIn(EmailAddress, Password, signInPage);
-			
+
+			driver.resetApp();
+			//Login to the App
+			signInFunctions.validUserLogin();
+
 			// Click Experiences
 			generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 			objExperiencesPage.Experiences.click();
-			Thread.sleep(10000);
-					
+
+			//Verify Skip button displayed
+			if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
+			{
+				test.log(Status.PASS, "Skip Button Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Skip Button Not Displayed");
+				Assert.fail("Skip Button Not Displayed");
+			}
+
+			objExperiencesPage.OnBoardingSkip.click();
+			Thread.sleep(4000);
+
 			//Verify SHARE EXPERIENCES page displayed
 			generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-			try
+			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 			{
-				if(objExperiencesPage.shareExperiences.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "SHARE EXPERIENCES page Displayed");
-				}
+				test.log(Status.PASS, "Navigated To SHARE EXPERIENCES");
 			}
-			catch(Exception x)
+			else
 			{
-				test.log(Status.FAIL, "SHARE EXPERIENCES page Not Displayed");
-				Assert.fail("SHARE EXPERIENCES page Not Displayed");
+				test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
+				Assert.fail("Not Navigated To SHARE EXPERIENCES");
 			}
-			
+
 			if(generalFunctions.selectCategory(categorySelection)==true)
 			{
 				test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+"category");
@@ -2957,66 +2611,57 @@ public class Experiences extends DriverSetUp
 				test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
 				Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
 			}
-					
+
 			//Offers
 			generalFunctions.isElementPresent(objExperiencesPage.firstOffer, 40);
-			try
+			if(generalFunctions.isElementPresent(objExperiencesPage.firstOffer, 30))
 			{
-				if(objExperiencesPage.firstOffer.isDisplayed()==true)
-				{
-					test.log(Status.PASS, ""+categorySelection+ " Offers Displayed");
-				}
+				test.log(Status.PASS, ""+categorySelection+ " Offers Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, ""+categorySelection+ " Offers Not Displayed");
 				Assert.fail(""+categorySelection+ " Offers Not Displayed");
 			}
-			
+
 			generalFunctions.isElementPresent(objExperiencesPage.firstOfferTitle, 40);
 			String OfferTitle =generalFunctions.getText(objExperiencesPage.firstOfferTitle);
 			System.out.println(OfferTitle);
 
-			try
+
+			if(generalFunctions.isElementPresent(objExperiencesPage.firstOfferActivate, 30))
 			{
-				if(objExperiencesPage.firstOfferActivate.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Offer Activate Button Displayed");
-				}
+				test.log(Status.PASS, "Offer Activate Button Displayed");
 			}
-			catch(Exception x)
+			else
 			{
 				test.log(Status.FAIL, "Offer Activate Button Not Displayed");
 				Assert.fail("Offer Activate Button Not Displayed");
 			}
-			
+
 			String ActivateStatus =generalFunctions.getText(objExperiencesPage.firstOfferActivate);
 			if(ActivateStatus.contains("OFF‎‏‎‎‏‎"))
 			{
 				System.out.println("Offer Not Activated");
 				objExperiencesPage.firstOfferActivate.click();
 				Thread.sleep(4000);
-								
+
 				objExperiencesPage.firstOfferTitle.click();
-				Thread.sleep(5000);				
-				
+				Thread.sleep(5000);
+
 				generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30);
-				
-				try
+				if(generalFunctions.isElementPresent(objExperiencesPage.DetailedOfferTitle, 30))
 				{
-					if(objExperiencesPage.DetailedOfferTitle.isDisplayed()==true)
-					{
-						test.log(Status.PASS, "ACTIVATED OFFERS details page Displayed");
-					}
+					test.log(Status.PASS, "ACTIVATED OFFERS details page Displayed");
 				}
-				catch(Exception x)
+				else
 				{
 					test.log(Status.FAIL, "ACTIVATED OFFERS details page Not Displayed");
 					Assert.fail("ACTIVATED OFFERS details page Not Displayed");
 				}
-								
+
 				String ActivatedStatus =generalFunctions.getText(objExperiencesPage.DetailedOfferActivate);
-				
+
 				if(ActivatedStatus.contains("ON"))
 				{
 					test.log(Status.PASS, "OFFER ACTIVATED");
@@ -3027,8 +2672,8 @@ public class Experiences extends DriverSetUp
 					Assert.fail("OFFER Not ACTIVATED");
 				}
 				objExperiencesPage.DetailedOfferActivate.click();
-				
-				Thread.sleep(4000);	
+
+				Thread.sleep(4000);
 				System.out.println(generalFunctions.getText(objExperiencesPage.DetailedOfferActivate));
 				if(generalFunctions.getText(objExperiencesPage.DetailedOfferActivate).contains("OFF"))
 				{
@@ -3039,15 +2684,15 @@ public class Experiences extends DriverSetUp
 					test.log(Status.FAIL, "OFFER Not Deactivated");
 					Assert.fail("OFFER Not Deactivated");
 				}
-				
+
 				objExperiencesPage.activatedOfferClose.click();
-				
+
 			}
 			else
 			{
 				test.log(Status.FAIL, "Offer Already Activated");
 				Assert.fail("Offer Already Activated");
-			}					
+			}
 		}
 		catch(Exception e)
 		{
@@ -3055,15 +2700,8 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
-	
-	
-	// V2 END
-	
-	
-	
-	
 }
+	// V2 END
 
-	
-	
+
+

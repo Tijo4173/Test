@@ -1,13 +1,10 @@
 package com.share.testscript;
 
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
-import static io.appium.java_client.touch.offset.PointOption.point;
-
 import java.lang.reflect.Method;
 
 import org.testng.Assert;
-import org.testng.ITestResult;
 import org.testng.annotations.Test;
+
 import com.aventstack.extentreports.Status;
 import com.share.functions.FamilyFunctions;
 import com.share.functions.RegistrationFunctions;
@@ -19,24 +16,24 @@ import com.share.objectrepository.RegistrationPage;
 import com.share.objectrepository.SignInPage;
 import com.share.utility.Utilities;
 
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 
 
 public class Family extends DriverSetUp
 {
 	GeneralFunctions generalFunctions = new GeneralFunctions();
-
+	//Verify family Head can send Invites-User: New User
 	@Test
 	public void TC_Family_001(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Module:Family").assignCategory("Family");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify family Head can send Invites");
-		System.out.println(TC_Method);	
-		String EmailAddress=map.get("NameUser").toString();
-		String Pass=map.get("PassCode").toString();
+		System.out.println(TC_Method);
+		String EmailAddress= "smtestqa2@yopmail.com";
+		String Pass= "Test@123";
 		String InviteEmailAddress=map.get("InviteEmailAddress").toString();
 		RegistrationPage registrationPage= new RegistrationPage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
@@ -45,31 +42,25 @@ public class Family extends DriverSetUp
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
-			//			driver.activateApp("com.maf.sharesit");
-			//			Thread.sleep(5000);
-			//
-			//			//Logout if already logged in 
-			//			generalFunctions.Logout();			
-			//			Thread.sleep(5000);
+
+			driver.resetApp();
 
 			//LOGIN//can use new user
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
 			//Member Invite
-			familyFunctions.FamilyInvite(familyPage);
+			familyFunctions.FamilyInviteNew(familyPage);
 
 			//Click on EmailAddressField
 			System.out.println(InviteEmailAddress);
 			familyPage.emailAddressField.sendKeys(InviteEmailAddress);
-			Thread.sleep(2000);
 
 			//Click on SendInviteButton
 
 			if(generalFunctions.isElementPresent(familyPage.sendInviteButton, 10))
 			{
-				test.log(Status.PASS, "SendInviteButton Dispalyed");
+				test.log(Status.PASS, "SendInviteButton Displayed");
 				familyPage.sendInviteButton.click();
-				Thread.sleep(6000);
 			}
 			else
 			{
@@ -89,9 +80,6 @@ public class Family extends DriverSetUp
 				test.log(Status.FAIL, "DoneButton Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("DoneButton Not Displayed");
 			}
-			
-			familyPage.doneButton.click();
-			Thread.sleep(500);
 
 		}
 		catch(Exception e)
@@ -99,35 +87,33 @@ public class Family extends DriverSetUp
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
-		
-		
-	}
-	
 
+
+	}
+
+	//Verify that error alert is displayed for invalid email id//User: FamilyHead
 	@Test
 	public void TC_Family_002(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Module:Family").assignCategory("Family");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify that error alert is displayed for invalid email id");
-		System.out.println(TC_Method);			
-		String EmailAddress=map.get("UserName").toString();
-		String Pass=map.get("Password").toString();
+		System.out.println(TC_Method);
+		String EmailAddress=map.get("NameUser").toString();
+		String Pass=map.get("PassCode").toString();
 		String InvalidEmailAddress=map.get("InvalidEmailAddress").toString();
 		RegistrationPage registrationPage= new RegistrationPage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
+		HomePage homePage = new HomePage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		
+
 
 		try
 		{
-			//Logout if already logged in 
-			//generalFunctions.Logout();			
-			//Thread.sleep(5000);	
-
+			driver.resetApp();
 			//LOGIN//can use new user
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -136,7 +122,7 @@ public class Family extends DriverSetUp
 
 			//Click on EmailAddressField
 			familyPage.emailAddressField.sendKeys(InvalidEmailAddress);
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 
 			//Click on SendInviteButton
 			if(generalFunctions.isElementPresent(familyPage.invalidEmailWarning, 30))
@@ -149,23 +135,27 @@ public class Family extends DriverSetUp
 				Assert.fail("Please Enter a Valid email address Not Displayed");
 			}
 			familyPage.back_button1.click();
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+
 		}
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}		
+		}
 	}
 
-
+	//Verify user is unable to invite a member who is already a part of the Family//User-Family head
 	@Test
 	public void TC_Family_003(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Module:Family").assignCategory("Family");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify user is unable to invite a member who is already a part of the Family ");
-		System.out.println(TC_Method);			
+		System.out.println(TC_Method);
 		String EmailAddress=map.get("NameUser").toString();
 		String Pass=map.get("PassCode").toString();
 		String AlreadyMemberId=map.get("AlreadyMemberId").toString();
@@ -175,26 +165,100 @@ public class Family extends DriverSetUp
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		GeneralFunctions GeneralFunctions = new GeneralFunctions();
-
 		try
 		{
-
-			//Logout if already logged in 
-//			generalFunctions.Logout();			
-//			Thread.sleep(5000);
-
-			//LOGIN//use new user
+			driver.resetApp();
+			//LOGIN//
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//FamilyInviteExistingMember function calling		
+			//FamilyInviteExistingMember function calling
 			familyFunctions.FamilyInviteExistingMember(familyPage);
 
 			//Click on EmailAddressField
+			System.out.println(AlreadyMemberId);
 			familyPage.emailAddressField.sendKeys(AlreadyMemberId);
-			
+
 			//Click on SendInviteButton
 			if(generalFunctions.isElementPresent(familyPage.sendInviteButton, 30))
+			{
+				test.log(Status.PASS, "SendInviteButton Dispalyed");
+				familyPage.sendInviteButton.click();
+			}
+			else
+			{
+				test.log(Status.FAIL, "SendInviteButton Not Displayed");
+				Assert.fail("SendInviteButton Not Displayed");
+			}
+			//ExistingMemberErrorMessage
+			generalFunctions.isElementPresent(familyPage.sendInviteScreen, 30);
+
+			if(familyPage.sendInviteScreen.getText().matches("Invite not sent")) {
+				test.log(Status.PASS, "ExistingMemberErrorMessage Dispalyed: "+familyPage.statusDescription.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "ExistingMemberErrorMessage Not Displayed: "+familyPage.statusDescription.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+				Assert.fail("ExistingMemberErrorMessage Not Displayed");
+			}
+
+			//Click on DoneButton
+			if(generalFunctions.isElementPresent(familyPage.doneButton, 30))
+			{
+				test.log(Status.PASS, "DoneButton Dispalyed");
+				familyPage.doneButton.click();
+			}
+			else
+			{
+				test.log(Status.FAIL, "DoneButton Not Displayed");
+				Assert.fail("DoneButton Not Displayed");
+			}
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+		}
+		catch(Exception e)
+		{
+			test.log(Status.FAIL, e.getMessage());
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	//Verify the error message is displayed when the head is adding the Member who is a part of another family group//User:FamilyHead
+	@Test
+	public void TC_Family_004(Method method) throws Exception
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
+		test.info("Verify the error message is displayed when the head is adding the Member who is a part of another family group");
+		System.out.println(TC_Method);
+		String EmailAddress=map.get("NameUser").toString();
+		String Pass=map.get("PassCode").toString();
+		String AnotherMemberId=map.get("AnotherGroupMember").toString();
+
+		RegistrationPage registrationPage= new RegistrationPage(driver);
+		HomePage homePage = new HomePage(driver);
+		FamilyPage familyPage = new FamilyPage(driver);
+		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		FamilyFunctions familyFunctions = new FamilyFunctions();
+		SignInPage signInPage = new SignInPage(driver);
+
+		try
+		{
+			driver.resetApp();
+
+			//LOGIN
+			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
+
+			//FamilyIconClick
+			familyFunctions.FamilyInviteExistingMember(familyPage);
+
+			//Click on EmailAddressField
+			generalFunctions.isElementPresent(familyPage.emailAddressField, 60);
+			familyPage.emailAddressField.sendKeys(AnotherMemberId);
+
+			//Click on SendInviteButton
+			if(generalFunctions.isElementPresent(familyPage.sendInviteButton, 60))
 			{
 				test.log(Status.PASS, "SendInviteButton Dispalyed");
 				familyPage.sendInviteButton.click();
@@ -207,19 +271,19 @@ public class Family extends DriverSetUp
 
 
 			//ExistingMemberErrorMessage
-			if(generalFunctions.isElementPresent(familyPage.existingMemberErrorMessage, 30))
-			{
-				test.log(Status.PASS, "ExistingMemberErrorMessage Dispalyed");
+			generalFunctions.isElementPresent(familyPage.sendInviteScreen, 30);
+
+			if(familyPage.sendInviteScreen.getText().matches("Invite not sent")) {
+				test.log(Status.PASS, "ExistingMemberErrorMessage Dispalyed: "+familyPage.statusDescription.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "ExistingMemberErrorMessage Not Displayed");
+				test.log(Status.FAIL, "ExistingMemberErrorMessage Not Displayed: "+familyPage.statusDescription.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("ExistingMemberErrorMessage Not Displayed");
-			}		
+			}
 
 			//Click on DoneButton
-			generalFunctions.isElementPresent(familyPage.doneButton, 60);
-			if(familyPage.doneButton.isDisplayed())
+			if(generalFunctions.isElementPresent(familyPage.doneButton, 60))
 			{
 				test.log(Status.PASS, "DoneButton Dispalyed");
 				familyPage.doneButton.click();
@@ -229,9 +293,9 @@ public class Family extends DriverSetUp
 				test.log(Status.FAIL, "DoneButton Not Displayed");
 				Assert.fail("DoneButton Not Displayed");
 			}
-
-			Thread.sleep(3000);
-			familyPage.back_button1.click();
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
 		}
 		catch(Exception e)
 		{
@@ -240,217 +304,98 @@ public class Family extends DriverSetUp
 		}
 	}
 
-/*
+	//Verify Non Share member is asked to download the app when member doesn’t have the app installed
+	//	@Test
+	//	public void TC_Family_005(Method method) throws Exception
+	//	{
+	//		String TC_Method = method.getName();
+	//		test = extent.createTest(TC_Method);
+	//		test.log(Status.INFO, "Module:Family").assignCategory("Family");
+	//		test.info("Verify Non Share member is asked to download the app when member doesn’t have the app installed");
+	//		System.out.println(TC_Method);
+	//		String EmailAddress=map.get("NameUser").toString();
+	//		String Pass=map.get("PassCode").toString();
+	//		String InviteEmailAddress=map.get("InviteEmailAddress").toString();
+	//
+	//		RegistrationPage registrationPage= new RegistrationPage(driver);
+	//		HomePage homePage = new HomePage(driver);
+	//		FamilyPage familyPage = new FamilyPage(driver);
+	//		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+	//		FamilyFunctions familyFunctions = new FamilyFunctions();
+	//		SignInPage signInPage = new SignInPage(driver);
+	//		try
+	//		{
+	//			//LOGIN
+	//			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
+	//
+	//			//FamilyGroupClick
+	//			familyFunctions.FamilyInviteExistingMember(familyPage);
+	//
+	//			//Click on EmailAddressField
+	//			generalFunctions.isElementPresent(familyPage.emailAddressField, 60);
+	//			familyPage.emailAddressField.sendKeys("smitkll@gmail.com");
+	//
+	//			//Click on SendInviteButton
+	//			if(generalFunctions.isElementPresent(familyPage.sendInviteButton, 60))
+	//			{
+	//				test.log(Status.PASS, "SendInviteButton Dispalyed");
+	//				familyPage.sendInviteButton.click();
+	//			}
+	//			else
+	//			{
+	//				test.log(Status.FAIL, "SendInviteButton Not Displayed");
+	//				Assert.fail("SendInviteButton Not Displayed");
+	//			}
+	//
+	//			//Click on DoneButton
+	//			if(generalFunctions.isElementPresent(familyPage.doneButton, 60))
+	//			{
+	//				test.log(Status.PASS, "DoneButton Dispalyed");
+	//				familyPage.doneButton.click();
+	//			}
+	//			else
+	//			{
+	//				test.log(Status.FAIL, "DoneButton Not Displayed");
+	//				Assert.fail("DoneButton Not Displayed");
+	//			}
+	//
+	//			//driver.startActivity(new Activity("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail"));
+	//		}
+	//		catch(Exception e)
+	//		{
+	//			test.log(Status.FAIL, e.getMessage());
+	//			Assert.fail(e.getMessage());
+	//		}
+	//	}
+
+	//Verify a Family head to able to share the point with the other members//User: Family Head
 	@Test
-	public void TC_Family_004(Method method) throws Exception
-	{
+	public void TC_Family_006(Method method) throws Exception{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Family");
-		test.info("Already Member of Another Group");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
-		String EmailAddress=map.get("UserName").toString();
-		String Pass=map.get("Password").toString();
-		String AlreadyMemberId=map.get("AlreadyMemberId").toString();
-
-		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
-		FamilyPage familyPage = new FamilyPage(driver);
-		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
-		SignInPage signInPage = new SignInPage(driver);
-
-		try
-		{
-			//Logout if already logged in 
-			generalFunctions.Logout();			
-			Thread.sleep(5000);
-
-			//LOGIN
-			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
-
-			familyFunctions.FamilyInvite(familyPage);
-
-			//Click on EmailAddressField
-			generalFunctions.isElementPresent(familyPage.EmailAddressField, 60);
-			familyPage.EmailAddressField.sendKeys(AlreadyMemberId);
-			Thread.sleep(2000);
-
-			//Click on SendInviteButton
-			generalFunctions.isElementPresent(familyPage.SendInviteButton, 60);
-			if(familyPage.SendInviteButton.isDisplayed())
-			{
-				test.log(Status.PASS, "SendInviteButton Dispalyed");
-				familyPage.SendInviteButton.click();
-				Thread.sleep(6000);
-			}
-			else
-			{
-				test.log(Status.FAIL, "SendInviteButton Not Displayed");
-				Assert.fail("SendInviteButton Not Displayed");
-			}
-
-
-			//ExistingMemberErrorMessage
-			Thread.sleep(2000);
-			generalFunctions.isElementPresent(familyPage.ExistingMemberErrorMessage, 60);
-			if(familyPage.ExistingMemberErrorMessage.isDisplayed())
-			{
-				test.log(Status.PASS, "ExistingMemberErrorMessage Dispalyed");
-			}
-			else
-			{
-				test.log(Status.FAIL, "ExistingMemberErrorMessage Not Displayed");
-				Assert.fail("ExistingMemberErrorMessage Not Displayed");
-			}		
-
-			//Click on DoneButton
-			Thread.sleep(2000);
-			generalFunctions.isElementPresent(familyPage.DoneButton, 60);
-			if(familyPage.DoneButton.isDisplayed())
-			{
-				test.log(Status.PASS, "DoneButton Dispalyed");
-				familyPage.DoneButton.click();
-			}
-			else
-			{
-				test.log(Status.FAIL, "DoneButton Not Displayed");
-				Assert.fail("DoneButton Not Displayed");
-			}
-
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
-		}
-		catch(Exception e)
-		{
-			test.log(Status.FAIL, e.getMessage());
-			Assert.fail(e.getMessage());
-		}
-	}
-
-
-	@Test
-	public void TC_Family_005(Method method) throws Exception
-	{
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Family");
-		test.info("NonShareMemberInvite");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
-		String EmailAddress=map.get("NameUser").toString();
-		String Pass=map.get("PassCode").toString();
-		String InviteEmailAddress=map.get("InviteEmailAddress").toString();
-
-		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
-		FamilyPage familyPage = new FamilyPage(driver);
-		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
-		SignInPage signInPage = new SignInPage(driver);
-		try
-		{
-			//Logout if already logged in 
-			generalFunctions.Logout();			
-			Thread.sleep(5000);
-
-			//LOGIN
-			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
-
-			familyFunctions.FamilyInvite(familyPage);
-
-			//Click on EmailAddressField
-			generalFunctions.isElementPresent(familyPage.EmailAddressField, 60);
-			familyPage.EmailAddressField.sendKeys(InviteEmailAddress);
-			Thread.sleep(2000);
-
-			//Click on SendInviteButton
-			generalFunctions.isElementPresent(familyPage.SendInviteButton, 60);
-			if(familyPage.SendInviteButton.isDisplayed())
-			{
-				test.log(Status.PASS, "SendInviteButton Dispalyed");
-				familyPage.SendInviteButton.click();
-				Thread.sleep(6000);
-			}
-			else
-			{
-				test.log(Status.FAIL, "SendInviteButton Not Displayed");
-				Assert.fail("SendInviteButton Not Displayed");
-			}
-
-			//Click on DoneButton
-			Thread.sleep(2000);
-			generalFunctions.isElementPresent(familyPage.DoneButton, 60);
-			if(familyPage.DoneButton.isDisplayed())
-			{
-				test.log(Status.PASS, "DoneButton Dispalyed");
-				familyPage.DoneButton.click();
-			}
-			else
-			{
-				test.log(Status.FAIL, "DoneButton Not Displayed");
-				Assert.fail("DoneButton Not Displayed");
-			}
-
-			driver.startActivity(new Activity("com.google.android.gm", "com.google.android.gm.ConversationListActivityGmail"));
-		}
-		catch(Exception e)
-		{
-			test.log(Status.FAIL, e.getMessage());
-			Assert.fail(e.getMessage());
-		}
-	}
-
-
-	@Test
-	public void TC_Family_006(Method method) throws Exception
-	{
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Family");
-		test.info("Share Points to Family Members");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
+		test.info("Verify a Family head to able to share the point with the other members");
+		System.out.println(TC_Method);
 		String EmailAddress=map.get("NameUser").toString();
 		String Pass=map.get("PassCode").toString();
 		String Points = "10.00";
-		driver.activateApp("com.maf.sharesit");
+
 		RegistrationPage registrationPage= new RegistrationPage(driver);
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
-
-			//driver.launchApp();
-			Thread.sleep(5000);
-
-			//Logout if already logged in 
-			generalFunctions.Logout();			
-			Thread.sleep(5000);
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
-
-			generalFunctions.isElementPresent(familyPage.FamilyGroupIcon, 60);
-			if(familyPage.FamilyGroupIcon.isDisplayed())
+			//FamilyGroupClick
+			if(generalFunctions.isElementPresent(familyPage.familyGroupIcon, 60))
 			{
 				test.log(Status.PASS, "Group Icon Dispalyed");
-				familyPage.FamilyGroupIcon.click();
+				familyPage.familyGroupIcon.click();
 
 			}
 			else
@@ -458,51 +403,37 @@ public class Family extends DriverSetUp
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
-
-			Thread.sleep(10000);		
-			String _name = familyPage.FamilyMemberName.getText();		
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			String _name = familyPage.familyMemberName.getText();
 			System.out.println(_name);
 
-			generalFunctions.isElementPresent(familyPage.FamilyMember, 60);
-			familyPage.FamilyMember.click();		
-			Thread.sleep(3000);
+			generalFunctions.isElementPresent(familyPage.familyMemberName, 30);
+			familyPage.familyMember.click();
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
 
-			familyPage.PointsField.click();
-			familyPage.PointsField.sendKeys(Points);
+			//familyPage.pointsField.click();
+			familyPage.pointsField.sendKeys(Points);
 
-			String _pointbalance = familyPage.FamilyPointBalance.getText();		
-			driver.hideKeyboard();
+			String _pointbalance = familyPage.familyPointBalance.getText();
+			System.out.println(_pointbalance);
+			//driver.hideKeyboard();
 
-			familyPage.GetPointsButton.click();
-			Thread.sleep(6000);
+			familyPage.getPointsButton.click();
+			generalFunctions.isElementPresent(familyPage.pointsSuccessMessage, 60);
+			String _pointSuccessMessage = familyPage.pointsSuccessMessage.getText();
 
-			generalFunctions.isElementPresent(familyPage.PointsSuccessMessage, 60);
-			String _pointSuccessMessage = familyPage.PointsSuccessMessage.getText();
-
-			if(_pointSuccessMessage.contains(_name)) 
+			if(_pointSuccessMessage.contains(_name) && _pointSuccessMessage.contains(Points))
 			{
-				System.out.println(_name+"Dislayed");
-				test.log(Status.PASS, "Name displayed in success message");
+				System.out.println("Displayed member name and points:"+_name+":"+Points);
+				test.log(Status.PASS, "Name displayed in success message:"+_pointSuccessMessage);
 			}
-			else 
+			else
 			{
-				test.log(Status.FAIL, "Name not displayed in success message");
-				Assert.fail("Name not displayed in success message");
+				test.log(Status.FAIL, "Name or Points not displayed in success message");
+				Assert.fail("Name or Points not displayed in success message");
 			}
-
-			if(_pointSuccessMessage.contains(Points+" points")) 
-			{
-				System.out.println(Points+"Dislayed");
-				test.log(Status.PASS, "Points displayed in success message");
-			}
-			else 
-			{
-				test.log(Status.FAIL, "Points not displayed in success message");
-				Assert.fail("Points not displayed in success message");
-			}
-
-			familyPage.ThanksButton.click();
-			Thread.sleep(6000);
+			familyPage.thanksButton.click();
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
 
 			System.out.println(_pointbalance);
 			System.out.println(Points);
@@ -511,13 +442,13 @@ public class Family extends DriverSetUp
 			double updatedPointBalance = Double.valueOf(_newpointbalance) - Double.valueOf(Points);
 			System.out.println("updatedPointBalance "+updatedPointBalance);
 
-			Thread.sleep(3000);
+			//Thread.sleep(3000);
 
-			String _finalpointbalance = familyPage.FamilyPointBalance.getText();
+			String _finalpointbalance = familyPage.familyPointBalance.getText();
 			_finalpointbalance = _finalpointbalance.replaceAll(",", "");
 
 			System.out.println("_finalpointbalance "+_finalpointbalance);
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 
 			if(String.valueOf(_finalpointbalance).contentEquals(String.valueOf(updatedPointBalance)))
 			{
@@ -525,17 +456,18 @@ public class Family extends DriverSetUp
 				test.log(Status.PASS, "Final balance Points are correct");
 			}
 
-			else 
+			else
 			{
 				System.out.println("Fail,Final balance Points are not correct");
 				test.log(Status.FAIL, "Final balance Points are not correct");
 				Assert.fail("Final balance Points are not correct");
 			}
 
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 			familyPage.back_button1.click();
-			Thread.sleep(2000);
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
 			familyPage.back_button2.click();
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
 		}
 		catch(Exception e)
 		{
@@ -544,20 +476,20 @@ public class Family extends DriverSetUp
 		}
 	}
 
-
+	//Need to check
+	//verify the member list is displayed//User:Family Head
 	@Test
-	public void TC_Family_007(Method method) throws Exception
+	public void TC_Family_007_009(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Family");
-		test.info("Invite New Member");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
-		String EmailAddress=map.get("UserName").toString();
-		String Pass=map.get("Password").toString();
+		test.log(Status.INFO, "Family").assignCategory("FAMILY");
+		test.info("Verify family head is able to invite a new member as now the group is not fill");
+		System.out.println(TC_Method);
+		String EmailAddress=map.get("NameUser").toString();
+		String Pass=map.get("PassCode").toString();
 		String InviteEmailAddress=map.get("InviteEmailAddress").toString();
-		driver.activateApp("com.maf.sharesit");
+
 		RegistrationPage registrationPage= new RegistrationPage(driver);
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
@@ -566,61 +498,55 @@ public class Family extends DriverSetUp
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
-			//Logout if already logged in 
-			generalFunctions.Logout();		
-			Thread.sleep(5000);
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(2000);
-
+			//Family group click
 			familyFunctions.FamilyInvite(familyPage);
 
-			if(!familyPage.SendInviteButton.isEnabled())
+			if(!familyPage.sendInviteButton.isEnabled())
 			{
 				test.log(Status.PASS, "SendInviteButton not enabled");
-				Thread.sleep(3000);
 			}
 			else
 			{
 				test.log(Status.FAIL, "SendInviteButton enabled");
 				Assert.fail("SendInviteButton enabled");
 
-			}	
+			}
 			//Click on EmailAddressField
-			familyPage.EmailAddressField.sendKeys(InviteEmailAddress);
-			Thread.sleep(2000);
+
+			familyPage.emailAddressField.sendKeys(InviteEmailAddress);
 
 			//Click on SendInviteButton
 
-			if(familyPage.SendInviteButton.isDisplayed())
+			if(generalFunctions.isElementPresent(familyPage.sendInviteButton, 30))
 			{
 				test.log(Status.PASS, "SendInviteButton Dispalyed");
-				familyPage.SendInviteButton.click();
-				Thread.sleep(6000);
+				familyPage.sendInviteButton.click();
 			}
 			else
 			{
 				test.log(Status.FAIL, "SendInviteButton Not Displayed");
 				Assert.fail("SendInviteButton Not Displayed");
 
-			}	
+			}
 
 			//Click on DoneButton
-			Thread.sleep(2000);
-			if(familyPage.DoneButton.isDisplayed())
+			if(generalFunctions.isElementPresent(familyPage.doneButton, 30))
 			{
 				test.log(Status.PASS, "DoneButton Dispalyed");
-				familyPage.DoneButton.click();
 			}
 			else
 			{
 				test.log(Status.FAIL, "DoneButton Not Displayed");
 				Assert.fail("DoneButton Not Displayed");
 			}
+			familyPage.doneButton.click();
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
 		}
 		catch(Exception e)
 		{
@@ -628,41 +554,36 @@ public class Family extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
+	//Member are unable to share/gift points more than what they have earned
 	@Test
 	public void TC_Family_008(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.info("Exeeding Gift Points Error Message");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
+		test.log(Status.INFO, "Module: Family").assignCategory("FAMILY");
+		test.info("Member are unable to share/gift points more than what they have earned ");
+		System.out.println(TC_Method);
 		String EmailAddress=map.get("NameUser").toString();
 		String Pass=map.get("PassCode").toString();
-		driver.activateApp("com.maf.sharesit");
+
 		RegistrationPage registrationPage= new RegistrationPage(driver);
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
-			//Logout if already logged in 
-			generalFunctions.Logout();		
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
 
-			Thread.sleep(3000);
-			if(familyPage.FamilyGroupIcon.isDisplayed())
+
+
+			if(generalFunctions.isElementPresent(familyPage.familyGroupIcon, 30))
 			{
 				test.log(Status.PASS, "Group Icon Dispalyed");
-				familyPage.FamilyGroupIcon.click();
+				familyPage.familyGroupIcon.click();
 
 			}
 			else
@@ -670,41 +591,40 @@ public class Family extends DriverSetUp
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
 
-			Thread.sleep(2000);		
-			String _name = familyPage.FamilyMemberName.getText();		
+			String _name = familyPage.familyMemberName.getText();
 			System.out.println(_name);
 
-			familyPage.FamilyMember.click();		
-			Thread.sleep(3000);
+			familyPage.familyMember.click();
 
-			String _pointbalance = familyPage.FamilyPointBalance.getText();		
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
+			String _pointbalance = familyPage.familyPointBalance.getText();
 			_pointbalance= _pointbalance.replaceAll(",", "");
 			double Points = Double.parseDouble(_pointbalance) *2;
 			String _finalpoints = String.valueOf(Points);
+			familyPage.pointsField.click();
+			familyPage.pointsField.sendKeys(_finalpoints);
+			//driver.hideKeyboard();
 
-			Thread.sleep(3000);
-			familyPage.PointsField.click();
-			familyPage.PointsField.sendKeys(_finalpoints);		
-			driver.hideKeyboard();
-
-			if(familyPage.ErrorMessageGiftPoints.isDisplayed() == true) 
+			if(generalFunctions.isElementPresent(familyPage.errorMessageGiftPoints, 30))
 			{
 				System.out.println(_name+"ErrorMessageGiftPoints displayed");
-				test.log(Status.PASS, "ErrorMessageGiftPoints displayed");
+				test.log(Status.PASS, "Displayed the error:"+familyPage.errorMessageGiftPoints.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-			else 
+			else
 			{
 				System.out.println(_name+"ErrorMessageGiftPoints not displayed");
-				test.log(Status.FAIL, "ErrorMessageGiftPoints not displayed");
+				test.log(Status.FAIL, "Displayed the error:"+familyPage.errorMessageGiftPoints.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("ErrorMessageGiftPoints not displayed");
 			}
 
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
 
-			Thread.sleep(2000);
 			familyPage.back_button1.click();
+			Thread.sleep(500);
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.back_button2.click();
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
 		}
 		catch(Exception e)
 		{
@@ -713,92 +633,17 @@ public class Family extends DriverSetUp
 		}
 	}
 
-
-	@Test
-	public void TC_Family_009(Method method) throws Exception
-	{
-		String TC_Method = method.getName();
-		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Family");
-		test.info("View Other Users");
-		test.assignCategory("Family");
-		System.out.println(TC_Method);			
-		String EmailAddress=map.get("NameUser").toString();
-		String Pass=map.get("PassCode").toString();
-		driver.activateApp("com.maf.sharesit");
-		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
-		FamilyPage familyPage = new FamilyPage(driver);
-		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
-		SignInPage signInPage = new SignInPage(driver);
-		try
-		{
-
-			//LOGIN
-			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
-
-			Thread.sleep(3000);
-			if(familyPage.FamilyGroupIcon.isDisplayed())
-			{
-				test.log(Status.PASS, "Group Icon Dispalyed");
-				familyPage.FamilyGroupIcon.click();
-
-			}
-			else
-			{
-				test.log(Status.FAIL, "Group Icon Not Displayed");
-				Assert.fail("Group Icon Not Displayed");
-			}
-
-			Thread.sleep(2000);		
-			String _name = familyPage.FamilyMemberName.getText();		
-			System.out.println(_name);
-
-			familyPage.FamilyMember.click();		
-			Thread.sleep(3000);
-
-
-			Thread.sleep(3000);
-			if(familyPage.PointsField.isDisplayed()== true)
-			{
-				familyPage.PointsField.click();
-			}
-			else
-			{
-				test.log(Status.FAIL, "Unable to go inside member");
-				Assert.fail("Unable to go inside member");
-			}
-
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
-
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
-
-		}
-		catch(Exception e)
-		{
-			test.log(Status.FAIL, e.getMessage());
-			Assert.fail(e.getMessage());
-		}
-	}
-
-
-
+	//member login
+	//Verify Family member can edit and add contribution percentage to the Family group or family head
 	@Test
 	public void TC_Family_011(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Edit the Contribution percentage of family member");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify Family member can edit and add contribution percentage to the Family group or family head");
-		test.assignCategory("Family");
+
 
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
@@ -807,60 +652,37 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		GeneralFunctions GenFunctions = new GeneralFunctions();
 
 		try
 		{
-
-			driver.activateApp("com.maf.sharesit");
-			Thread.sleep(5000);	
-
-			//Logout if already logged in 
-			GenFunctions.Logout();			
-			Thread.sleep(5000);	
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(4000);
-
-			try
+			if(generalFunctions.isElementPresent(familyPage.familyGroupIcon, 30))
 			{
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Dispalyed");
-					familyPage.FamilyGroupIcon.click();		
-				}
-			}
-			catch(Exception e)
-			{
+				test.log(Status.PASS, "Group Icon Dispalyed");
+				familyPage.familyGroupIcon.click();
+			}else {
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
-
-
-			Thread.sleep(5000);				
-
-			familyPage.Edit_family.click();		
-			Thread.sleep(3000);
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.edit_family.click();
+			generalFunctions.isElementPresent(familyPage.earn_family_head, 30);
 
 			Integer points = 30;
-			familyPage.Earn_family_head.sendKeys(String.valueOf(points));		
-			Thread.sleep(3000);
-
-			familyPage.family_save.click();		
-			Thread.sleep(3000);	
-
+			familyPage.earn_family_head.sendKeys(String.valueOf(points));
+			generalFunctions.isElementPresent(familyPage.family_save, 30);
+			familyPage.family_save.click();
+			Thread.sleep(1000);
 			String desc=familyPage.family_edit_desc.getText();
 			System.out.println(desc);
 			if(desc.contains("You are contributing " + points + "%"))
 			{
-				System.out.println("Contributing points updated and displayed");
-				test.log(Status.PASS, "Contributing points updated and displayed");
+				System.out.println("Contributing points updated and displayed:"+desc);
+				test.log(Status.PASS, "Contributing points updated and displayed:" +desc);
 			}
 			else
 			{
@@ -868,29 +690,25 @@ public class Family extends DriverSetUp
 				Assert.fail("Contributing points not updated or displayed");
 			}
 
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
 		}
 		catch(Exception e)
-		{    			
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+		{
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}					
+		}
 	}
 
 
-
-
+	//member login
+	//Edit the Contribution percentage of family member to 0%
 	@Test
 	public void TC_Family_012(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Edit the Contribution percentage of family member");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify Family member / head can edit contribution to 0%");
-		test.assignCategory("Family");
 
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
@@ -899,57 +717,41 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
-			//Logout if already logged in 
-			generalFunctions.Logout();		
-			Thread.sleep(5000);
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(3000);
-
-			try
+			if(familyPage.familyGroupIcon.isDisplayed())
 			{
-
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Dispalyed");
-					familyPage.FamilyGroupIcon.click();		
-				}
-			}
-			catch(Exception e)
-			{
+				test.log(Status.PASS, "Group Icon Dispalyed");
+				familyPage.familyGroupIcon.click();
+			}else {
 				test.log(Status.FAIL, "Group Icon Not Displayed");
-				Assert.fail("Group Icon Not Displayed");	
+				Assert.fail("Group Icon Not Displayed");
 			}
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.edit_family.click();
 
-			Thread.sleep(8000);		
-
-
-			familyPage.Edit_family.click();		
-			Thread.sleep(5000);
-
+			generalFunctions.isElementPresent(familyPage.earn_family_head, 30);
+			familyPage.earn_family_head.clear();
 			Integer points = 0;
-			familyPage.Earn_family_head.sendKeys(String.valueOf(points));		
-			Thread.sleep(3000);
+			familyPage.earn_family_head.sendKeys(String.valueOf(points));
+			generalFunctions.isElementPresent(familyPage.family_save, 20);
+			familyPage.family_save.click();
 
-			familyPage.family_save.click();		
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 
-
+			generalFunctions.isElementPresent(familyPage.family_edit_desc, 20);
 			String desc=familyPage.family_edit_desc.getText();
-
+			System.out.println(desc);
 			if(desc.contains("You are contributing " + points + "%"))
 			{
 				System.out.println("Contributing points updated and displayed");
-				test.log(Status.PASS, "Contributing points updated and displayed");
+				test.log(Status.PASS, "Contributing points updated and displayed:"+desc);
 			}
 			else
 			{
@@ -957,30 +759,27 @@ public class Family extends DriverSetUp
 				Assert.fail("Contributing points not updated or not displayed");
 			}
 
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
 		}
 		catch(Exception e)
-		{    			
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+		{
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}	
+		}
 
 
 	}
 
-
-
+	//member login
+	//Verify Family member can edit contribution to 100%
 	@Test
 	public void TC_Family_013(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Edit the Contribution percentage of family member to 100%");
+		test.log(Status.INFO, "Module: Family").assignCategory("FAMILY");;
 		test.info("Verify Family member can edit contribution to 100%");
-		test.assignCategory("Family");
+
 
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
@@ -989,87 +788,63 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(5000);
-
-			try
+			if(familyPage.familyGroupIcon.isDisplayed())
 			{
-
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Dispalyed");
-					familyPage.FamilyGroupIcon.click();		
-				}
-			}
-			catch(Exception e)
-			{
+				test.log(Status.PASS, "Group Icon Dispalyed");
+				familyPage.familyGroupIcon.click();
+			}else {
 				test.log(Status.FAIL, "Group Icon Not Displayed");
-				Assert.fail("Group Icon Not Displayed");	
+				Assert.fail("Group Icon Not Displayed");
 			}
-
-			Thread.sleep(8000);		
-
-
-			familyPage.Edit_family.click();		
-			Thread.sleep(15000);
-
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.edit_family.click();
+			generalFunctions.isElementPresent(familyPage.earn_family_head, 30);
+			familyPage.earn_family_head.clear();
 			Integer points = 100;
-			familyPage.Earn_family_head.sendKeys(String.valueOf(points));		
-			Thread.sleep(3000);
-
-			familyPage.family_save.click();		
-			Thread.sleep(5000);
-
-
+			familyPage.earn_family_head.sendKeys(String.valueOf(points));
+			generalFunctions.isElementPresent(familyPage.family_save, 20);
+			familyPage.family_save.click();
+			Thread.sleep(1000);
+			generalFunctions.isElementPresent(familyPage.family_edit_desc, 20);
 			String desc=familyPage.family_edit_desc.getText();
 
 			if(desc.contains("You are contributing " + points + "%"))
 			{
 				System.out.println("Contributing points updated and displayed");
-				test.log(Status.PASS, "Contributing points updated and displayed");
+				test.log(Status.PASS, "Contributing points updated and displayed: "+desc);
 			}
 			else
 			{
 				test.log(Status.FAIL, "Contributing points not updated or not displayed");
 				Assert.fail("Contributing points not updated or not displayed");
 			}
-
-			Thread.sleep(2000);
-			familyPage.back_button1.click();
-
 		}
 		catch(Exception e)
-		{    			
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+		{
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
 
 
 	}
-
-
-
-
+	//member login
+	//Verify the gift points drop down list shows all group members
 	@Test
 	public void TC_Family_014(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Gift points dropdown listed to all family group members ");
-		test.info("Verify the gift points drop down listed to all group members");
-		test.assignCategory("Family");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
+		test.info("Verify the gift points drop down list shows all group members");
 
 		String EmailAddress = map.get("Family_mem_user").toString();
 		String Pass = map.get("Family_mem_pass").toString();
@@ -1078,91 +853,71 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
 		try
 		{
+			driver.resetApp();
 
 			//LOGIN
 
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon	
-			accountPage.AccountIcon.click();
-			Thread.sleep(8000);
-
-			try
+			if(familyPage.familyGroupIcon.isDisplayed())
 			{
+				test.log(Status.PASS, "Group Icon Displayed");
+				familyPage.familyGroupIcon.click();
 
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Displayed");
-					familyPage.FamilyGroupIcon.click();
-
-				}
-			}
-			catch(Exception e)
-			{
+			}else{
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
 
-			Thread.sleep(5000);		
+			familyPage.family_mem.click();
 
-
-			familyPage.family_mem.click();		
-			Thread.sleep(8000);
-
-			try
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
+			generalFunctions.isElementPresent(familyPage.family_mem_dropdown, 30);
+			familyPage.family_mem_dropdown.click();
+			if(generalFunctions.isElementPresent(familyPage.familyMemberList, 30))
 			{
-				if(familyPage.family_mem_dropdown.isDisplayed()) 
-				{
-					System.out.println("Drop down of family member group is displayed");
-					test.log(Status.PASS, "Drop down of family member group is displayed");
+				System.out.println("Drop down of family member group is displayed");
+				test.log(Status.PASS, "Drop down of family member grouplist is displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 
-				}	
-			}
-			catch(Exception e)
-			{
-				test.log(Status.FAIL, "Drop down of family member group is not displayed");
+			}else{
+				test.log(Status.FAIL, "Drop down of family member group is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Drop down of family member group is not displayed");
 			}
 
-			familyPage.family_mem_dropdown.click();		
-			Thread.sleep(5000);
-
-			familyPage.dropdown_ok.click();
-
-			Thread.sleep(2000);
+			familyPage.dropdown_cancel.click();
 			familyPage.back_button1.click();
-
 			Thread.sleep(2000);
-			familyPage.back_button1.click();
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.back_button2.click();
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
 
 		}
+
 		catch(Exception e)
-		{    
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+		{
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
-		}	
+		}
 
 
 
 	}
 
-
-
+	//member login
+	//Verify the dropdown can change to different family member
 	@Test
 	public void TC_Family_015(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Gift points dropdown able to change to different");
-		test.info("Verify the dropdown can change to different family member");
-		test.assignCategory("Family");
+		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
+		test.info("Verify the drop-down can change to different family member");
+
 
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
@@ -1171,76 +926,67 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
 
 		try
 		{
+			driver.resetApp();
+
 			//LOGIN
+
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(5000);
-
-			try
+			if(familyPage.familyGroupIcon.isDisplayed())
 			{
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Displayed");
-					familyPage.FamilyGroupIcon.click();
+				test.log(Status.PASS, "Group Icon Displayed");
+				familyPage.familyGroupIcon.click();
 
-				}
-			}
-			catch(Exception e)
-			{
+			}else{
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			String memberName = familyPage.family_mem.getText();
+			familyPage.family_mem.click();
 
-			Thread.sleep(2000);		
-
-			familyPage.family_mem.click();		
-			Thread.sleep(5000);
-
-			try
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
+			generalFunctions.isElementPresent(familyPage.family_mem_dropdown, 30);
+			familyPage.family_mem_dropdown.click();
+			if(generalFunctions.isElementPresent(familyPage.familyMemberList, 30))
 			{
-				if(familyPage.family_mem_dropdown.isDisplayed())
-				{
-					System.out.println("Drop down Displayed");
-					test.log(Status.PASS, "Drop down Displayed");		
-				}
+				System.out.println("Drop down of family member group is displayed");
+				test.log(Status.PASS, "Drop down of family member grouplist is displayed::USER: "+memberName).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
+
+			}else{
+				test.log(Status.FAIL, "Drop down of family member group is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
+				Assert.fail("Drop down of family member group is not displayed");
 			}
-			catch(Exception e)
-			{
-				test.log(Status.FAIL, "Drop down not Displayed");
-				Assert.fail("Drop down not Displayed");
-			}	
+			String memberAnotherName = familyPage.anot_mem_dropdown.getText();
+			if(generalFunctions.isElementPresent(familyPage.anot_mem_dropdown, 30)){
+				familyPage.anot_mem_dropdown.click();
+				System.out.println("Drop down of family member group is displayed");
+				test.log(Status.PASS, "Another Member selected from dropdownlist displayed::USER "+memberAnotherName).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
+			}else{
+				test.log(Status.FAIL, "Drop down of family member group is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
+				Assert.fail("Drop down of family member group is not displayed");
+			}
 
-			familyPage.family_mem_dropdown.click();		
-			Thread.sleep(3000);
-
-			familyPage.anot_mem_dropdown.click();
 			familyPage.dropdown_ok.click();
-
-			test.log(Status.PASS, "Flow Completed").addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));		
-
-			Thread.sleep(2000);
 			familyPage.back_button1.click();
-
 			Thread.sleep(2000);
-			familyPage.back_button1.click();
-		}	
-		catch(Exception e)
-		{    
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
+			familyPage.back_button2.click();
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+
+
+
+		}catch(Exception e){
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
 	}
 
-
+	/*
 
 	@Test
 	public void TC_Family_016(Method method) throws Exception
@@ -1268,15 +1014,12 @@ public class Family extends DriverSetUp
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(5000);
 
 			try
 			{
-				if(familyPage.FamilyGroupIcon.isDisplayed())
+				if(familyPage.familyGroupIcon.isDisplayed())
 				{
-					test.log(Status.PASS, "Group Icon Displayed");					
+					test.log(Status.PASS, "Group Icon Displayed");
 				}
 			}
 			catch(Exception e)
@@ -1285,14 +1028,14 @@ public class Family extends DriverSetUp
 				Assert.fail("Group Icon Not Displayed");
 			}
 
-			Thread.sleep(2000);		
+			Thread.sleep(2000);
 
 			try
 			{
 				if(familyPage.transaction.isDisplayed())
 				{
 					System.out.println("Transaction history displayed");
-					test.log(Status.PASS, "Transaction history displayed");			
+					test.log(Status.PASS, "Transaction history displayed");
 				}
 			}
 			catch(Exception  e)
@@ -1303,87 +1046,83 @@ public class Family extends DriverSetUp
 
 		}
 		catch(Exception e)
-		{    
+		{
 			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
 			driver.closeApp();
 			Assert.fail(e.getMessage());
-		}		
+		}
 	}
 
-
+	 */
+	//Verify user can gift 0 points//member login
 	@Test
 	public void TC_Family_017(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		System.out.println(TC_Method);
-		test = extent.createTest(TC_Method);
+		test = extent.createTest(TC_Method).assignCategory("FAMILY");
 		test.log(Status.INFO, "Family member/ head point decreases when gifting");
 		test.info("Verify user can gift 0 points");
-		test.assignCategory("Family");
-
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
 
 		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
-
+			driver.resetApp();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
-			//Click on Account Icon
-			accountPage.AccountIcon.click();
-			Thread.sleep(5000);
-
-			try
+			if(familyPage.familyGroupIcon.isDisplayed())
 			{
-				if(familyPage.FamilyGroupIcon.isDisplayed())
-				{
-					test.log(Status.PASS, "Group Icon Displayed");		
-				}
-			}
-			catch(Exception e)
-			{
+				test.log(Status.PASS, "Group Icon Displayed");
+				familyPage.familyGroupIcon.click();
+			}else{
 				test.log(Status.FAIL, "Group Icon Not Displayed");
 				Assert.fail("Group Icon Not Displayed");
 			}
-
-			familyPage.FamilyGroupIcon.click();
-			Thread.sleep(2000);		
+			generalFunctions.isElementPresent(familyPage.balanceValue, 60);
 
 			String member_info = familyPage.family_mem.getText().trim();
 			System.out.println(member_info);
-
-			familyPage.family_mem.click();			
-			Thread.sleep(5000);
-
-			String Dropdown_info = familyPage.family_mem_dropdown.getText().trim();
-			System.out.println(Dropdown_info);	
-
-			if(member_info.contains(Dropdown_info)) 
-			{
-				System.out.println(" family member dropdown is pointed correct");
-				test.log(Status.PASS, " family member dropdown is pointed correct");			
-			}
-			else 
-			{
-				test.log(Status.FAIL, "Drop down not Displayed");
-				Assert.fail("Drop down not Displayed");
+			familyPage.family_mem.click();
+			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
+			generalFunctions.isElementPresent(familyPage.family_mem_dropdown, 30);
+			familyPage.family_mem_dropdown.click();
+			generalFunctions.isElementPresent(familyPage.familyMemberList, 30);
+			if(generalFunctions.isElementPresent(familyPage.radioButtonSelected, 90)) {
+				test.log(Status.PASS, "The selected User is : "+familyPage.radioButtonSelected.getText());
+				System.out.println("Radio------"+familyPage.radioButtonSelected.getText());
+			}else {
+				test.log(Status.FAIL, "The radio button selected is wrong");
+				System.out.println("Radio------"+familyPage.radioButtonSelected.getText());
 			}
 
+			String selectedMember = familyPage.radioButtonSelected.getText();
+			try {
+				if(selectedMember.equalsIgnoreCase(member_info)) {
+					test.log(Status.PASS, "Radio button selected for the correct Member");
+				}else {
+					test.log(Status.FAIL, "The Member selected in the listview is wrong");
+				}
+			}catch(Exception e) {
+				test.fail(e.getMessage());
+				e.printStackTrace();
+			}
+
+
+			familyPage.dropdown_ok.click();
 			int amount=0;
 			familyPage.amount_points.sendKeys(String.valueOf(amount));
 
 			if(familyPage.gift_points.isEnabled() == false)
 			{
 				System.out.println("Not able to gift 0 points to any members");
-				test.log(Status.PASS, "Not able to gift 0 points to any members");			
+				test.log(Status.PASS, "Not able to gift 0 points to any members");
 			}
 			else
 			{
@@ -1391,15 +1130,14 @@ public class Family extends DriverSetUp
 				Assert.fail("User is able to gift 0 points to any members");
 			}
 
-		}
-		catch(Exception e)
-		{    
-			test.log(Status.FAIL, e.getMessage()).addScreenCaptureFromPath(Utilities.getScreenshot(driver,TC_Method));
-			driver.closeApp();
+		}catch(Exception e){
+			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
 
 	}
 
-	 */
+
+
+
 }
