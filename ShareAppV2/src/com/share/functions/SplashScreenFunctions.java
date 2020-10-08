@@ -11,7 +11,7 @@ public class SplashScreenFunctions extends DriverSetUp {
 	public void splashScreenSkip(SplashScreenPage splashScreenPage) {
 		try {
 			//generalFunctions.isElementPresent(splashScreenPage.splashScreen, 30);
-		if(generalFunctions.isElementPresent(splashScreenPage.splashScreenSkip, 30)) {
+		if(generalFunctions.isElementPresent(splashScreenPage.splashScreenSkip, 2)) {
 
 			splashScreenPage.splashScreenSkip.click();
 

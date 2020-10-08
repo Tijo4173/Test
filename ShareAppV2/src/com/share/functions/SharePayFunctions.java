@@ -27,14 +27,14 @@ public class SharePayFunctions extends DriverSetUp {
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		ProfilePage profilePage =  new ProfilePage(driver);
 		System.out.println(newUserPasscodePay);
-		splashScreenFunctions.splashScreenSkip(splashScreenPage);
-		generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+		//splashScreenFunctions.splashScreenSkip(splashScreenPage);
+		generalFunctions.isElementPresent(signInPage.signinPresent, 10);
 		signInPage.signinPresent.click();
 		generalFunctions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(newUserPasscodePay);
 		signInPage.userpassElement.sendKeys(newUserPasswordPay);
 		signInPage.signinElement.click();
-		generalFunctions.skipupdate();
+		//generalFunctions.skipupdate();
 		generalFunctions.isElementPresent(homePage.homeElement, 20);
 
 	}

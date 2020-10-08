@@ -635,33 +635,18 @@ public class RegistrationFunctions extends DriverSetUp{
 	public void LoginFun(RegistrationPage registrationPage,String username,String password,SignInPage signInPage) throws Exception
 	{
 
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
-		GeneralFunctions generalFunctions = new GeneralFunctions();
-		SignInFunctions signInFunctions = new SignInFunctions();
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		HomePage homePage = new HomePage(driver);
-
-
-		try {
-			//User already Login case
-			if(generalFunctions.isElementPresent(homePage.homeElement, 10)) {
-				System.out.println("User already Login");
-			}else  {
-				System.out.println("User NOT Logged in");
-				splashScreenFunctions.splashScreenSkip(splashScreenPage);
-				generalFunctions.isElementPresent(signInPage.signinPresent, 90);
-				signInPage.signinPresent.click();
-				generalFunctions.isElementPresent(signInPage.useridElement, 20);
-				signInPage.useridElement.sendKeys(username);
-				signInPage.userpassElement.sendKeys(password);
-				signInPage.signinElement.click();
-				generalFunctions.isElementPresent(registrationPage.HomeIcon, 90);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-
+		generalFunctions.isElementPresent(signInPage.signinPresent, 30);
+		signInPage.signinPresent.click();
+		//generalFunctions.isElementPresent(signInPage.skipUpdate, 20);
+		//generalFunctions.skipupdate();
+		generalFunctions.isElementPresent(signInPage.useridElement, 90);
+		signInPage.useridElement.sendKeys(username);
+		signInPage.userpassElement.sendKeys(password);
+		signInPage.signinElement.click();
+		//generalFunctions.isElementPresent(signInPage.skipUpdate, 20);
+		//generalFunctions.skipupdate();
+			
 	}
 
 	//		try
@@ -943,7 +928,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		int Xcord = element.getLocation().getX();
 		int Ycord = element.getLocation().getY();
 		System.out.println("Cords "+Xcord+","+Ycord);
-		TouchAction action= new TouchAction(driver).tap(point(Xcord+750,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+362,Ycord+44)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
 
 	}
 	public void ppClick(RegistrationPage registrationPage) {
@@ -952,7 +937,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		int Xcord = element.getLocation().getX();
 		int Ycord = element.getLocation().getY();
 		System.out.println("Cords "+Xcord+","+Ycord);
-		TouchAction action= new TouchAction(driver).tap(point(Xcord+350,Ycord+76)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+126,Ycord+44)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
 
 	}
 	public void infoClick(RegistrationPage registrationPage) {
@@ -962,7 +947,7 @@ public class RegistrationFunctions extends DriverSetUp{
 		int Xcord =p.getX();
 		int Ycord = p.getY();
 		System.out.println("Cords "+Xcord+","+Ycord);
-		TouchAction action= new TouchAction(driver).tap(point(Xcord+410,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
+		TouchAction action= new TouchAction(driver).tap(point(Xcord+268,Ycord)).waitAction(waitOptions(Duration.ofMillis(1000))).perform();
 
 	}
 
@@ -1025,7 +1010,7 @@ public class RegistrationFunctions extends DriverSetUp{
 				System.out.println("User already Login");
 			}else  {
 				System.out.println("User NOT Logged in");
-				splashScreenFunctions.splashScreenSkip(splashScreenPage);
+				//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 				generalFunctions.isElementPresent(signInPage.signinPresent, 90);
 				signInFunctions.validUserLogin();
 				generalFunctions.isElementPresent(registrationPage.HomeIcon, 90);

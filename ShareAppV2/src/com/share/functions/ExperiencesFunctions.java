@@ -3,6 +3,8 @@ package com.share.functions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.ExperiencesPage;
+import com.share.objectrepository.HomePage;
+import com.share.objectrepository.SignInPage;
 
 public class ExperiencesFunctions extends DriverSetUp {
 
@@ -47,11 +49,11 @@ public class ExperiencesFunctions extends DriverSetUp {
 	}
 	   break;
 	case "MEMBER CONTESTS":
-	experiencesPage.memberContests.click();
+	experiencesPage.Contests.click();
 	try
 	{
 
-	if(generalFunctions.isElementPresent(experiencesPage.memberContests, 30))
+	if(generalFunctions.isElementPresent(experiencesPage.Contests, 30))
 	{
 	displayedFlag=true;
 	}
@@ -82,6 +84,5 @@ public class ExperiencesFunctions extends DriverSetUp {
 	 return displayedFlag;
 	 }
 
-
-
+	
 }

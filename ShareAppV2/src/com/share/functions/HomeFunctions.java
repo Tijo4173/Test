@@ -45,7 +45,7 @@ public class HomeFunctions extends DriverSetUp
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		//homePage.allowAccess.click();
 		try{
-			if(homePage.allowAccess.isDisplayed()==true) {
+			 if(homePage.allowAccess.isDisplayed()==true) {
 				homePage.allowAccess.click();
 				homePage.allowPermission.click();
 				homePage.allowPermission.click();
@@ -56,14 +56,12 @@ public class HomeFunctions extends DriverSetUp
 		//homePage.cameraClose.click();
 	}
 	public void moreClick(HomePage homePage) {
-
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try {
 			if(homePage.buttonCaptureClick.isDisplayed()) {
 				for(int a=0;a<=11;a++) {
-
-					Thread.sleep(500);
+					
 					homePage.buttonCaptureClick.click();
+					Thread.sleep(500);
 					System.out.println(a);
 				}
 			}
@@ -80,16 +78,16 @@ public class HomeFunctions extends DriverSetUp
 		SignInPage signInPage = new SignInPage(driver);
 		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
-		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
-		generalFuntions.skipupdate();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 		generalFuntions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(newUserPasscode);
 		signInPage.userpassElement.sendKeys(newUserPassword);
 		signInPage.signinElement.click();
 //		generalFuntions.isElementPresent(signInPage.biocancel, 30);
 //		signInPage.biocancel.click();
-		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
-		generalFuntions.skipupdate();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 	}
 
 }

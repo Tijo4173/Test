@@ -107,23 +107,25 @@ public class FamilyFunctions extends DriverSetUp
 			test.log(Status.FAIL, "Group Icon Not Displayed");
 			Assert.fail("Group Icon Not Displayed");
 		}
-
-		generalFunctions.isElementPresent(familyPage.balanceValue, 60);
-
+		
+		
 			//Click on add new member button
 			if(generalFunctions.isElementPresent(familyPage.addNewMemberButton, 30))
 			{
-				test.log(Status.PASS, "AddNewMemberButton Dispalyed");
+				test.log(Status.PASS, "AddNewMemberButton Displayed");	
 				familyPage.addNewMemberButton.click();
-			}else {
-				test.log(Status.FAIL, "AddNewMemberButton NOT Dispalyed");
-			System.out.println("AddNewMemberButton Not Displayed");
-		}
-
+			}
+			else
+			{
+				test.log(Status.FAIL, "AddNewMemberButton Not Displayed");
+				Assert.fail("AddNewMemberButton Not Displayed");
+			}
+			
+			
 		//Click on EmailAddressField
 		if(generalFunctions.isElementPresent(familyPage.emailAddressField, 30))
 		{
-			test.log(Status.PASS, "EmailAddressField Dispalyed");
+			test.log(Status.PASS, "EmailAddressField Displayed");
 			familyPage.emailAddressField.click();
 		}
 		else
@@ -141,36 +143,32 @@ public class FamilyFunctions extends DriverSetUp
 		//Click on FamilyGroupIcon
 		if(generalFunctions.isElementPresent(familyPage.familyGroupIcon, 30))
 		{
-			test.log(Status.PASS, "Group Icon Dispalyed");
+			test.log(Status.PASS, "Group Icon Displayed");
 			familyPage.familyGroupIcon.click();
-
 		}
 		else
 		{
 			test.log(Status.FAIL, "Group Icon Not Displayed");
 			Assert.fail("Group Icon Not Displayed");
 		}
-
-		generalFunctions.isElementPresent(familyPage.balanceValue, 60);
-
-		//Click on InviteMember
-		if(generalFunctions.isElementPresent(familyPage.addNewMemberButton, 30))
+		Thread.sleep(3000);
+		//Click on add new member button
+		String er =familyPage.addNewMemberButton.getText();
+		System.out.println(er);
+		if(generalFunctions.isElementPresent(familyPage.addNewMemberButton, 10))
 		{
-			test.log(Status.PASS, "AddNewMemberButton Dispalyed");
+			test.log(Status.PASS, "AddNewMemberButton Displayed");	
 			familyPage.addNewMemberButton.click();
-
 		}
 		else
 		{
 			test.log(Status.FAIL, "AddNewMemberButton Not Displayed");
 			Assert.fail("AddNewMemberButton Not Displayed");
-		}
-
-
+		}	
 		//Click on EmailAddressField
 		if(generalFunctions.isElementPresent(familyPage.emailAddressField, 30))
 		{
-			test.log(Status.PASS, "EmailAddressField Dispalyed");
+			test.log(Status.PASS, "EmailAddressField Displayed");
 			familyPage.emailAddressField.click();
 		}
 		else

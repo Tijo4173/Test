@@ -54,7 +54,7 @@ public class ProfileFunctions extends DriverSetUp
 		TouchAction action = new TouchAction(driver).longPress(longPressOptions().withElement(element(element)).withDuration(Duration.ofMillis(10000))).release().perform();
 	}
 	//Passcode for New user
-	public void newUserPass() {
+	public void newUserPass() throws Exception {
 
 		SignInPage signInPage = new SignInPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -62,14 +62,19 @@ public class ProfileFunctions extends DriverSetUp
 		ProfilePage profilePage =  new ProfilePage(driver);
 		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 		generalFuntions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(newUserPasscode);
 		signInPage.userpassElement.sendKeys(newUserPassword);
 		signInPage.signinElement.click();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 		generalFuntions.isElementPresent(homePage.homeElement, 20);
 		homePage.avatarHome.click();
 		generalFuntions.isElementPresent(profilePage.paymentMethods, 20);
 		profilePage.paymentMethods.click();
+		
 
 
 	}
@@ -153,19 +158,34 @@ public class ProfileFunctions extends DriverSetUp
 
 		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
-		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
-		generalFuntions.skipupdate();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 		generalFuntions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(newUserPasscode);
 		signInPage.userpassElement.sendKeys(newUserPassword);
 		signInPage.signinElement.click();
-		generalFuntions.isElementPresent(signInPage.biocancel, 30);
-		signInPage.biocancel.click();
-		generalFuntions.isElementPresent(signInPage.skipUpdate, 20);
-		generalFuntions.skipupdate();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
 		generalFuntions.isElementPresent(homePage.homeElement, 20);
+		generalFuntions.isElementPresent(homePage.avatarHome, 10);
 		homePage.avatarHome.click();
 
+	}
+	
+	public void OfferSigin() throws Exception {
+		SignInPage signInPage = new SignInPage(driver);
+		HomePage homePage = new HomePage(driver);
+		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
+		signInPage.signinPresent.click();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
+		generalFuntions.isElementPresent(signInPage.useridElement, 90);
+		signInPage.useridElement.sendKeys(newUserPasscode);
+		signInPage.userpassElement.sendKeys(newUserPassword);
+		signInPage.signinElement.click();
+		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);
+		//generalFuntions.skipupdate();
+		generalFuntions.isElementPresent(homePage.homeElement, 20);
 	}
 }
 
