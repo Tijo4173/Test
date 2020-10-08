@@ -68,8 +68,9 @@ public class HomePage extends DriverSetUp {
 	public AndroidElement home_currency;
 
 
-	@AndroidFindBy(id = "v_avatar")
+	@AndroidFindBy(id = "avatarTextView")
 	public AndroidElement avatarHome;
+	
 
 	//Submit Receipt
 	@AndroidFindBy(id = "option_home_home")
@@ -96,7 +97,7 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(id = "home_screen_hint_messages_viewpager")
 	public AndroidElement scrollView;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'EXPERIENCES')and @clickable='true']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='EXPERIENCES']")
 	public AndroidElement homeExperiences;
 
 	@AndroidFindBy(xpath = "//androidx.appcompat.app.ActionBar.Tab[@index='1']")
@@ -159,6 +160,8 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(accessibility = "Navigate up")
 	public AndroidElement previewClose;
+	
+	
 
 	@AndroidFindBy(id = "menu_item_retake")
 	public AndroidElement previewRetake;
@@ -215,10 +218,10 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(id = "iv_home_feature_share_points")
 	public AndroidElement homeSharePoints;
 
-	@AndroidFindBy(id = "points")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='points']")
 	public AndroidElement homePointsField;
 
-	@AndroidFindBy(id = "reciever")
+	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='reciever']")
 	public AndroidElement homePointsEmail;
 
 	@AndroidFindBy(xpath = "//android.widget.Button[@text='SUBMIT']")
@@ -233,10 +236,13 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.view.View[@index='4']")
 	public AndroidElement homePointsAed;
 
-	@AndroidFindBy(xpath = "//android.view.View[@text='Enter the points you want to share (starting from 10 points).']")
+	@AndroidFindBy(xpath = "//android.view.View[@text ='Enter the points you want to share (starting from 10 points).']")
 	public AndroidElement homePointsError;
+	
+	@AndroidFindBy(xpath = "//android.view.View[@text ='Sorry, that’s more points than you currently have.']")
+	public AndroidElement homeNopointError;
 
-	@AndroidFindBy(xpath = "//android.view.View[@text='Enter recipient's email address.']")
+	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[5]/android.view.View[2]/android.view.View[1]")
 	public AndroidElement homePointsEmailError;
 
 	//Experiences 4 Tabs
@@ -251,6 +257,7 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTEST']")
 	public AndroidElement homeContest;
+
 
 	@AndroidFindBy(id = "button_see_all_2")
 	public AndroidElement homeExpSeeAll;
@@ -269,7 +276,7 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(id = "button_see_all")
 	public AndroidElement homeupdateSeeAll;
 
-	@AndroidFindBy(id = "tvDate")
+	@AndroidFindBy(id = "tv_experience_details_start")
 	public AndroidElement homeupdateDate;
 
 	@AndroidFindBy(id = "iv_share")
@@ -277,8 +284,11 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(id = "tv_experience_details_description")
 	public AndroidElement homeupdateDesc;
+	
+	@AndroidFindBy(id = "textView21")
+	public AndroidElement homeupdatespagetitle;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@index='1']")
+	@AndroidFindBy(id = "tv_title")
 	public AndroidElement homeupdateNews;
 
 	@AndroidFindBy(id = "iv_close")
@@ -341,10 +351,10 @@ public class HomePage extends DriverSetUp {
 	public AndroidElement homePointsError1;
 
 	//Experiences 4 Tabs
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR OFFERS']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR']")
 	public AndroidElement homeOffers1;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='default']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR']")
 	public AndroidElement homeOffers2;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER BENEFITS']")
@@ -352,5 +362,13 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER BENEFITS']")
 	public AndroidElement homeOffers4;
+	
+	@AndroidFindBy(id = "imageViewExperience")
+	public AndroidElement homeTileoffer;
+	
+
+	
+	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"HOME\"]/android.widget.ImageView")
+	public AndroidElement homebottomicon;
 
 }

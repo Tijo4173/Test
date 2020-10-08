@@ -66,7 +66,7 @@ public class RegistrationPage {
 	@AndroidFindBy(id = "rb_mr")
 	public AndroidElement titleMr;
 
-	@AndroidFindBy(id = "rb_mr")
+	@AndroidFindBy(id = "rb_mrs")
 	public AndroidElement titleMrs;
 
 	@AndroidFindBy(id = "rb_miss")

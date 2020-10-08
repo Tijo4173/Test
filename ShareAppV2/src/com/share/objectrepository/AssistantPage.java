@@ -39,13 +39,18 @@ public class AssistantPage extends DriverSetUp  {
 	@AndroidFindBy(id = "text_view_assistant_share_basics")
 	public AndroidElement shareBasicsSection;
 
-	@AndroidFindBy(id = "text_view_chat_message")
+	@AndroidFindBy(id = "text_view_call_message")
 	public AndroidElement callUsSection;
+	
+	@AndroidFindBy(id = "image_view_message_icon")
+	public AndroidElement sendusmessage;
 
+	
+	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE WALLET']")
 	public AndroidElement ShareWalletTopic;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='REGISTRATION/YOUR']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='REGISTRATION/YOUR ACCOUNT']")
 	public AndroidElement RegistrationTopic;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE POINTS']")
@@ -110,10 +115,16 @@ public class AssistantPage extends DriverSetUp  {
 	//	public AndroidElement firstQuestionAnswer;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Where to use SHARE']")
+	public AndroidElement wheretouseShare;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Using SHARE']")
 	public AndroidElement usingShare;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE in Shopping Malls']")
 	public AndroidElement usingShareMalls;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Using the SHARE Wallet']")
+	public AndroidElement usingSharewallet;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Earning SHARE points']")
 	public AndroidElement earningSHAREPoints;
@@ -187,12 +198,9 @@ public class AssistantPage extends DriverSetUp  {
 
 	@AndroidFindBy(id = "tvDate")
     public AndroidElement transactionsdate;
-
-
+	
+	@AndroidFindBy(id = "relativeLayoutAssistantCallBubble")
+    public AndroidElement assistantchaticon;
+	
 	//V2 END
-
-
-
-
-
 }

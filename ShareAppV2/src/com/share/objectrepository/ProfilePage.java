@@ -20,7 +20,7 @@ public class ProfilePage extends DriverSetUp {
 
 
 
-	@AndroidFindBy(id = "v_avatar")
+	@AndroidFindBy(id = "avatarTextView")
 	public AndroidElement avatar;
 
 	@AndroidFindBy(id = "tv_full_name")
@@ -53,7 +53,7 @@ public class ProfilePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Logout']")
 	public AndroidElement Logout;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text,'Version')]")
+	@AndroidFindBy(id = "tv_custom_preference_title")
 	public AndroidElement version;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text ='EDIT DETAILS']")
@@ -77,13 +77,14 @@ public class ProfilePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Fingerprint']")
 	public AndroidElement fingerprint;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='tv_custom_preference_title' and @text='Notifications']/following-sibling::android.widget.Switch[@resource-id='switch_custom_preference']")
+	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.Switch\n" + 
+			"")
 	public AndroidElement notificationSwitch;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.android.settings:id/switch_text' and @text='Show notifications']/following-sibling::android.widget.Switch[@resource-id='com.android.settings:id/switch_widget']")
 	public AndroidElement notificationsSettings;
 
-	@AndroidFindBy(xpath = "//android.view.ViewGroup['8']/android.widget.Switch[@index='3'")
+	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[6]/android.widget.Switch")
 	public AndroidElement fingerprintSwitch;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TERMS & CONDITIONS']")
@@ -92,7 +93,7 @@ public class ProfilePage extends DriverSetUp {
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PRIVACY POLICY']")
 	public AndroidElement privacyPolicyPage;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id,'alertTitle']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	public AndroidElement logoutConfirmation;
 
 	@AndroidFindBy(id = "android:id/button1")
@@ -234,13 +235,13 @@ public class ProfilePage extends DriverSetUp {
 	@AndroidFindBy(id = "tv_forgot_pin")
 	public AndroidElement forgotPin;
 
-	@AndroidFindBy(id = "button2")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	public AndroidElement resetCancel;
 
-	@AndroidFindBy(id = "button1")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	public AndroidElement resetResetPin;
 
-	@AndroidFindBy(id = "message")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	public AndroidElement resetAlert;
 
 	@AndroidFindBy(id = "tv_enter_pin_title")
@@ -261,13 +262,13 @@ public class ProfilePage extends DriverSetUp {
 	@AndroidFindBy(id="root_verify_pin")
 	public AndroidElement existingPinScreen;
 
-	@AndroidFindBy(id = "message")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='android:id/message']")
 	public AndroidElement removeCardAlert;
 
-	@AndroidFindBy(id = "button1")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button1']")
 	public AndroidElement yesOption;
 
-	@AndroidFindBy(id = "button2")
+	@AndroidFindBy(xpath = "//android.widget.Button[@resource-id='android:id/button2']")
 	public AndroidElement noOption;
 
 	@AndroidFindBy(id = "btn_forgot_pin_success")

@@ -79,7 +79,7 @@ public class DriverSetUp extends DataDriven {
 		extent.attachReporter(htmlReporter);
 		extent.setSystemInfo("Author", "Testhouse");
 		extent.setSystemInfo("Application", "ShareV2");
-		extent.setSystemInfo("Build Version", "2.1.2");
+		extent.setSystemInfo("Build Version", "2.3.3");
 			}
 
 	@BeforeTest(alwaysRun=true)
@@ -99,7 +99,7 @@ public class DriverSetUp extends DataDriven {
 
 		//FileInputStream file =new FileInputStream(projectPath+"/Global.properties");
 		prop=new Properties();
-		prop.load(new FileInputStream("C:\\Users\\thi1907501\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\utility\\Global.properties"));
+		prop.load(new FileInputStream("C:\\Users\\TIJO\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\utility\\Global.properties"));
 		//		prop.get("StoreApp");
 		//		File appDir=new File("src");
 		//		File app=new File(appDir,(String) prop.get("StoreApp"));
@@ -119,7 +119,7 @@ public class DriverSetUp extends DataDriven {
 		DesiredCapabilities cap = new DesiredCapabilities();
 		//String device=(String) prop.get("Device");
 		cap.setCapability("device", "Android");
-		cap.setCapability("deviceName","27d9009175217ece");
+		cap.setCapability("deviceName","DT89626EA1950609814");
 		//cap.setCapability("udid", strDeviceUDID);
 		cap.setCapability("appPackage", "com.maf.dl.sharesit");
 		cap.setCapability("appActivity", "com.maf.android.share.presentation.splash.SplashActivity");

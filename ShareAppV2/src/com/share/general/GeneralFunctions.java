@@ -178,11 +178,11 @@ public class GeneralFunctions extends DriverSetUp{
 			    break;
 			 case "MEMBER CONTESTS":
 
-				 objExperiencesPage.memberContests.click();
+				 objExperiencesPage.Contests.click();
 				 try
 					{
-			  			isElementPresent(objExperiencesPage.memberContests, 30);
-						if(objExperiencesPage.memberContests.isDisplayed()==true)
+			  			isElementPresent(objExperiencesPage.Contests, 30);
+						if(objExperiencesPage.Contests.isDisplayed()==true)
 						{
 							displayedFlag=true;
 						}
@@ -365,7 +365,7 @@ public class GeneralFunctions extends DriverSetUp{
 	    	SignInPage signInPage = new SignInPage(driver);
 			try
 			{
-				if(isElementPresent(signInPage.skipUpdate,30))
+				if(isElementPresent(signInPage.skipUpdate,2))
 				{
 					signInPage.skipUpdate.click();
 				}else {

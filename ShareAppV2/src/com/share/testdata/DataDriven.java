@@ -237,7 +237,7 @@ public class DataDriven  {
 			//	ExcelUtility excel = new ExcelUtility(projectPath+"/excel/TestDataSheet.xlsx", "Sheet2");
 
 			//Object data= testData(projectPath+"/testdata/TestDataSheet.xlsx", "Sheet2");
-			Object data= testData("C:\\Users\\thi1907501\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx", "IterationSign");
+			Object data= testData("C:\\Users\\TIJO\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx", "IterationSign");
 			return data;
 
 		}
@@ -250,7 +250,7 @@ public class DataDriven  {
 			//	ExcelUtility excel = new ExcelUtility(projectPath+"/excel/TestDataSheet.xlsx", "Sheet2");
 
 			//Object data= testData(projectPath+"/testdata/TestDataSheet.xlsx", "Sheet2");
-			Object data= testData("C:\\Users\\thi1907501\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx", "IterationYear");
+			Object data= testData("C:\\Users\\TIJO\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx", "IterationYear");
 			return data;
 
 		}
@@ -262,7 +262,7 @@ public class DataDriven  {
 			//	ExcelUtility excel = new ExcelUtility(projectPath+"/excel/TestDataSheet.xlsx", "Sheet2");
 
 			//Object data= testData(projectPath+"/testdata/TestDataSheet.xlsx", "Sheet2");
-			Object data= testData("C:\\Users\\thi1907501\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx", "Iteration");
+			Object data= testData("C:\\Users\\TIJO\\git\\ShareAppV2\\ShareAppV2\\src\\com\\share\\testdata\\TestDataSheet.xlsx","Iteration");
 			return data;
 
 		}
