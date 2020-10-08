@@ -12,6 +12,8 @@ import com.share.functions.SignInFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.AssistantPage;
+import com.share.objectrepository.ZendeskChatPage;
+import com.share.utility.Utilities;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -20,12 +22,8 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class Assistant extends DriverSetUp
 {
-
 	GeneralFunctions generalFunctions = new GeneralFunctions();
-
-
-	//V2 START
-
+	
 	@Test(priority=1)
 	public void TC_Assistant_001_002(Method method) throws Exception
 	{
@@ -34,61 +32,62 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
-		{
-			driver.resetApp();
+		{	driver.resetApp();
 			signInFunctions.quickSignIn();
-			// Click Experiences
-			//Thread.sleep(5000);
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
 			assistantPage.AssistantIcon.click();
-
 			//Verify Assistant Page displayed
 			if(generalFunctions.isElementPresent(assistantPage.assistantPage,30))
-			{
-				test.log(Status.PASS, "Assistant Page Displayed");
-			}else{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
+			{	test.log(Status.PASS, "Assistant Page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
+			else
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			//Verify Search Icon
 			if(generalFunctions.isElementPresent(assistantPage.searchIcon,30))
-			{
-				test.log(Status.PASS, "Search Icon Displayed");
-			}else{
-				test.log(Status.FAIL, "Search Icon Not Displayed");
-
+			{	test.log(Status.PASS, "Search Icon Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "Search Icon Not Displayed");
+			}
 			//Verify Topic Section
-
 			if(generalFunctions.isElementPresent(assistantPage.topicSection,30))
-			{
-				test.log(Status.PASS, "Topic Section Displayed");
-			}else{
-				test.log(Status.FAIL, "Topic Section Not Displayed");
-
+			{	test.log(Status.PASS, "Topic Section Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "Topic Section Not Displayed");
+			}
 			//Verify Share Basics Section
 			if(generalFunctions.isElementPresent(assistantPage.shareBasicsSection,30))
-			{
-				test.log(Status.PASS, "Share Basics Section Displayed");
-			}else{
-				test.log(Status.FAIL, "Share Basics Section Not Displayed");
-
+			{	test.log(Status.PASS, "Top share tips/Share Basics Section Displayed");
 			}
-
+			else{
+				test.log(Status.FAIL, "Top share tips/Share Basics Section Not Displayed");
+			}
+			generalFunctions.SimplyScrollDown();
+			//chat us icon
+			if(generalFunctions.isElementPresent(assistantPage.assistantchaticon,30))
+			{	test.log(Status.PASS, "Assistant Chat icon Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else{
+				test.log(Status.FAIL, "Assistant Chat icon Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			//Verify Call Us Section
 			if(generalFunctions.isElementPresent(assistantPage.callUsSection,30))
-			{
-				test.log(Status.PASS, "Call Us Section Displayed");
-			}else{
-				test.log(Status.FAIL, "Call Us Section Not Displayed");
+			{	test.log(Status.PASS, "Call Us Section Displayed");
+			}
+			else
+			{	test.log(Status.FAIL, "Call Us Section Not Displayed");
+			}
+			// sendus message
+			if(generalFunctions.isElementPresent(assistantPage.sendusmessage,30))
+			{	test.log(Status.PASS, "Send us a message Displayed");
+			}
+			else
+			{	test.log(Status.FAIL, "Send us a message Not Displayed");
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
@@ -99,7 +98,6 @@ public class Assistant extends DriverSetUp
 		}
 	}
 
-
 	@Test(priority=2)
 	public void TC_Assistant_003(Method method) throws Exception
 	{
@@ -108,76 +106,65 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		try
 		{
-			// Click Experiences
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
 			assistantPage.AssistantIcon.click();
 			//Verify Assistant Page displayed
 			if(generalFunctions.isElementPresent(assistantPage.assistantPage,30))
-			{
-				test.log(Status.PASS, "Assistant Page Displayed");
-			}else{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
+			{	test.log(Status.PASS, "Assistant Page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
+			else
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			if(generalFunctions.isElementPresent(assistantPage.RegistrationTopic, 10))
-			{
-				test.log(Status.PASS, "Registration Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Registration Topic Not Displayed");
+			{	test.log(Status.PASS, "Registration Topic Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "Registration Topic Not Displayed");
+			}
 			if(generalFunctions.isElementPresent(assistantPage.ShareWalletTopic, 10))
-			{
-				test.log(Status.PASS, "Share Wallet Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Share Wallet Topic Not Displayed");
+			{ 	test.log(Status.PASS, "Share Wallet Topic Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "Share Wallet Topic Not Displayed");
+			}
 			if(generalFunctions.isElementPresent(assistantPage.sharePointsTopic,10))
-			{
-				test.log(Status.PASS, "About Share Points Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "About Share Points Topic Not Displayed");
+			{	test.log(Status.PASS, "About Share Points Topic Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "About Share Points Topic Not Displayed");
+			}
 			if(generalFunctions.isElementPresent(assistantPage.earningSharePointsTopic, 10))
-			{
-				test.log(Status.PASS, "Earning Share Points Topic Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Earning Share Points Topic Not Displayed");
+			{	test.log(Status.PASS, "Earning Share Points Topic Topic Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-			if(generalFunctions.isElementPresent(assistantPage.redeemSharePointsTopic, 10))
-			{
-				test.log(Status.PASS, "Redeem Share Points Topic Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Redeem Share Points Topic Not Displayed");
+			else
+			{	test.log(Status.FAIL, "Earning Share Points Topic Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
+			//if(generalFunctions.isElementPresent(assistantPage.redeemSharePointsTopic, 10))
+			//{
+				//test.log(Status.PASS, "Redeem Share Points Topic Topic Displayed");
+			//}else{
+				//test.log(Status.FAIL, "Redeem Share Points Topic Not Displayed");
+			//}
 			if(generalFunctions.isElementPresent(assistantPage.familyGroupTopic, 10))
-			{
-				test.log(Status.PASS, "Share Family Group Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Share Family Group Topic Not Displayed");
+			{	test.log(Status.PASS, "Share Family Group Topic Displayed");
 			}
-
-			if(generalFunctions.isElementPresent(assistantPage.shareIDTopic, 10))
-			{
-				test.log(Status.PASS, "Share At VOX Cinemas Topic Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Share At VOX Cinemas Topic Not Displayed");
+			else
+			{	test.log(Status.FAIL, "Share Family Group Topic Not Displayed");
 			}
-
-
+			//if(generalFunctions.isElementPresent(assistantPage.shareIDTopic, 10))
+			//{
+			//	test.log(Status.PASS, "Share At VOX Cinemas Topic Topic Displayed");
+			//}else{
+			//	test.log(Status.FAIL, "Share At VOX Cinemas Topic Not Displayed");
+			//}
 			if(generalFunctions.isElementPresent(assistantPage.shareWorldTopic, 10))
-			{
-				test.log(Status.PASS, "Share At Carrefour Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Share At Carrefour Topic Not Displayed");
+			{	test.log(Status.PASS, "Share At Carrefour Topic Displayed");
+			}
+			else
+			{	test.log(Status.FAIL, "Share At Carrefour Topic Not Displayed");
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
@@ -197,212 +184,148 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		AssistantFunctions assistantFunctions = new AssistantFunctions();
 		try
 		{
-			// Click Experiences
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 30);
 			assistantPage.AssistantIcon.click();
 
 			//Verify Assistant Page displayed
-
 			if(generalFunctions.isElementPresent(assistantPage.assistantPage, 30))
-			{
-				test.log(Status.PASS, "Assistant Page Displayed");
-			}else{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
+			{	test.log(Status.PASS, "Assistant Page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-			/*
-				if(generalFunctions.isElementPresent(assistantPage.RegistrationTopic, 30))
-				{
-					test.log(Status.PASS, "Registration Topic Displayed");
-				}else{
-				test.log(Status.FAIL, "Registration Topic Not Displayed");
-				Assert.fail("Registration Topic Not Displayed");
+			else
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
+			if(generalFunctions.isElementPresent(assistantPage.RegistrationTopic, 30))
+			{	test.log(Status.PASS, "Registration Topic Displayed");
+			}
+			else
+			{	test.log(Status.FAIL, "Registration Topic Not Displayed");
+			}
 			assistantPage.RegistrationTopic.click();
 			Thread.sleep(4000);
-			generalFunctions.isElementPresent(assistantPage.pageTitle, 30);
-			if(generalFunctions.getText(assistantPage.pageTitle).contains("REGISTRATION"))
+			//generalFunctions.isElementPresent(assistantPage.pageTitle, 30);
+			if(generalFunctions.getText(assistantPage.RegistrationTopic).contains("REGISTRATION/YOUR ACCOUNT"))
 			{
-				test.log(Status.PASS, "REGISTRATION related questions page Displayed");
+				test.log(Status.PASS, "REGISTRATION related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "REGISTRATION related questions page Not Displayed");
-				Assert.fail("REGISTRATION related questions page Not Displayed");
+				test.log(Status.FAIL, "REGISTRATION related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			try
 			{
 				if(assistantPage.questionsList.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "REGISTRATION related questions list Displayed");
+				{	test.log(Status.PASS, "REGISTRATION related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
-			{
-				test.log(Status.FAIL, "REGISTRATION related questions list Not Displayed");
-				Assert.fail("REGISTRATION related questions list Not Displayed");
+			{	test.log(Status.FAIL, "REGISTRATION related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.firstQuestion.click();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.pageBack.click();
-			 */
-
-
+			
 			if(generalFunctions.isElementPresent(assistantPage.ShareWalletTopic, 10))
-			{
-				test.log(Status.PASS, "Share Wallet Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "Share Wallet Topic Not Displayed");
+			{	test.log(Status.PASS, "Share Wallet Topic Displayed");
+			}
+			else
+			{	test.log(Status.FAIL, "Share Wallet Topic Not Displayed");
 			}
 			assistantPage.ShareWalletTopic.click();
 			generalFunctions.isElementPresent(assistantPage.questionsList, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleWallet).contains("SHARE WALLET"))
-			{
-				test.log(Status.PASS, "SHARE WALLET related questions page Displayed");
+			{	test.log(Status.PASS, "SHARE WALLET related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE WALLET related questions page Not Displayed");
-				Assert.fail("SHARE WALLET related questions page Not Displayed");
+			{	test.log(Status.FAIL, "SHARE WALLET related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
 			if(generalFunctions.isElementPresent(assistantPage.questionsList, 30))
-			{
-				test.log(Status.PASS, "SHARE WALLET related questions list Displayed");
-			}else{
-				test.log(Status.FAIL, "SHARE WALLET related questions list Not Displayed");
-
+			{	test.log(Status.PASS, "SHARE WALLET related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
+			else
+			{	test.log(Status.FAIL, "SHARE WALLET related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			assistantFunctions.questionsClick();
 			//assistantPage.firstQuestion.click();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
-
 			if(generalFunctions.isElementPresent(assistantPage.sharePointsTopic, 10))
-			{
-				test.log(Status.PASS, "About Share Points Topic Displayed");
-			}else{
-				test.log(Status.FAIL, "About Share Points Topic Not Displayed");
+			{	test.log(Status.PASS, "About Share Points Topic Displayed");
 			}
-
+			else
+			{	test.log(Status.FAIL, "About Share Points Topic Not Displayed");
+			}
 			assistantPage.sharePointsTopic.click();
-
-
 			generalFunctions.isElementPresent(assistantPage.questionsList, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleSPoints).contains("SHARE POINTS"))
-			{
-				test.log(Status.PASS, "ABOUT SHARE POINTS related questions page Displayed");
+			{	test.log(Status.PASS, "ABOUT SHARE POINTS related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "ABOUT SHARE POINTS related questions page Not Displayed");
-				Assert.fail("ABOUT SHARE POINTS related questions page Not Displayed");
+			{	test.log(Status.FAIL, "ABOUT SHARE POINTS related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			if(generalFunctions.isElementPresent(assistantPage.questionsList, 10))
-			{
-				test.log(Status.PASS, "ABOUT SHARE POINTS related questions list Displayed");
+			{	test.log(Status.PASS, "ABOUT SHARE POINTS related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "ABOUT SHARE POINTS related questions list Not Displayed");
-				Assert.fail("ABOUT SHARE POINTS related questions list Not Displayed");
+			{	test.log(Status.FAIL, "ABOUT SHARE POINTS related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantFunctions.questionsClick();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
 			if(generalFunctions.isElementPresent(assistantPage.earningSharePointsTopic, 10))
-			{
-				test.log(Status.PASS, "Earning Share Points Topic Topic Displayed");
+			{	test.log(Status.PASS, "Earning Share Points Topic Topic Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Earning Share Points Topic Not Displayed");
-
+			{	test.log(Status.FAIL, "Earning Share Points Topic Not Displayed");
 			}
-
 			assistantPage.earningSharePointsTopic.click();
 			generalFunctions.isElementPresent(assistantPage.questionsList, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleEarn).contains("EARNING POINTS"))
-			{
-				test.log(Status.PASS, "EARNING SHARE POINTS related questions page Displayed");
+			{	test.log(Status.PASS, "EARNING SHARE POINTS related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "EARNING SHARE POINTS related questions page Not Displayed");
-				Assert.fail("EARNING SHARE POINTS related questions page Not Displayed");
+			{	test.log(Status.FAIL, "EARNING SHARE POINTS related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
 			if(generalFunctions.isElementPresent(assistantPage.questionsList, 10))
-			{
-				test.log(Status.PASS, "EARNING SHARE POINTS related questions list Displayed");
+			{	test.log(Status.PASS, "EARNING SHARE POINTS related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "EARNING SHARE POINTS related questions list Not Displayed");
-
+			{	test.log(Status.FAIL, "EARNING SHARE POINTS related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantFunctions.questionsClick();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
-
+/*
 			if(generalFunctions.isElementPresent(assistantPage.redeemSharePointsTopic, 10))
 			{
 				test.log(Status.PASS, "Redeem Share Points Topic Topic Displayed");
@@ -452,57 +375,38 @@ public class Assistant extends DriverSetUp
 
 			assistantPage.backAssistant.click();
 
-
-
+*/
 			if(generalFunctions.isElementPresent(assistantPage.familyGroupTopic, 10))
-			{
-				test.log(Status.PASS, "Share Family Group Topic Displayed");
+			{	test.log(Status.PASS, "Share Family Group Topic Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Share Family Group Topic Not Displayed");
-
+			{	test.log(Status.FAIL, "Share Family Group Topic Not Displayed");
 			}
-
 			assistantPage.familyGroupTopic.click();
-
 			generalFunctions.isElementPresent(assistantPage.questionsList, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleFamily).contains("SHARE FAMILY GROUP"))
-			{
-				test.log(Status.PASS, "SHARE FAMILY GROUP related questions page Displayed");
+			{	test.log(Status.PASS, "SHARE FAMILY GROUP related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE FAMILY GROUP related questions page Not Displayed");
-				Assert.fail("SHARE FAMILY GROUP related questions page Not Displayed");
+			{	test.log(Status.FAIL, "SHARE FAMILY GROUP related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
 			if(generalFunctions.isElementPresent(assistantPage.questionsList, 10))
-			{
-				test.log(Status.PASS, "SHARE FAMILY GROUP related questions list Displayed");
+			{	test.log(Status.PASS, "SHARE FAMILY GROUP related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE FAMILY GROUP related questions list Not Displayed");
-				Assert.fail("SHARE FAMILY GROUP related questions list Not Displayed");
+			{	test.log(Status.FAIL, "SHARE FAMILY GROUP related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantFunctions.questionsClick();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
-
+/*
 			if(generalFunctions.isElementPresent(assistantPage.shareIDTopic, 10))
 			{
 				test.log(Status.PASS, "Share At VOX Cinemas Topic Topic Displayed");
@@ -548,49 +452,38 @@ public class Assistant extends DriverSetUp
 			}
 
 			assistantPage.backAssistant.click();
-
+*/
 
 			if(generalFunctions.isElementPresent(assistantPage.shareWorldTopic, 10))
-			{
-				test.log(Status.PASS, "Share At Carrefour Topic Displayed");
+			{	test.log(Status.PASS, "Share At Carrefour Topic Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Share At Carrefour Topic Not Displayed");
+			{	test.log(Status.FAIL, "Share At Carrefour Topic Not Displayed");
 			}
 			assistantPage.shareWorldTopic.click();
 			generalFunctions.isElementPresent(assistantPage.questionsList, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleWorld).contains("YOUR SHARE WORLD"))
-			{
-				test.log(Status.PASS, "YOUR SHARE WORLD related questions page Displayed");
+			{	test.log(Status.PASS, "YOUR SHARE WORLD related questions page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "YOUR SHARE WORLD related questions page Not Displayed");
-				Assert.fail("YOUR SHARE WORLD related questions page Not Displayed");
+			{	test.log(Status.FAIL, "YOUR SHARE WORLD related questions page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			if(generalFunctions.isElementPresent(assistantPage.questionsList, 10))
 			{
-				test.log(Status.PASS, "YOUR SHARE WORLD related questions list Displayed");
+				test.log(Status.PASS, "YOUR SHARE WORLD related questions list Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "YOUR SHARE WORLD related questions list Not Displayed");
-				Assert.fail("YOUR SHARE WORLD related questions list Not Displayed");
+				test.log(Status.FAIL, "YOUR SHARE WORLD related questions list Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantFunctions.questionsClick();
 			generalFunctions.isElementPresent(assistantPage.firstQuestionAnswer, 20);
 			if(generalFunctions.getText(assistantPage.firstQuestionAnswer)!="")
-			{
-				test.log(Status.PASS, "Answer Displayed for the selected question");
+			{	test.log(Status.PASS, "Answer Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Answer Not Displayed for the selected question");
-				Assert.fail("Answer Not Displayed for the selected question");
+			{	test.log(Status.FAIL, "Answer Not Displayed for the selected question").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
@@ -601,7 +494,6 @@ public class Assistant extends DriverSetUp
 		}
 	}
 
-
 	@Test(priority=4)
 	public void TC_Assistant_006_007(Method method) throws Exception
 	{
@@ -610,7 +502,6 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		try
 		{
@@ -618,137 +509,88 @@ public class Assistant extends DriverSetUp
 			assistantPage.AssistantIcon.click();
 
 			//Verify Assistant Page displayed
-
 			if(generalFunctions.isElementPresent(assistantPage.assistantPage, 30))
-			{
-				test.log(Status.PASS, "Assistant Page Displayed");
+			{	test.log(Status.PASS, "Assistant Page Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
-
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed");
 			}
 
 			//Verify Share Basics Section
 			if(generalFunctions.isElementPresent(assistantPage.shareBasicsSection, 10))
-			{
-				test.log(Status.PASS, "Share Basics Section Displayed");
+			{	test.log(Status.PASS, "Top Share tips/Share Basics Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Share Basics Section Not Displayed");
-
+			{	test.log(Status.FAIL, "Top Share tips/Share Basics Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
-
 			if(generalFunctions.isElementPresent(assistantPage.usingShare, 10))
-			{
-				test.log(Status.PASS, "Using Share - Share Basics Displayed");
+			{	test.log(Status.PASS, "Using Share - Share Basics Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Using Share - Share Basics Not Displayed");
-
+			{	test.log(Status.FAIL, "Using Share - Share Basics Not Displayed");
 			}
-
 			assistantPage.usingShare.click();
 
 			generalFunctions.isElementPresent(assistantPage.pageTitleShareBasics, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleShareBasics).contains("SHARE BASICS"))
-			{
-				test.log(Status.PASS, "SHARE BASICS page Displayed");
+			{	test.log(Status.PASS, "SHARE BASICS page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE BASICS page Not Displayed");
-				Assert.fail("SHARE BASICS page Not Displayed");
+			{	test.log(Status.FAIL, "SHARE BASICS page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			if(generalFunctions.getText(assistantPage.Description)!="")
-			{
-				test.log(Status.PASS, "Using Share Description Displayed");
+			{	test.log(Status.PASS, "Using Share Description Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Using Share Description Not Displayed");
-				Assert.fail("Using Share Description Not Displayed");
+			{	test.log(Status.FAIL, "Using Share Description Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
-			if(generalFunctions.isElementPresent(assistantPage.usingShareMalls, 10))
-			{
-				test.log(Status.PASS, "Using the SHARE Wallet - Share Basics Displayed");
+			if(generalFunctions.isElementPresent(assistantPage.usingSharewallet, 10))
+			{	test.log(Status.PASS, "Using the SHARE Wallet - Share Basics Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Using the SHARE Wallet - Share Basics Not Displayed");
-
+			{	test.log(Status.FAIL, "Using the SHARE Wallet - Share Basics Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-			assistantPage.usingShareMalls.click();
-
+			assistantPage.usingSharewallet.click();
 			generalFunctions.isElementPresent(assistantPage.pageTitleShareBasics, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleShareBasics).contains("SHARE BASICS"))
-			{
-				test.log(Status.PASS, "SHARE BASICS page Displayed");
+			{	test.log(Status.PASS, "SHARE BASICS page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE BASICS page Not Displayed");
-				Assert.fail("SHARE BASICS page Not Displayed");
+			{	test.log(Status.FAIL, "SHARE BASICS page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			if(generalFunctions.getText(assistantPage.Description)!="")
-			{
-				test.log(Status.PASS, "Using the SHARE Wallet Description Displayed");
+			{	test.log(Status.PASS, "Using the SHARE Wallet Description Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Using the SHARE Wallet Description Not Displayed");
-				Assert.fail("Using the SHARE Wallet Description Not Displayed");
+			{	test.log(Status.FAIL, "Using the SHARE Wallet Description Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 
-
 			if(generalFunctions.isElementPresent(assistantPage.earningSHAREPoints, 10))
-			{
-				test.log(Status.PASS, "Earning SHARE points - Share Basics Displayed");
+			{	test.log(Status.PASS, "Earning SHARE points - Share Basics Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Earning SHARE points - Share Basics Not Displayed");
-
+			{	test.log(Status.FAIL, "Earning SHARE points - Share Basics Not Displayed");
 			}
 
 			assistantPage.earningSHAREPoints.click();
-
-
 			generalFunctions.isElementPresent(assistantPage.pageTitleShareBasics, 10);
 			if(generalFunctions.getText(assistantPage.pageTitleShareBasics).contains("SHARE BASICS"))
-			{
-				test.log(Status.PASS, "SHARE BASICS page Displayed");
+			{	test.log(Status.PASS, "SHARE BASICS page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SHARE BASICS page Not Displayed");
-
+			{	test.log(Status.FAIL, "SHARE BASICS page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			if(generalFunctions.getText(assistantPage.Description)!="")
-			{
-				test.log(Status.PASS, "Earning SHARE points Description Displayed");
+			{	test.log(Status.PASS, "Earning SHARE points Description Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Earning SHARE points Description Not Displayed");
-				Assert.fail("Earning SHARE points Description Not Displayed");
+			{	test.log(Status.FAIL, "Earning SHARE points Description Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
-
+/*
 
 			if(generalFunctions.isElementPresent(assistantPage.numberOFPointsEarned, 20))
 			{
@@ -821,8 +663,7 @@ public class Assistant extends DriverSetUp
 			}
 
 			assistantPage.backAssistant.click();
-
-
+*/
 		}
 		catch(Exception e)
 		{
@@ -830,7 +671,6 @@ public class Assistant extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
 
 	@Test(priority=5)
 	public void TC_Assistant_008_009_010(Method method) throws Exception
@@ -841,11 +681,10 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		String searchKeyWord="wallet";
 		String searchKeyWord2="family";
-		String searchKeyWord3="carrefour";
+		String searchKeyWord3="offer";
 		try
 		{
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 30);
@@ -853,73 +692,53 @@ public class Assistant extends DriverSetUp
 
 			//Verify Assistant Page displayed
 			if(generalFunctions.isElementPresent(assistantPage.assistantPage, 30))
-			{
-				test.log(Status.PASS, "Assistant Page Displayed");
+			{	test.log(Status.PASS, "Assistant Page Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
-				Assert.fail("Assistant Page Not Displayed");
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed");
 			}
-
 			//Verify Search Icon
 			if(generalFunctions.isElementPresent(assistantPage.searchIcon, 10))
-			{
-				test.log(Status.PASS, "Search Icon Displayed");
+			{	test.log(Status.PASS, "Search Icon Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Search Icon Not Displayed");
-				Assert.fail("Search Icon Not Displayed");
+			{	test.log(Status.FAIL, "Search Icon Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			assistantPage.searchIcon.click();
-			generalFunctions.isElementPresent(assistantPage.searchTitle, 10);
+			generalFunctions.isElementPresent(assistantPage.searchTitle, 20);
 			if(generalFunctions.getText(assistantPage.searchTitle).contains("SEARCH"))
-			{
-				test.log(Status.PASS, "SEARCH page Displayed");
-
+			{	test.log(Status.PASS, "SEARCH page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SEARCH page Not Displayed");
-				Assert.fail("SEARCH page Not Displayed");
+			{	test.log(Status.FAIL, "SEARCH page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			assistantPage.searchField.click();
 			assistantPage.searchField.sendKeys(searchKeyWord);
 			generalFunctions.pressSearch();
 			if(generalFunctions.isElementPresent(assistantPage.searchResult, 30))
-			{
-				test.log(Status.PASS, "Search Result Displayed");
+			{	test.log(Status.PASS, "Search Result Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Search Result Not Displayed");
-				Assert.fail("Search Result Not Displayed");
+			{	test.log(Status.FAIL, "Search Result Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			assistantPage.backAssistant.click();
 			assistantPage.searchIcon.click();
 			if(generalFunctions.isElementPresent(assistantPage.recentSearchItem, 20))
-			{
-				test.log(Status.PASS, "Recent Search Displayed");
+			{	test.log(Status.PASS, "Recent Search Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Recent Search Not Displayed");
+			{	test.log(Status.FAIL, "Recent Search Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			generalFunctions.isElementPresent(assistantPage.searchField, 30);
 			assistantPage.searchField.click();
 			assistantPage.searchField.sendKeys(searchKeyWord2);
 			generalFunctions.pressSearch();
 			if(generalFunctions.isElementPresent(assistantPage.searchResult, 30))
-			{
-				test.log(Status.PASS, "Search Result Displayed");
+			{	test.log(Status.PASS, "Search Result Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "Search Result Not Displayed");
-				Assert.fail("Search Result Not Displayed");
+			{	test.log(Status.FAIL, "Search Result Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			assistantPage.backAssistant.click();
 			assistantPage.searchIcon.click();
 			generalFunctions.isElementPresent(assistantPage.searchField, 30);
@@ -927,12 +746,10 @@ public class Assistant extends DriverSetUp
 			assistantPage.searchField.sendKeys(searchKeyWord3);
 			generalFunctions.pressSearch();
 			if(generalFunctions.isElementPresent(assistantPage.searchResult, 30))
-
-			{
-				test.log(Status.PASS, "Search Result Displayed");
+			{	test.log(Status.PASS, "Search Result Displayed");
 			}
-			else {
-				test.log(Status.FAIL, "Search Result Not Displayed");
+			else 
+			{test.log(Status.FAIL, "Search Result Not Displayed");
 			}
 			assistantPage.backAssistant.click();
 			assistantPage.searchIcon.click();
@@ -946,23 +763,19 @@ public class Assistant extends DriverSetUp
 				if(searchThird.equalsIgnoreCase(searchKeyWord)&&searchSecond.equalsIgnoreCase(searchKeyWord2)
 						&&searchfirst.equalsIgnoreCase(searchKeyWord3))
 				{
-					test.log(Status.PASS, "Recent 3 Search keywords Displayed");
+					test.log(Status.PASS, "Recent 3 Search keywords Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Recent 3 Search keywords Not Displayed");
-				Assert.fail("Recent 3 Search keywords Not Displayed");
+				test.log(Status.FAIL, "Recent 3 Search keywords Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			assistantPage.clearButton.click();
 			if(generalFunctions.isElementPresent(assistantPage.trySearching, 30))
-			{
-				test.log(Status.PASS, "Try Searching Displayed");
+			{	test.log(Status.PASS, "Try Searching Displayed");
 			}
 			else
-			{
-				test.log(Status.FAIL, "Try Searching Not Displayed");
-				Assert.fail("Try Searching Not Displayed");
+			{	test.log(Status.FAIL, "Try Searching Not Displayed");
 			}
 			assistantPage.backAssistant.click();
 		}
@@ -982,10 +795,8 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
-		String searchKeyWord="Carrefour";
-
+		String searchKeyWord="family";
 		try
 		{
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
@@ -995,14 +806,11 @@ public class Assistant extends DriverSetUp
 			try
 			{
 				if(assistantPage.assistantPage.isDisplayed()==true)
-				{
-					test.log(Status.PASS, "Assistant Page Displayed");
+				{	test.log(Status.PASS, "Assistant Page Displayed");
 				}
 			}
 			catch(Exception x)
-			{
-				test.log(Status.FAIL, "Assistant Page Not Displayed");
-				Assert.fail("Assistant Page Not Displayed");
+			{	test.log(Status.FAIL, "Assistant Page Not Displayed");
 			}
 
 			//Verify Search Icon
@@ -1010,90 +818,72 @@ public class Assistant extends DriverSetUp
 			{
 				if(assistantPage.searchIcon.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "Search Icon Displayed");
+					test.log(Status.PASS, "Search Icon Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Search Icon Not Displayed");
+				test.log(Status.FAIL, "Search Icon Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Search Icon Not Displayed");
 			}
-
 			assistantPage.searchIcon.click();
-
-
 			generalFunctions.isElementPresent(assistantPage.searchTitle, 30);
 			if(generalFunctions.getText(assistantPage.searchTitle).contains("SEARCH"))
-			{
-				test.log(Status.PASS, "SEARCH page Displayed");
+			{	test.log(Status.PASS, "SEARCH page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SEARCH page Not Displayed");
-				Assert.fail("SEARCH page Not Displayed");
+			{	test.log(Status.FAIL, "SEARCH page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
 			assistantPage.searchField.click();
 			assistantPage.searchField.sendKeys(searchKeyWord);
-
 			generalFunctions.pressSearch();
 			Thread.sleep(1000);
-
 			try
 			{
 				generalFunctions.isElementPresent(assistantPage.searchResultcarrefour, 30);
 				if(assistantPage.searchResultcarrefour.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "Search Result Displayed");
+					test.log(Status.PASS, "Search Result Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Search Result Not Displayed");
+				test.log(Status.FAIL, "Search Result Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Search Result Not Displayed");
 			}
-
 			assistantPage.searchResultcarrefour.click();
-
 			try
 			{
 				generalFunctions.isElementPresent(assistantPage.answerDetailsPage, 30);
 				if(assistantPage.answerDetailsPage.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "Search Result Details screen Displayed");
+					test.log(Status.PASS, "Search Result Details screen Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Search Result Details screen Not Displayed");
+				test.log(Status.FAIL, "Search Result Details screen Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Search Result Details screen Not Displayed");
 			}
-
 			try
 			{
 				if(assistantPage.assistantQuestion.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "Search Result Question Displayed");
+					test.log(Status.PASS, "Search Result Question Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Search Result Question Not Displayed");
-				Assert.fail("Search Result Question Not Displayed");
+				test.log(Status.FAIL, "Search Result Question Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			Thread.sleep(500);
 			generalFunctions.isElementPresent(assistantPage.pageTitle, 30);
 			if(generalFunctions.getText(assistantPage.pageTitle).contains("SEARCH"))
-			{
-				test.log(Status.PASS, "SEARCH page Displayed");
+			{	test.log(Status.PASS, "SEARCH page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SEARCH page Not Displayed");
-				Assert.fail("SEARCH page Not Displayed");
+			{	test.log(Status.FAIL, "SEARCH page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -1104,8 +894,7 @@ public class Assistant extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
-
+	
 	@Test(priority=7)
 	public void TC_Assistant_011(Method method) throws Exception
 	{
@@ -1114,13 +903,10 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		String searchKeyWord="health";
 		try
 		{
-			// Click Experiences
-			//			Thread.sleep(1000);
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
 			assistantPage.AssistantIcon.click();
 			Thread.sleep(500);
@@ -1152,39 +938,30 @@ public class Assistant extends DriverSetUp
 				test.log(Status.FAIL, "Search Icon Not Displayed");
 				Assert.fail("Search Icon Not Displayed");
 			}
-
 			assistantPage.searchIcon.click();
 			Thread.sleep(500);
-
 			generalFunctions.isElementPresent(assistantPage.pageTitle, 30);
 			if(generalFunctions.getText(assistantPage.pageTitle).contains("SEARCH"))
-			{
-				test.log(Status.PASS, "SEARCH page Displayed");
+			{	test.log(Status.PASS, "SEARCH page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
-			{
-				test.log(Status.FAIL, "SEARCH page Not Displayed");
-				Assert.fail("SEARCH page Not Displayed");
+			{	test.log(Status.FAIL, "SEARCH page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
-
 			assistantPage.searchField.click();
 			assistantPage.searchField.sendKeys(searchKeyWord);
-
 			generalFunctions.pressSearch();
 			Thread.sleep(500);
-
 			try
 			{
 				generalFunctions.isElementPresent(assistantPage.noResult, 30);
 				if(assistantPage.noResult.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "SORRY, NO RESULT FOUND message displayed");
+					test.log(Status.PASS, "SORRY, NO RESULT FOUND message displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "SORRY, NO RESULT FOUND message displayed");
+				test.log(Status.FAIL, "SORRY, NO RESULT FOUND message displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("SORRY, NO RESULT FOUND message displayed");
 			}
 			assistantPage.backAssistant.click();
@@ -1262,7 +1039,6 @@ public class Assistant extends DriverSetUp
 		test.log(Status.INFO, "Assistant - Call us");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
-
 		AssistantPage assistantPage = new AssistantPage(driver);
 		try
 		{
@@ -1285,24 +1061,24 @@ public class Assistant extends DriverSetUp
 				test.log(Status.FAIL, "Assistant Page Not Displayed");
 				Assert.fail("Assistant Page Not Displayed");
 			}
+		
+			generalFunctions.SimplyScrollDown();
 
 			//Verify Call Us Section
 			try
 			{
 				if(assistantPage.callUsSection.isDisplayed()==true)
 				{
-					test.log(Status.PASS, "Call Us Section Displayed");
+					test.log(Status.PASS, "Call Us Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}
 			catch(Exception x)
 			{
-				test.log(Status.FAIL, "Call Us Section Not Displayed");
-				Assert.fail("Call Us Section Not Displayed");
+				test.log(Status.FAIL, "Call Us Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 
 			assistantPage.callUsSection.click();
 			Thread.sleep(10000);
-
 			//Verify Dialer Displayed
 			String Dialer = generalFunctions.getText(assistantPage.Dialer);
 			System.out.println("Dialer "+ Dialer);
@@ -1325,7 +1101,100 @@ public class Assistant extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
+	//Sprint 16 implementation
+	@Test(priority=9)
+	public void TC_Assistant_013(Method method) throws Exception
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Assistant Chat");
+		test.assignCategory("ASSISTANT");
+		test.log(Status.INFO, "TC: Verify user able to view the chat option in assitant module");
+		System.out.println(TC_Method);
+		AssistantPage assistantPage = new AssistantPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
+		try
+		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
+			// Click Experiences
+			//Thread.sleep(5000);
+			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 30);
+			assistantPage.AssistantIcon.click();
+			//Verify Assistant Page displayed
+			if(generalFunctions.isElementPresent(assistantPage.assistantPage,30))
+			{
+				test.log(Status.PASS, "Assistant Page Displayed");
+			}else{
+				test.log(Status.FAIL, "Assistant Page Not Displayed");
+			}
+			
+			//Verify Search Icon
+			if(generalFunctions.isElementPresent(assistantPage.assistantchaticon,30))
+			{
+				test.log(Status.PASS, "Assistant Chat icon Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else{
+				test.log(Status.FAIL, "Assistant Chat icon Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+		}
+		catch(Exception e)
+		{
+			test.log(Status.FAIL, e.getMessage());
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	
+	@Test(priority=10)
+	public void TC_Assistant_014(Method method) throws Exception
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Assistant Chat");
+		test.assignCategory("ASSISTANT");
+		test.log(Status.INFO, "TC: Verify the user able to view Chat Screen with automated chat box message from assitant module");
+		System.out.println(TC_Method);
+		AssistantPage assistantPage = new AssistantPage(driver);
+		ZendeskChatPage zendeskchatpage = new ZendeskChatPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
+		try
+		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
+			// Click Experiences
+			//Thread.sleep(5000);
+			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 30);
+			assistantPage.AssistantIcon.click();
+			//Verify Assistant Page displayed
+			if(generalFunctions.isElementPresent(assistantPage.assistantPage,30))
+			{
+				test.log(Status.PASS, "Assistant Page Displayed");
+			}else{
+				test.log(Status.FAIL, "Assistant Page Not Displayed");
+			}
+			
+			//Verify Search Icon
+			if(generalFunctions.isElementPresent(assistantPage.assistantchaticon,30))
+			{
+				test.log(Status.PASS, "Assistant Chat icon Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else{
+				test.log(Status.FAIL, "Assistant Chat icon Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			
+			assistantPage.assistantchaticon.click();
+			
+			if(generalFunctions.isElementPresent(zendeskchatpage.chatscreen, 20)) {
+				test.log(Status.PASS, "User should be able to view Chat Screen from Assistant Screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else {
+				test.log(Status.FAIL, "User is not able to view Chat Screen from Assistant Screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+		}
+		catch(Exception e)
+		{
+			test.log(Status.FAIL, e.getMessage());
+			Assert.fail(e.getMessage());
+		}
+	}
 
 
 
