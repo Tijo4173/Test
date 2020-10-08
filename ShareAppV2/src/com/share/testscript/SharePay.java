@@ -1040,9 +1040,8 @@ public class SharePay extends DriverSetUp
 			// INSERT PASSCODE
 			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
 			profilePage.setUpPin.sendKeys("1234");
-			Thread.sleep(500);
+			Thread.sleep(3000);
 			//profileFunctions.skipbiometric();
-			Thread.sleep(500);
 			if(generalFunctions.isElementPresent(profilePage.CardNumber, 30)) {
 				test.log(Status.PASS, "The Add new card screen displayed");
 			}else {
@@ -1174,7 +1173,7 @@ public class SharePay extends DriverSetUp
 			// INSERT PASSCODE
 			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
 			profilePage.setUpPin.sendKeys("1234");
-			Thread.sleep(500);
+			Thread.sleep(2000);
 
 			if(generalFunctions.isElementPresent(profilePage.paymentMethodsPage, 30))
 			{

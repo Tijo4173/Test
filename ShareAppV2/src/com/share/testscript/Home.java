@@ -26,7 +26,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 public class Home extends DriverSetUp{
 
 	@Test(priority=1)//Verify curve header: Verify UserProfile name,Points Balance, Aed,Avtar
-	public void TC_Home_001(Method method) {
+	public void TC_Home_001(Method method) throws Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -36,47 +36,40 @@ public class Home extends DriverSetUp{
 		HomePage homePage = new HomePage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
-		try
-		{
-			driver.resetApp();
-			signInFunctions.quickSignIn();
+		
+		driver.resetApp();
+		signInFunctions.quickSignIn();
 
-			generalFunctions.isElementPresent(homePage.homeElement, 30);
-			if(homePage.userName.isDisplayed()) {
-				test.log(Status.PASS, "Profile name is displayed: "+homePage.userName.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			}else {
-				test.log(Status.FAIL, "Profile name is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-				Assert.fail("Profile name is not displayed");
-			}
-			if(homePage.pointsBalance.isDisplayed()) {
-				test.log(Status.PASS, "Points Balance is displayed: "+homePage.pointsBalance.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			}else {
-				test.log(Status.FAIL, "Points Balance is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-				Assert.fail("Points Balance is not displayed");
-			}
-			if(homePage.avatarHome.isDisplayed()) {
-				test.log(Status.PASS, "Avatar is displayed: "+homePage.avatarHome.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			}else {
-				test.log(Status.FAIL, "Avatar is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-				Assert.fail("Avatar is not displayed");
-			}
-			if(homePage.pointsAed.isDisplayed()) {
-				test.log(Status.PASS, "Points in AED is displayed: "+homePage.pointsAed.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			}else {
-				test.log(Status.FAIL, "Points in AED is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-				Assert.fail("Profile name is not displayed");
-			}
-			if(homePage.pointshome.isDisplayed()) {
-				test.log(Status.PASS, "Points is displayed: "+homePage.pointshome.getText());
-			}else {
-				test.log(Status.FAIL, "Points is not displayed");
-				Assert.fail("Points is not displayed");
-			}
-
-		}catch(Exception e) {
-			e.getCause();
-			e.getMessage();
-			Assert.fail("Error Occured");
+		generalFunctions.isElementPresent(homePage.homeElement, 30);
+		if(homePage.userName.isDisplayed()) {
+			test.log(Status.PASS, "Profile name is displayed: "+homePage.userName.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Profile name is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			Assert.fail("Profile name is not displayed");
+		}
+		if(homePage.pointsBalance.isDisplayed()) {
+			test.log(Status.PASS, "Points Balance is displayed: "+homePage.pointsBalance.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Points Balance is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			Assert.fail("Points Balance is not displayed");
+		}
+		if(homePage.avatarHome.isDisplayed()) {
+			test.log(Status.PASS, "Avatar is displayed: "+homePage.avatarHome.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Avatar is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			Assert.fail("Avatar is not displayed");
+		}
+		if(homePage.pointsAed.isDisplayed()) {
+			test.log(Status.PASS, "Points in AED is displayed: "+homePage.pointsAed.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}else {
+			test.log(Status.FAIL, "Points in AED is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			Assert.fail("Profile name is not displayed");
+		}
+		if(homePage.pointshome.isDisplayed()) {
+			test.log(Status.PASS, "Points is displayed: "+homePage.pointshome.getText());
+		}else {
+			test.log(Status.FAIL, "Points is not displayed");
+			Assert.fail("Points is not displayed");
 		}
 	}
 
@@ -131,7 +124,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=3)//TC:Verify user should view tutorial on clicking Submit receipt and Camera permissions
-	public void TC_Home_003_005_051(Method method) {
+	public void TC_Home_003_005(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -498,9 +491,11 @@ public class Home extends DriverSetUp{
 			homePage.longReceiptButton.click();
 			generalFunctions.isElementPresent(homePage.buttonCaptureClick, 90);
 			homeFunctions.moreClick(homePage);
+			Thread.sleep(500);
 			homePage.buttonCaptureClick.click();
+			Thread.sleep(500);
 			generalFunctions.toastMessages();
-			String toast = "You can take maximum of 10 images";
+			String toast = "you can take maximum of 10 images";
 			if(generalFunctions.toastMessages().contains(toast)) {
 				test.log(Status.PASS, "The error message is displayed: "+toast);
 			}else {
@@ -1124,11 +1119,15 @@ public class Home extends DriverSetUp{
 				Assert.fail("Share ID button NOT displayed");
 			}
 			homePage.homeShareId.click();
+			Thread.sleep(500);
 			generalFunctions.isElementPresent(homePage.homeBarcode, 90);
 			if(homePage.homeBarcode.isDisplayed()) {
 				test.log(Status.PASS, "Share ID Number displayed: "+homePage.homeBarcode.getText());
 			}
-			test.log(Status.FAIL, "Share ID Number not displayed");
+			else
+			{
+				test.log(Status.FAIL, "Share ID Number not displayed");
+			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1167,7 +1166,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=20)//TC:Verify user able to switch between the ‘Experiences’ and ‘Updates’ tabs in the home screen.
-	public void TC_Home_067(Method method) {
+	public void TC_Home_067(Method method)  {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1304,22 +1303,21 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		//SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
-
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
 			Thread.sleep(1000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
-			generalFunctions.isElementPresent(homePage.homePointsField, 0);
+			generalFunctions.isElementPresent(homePage.homePointsField, 30);
 			homePage.homePointsField.sendKeys("10.1");
 			driver.hideKeyboard();
-			homePage.homePointsOption.click();
-			homePage.PointsOptionFamily.click();
+			//homePage.homePointsOption.click();
+			//homePage.PointsOptionFamily.click();
 			homePage.homePointsEmail.sendKeys("sharetest371@yopmail.com");
-			Thread.sleep(500);
-			generalFunctions.SimplyScrollDown();
+			//generalFunctions.SimplyScrollDown();
 			homePage.homePointsSubmit.click();
 			homePage.homePointsSubmitConfirm.click();
 			Thread.sleep(500);
@@ -1336,6 +1334,7 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "Not Navigated to Homepage");
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1370,14 +1369,13 @@ public class Home extends DriverSetUp{
 			homePage.homePointsFieldplaceholder.click();
 			homePage.homePointsField.sendKeys("10.1");
 			Thread.sleep(500);
-			homePage.homePointsOption.click();
-
-			if(homePage.homePointsError.isDisplayed()) {
-				test.log(Status.PASS, "Error message is displayed: "+homePage.homePointsError.getText());
+			//homePage.homePointsOption.click();
+			homePage.homePointsEmail.click();
+			if(homePage.homeNopointError.isDisplayed()) {
+				test.log(Status.PASS, "Error message is displayed: "+homePage.homeNopointError.getText());
 			}else {
 				test.log(Status.FAIL, "Error message not displayed");
 			}
-			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1397,8 +1395,11 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		HomeFunctions homeFunctions = new HomeFunctions();
 		try
 		{
+			driver.resetApp();
+			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
 			Thread.sleep(1000);
@@ -1407,15 +1408,16 @@ public class Home extends DriverSetUp{
 			homePage.homePointsField.sendKeys("-10");
 			Thread.sleep(1000);
 			driver.hideKeyboard();
-			homePage.homePointsOption.click();
-			homePage.PointsOptionFamily.click();
+			//homePage.homePointsOption.click();
+			//homePage.PointsOptionFamily.click();
+			homePage.homePointsEmail.click();
 			if(homePage.homePointsError1.isDisplayed()) {
 				test.log(Status.PASS, "Error message is displayed: "+homePage.homePointsError1.getText());
 			}else {
 				test.log(Status.FAIL, "Error message not displayed");
 			}
-			driver.pressKey(new KeyEvent(AndroidKey.BACK));
-
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1435,8 +1437,11 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		HomeFunctions homeFunctions = new HomeFunctions();
 		try
 		{
+			driver.resetApp();
+			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
 			Thread.sleep(1000);
@@ -1444,8 +1449,8 @@ public class Home extends DriverSetUp{
 			homePage.homePointsFieldplaceholder.click();
 			homePage.homePointsField.sendKeys("10.1");
 			Thread.sleep(500);
-			homePage.homePointsOption.click();
-
+			//homePage.homePointsOption.click();
+			homePage.homePointsEmail.click();
 			if(homePage.homePointsBalance.isDisplayed()) {
 				test.log(Status.PASS, "Title is "+homePage.homePointsBalance.getText());
 			}else {
@@ -1461,7 +1466,7 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "Points Text Not Displayed");
 			}
-			driver.navigate().back();
+			//homePage.previewClose.click();
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1471,9 +1476,8 @@ public class Home extends DriverSetUp{
 
 
 	}
-	//check with family
-
-	//TC:Verify the validations of points and email fields
+	//TC:Verify the validations messages of points and email fields
+	@Test(priority=27)
 	public void TC_Home_074(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1481,27 +1485,30 @@ public class Home extends DriverSetUp{
 		test.info("TC:Verify the validations of points and email fields");
 		System.out.println("Running Test"+" "+ TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
 		HomePage homePage = new HomePage(driver);
-		SignInFunctions signInFunctions = new SignInFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		HomeFunctions homeFunctions = new HomeFunctions();
 		try
 		{
-			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-			signInFunctions.quickSignIn();
+			driver.resetApp();
+			homeFunctions.zeroPointuser();
+			
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
-			homePage.myFamily.click();
-
+			homePage.homeSharePoints.click();
+			Thread.sleep(4000);
 			if(homePage.homePointsError.isDisplayed()) {
-				test.log(Status.PASS, "Error message is displayed: "+homePage.homePointsError.getText());
+				test.log(Status.PASS, "Error message is displayed: "+" "+homePage.homePointsError.getText());
 			}else {
 				test.log(Status.FAIL, "Error message not displayed");
 			}
+			homePage.homePointsEmail.click();
 			if(homePage.homePointsEmailError.isDisplayed()) {
 				test.log(Status.PASS, "Error message is displayed: "+homePage.homePointsEmailError.getText());
 			}else {
 				test.log(Status.FAIL, "Error message not displayed");
 			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1513,7 +1520,7 @@ public class Home extends DriverSetUp{
 	}
 
 
-	@Test(priority=27)//TC:Verify user can view 4 offers on home screen under experiences tab
+	@Test(priority=28)//TC:Verify user can view offer tiles on home screen under experiences tab
 	public void TC_Home_028(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1523,8 +1530,11 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			String a = homePage.homeOffers1.getText();
 			System.out.println(a);
@@ -1562,12 +1572,12 @@ public class Home extends DriverSetUp{
 
 
 
-	@Test(priority=28)//TC:Verify user can click on any offer
+	@Test(priority=29)//TC:Verify user can click on any offer
 	public void TC_Home_029(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user can click on any offer");
+		test.info("TC:Verify user can click on any offer tile from home experiences");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1576,15 +1586,15 @@ public class Home extends DriverSetUp{
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeExperiences.click();
-			driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"SUBMIT RECEIPT\").instance(0))"));
-			homePage.homeOffers1.click();
-
+			driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"SHOP ONLINE & EARN SHARE POINTS\").instance(0))"));
+			homePage.homeTileoffer.click();
+			Thread.sleep(500);
 			if(homePage.homeOffersDes.isDisplayed()) {
-				test.log(Status.PASS, "Offers description screen displayed: "+homePage.homeOffersDes.getText());
+				test.log(Status.PASS, "Offers detail description screen displayed: "+homePage.homeOffersDes.getText());
 			}else {
-				test.log(Status.FAIL, "Offers description screen NOT displayed");
+				test.log(Status.FAIL, "Offers detail description screen NOT displayed");
 			}
-
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1596,7 +1606,7 @@ public class Home extends DriverSetUp{
 	}
 
 
-	@Test(priority=29)//TC:Verify user navigates to home screen when the user click on close button of offer description
+	@Test(priority=30)//TC:Verify user navigates to home screen when the user click on close button of offer description
 	public void TC_Home_030(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1610,17 +1620,16 @@ public class Home extends DriverSetUp{
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeExperiences.click();
-			driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"SUBMIT RECEIPT\").instance(0))"));
-			homePage.homeOffers1.click();
-
-			generalFunctions.isElementPresent(homePage.homeOffersDes, 90);
+			//driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"UPDATES\").instance(0))"));
+			homePage.homeTileoffer.click();
+			Thread.sleep(1000);
 			homePage.homeOfferClose.click();
 			if(homePage.homeElement.isDisplayed()) {
-				test.log(Status.PASS, "Offers description screen displayed: "+homePage.homeElement.getText());
+				test.info("User clicked close icon from offer and navigated to homepage");
+				test.log(Status.PASS, "Navigated to Experience offers tiles in: "+homePage.homeElement.getText());
 			}else {
-				test.log(Status.FAIL, "Offers description screen NOT displayed");
+				test.log(Status.FAIL, "Not Navigated to Experience offers tiles in home");
 			}
-
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1633,7 +1642,7 @@ public class Home extends DriverSetUp{
 
 
 
-	@Test(priority=30)//TC:Verify user can click on SEE ALL option in the Updates and able to navigate to the update screen
+	@Test(priority=31)//TC:Verify user can click on SEE ALL option in the Updates and able to navigate to the update screen
 	public void TC_Home_041(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1643,8 +1652,11 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeUpdates.click();
 			generalFunctions.isElementPresent(homePage.homeupdateSeeAll, 90);
@@ -1669,7 +1681,7 @@ public class Home extends DriverSetUp{
 		}
 	}
 
-	@Test(priority=31)//TC:Verify user can click on SEE ALL option in the Experiences and able to navigate to the Experiences screen
+	@Test(priority=32)//TC:Verify user can click on SEE ALL option in the Experiences and able to navigate to the Experiences screen
 	public void TC_Home_042(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1694,7 +1706,23 @@ public class Home extends DriverSetUp{
 			}
 
 			homePage.homeupdateSeeAll.click();
-			Thread.sleep(500);
+			Thread.sleep(1500);
+			
+			try
+			{
+				generalFunctions.isElementPresent(objExperiencesPage.AllowAllTheTime, 30);
+				if(objExperiencesPage.AllowAllTheTime.isDisplayed()== true)
+				{
+					test.log(Status.PASS, "Location Access Displayed When navigated to experience page");
+					objExperiencesPage.DontAllowaccess.click();
+			     }
+			    }
+				catch(Exception x)
+				{
+					test.log(Status.INFO, "Access Not given because of next testcases dependency");
+					System.out.println("Location Access Denied");
+				}
+		
 			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 			{
 				test.log(Status.PASS, "SHARE EXPERIENCES Page Displayed");
@@ -1716,7 +1744,7 @@ public class Home extends DriverSetUp{
 	}
 
 
-	@Test(priority=32)//TC:Verify user can toggle from one tutorial screen to next by toggling from one to another and back
+	@Test(priority=33)//TC:Verify user can toggle from one tutorial screen to next by toggling from one to another and back
 	public void TC_Home_043(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1757,7 +1785,7 @@ public class Home extends DriverSetUp{
 
 
 
-	@Test(priority=33)//TC:Verify user able to navigate to a page (UPDATES) to see all the updates when clicking on ‘See all updates' option on the home screen.
+	@Test(priority=34)//TC:Verify user able to navigate to a page (UPDATES) to see all the updates when clicking on ‘See all updates' option on the home screen.
 	public void TC_Home_N053(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1767,8 +1795,11 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeUpdates.click();
 			generalFunctions.isElementPresent(homePage.homeupdateSeeAll, 90);
@@ -1779,7 +1810,7 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "Update screen NOT displayed");
 			}
-			driver.navigate().back();
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1788,8 +1819,8 @@ public class Home extends DriverSetUp{
 		}
 	}
 
-	@Test(priority=34)//TC:Verify News date,description,share,close button.
-	public void TC_Home_N058_059_60_61_62(Method method) {
+	@Test(priority=35)//TC:Verify News date,description,share,close button.
+	public void TC_Home_058_059_60_61_62(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1843,7 +1874,7 @@ public class Home extends DriverSetUp{
 		}
 	}
 
-	@Test(priority=35)//TC:Verify user is able to share News.
+	@Test(priority=36)//TC:Verify user is able to share News.
 	public void TC_Home_N063(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1860,16 +1891,20 @@ public class Home extends DriverSetUp{
 			generalFunctions.isElementPresent(homePage.homeupdateSeeAll, 90);
 			homePage.homeupdateNews.click();
 			generalFunctions.isElementPresent(homePage.homeupdateDesc, 90);
-			if(homePage.homeupdateShare.isDisplayed()) {
-				homePage.homeupdateShare.click();
+			if(homePage.homeupdateShare.isDisplayed())
+			{
+				test.log(Status.PASS, "The Share button displayed");
 			}else {
 				test.log(Status.FAIL, "The Share button is not displayed");
 			}
+			homePage.homeupdateShare.click();
 			if(homePage.homeupdateShareOptions.isDisplayed()) {
 				test.log(Status.PASS, "Share options displayed");
 			}else {
 				test.log(Status.FAIL, "Share options not displayed");
 			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
@@ -1877,7 +1912,7 @@ public class Home extends DriverSetUp{
 			Assert.fail("Error Occured");
 		}
 	}
-	@Test(priority=36)//TC:Verify user selected news detail screen is displayed
+	@Test(priority=37)//TC:Verify user selected news detail screen is displayed
 	public void TC_Home_N064(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
@@ -1892,15 +1927,15 @@ public class Home extends DriverSetUp{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeUpdates.click();
 			generalFunctions.isElementPresent(homePage.homeupdateSeeAll, 90);
-			generalFunctions.isElementPresent(homePage.homeupdateSeeAll, 90);
-			String news = homePage.homeupdateNews.getText();
+			String newstitle = homePage.homeupdateNews.getText();
 			homePage.homeupdateNews.click();
-			generalFunctions.isElementPresent(homePage.homeupdateDesc, 90);
-			if(news.contains(homePage.homeupdateNews.getText())) {
+			String updatetitle =  homePage.homeupdatespagetitle.getText();
+			if(newstitle.equalsIgnoreCase(updatetitle)) {
 				test.log(Status.PASS, "Selected News detail screen displayed");
 			}else {
 				test.log(Status.FAIL, "Wrong News detail screen displayed");
 			}
+			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1914,27 +1949,20 @@ public class Home extends DriverSetUp{
 	//************************************SHOP ONLINE AND EARN SHARE POINTS**********************//
 
 		//TC:Verify the header SHOP ONLINE AND EARN SHARE POINTS displayed
-		@Test(priority=37)
+		@Test(priority=38)
 		public void TC_Home_SO001(Method method) throws InterruptedException {
 			String TC_Method = method.getName();
-			test = extent.createTest(TC_Method).assignCategory("HOME");
+			test = extent.createTest(TC_Method).assignCategory("Home");
 			test.log(Status.INFO, "Module:Home");
 			test.info("TC:Verify the header SHOP ONLINE AND EARN SHARE POINTS displayed ");
 			System.out.println("Running Test"+" "+ TC_Method);
-
-			//		String EmailAddress=map.get("UserName").toString();
-			//		String Pass=map.get("UserPassword").toString();
-
-			RegistrationPage registrationPage= new RegistrationPage(driver);
-			SignInPage signInPage = new SignInPage(driver);
+			
 			HomePage homePage = new HomePage(driver);
-			SignInFunctions signInFunctions = new SignInFunctions();
-			RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+			SignInFunctions signInFunctions = new SignInFunctions();	
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			HomeFunctions homeFunctions = new HomeFunctions();
 			try
 			{
-				driver.resetApp();
+			driver.resetApp();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.shopOnlineHeaders, 10);
 			List<MobileElement> shopeOnlineCategory = homePage.shopOnlineHeadersList.findElementsByClassName("android.view.ViewGroup");

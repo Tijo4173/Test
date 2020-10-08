@@ -105,7 +105,7 @@ public class SignIn extends DriverSetUp
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		try
 		{
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(signInPage.signinPresent, 90);
 			signInPage.signinPresent.click();
 			generalFunctions.isElementPresent(signInPage.forgotElement, 90);
@@ -118,6 +118,7 @@ public class SignIn extends DriverSetUp
 			}
 			signInFunctions.resetEmail(signInPage);
 			signInPage.sendResetLink.click();
+			Thread.sleep(1000);
 			if(generalFunctions.isElementPresent(signInPage.checkYourEmail, 90)) {
 				test.log(Status.PASS, "The Reset Password linke sent to the email id:"+signInPage.screenText.getText());
 			}else {
@@ -221,7 +222,7 @@ public class SignIn extends DriverSetUp
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		try
 		{
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(signInPage.signinPresent, 90);
 			signInPage.signinPresent.click();
 			generalFunctions.isElementPresent(signInPage.forgotElement, 90);
@@ -343,7 +344,7 @@ public class SignIn extends DriverSetUp
 
 		try
 		{
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(signInPage.signinPresent, 90);
 			signInPage.signinPresent.click();
 			generalFunctions.isElementPresent(signInPage.useridElement, 90);
@@ -448,7 +449,7 @@ public class SignIn extends DriverSetUp
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		try
 		{
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(signInPage.signinPresent, 30);
 			signInPage.signinPresent.click();
 			generalFunctions.isElementPresent(signInPage.useridElement, 30);

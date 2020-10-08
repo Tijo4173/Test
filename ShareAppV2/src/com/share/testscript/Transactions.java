@@ -5,11 +5,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
+import com.share.functions.ProfileFunctions;
+import com.share.functions.SharePayFunctions;
 import com.share.functions.SignInFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.SignInPage;
 import com.share.objectrepository.TransactionsPage;
+import com.share.utility.Utilities;
 
 public class Transactions extends DriverSetUp
 {
@@ -26,7 +29,6 @@ public class Transactions extends DriverSetUp
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
 
-		SignInPage signInPage = new SignInPage(driver);
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 
@@ -57,11 +59,11 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingTitle, 30))
 			{
-				test.log(Status.PASS, "PENDING Title Displayed");
+				test.log(Status.PASS, "PENDING Title Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "PENDING Title Not Displayed");
+				test.log(Status.FAIL, "PENDING Title Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("PENDING Title Not Displayed");
 			}
 
@@ -100,11 +102,11 @@ public class Transactions extends DriverSetUp
 			//Verify Pending Receipts Page displayed
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsPage, 90))
 			{
-				test.log(Status.PASS, "Pending Receipts page Displayed");
+				test.log(Status.PASS, "Pending Receipts page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts page Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts page Not Displayed");
 			}
 
@@ -140,8 +142,11 @@ public class Transactions extends DriverSetUp
 		System.out.println(TC_Method);
 
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
 			transactionsPage.accountIcon.click();
@@ -168,11 +173,11 @@ public class Transactions extends DriverSetUp
 			}
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsSection, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts Section Displayed");
+				test.log(Status.PASS, "Pending Receipts Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts Section Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Section Not Displayed");
 			}
 
@@ -182,11 +187,11 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsPage, 90))
 			{
-				test.log(Status.PASS, "Pending Receipts page Displayed");
+				test.log(Status.PASS, "Pending Receipts page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts page Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts page Not Displayed");
 			}
 
@@ -207,32 +212,32 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pageTitle, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts List Displayed");
+				test.log(Status.PASS, "Pending Receipts List Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts List Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts List Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts List Not Displayed");
 			}
 
 			String ReceiptPagetitle=generalFunctions.getText(transactionsPage.pageTitle);
 			if(ReceiptPagetitle.contains(ReceiptTitle))
 			{
-				test.log(Status.PASS, "Pending Receipts image page Displayed");
+				test.log(Status.PASS, "Pending Receipts image page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts image page Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts image page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts image page Not Displayed");
 			}
 
 			if(generalFunctions.isElementPresent(transactionsPage.receiptImage, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts Image Displayed");
+				test.log(Status.PASS, "Pending Receipts Image Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts Image Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts Image Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Image Not Displayed");
 			}
 
@@ -240,11 +245,11 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsPage, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts page Displayed");
+				test.log(Status.PASS, "Pending Receipts page Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts page Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts page Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			//	Assert.fail("Pending Receipts page Not Displayed");
 			}
 
@@ -270,12 +275,15 @@ public class Transactions extends DriverSetUp
 		System.out.println(TC_Method);
 
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
 			transactionsPage.accountIcon.click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			//Verify My Account page displayed
 			if(generalFunctions.isElementPresent(transactionsPage.myAccountPage, 90))
@@ -300,23 +308,23 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsSection, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts Section Displayed");
+				test.log(Status.PASS, "Pending Receipts Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts Section Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Section Not Displayed");
 			}
 
-			if(generalFunctions.isElementPresent(transactionsPage.noTransactions, 30))
-			{
-				test.log(Status.PASS, "No Transactions Message Displayed");
-			}
-			else
-			{
-				test.log(Status.FAIL, "No Transactions Message Not Displayed");
+			//if(generalFunctions.isElementPresent(transactionsPage.noTransactions, 30))
+			//{
+				//test.log(Status.PASS, "No Transactions Message Displayed");
+			//}
+			//else
+			//{
+				//test.log(Status.FAIL, "No Transactions Message Not Displayed");
 			//	Assert.fail("No Transactions Message Not Displayed");
-			}
+		//	}
 		}
 		catch(Exception e)
 		{
@@ -336,9 +344,12 @@ public class Transactions extends DriverSetUp
 		System.out.println(TC_Method);
 
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
 
 		try
 		{
+			driver.resetApp();
+			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
 			transactionsPage.accountIcon.click();
@@ -357,31 +368,31 @@ public class Transactions extends DriverSetUp
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingTitle, 30))
 			{
-				test.log(Status.PASS, "PENDING Title Displayed");
+				test.log(Status.PASS, "PENDING Title Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "PENDING Title Not Displayed");
+				test.log(Status.FAIL, "PENDING Title Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("PENDING Title Not Displayed");
 			}
 
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsSection, 30))
 			{
-				test.log(Status.PASS, "Pending Receipts Section Displayed");
+				test.log(Status.PASS, "Pending Receipts Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Pending Receipts Section Not Displayed");
+				test.log(Status.FAIL, "Pending Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Section Not Displayed");
 			}
 
 			if(generalFunctions.isElementPresent(transactionsPage.transactions, 30))
 			{
-				test.log(Status.PASS, "Transactions Displayed");
+				test.log(Status.PASS, "Transactions Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Transactions Not Displayed");
+				test.log(Status.FAIL, "Transactions Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Transactions Not Displayed");
 			}
 
@@ -408,11 +419,11 @@ public class Transactions extends DriverSetUp
 			String Point =generalFunctions.getText(transactionsPage.transactionPoints);
 			if(Point.contains("+")||Point.contains("-"))
 			{
-				test.log(Status.PASS, "Sponsor Point Contains '+' or '-'");
+				test.log(Status.PASS, "Sponsor Point Contains '+' or '-'").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Sponsor Point Not Contains '+' or '-'");
+				test.log(Status.FAIL, "Sponsor Point Not Contains '+' or '-'").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Sponsor Point Not Contains '+' or '-'");
 			}
 

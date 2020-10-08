@@ -1,5 +1,4 @@
 package com.share.testscript;
-
 import java.lang.reflect.Method;
 
 import org.testng.Assert;
@@ -19,7 +18,6 @@ import com.share.utility.Utilities;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-
 public class Family extends DriverSetUp
 {
 	GeneralFunctions generalFunctions = new GeneralFunctions();
@@ -30,7 +28,7 @@ public class Family extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
-		test.info("Verify family Head can send Invites");
+		test.info("Verify family Head/member can send Invites");
 		System.out.println(TC_Method);
 		String EmailAddress= "smtestqa2@yopmail.com";
 		String Pass= "Test@123";
@@ -42,9 +40,7 @@ public class Family extends DriverSetUp
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
-
 			driver.resetApp();
-
 			//LOGIN//can use new user
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -119,7 +115,7 @@ public class Family extends DriverSetUp
 
 			//FamilyInvite
 			familyFunctions.FamilyInvite(familyPage);
-
+			
 			//Click on EmailAddressField
 			familyPage.emailAddressField.sendKeys(InvalidEmailAddress);
 			//Thread.sleep(2000);
@@ -419,6 +415,7 @@ public class Family extends DriverSetUp
 			//driver.hideKeyboard();
 
 			familyPage.getPointsButton.click();
+			Thread.sleep(3000);
 			generalFunctions.isElementPresent(familyPage.pointsSuccessMessage, 60);
 			String _pointSuccessMessage = familyPage.pointsSuccessMessage.getText();
 
@@ -442,13 +439,11 @@ public class Family extends DriverSetUp
 			double updatedPointBalance = Double.valueOf(_newpointbalance) - Double.valueOf(Points);
 			System.out.println("updatedPointBalance "+updatedPointBalance);
 
-			//Thread.sleep(3000);
-
 			String _finalpointbalance = familyPage.familyPointBalance.getText();
 			_finalpointbalance = _finalpointbalance.replaceAll(",", "");
 
 			System.out.println("_finalpointbalance "+_finalpointbalance);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			if(String.valueOf(_finalpointbalance).contentEquals(String.valueOf(updatedPointBalance)))
 			{
@@ -649,7 +644,7 @@ public class Family extends DriverSetUp
 		String Pass=map.get("Family_mem_pass").toString();
 
 		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
+		
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
@@ -676,9 +671,10 @@ public class Family extends DriverSetUp
 			familyPage.earn_family_head.sendKeys(String.valueOf(points));
 			generalFunctions.isElementPresent(familyPage.family_save, 30);
 			familyPage.family_save.click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			String desc=familyPage.family_edit_desc.getText();
 			System.out.println(desc);
+			Thread.sleep(1000);
 			if(desc.contains("You are contributing " + points + "%"))
 			{
 				System.out.println("Contributing points updated and displayed:"+desc);
@@ -714,7 +710,7 @@ public class Family extends DriverSetUp
 		String Pass=map.get("Family_mem_pass").toString();
 
 		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
+		
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
@@ -747,7 +743,9 @@ public class Family extends DriverSetUp
 
 			generalFunctions.isElementPresent(familyPage.family_edit_desc, 20);
 			String desc=familyPage.family_edit_desc.getText();
+			Thread.sleep(1000);
 			System.out.println(desc);
+			
 			if(desc.contains("You are contributing " + points + "%"))
 			{
 				System.out.println("Contributing points updated and displayed");
@@ -785,7 +783,7 @@ public class Family extends DriverSetUp
 		String Pass=map.get("Family_mem_pass").toString();
 
 		RegistrationPage registrationPage= new RegistrationPage(driver);
-		HomePage homePage = new HomePage(driver);
+		
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
@@ -814,16 +812,16 @@ public class Family extends DriverSetUp
 			familyPage.family_save.click();
 			Thread.sleep(1000);
 			generalFunctions.isElementPresent(familyPage.family_edit_desc, 20);
+			Thread.sleep(1000);
 			String desc=familyPage.family_edit_desc.getText();
-
 			if(desc.contains("You are contributing " + points + "%"))
 			{
 				System.out.println("Contributing points updated and displayed");
-				test.log(Status.PASS, "Contributing points updated and displayed: "+desc);
+				test.log(Status.PASS, "Contributing points updated and displayed: "+desc).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{
-				test.log(Status.FAIL, "Contributing points not updated or not displayed");
+				test.log(Status.FAIL, "Contributing points not updated or not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Contributing points not updated or not displayed");
 			}
 		}
@@ -1105,9 +1103,9 @@ public class Family extends DriverSetUp
 			String selectedMember = familyPage.radioButtonSelected.getText();
 			try {
 				if(selectedMember.equalsIgnoreCase(member_info)) {
-					test.log(Status.PASS, "Radio button selected for the correct Member");
+					test.log(Status.PASS, "Radio button selected for the correct Member").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}else {
-					test.log(Status.FAIL, "The Member selected in the listview is wrong");
+					test.log(Status.FAIL, "The Member selected in the listview is wrong").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				}
 			}catch(Exception e) {
 				test.fail(e.getMessage());

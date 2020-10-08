@@ -40,7 +40,7 @@ public class Registration extends DriverSetUp {
 			SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 			SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -93,7 +93,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -148,7 +148,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -200,7 +200,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -243,7 +243,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -286,7 +286,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -335,7 +335,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -381,7 +381,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -415,7 +415,7 @@ public class Registration extends DriverSetUp {
 			}else {
 				test.log(Status.FAIL, "The Login Screen NOT Displayed");
 			}
-			generalFunctions.skipupdate();
+			//generalFunctions.skipupdate();
 			if(generalFunctions.isElementPresent(registrationPage.HomeIcon, 30)) {
 				test.log(Status.PASS, "SignIn Successfully and Home Screen Displayed");
 			}else {
@@ -446,7 +446,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.alltitle, 90);
@@ -502,7 +502,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -561,7 +561,7 @@ public class Registration extends DriverSetUp {
 			//Click GET STARTED
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			//select Title
@@ -664,7 +664,7 @@ public class Registration extends DriverSetUp {
 			//Click GET STARTED
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			//select Title
@@ -759,7 +759,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -811,7 +811,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -864,7 +864,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -957,7 +957,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1036,7 +1036,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1057,29 +1057,25 @@ public class Registration extends DriverSetUp {
 			generalFunctions.isElementPresent(registrationPage.passwordElement, 10);
 			registrationFunctions.passwordText(registrationPage);
 			driver.hideKeyboard();
+			
 			registrationFunctions.ppClick(registrationPage);
-			Thread.sleep(5000);
+			Thread.sleep(4000);
 			if(generalFunctions.isElementPresent(registrationPage.NavigateBack, 20)) {
 				test.log(Status.PASS, "Privacy Policy Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
-				Thread.sleep(2000);
 				registrationPage.NavigateBack.click();
 			}else {
 				test.log(Status.FAIL, "Privacy Policy Screen is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}
-			generalFunctions.isElementPresent(registrationPage.passwordElement, 10);
+		
 			registrationFunctions.tcClick(registrationPage);
 			Thread.sleep(5000);
 			generalFunctions.isElementPresent(registrationPage.NavigateBack, 20);
-
 			if(generalFunctions.isElementPresent(registrationPage.NavigateBack, 10)){
 				test.log(Status.PASS, "Terms and Condition Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
-				Thread.sleep(2000);
 				registrationPage.NavigateBack.click();
-				Thread.sleep(5000);
 			}else {
 				test.log(Status.FAIL, "Terms and Condition Screen  is not displayed");
 			}
-
 
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1106,7 +1102,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1156,7 +1152,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1209,7 +1205,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1258,7 +1254,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1305,7 +1301,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1356,7 +1352,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1404,7 +1400,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1460,7 +1456,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1479,7 +1475,7 @@ public class Registration extends DriverSetUp {
 			registrationPage.backtoStep.click();
 			generalFunctions.isElementPresent(registrationPage.firstNameElement, 90);
 			registrationFunctions.cleardata(registrationPage);
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			registrationPage.firstNameElement.sendKeys(registrationFunctions.efirstname);
 			registrationPage.lastNameElement.sendKeys(registrationFunctions.elastname);
 			//registrationPage.emailElement.sendKeys(registrationFunctions.reenterEmail);
@@ -1543,7 +1539,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
@@ -1601,7 +1597,7 @@ public class Registration extends DriverSetUp {
 			SignInPage signInPage = new SignInPage(driver);
 			SignInFunctions signInFunctions = new SignInFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-			splashScreenFunctions.splashScreenSkip(splashScreenPage);
+			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(registrationPage.titleMr, 90);
