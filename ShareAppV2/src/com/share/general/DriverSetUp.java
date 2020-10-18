@@ -73,9 +73,9 @@ public class DriverSetUp extends DataDriven {
 			file.mkdirs();
 		}
 
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/Results/"+dateTD +"_TestReport/AutomationExecutionReport.html");
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/Results/"+dateTD +"_TestReport/Android Automation Report.html");
 		//	htmlReporter = new ExtentHtmlReporter("TestReport.html");
-		htmlReporter.config().setReportName("Automation Suite Execution Report");
+		htmlReporter.config().setReportName("Android Automation Regression Report");
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
 		extent.setSystemInfo("Author", "Testhouse");

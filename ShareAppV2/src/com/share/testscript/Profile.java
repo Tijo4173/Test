@@ -57,11 +57,11 @@ public class Profile extends DriverSetUp
 			//Full Name
 			if(generalFunctions.isElementPresent(profilePage.fullname, 30))
 			{
-				test.log(Status.PASS, "Full Name Displayed");
+				test.log(Status.PASS, "Full Name Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}	
 			else
 			{
-				test.log(Status.FAIL, "Full Name Not Displayed");
+				test.log(Status.FAIL, "Full Name Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Full Name Not Displayed");
 			}
 			//Joining Date
