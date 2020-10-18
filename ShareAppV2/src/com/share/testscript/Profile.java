@@ -16,6 +16,7 @@ import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.ProfilePage;
 import com.share.objectrepository.RegistrationPage;
+import com.share.objectrepository.ExperiencesPage;
 import com.share.objectrepository.HomePage;
 import com.share.objectrepository.SharePayPage;
 import com.share.objectrepository.SignInPage;
@@ -2628,16 +2629,20 @@ public class Profile extends DriverSetUp
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
-	//sprint 18 
+	
+	//sprint 18 scripting
 	@Test(priority=34)
-	public void TC_Profile_61(Method method) throws Exception
+	public void TC_Profile_61_to_71(Method method) throws Exception
 	{	String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Profile - Landing screen");
-		test.log(Status.INFO, "TC:Tutorials under profile screen");
+		test.log(Status.INFO, "TC:Verify user able to view Tutorials under profile screen");
 		test.assignCategory("Profile");
 		System.out.println(TC_Method);
 		ProfilePage profilePage = new ProfilePage(driver);
+		SharePayPage sharePayPage = new SharePayPage(driver);
+		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
+		HomePage homePage = new HomePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
@@ -2652,7 +2657,6 @@ public class Profile extends DriverSetUp
 			{	test.log(Status.FAIL, "Not Navigated To Profile Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			generalFunctions.SimplyScrollDown();
-			
 			if(generalFunctions.isElementPresent(profilePage.howitworks, 30))
 			{	test.log(Status.PASS, "How It Works Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
@@ -2661,6 +2665,7 @@ public class Profile extends DriverSetUp
 			}	
 			profilePage.howitworks.click();
 			
+			//SharePay
 			if(generalFunctions.isElementPresent(profilePage.spaytutorialscreeninprofile,30))
 			{	
 				profilePage.spaytutorialscreeninprofile.click();
@@ -2670,13 +2675,78 @@ public class Profile extends DriverSetUp
 			{	test.log(Status.FAIL, "Share Pay Onboarding Displayed Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			
+			//navigates
+			if(generalFunctions.isElementPresent(profilePage.navigatesTutorialspage,30))
+			{	test.log(Status.PASS, "Go To Share Pay Navigation Link Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Go To Share Pay Navigation Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			profilePage.navigatesTutorialspage.click();
+			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
+			{	test.log(Status.PASS, "Navigated to Share Pay Page");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Not Navigated to Share Pay Page");
+			}
+			driver.navigate().back();
+			
+			//AvatarClick
+			generalFunctions.isElementPresent(homePage.avatarHome, 20);
+			homePage.avatarHome.click();
+			generalFunctions.SimplyScrollDown();
+			profilePage.howitworks.click();
+			
+			//Experiences
 			if(generalFunctions.isElementPresent(profilePage.spaytutorialscreeninprofile,30))
 			{	profilePage.exptutorialscreeninprofile.click();
 				test.log(Status.PASS, "Experience Onboarding Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			else
 			{	test.log(Status.FAIL, "Experience Onboarding Displayed Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-			}	
+			}
+			generalFunctions.swipeHorizontal(0.9,0.01,0.5);
+			
+			//navigation
+			if(generalFunctions.isElementPresent(profilePage.navigatesTutorialspage,30))
+			{	
+				test.info("Able to swipe the Experiences onboarding able to view whole content");
+				test.log(Status.PASS, "Go To Experiences Navigation Link Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Go To Experiences Navigation Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			profilePage.navigatesTutorialspage.click();
+			try
+			{generalFunctions.isElementPresent(objExperiencesPage.AllowAllTheTime, 30);
+				if(objExperiencesPage.AllowAllTheTime.isDisplayed()== true)
+				{	test.log(Status.PASS, "Location Access Displayed");
+					objExperiencesPage.DontAllowaccess.click();
+				}}
+			catch(Exception x)
+				{	test.log(Status.INFO, "Access not given because of next testcases dependencies");
+					System.out.println("Location Access Denied");
+				}
+			Thread.sleep(2000);
+			
+			//Verify SHARE EXPERIENCES displayed
+			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
+			{	test.log(Status.PASS, "Navigated To Experiences Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Not Navigated To Experiences Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			
+			//AvatarClick
+			generalFunctions.isElementPresent(homePage.homeElement, 20);
+			homePage.homeElement.click();
+			generalFunctions.isElementPresent(homePage.avatarHome, 20);
+			homePage.avatarHome.click();
+			generalFunctions.SimplyScrollDown();
+			profilePage.howitworks.click();
+			
+			//Share Your Points
 			if(generalFunctions.isElementPresent(profilePage.spaytutorialscreeninprofile,30))
 			{	profilePage.syptutorialscreeninprofile.click();
 				test.log(Status.PASS, "Share your points Onboarding Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -2684,7 +2754,33 @@ public class Profile extends DriverSetUp
 			else
 			{	test.log(Status.FAIL, "Share your points Onboarding Displayed Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
+			//navigation
+			if(generalFunctions.isElementPresent(profilePage.navigatesTutorialspage,30))
+			{	
+				test.log(Status.PASS, "Share Points Now  Navigation Link Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Share Points Now Navigation Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			profilePage.navigatesTutorialspage.click();
+			Thread.sleep(2200);
+			if(generalFunctions.isElementPresent(homePage.Shareyourpointspage, 90))
+			{	test.log(Status.PASS, "Navigated To Share Your Points Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Not Navigated To Share Your Points Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			driver.navigate().back();
 			
+			//AvatarClick
+			generalFunctions.isElementPresent(homePage.avatarHome, 20);
+			homePage.avatarHome.click();
+			generalFunctions.SimplyScrollDown();
+			profilePage.howitworks.click();
+			
+			//Etihad
+			generalFunctions.isElementPresent(profilePage.spaytutorialscreeninprofile,30);
+			profilePage.syptutorialscreeninprofile.click();
 			if(generalFunctions.isElementPresent(profilePage.ethiadtutorialscreeninprofile,30))
 			{	profilePage.ethiadtutorialscreeninprofile.click();
 				test.log(Status.PASS, "Etihad Onboarding Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -2692,6 +2788,24 @@ public class Profile extends DriverSetUp
 			else
 			{	test.log(Status.FAIL, "Etihad Onboarding Displayed Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}	
+			generalFunctions.swipeHorizontal(0.9,0.01,0.5);
+			//navigation
+			if(generalFunctions.isElementPresent(profilePage.navigatesTutorialspage,30))
+			{	
+				test.info("Able to swipe the Etihad onboarding able to view whole content");
+				test.log(Status.PASS, "Go To Etihad Guest Transfer Navigation Link Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Go To Etihad Guest Transfer Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			profilePage.navigatesTutorialspage.click();
+			Thread.sleep(2200);
+			if(generalFunctions.isElementPresent(homePage.etihadGuesttransferpage, 90))
+			{	test.log(Status.PASS, "Navigated To Etihad Guest Transfer Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Not Navigated To Etihad Guest Transfer Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 		}
 		catch(Exception e)

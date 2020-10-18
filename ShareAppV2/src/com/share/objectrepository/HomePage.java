@@ -217,7 +217,10 @@ public class HomePage extends DriverSetUp {
 
 	@AndroidFindBy(id = "iv_home_feature_share_points")
 	public AndroidElement homeSharePoints;
-
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE YOUR POINTS']")
+	public AndroidElement Shareyourpointspage;
+	
 	@AndroidFindBy(xpath = "//android.widget.EditText[@resource-id='points']")
 	public AndroidElement homePointsField;
 
@@ -366,9 +369,12 @@ public class HomePage extends DriverSetUp {
 	@AndroidFindBy(id = "imageViewExperience")
 	public AndroidElement homeTileoffer;
 	
-
-	
 	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc=\"HOME\"]/android.widget.ImageView")
 	public AndroidElement homebottomicon;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='ETIHAD GUEST TRANSFER']")
+	public AndroidElement etihadGuesttransferpage;
 
+	
+	
 }

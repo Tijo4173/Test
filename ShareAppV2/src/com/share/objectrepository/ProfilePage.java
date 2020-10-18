@@ -297,5 +297,9 @@ public class ProfilePage extends DriverSetUp {
 	
 	@AndroidFindBy(accessibility = "ETIHAD GUEST TRANSFER")
 	public AndroidElement ethiadtutorialscreeninprofile;
+	
+	@AndroidFindBy(id ="btnAction")
+	public AndroidElement navigatesTutorialspage;
+	
 
 }

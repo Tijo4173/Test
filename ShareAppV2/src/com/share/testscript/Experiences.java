@@ -176,8 +176,6 @@ public class Experiences extends DriverSetUp
 			}
 	
 		Thread.sleep(2000);
-		generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
-		
 		//Verify SHARE EXPERIENCES displayed
 		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
 		{
