@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="2" guice-stage="DEVELOPMENT" name="Failed suite [ShareAppAutomationSuite]">
-  <test thread-count="2" name="Regression(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.share.testscript.NeedHelp">
+      <class name="com.share.testscript.Profile">
         <methods>
+          <include name="TC_Profile_61" invocation-numbers="0"/>
           <include name="setTestResult"/>
           <include name="SetUp"/>
-          <include name="NeedHelp_002" invocation-numbers="0"/>
           <include name="CreateDriver"/>
           <include name="reportClose"/>
         </methods>
-      </class> <!-- com.share.testscript.NeedHelp -->
-      <class name="com.share.testscript.Assistant">
-        <methods>
-          <include name="TC_Assistant_011" invocation-numbers="0"/>
-          <include name="setTestResult"/>
-          <include name="SetUp"/>
-          <include name="TC_Assistant_004_005" invocation-numbers="0"/>
-          <include name="TC_Assistant_006_007" invocation-numbers="0"/>
-          <include name="TC_Assistant_010" invocation-numbers="0"/>
-          <include name="CreateDriver"/>
-          <include name="reportClose"/>
-        </methods>
-      </class> <!-- com.share.testscript.Assistant -->
+      </class> <!-- com.share.testscript.Profile -->
     </classes>
-  </test> <!-- Regression(failed) -->
-</suite> <!-- Failed suite [ShareAppAutomationSuite] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

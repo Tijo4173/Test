@@ -8,7 +8,7 @@ import com.share.objectrepository.SignInPage;
 
 public class ExperiencesFunctions extends DriverSetUp {
 
-	public boolean selectCategory(String Category)
+	public boolean selectCategory(String Category) throws InterruptedException
 	 {
 	 ExperiencesPage experiencesPage= new ExperiencesPage(driver);
 	 GeneralFunctions generalFunctions = new GeneralFunctions();
@@ -18,8 +18,8 @@ public class ExperiencesFunctions extends DriverSetUp {
 	 switch(Category)
 	 {
 	  case "CARREFOUR OFFERS":
-
-	  experiencesPage.carrefourOffers.click();
+	  experiencesPage.Carrefour.click();
+	  Thread.sleep(2000);
 	  try
 	{
 	if(generalFunctions.isElementPresent(experiencesPage.carrefourOffersPage, 30))
@@ -34,7 +34,8 @@ public class ExperiencesFunctions extends DriverSetUp {
 
 	   break;
 	case "SHARE OFFERS":
-	experiencesPage.shareOffers.click();
+	experiencesPage.Shopping.click();
+	Thread.sleep(2000);
 	  try
 	{
 
@@ -65,11 +66,11 @@ public class ExperiencesFunctions extends DriverSetUp {
 
 
 	case "MEMBER BENEFITS":
-	experiencesPage.memberBenefits.click();
+	experiencesPage.Benefits.click();
 	try
 	{
 
-	if(generalFunctions.isElementPresent(experiencesPage.memberBenefits, 30))
+	if(generalFunctions.isElementPresent(experiencesPage.Benefits, 30))
 	{
 	displayedFlag=true;
 	}

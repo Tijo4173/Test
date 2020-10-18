@@ -38,6 +38,7 @@ public class Home extends DriverSetUp{
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		
 		driver.resetApp();
+		signInFunctions.SignContinue();
 		signInFunctions.quickSignIn();
 
 		generalFunctions.isElementPresent(homePage.homeElement, 30);
@@ -88,6 +89,7 @@ public class Home extends DriverSetUp{
 		{
 
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -131,15 +133,9 @@ public class Home extends DriverSetUp{
 		test.info("TC:Verify user should view tutorial on clicking Submit receipt and Camera permissions");
 		System.out.println("Running Test"+" "+ TC_Method);
 
-		//SignInPage signInPage = new SignInPage(driver);
 		HomePage homePage = new HomePage(driver);
-		//SignInFunctions signInFunctions = new SignInFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
-		//SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		//SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-		//splashScreenFunctions.splashScreenSkip(splashScreenPage);
-
 		try
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -154,7 +150,6 @@ public class Home extends DriverSetUp{
 				test.log(Status.FAIL, "Submit Receipt Camera with Intro Skip Button is Not Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Submit Receipt Camera with Intro Skip Button is Not Present");
 			}
-
 			generalFunctions.isElementPresent(homePage.introNext, 90);
 			if(homePage.introNext.isDisplayed()==true)
 			{
@@ -165,7 +160,6 @@ public class Home extends DriverSetUp{
 				test.log(Status.FAIL, "Submit Receipt Receipt Camera with Intro Next Button is Not Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Submit Receipt Camera Have Intro Next Button is Not Present");
 			}
-
 			generalFunctions.isElementPresent(homePage.introNext, 90);
 			homeFunctions.introDone(homePage);
 			Thread.sleep(6000);
@@ -237,14 +231,9 @@ public class Home extends DriverSetUp{
 		test.info("TC:Verify user can skip the tutorial by clicking on skip button in tutorials in receipt submit screen");
 		System.out.println("Running Test"+" "+ TC_Method);
 
-		//SignInPage signInPage = new SignInPage(driver);
 		HomePage homePage = new HomePage(driver);
-		//SignInFunctions signInFunctions = new SignInFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
-		//SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		//SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-		//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 		try
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -308,11 +297,7 @@ public class Home extends DriverSetUp{
 		test.info("TC:Verify user can selected dont show  in Intro Screen");
 		System.out.println("Running Test"+" "+ TC_Method);
 
-		//RegistrationPage registrationPage= new RegistrationPage(driver);
-		//SignInPage signInPage = new SignInPage(driver);
 		HomePage homePage = new HomePage(driver);
-		//SignInFunctions signInFunctions = new SignInFunctions();
-		//RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
 
@@ -474,7 +459,6 @@ public class Home extends DriverSetUp{
 		HomeFunctions homeFunctions = new HomeFunctions();
 		try
 		{
-
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homeFunctions.receiptCameraClick(homePage);
 			generalFunctions.isElementPresent(homePage.introInfo, 90);
@@ -781,7 +765,6 @@ public class Home extends DriverSetUp{
 		HomeFunctions homeFunctions = new HomeFunctions();
 		try
 		{
-
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homeFunctions.receiptCameraClick(homePage);
 			generalFunctions.isElementPresent(homePage.introInfo, 90);
@@ -1174,9 +1157,8 @@ public class Home extends DriverSetUp{
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
-		//SignInPage signInPage = new SignInPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
-		//SignInFunctions signInFunctions = new SignInFunctions();
+
 		try
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -1303,7 +1285,7 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
-		//SignInFunctions signInFunctions = new SignInFunctions();
+	
 		try
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -1357,9 +1339,11 @@ public class Home extends DriverSetUp{
 
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			homeFunctions.zeroPointuser();
 
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -1396,9 +1380,11 @@ public class Home extends DriverSetUp{
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
@@ -1438,9 +1424,11 @@ public class Home extends DriverSetUp{
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
@@ -1488,9 +1476,11 @@ public class Home extends DriverSetUp{
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		HomeFunctions homeFunctions = new HomeFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			homeFunctions.zeroPointuser();
 			
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
@@ -1534,6 +1524,7 @@ public class Home extends DriverSetUp{
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			String a = homePage.homeOffers1.getText();
@@ -1656,6 +1647,7 @@ public class Home extends DriverSetUp{
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeUpdates.click();
@@ -1798,7 +1790,8 @@ public class Home extends DriverSetUp{
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
-			driver.resetApp();
+			driver.resetApp(); 
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeUpdates.click();
@@ -1963,6 +1956,7 @@ public class Home extends DriverSetUp{
 			try
 			{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(homePage.shopOnlineHeaders, 10);
 			List<MobileElement> shopeOnlineCategory = homePage.shopOnlineHeadersList.findElementsByClassName("android.view.ViewGroup");

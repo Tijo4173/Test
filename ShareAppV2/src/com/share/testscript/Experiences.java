@@ -30,9 +30,11 @@ public class Experiences extends DriverSetUp
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 		driver.resetApp();
+		signInFunctions.SignContinue();
 		profileFunctions.OfferSigin();
 	
 		// Click Experiences
@@ -79,12 +81,11 @@ public class Experiences extends DriverSetUp
 
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
-	
-		driver.resetApp();
-		//Login to the App				
-		//signInFunctions.validUserLogin();
+		driver.resetApp();			
+		signInFunctions.SignContinue();
 		profileFunctions.OfferSigin();
 		
 		// Click Experiences
@@ -135,9 +136,11 @@ public class Experiences extends DriverSetUp
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 		driver.resetApp();
+		signInFunctions.SignContinue();
 		profileFunctions.OfferSigin();
 		
 		// Click Experiences
@@ -298,13 +301,13 @@ public class Experiences extends DriverSetUp
 		}
 	} */
 	
-	//Verify user able to view 4 categories in experiences
+	//Verify user able to view 6 categories in experiences
 	@Test
 	public void TC_Experience_006(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
-		test.log(Status.INFO, "Verify user able to view 4 categories in experiences");
+		test.log(Status.INFO, "Verify user able to view 6 categories in experiences");
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
@@ -312,8 +315,7 @@ public class Experiences extends DriverSetUp
 		HomePage homepage = new HomePage(driver);
 
 		try
-		{
-		
+		{	
 		generalFunctions.isElementPresent(homepage.homebottomicon, 10);
 		homepage.homebottomicon.click();
 		
@@ -332,11 +334,11 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
 			Assert.fail("Not Navigated To SHARE EXPERIENCES");
 		}
-				
+		Thread.sleep(5000);
 		//Categories
 			
-			String Shopping = objExperiencesPage.shareOffers.getText();
-		 	if(generalFunctions.isElementPresent(objExperiencesPage.shareOffers, 30))
+			String Shopping = objExperiencesPage.Shopping.getText();
+		 	if(generalFunctions.isElementPresent(objExperiencesPage.Shopping, 30))
 		 	{
 		 		test.log(Status.PASS, Shopping+" "+"Category Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		 	}
@@ -345,8 +347,8 @@ public class Experiences extends DriverSetUp
 		 		test.log(Status.FAIL,  Shopping+" "+ "Category Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		 		Assert.fail("Shopping Offers Category Not Displayed");
 		 	}
-		 	String Carrefour = objExperiencesPage.carrefourOffers.getText();
-			if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
+		 	String Carrefour = objExperiencesPage.Carrefour.getText();
+			if(generalFunctions.isElementPresent(objExperiencesPage.Carrefour, 30))
 			{
 				test.log(Status.PASS, Carrefour+" "+"Category Displayed");
 			}
@@ -356,16 +358,16 @@ public class Experiences extends DriverSetUp
 				Assert.fail("Carrefour Offers Category Not Displayed");
 		    }
 			
-			//String Dining = objExperiencesPage.dining.getText();
-			//if(generalFunctions.isElementPresent(objExperiencesPage.dining, 30))
-			//{
-				//test.log(Status.PASS, Dining+" "+"Category Displayed");
-			//}
-			//else
-			//{
-				//test.log(Status.FAIL, Dining+" "+"Category Not Displayed");
-				//Assert.fail(" Dining Offers Category Not Displayed");
-			//}
+			String Dining = objExperiencesPage.Dining.getText();
+			if(generalFunctions.isElementPresent(objExperiencesPage.Dining, 30))
+			{
+				test.log(Status.PASS, Dining+" "+"Category Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, Dining+" "+"Category Not Displayed");
+				Assert.fail(" Dining Offers Category Not Displayed");
+			}
 			
 			String Contests = objExperiencesPage.Contests.getText();
 			if(generalFunctions.isElementPresent(objExperiencesPage.Contests, 30))
@@ -378,19 +380,19 @@ public class Experiences extends DriverSetUp
 				Assert.fail("Contests Category Not Displayed");
 			}
 			
-			//String Leisure = objExperiencesPage.lesiure.getText();
-			//if(generalFunctions.isElementPresent(objExperiencesPage.lesiure, 30))
-			//{
-				//test.log(Status.PASS, Leisure+" "+"Category Displayed");
-			//}
-			//else
-			//{
-				//test.log(Status.FAIL, Leisure+" "+"Category Not Displayed");
-				//Assert.fail("Leisure Category Not Displayed");
-			//}
+			String Leisure = objExperiencesPage.Leisure.getText();
+			if(generalFunctions.isElementPresent(objExperiencesPage.Leisure, 30))
+			{
+				test.log(Status.PASS, Leisure+" "+"Category Displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, Leisure+" "+"Category Not Displayed");
+				Assert.fail("Leisure Category Not Displayed");
+			}
 
-			String Benefits = objExperiencesPage.memberBenefits.getText();
-			if(generalFunctions.isElementPresent(objExperiencesPage.memberBenefits, 30))
+			String Benefits = objExperiencesPage.Benefits.getText();
+			if(generalFunctions.isElementPresent(objExperiencesPage.Benefits, 30))
 			{
 				test.log(Status.PASS, Benefits+" "+"Category Displayed");
 			}
@@ -418,7 +420,6 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		HomePage homepage = new HomePage(driver);
 		String categorySelection="CARREFOUR OFFERS";
@@ -445,7 +446,7 @@ public class Experiences extends DriverSetUp
 		}
 				
 		//Categories
-		if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
+		if(generalFunctions.isElementPresent(objExperiencesPage.Carrefour, 30))
 		{
 			test.log(Status.PASS, "Carrefour Offers Category Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
@@ -457,12 +458,12 @@ public class Experiences extends DriverSetUp
 	
 		if(generalFunctions.selectCategory(categorySelection)==true)
 		{
-			test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+"category");
+			test.log(Status.PASS, "Navigated to the "+categorySelection+" list screen based on the selected " +categorySelection+ "category");
 		}
 		else
 		{
-			test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
-			Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+" category");
+			test.log(Status.FAIL, "Not Navigated to the "+categorySelection+" list screen based on the selected " +categorySelection+ "category");
+			Assert.fail("Not Navigated to the "+categorySelection+" list screen based on the selected "+categorySelection+ "category");
 		}
 		
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
@@ -511,7 +512,7 @@ public class Experiences extends DriverSetUp
 		}
 				
 		//Categories
-		if(generalFunctions.isElementPresent(objExperiencesPage.carrefourOffers, 30))
+		if(generalFunctions.isElementPresent(objExperiencesPage.Carrefour, 30))
 		{
 			test.log(Status.PASS, "Carrefour Offers Category Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}
@@ -695,12 +696,10 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 
-		//SignInPage signInPage = new SignInPage(driver);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		HomePage homepage = new HomePage(driver);
 		try
 		{
-	
 		generalFunctions.isElementPresent(homepage.homebottomicon, 10);
 		homepage.homebottomicon.click();
 		
@@ -729,48 +728,48 @@ public class Experiences extends DriverSetUp
 		else
 		{	test.log(Status.PASS, "Offer Category Icon Section Collapsed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 		}	
-		if(generalFunctions.isElementPresent(objExperiencesPage.category1iconcarrefouroffer, 20))
+		if(generalFunctions.isElementPresent(objExperiencesPage.category4iconcarrefour, 20))
 		{	test.log(Status.PASS, "Collapsed Carrefour Icon Displayed");
 		}
 		else
 		{	test.log(Status.FAIL, "Collapsed Carrefour Icon Not Displayed");
 		}
-		if(generalFunctions.isElementPresent(objExperiencesPage.category4iconshareoffers, 20))
-		{	test.log(Status.PASS, "Collapsed Share offers Icon Displayed");
+		if(generalFunctions.isElementPresent(objExperiencesPage.category1iconshopping, 20))
+		{	test.log(Status.PASS, "Collapsed Shopping offers Icon Displayed");
 		}
 		else
-		{	test.log(Status.FAIL, "Collapsed Share offers Icon Not Displayed");
+		{	test.log(Status.FAIL, "Collapsed Shopping offers Icon Not Displayed");
 		}	
-		if(generalFunctions.isElementPresent(objExperiencesPage.category2iconmembercontests, 20))
+		if(generalFunctions.isElementPresent(objExperiencesPage.category5iconcontests, 20))
 		{	test.log(Status.PASS, "Collapsed Contests Icon Displayed");
 		}
 		else
 		{	test.log(Status.FAIL, "Collapsed Contests Icon Not Displayed");
 		}
 		
-		//if(generalFunctions.isElementPresent(objExperiencesPage.category4iconleisure, 30))
-		//{
-			//test.log(Status.PASS, "Collapsed Leisure Icon Displayed");
-		//}
-		//else
-		//{
-			//test.log(Status.FAIL, "Collapsed Leisure  Icon Not Displayed");
-			//Assert.fail("Collapsed Leisure Icon Not Displayed");
-		//}
+		if(generalFunctions.isElementPresent(objExperiencesPage.category3iconleisure, 30))
+		{
+			test.log(Status.PASS, "Collapsed Leisure Icon Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Collapsed Leisure  Icon Not Displayed");
+			Assert.fail("Collapsed Leisure Icon Not Displayed");
+		}
 		
-		//if(generalFunctions.isElementPresent(objExperiencesPage.category5icondining, 30))
-		//{
-			//test.log(Status.PASS, "Collapsed Dining Icon Displayed");
-		//}
-		//else
-		//{
-			//test.log(Status.FAIL, "Collapsed Dining  Icon Not Displayed");
-			//Assert.fail("Collapsed Dining Icon Not Displayed");
-		//}
+		if(generalFunctions.isElementPresent(objExperiencesPage.category2icondining, 30))
+		{
+			test.log(Status.PASS, "Collapsed Dining Icon Displayed");
+		}
+		else
+		{
+			test.log(Status.FAIL, "Collapsed Dining  Icon Not Displayed");
+			Assert.fail("Collapsed Dining Icon Not Displayed");
+		}
 		
-		if(generalFunctions.isElementPresent(objExperiencesPage.category5iconmemberbenefits, 30))
+		if(generalFunctions.isElementPresent(objExperiencesPage.category6ibenefits, 30))
 		{	test.log(Status.PASS, "Collapsed Benefits Icon Displayed");
-			test.log(Status.INFO, "All 4 Collapsed Icons Displayed");
+			test.log(Status.INFO, "All 6 Collapsed Icons Displayed");
 		}
 		else
 		{	test.log(Status.FAIL, "Collapsed Benefits  Icon Not Displayed");
@@ -809,10 +808,11 @@ public class Experiences extends DriverSetUp
       
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
         try
         {
-        	driver.resetApp();
-    		//Login to the App				
+        	driver.resetApp();	
+        	signInFunctions.SignContinue();
     		profileFunctions.OfferSigin();
     		
     		// Click Experiences
@@ -1122,7 +1122,6 @@ public class Experiences extends DriverSetUp
 		generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
 		objExperiencesPage.Experiences.click();
 		Thread.sleep(2000);
-		
 				
 		//Verify SHARE EXPERIENCES page displayed
 		if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
@@ -1313,11 +1312,13 @@ public class Experiences extends DriverSetUp
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		HomePage homepage = new HomePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 				
 		try
 		{	
 		//Login to the App
-		driver.resetApp();		
+		driver.resetApp();
+		signInFunctions.SignContinue();
     	profileFunctions.OfferSigin();
 						
 		//generalFunctions.SignIn(EmailAddress, Password, signInPage);
@@ -2033,13 +2034,15 @@ public class Experiences extends DriverSetUp
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		HomePage homepage = new HomePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		String searchKeyWord="carrefour";
 		String searchKeyWord2="offer";
 		String searchKeyWord3="vox";
 		try
 		{									
 		//Login to the App	
-		driver.resetApp();		
+		driver.resetApp();	
+		signInFunctions.SignContinue();
     	profileFunctions.OfferSigin();
 		generalFunctions.isElementPresent(homepage.homebottomicon, 10);
 		homepage.homebottomicon.click();
@@ -2219,12 +2222,14 @@ public class Experiences extends DriverSetUp
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		HomePage homepage = new HomePage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		
 		String searchKeyWord="@#&*";
 		try
 		{
 		//Login to the App	
 		driver.resetApp();		
+		signInFunctions.SignContinue();
 	    profileFunctions.OfferSigin();
 		generalFunctions.isElementPresent(homepage.homebottomicon, 10);
 		homepage.homebottomicon.click();
@@ -2336,6 +2341,7 @@ public class Experiences extends DriverSetUp
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.ActivatedOfferUser();
 			Thread.sleep(2000);
 			 
@@ -2500,11 +2506,12 @@ public class Experiences extends DriverSetUp
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
 		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signinfunctions = new SignInFunctions();
 		String categorySelection="CARREFOUR OFFERS";
 		try
 		{   //Login to the App	
-			driver.resetApp();		
-			Thread.sleep(5000);
+			driver.resetApp();
+			signinfunctions.SignContinue();
 			profileFunctions.OfferSigin();
 			// Click Experiences
 			generalFunctions.isElementPresent(objExperiencesPage.Experiences, 90);
@@ -2518,12 +2525,9 @@ public class Experiences extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Skip Button Not Displayed");
-				Assert.fail("Skip Button Not Displayed");
 			}
-			
 			objExperiencesPage.OnBoardingSkip.click();
 			Thread.sleep(4000);
-			
 			try
 			{generalFunctions.isElementPresent(objExperiencesPage.AllowAllTheTime, 30);
 				if(objExperiencesPage.AllowAllTheTime.isDisplayed()== true)
@@ -2534,8 +2538,7 @@ public class Experiences extends DriverSetUp
 				{	test.log(Status.INFO, "Access not given because of next testcases dependencies");
 					System.out.println("Location Access Denied");
 				}
-		
-					
+			Thread.sleep(1000);
 			//Verify SHARE EXPERIENCES page displayed
 			generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30);
 			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
@@ -2636,7 +2639,8 @@ public class Experiences extends DriverSetUp
 			{
 				test.log(Status.FAIL, "Offer Already Activated");
 				Assert.fail("Offer Already Activated");
-			}					
+			}
+			driver.navigate().back();
 		}
 		catch(Exception e)
 		{
@@ -2657,13 +2661,11 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
+		//SignInFunctions signinfunctions = new SignInFunctions();
 		HomePage homepage = new HomePage(driver);
 		try
-		{	driver.resetApp();	
-			Thread.sleep(5000);
-			profileFunctions.OfferSigin();
-		
+		{	
 			generalFunctions.isElementPresent(homepage.homebottomicon, 20);
 			homepage.homebottomicon.click();
 			// Click Experiences
@@ -2676,7 +2678,6 @@ public class Experiences extends DriverSetUp
 			else
 			{	test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
 			}
-			
 			if(generalFunctions.isElementPresent(objExperiencesPage.sortbutton, 30))
 			{	test.log(Status.PASS, "Sort icon displayed in Experience page");
 			}
@@ -2722,12 +2723,10 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homepage = new HomePage(driver);
 		try
-		{	driver.resetApp();	
-			Thread.sleep(5000);
-			profileFunctions.OfferSigin();
+		{	
 			generalFunctions.isElementPresent(homepage.homebottomicon, 20);
 			homepage.homebottomicon.click();
 			// Click Experiences
@@ -2789,12 +2788,10 @@ public class Experiences extends DriverSetUp
 		test.assignCategory("Experiences");
 		System.out.println(TC_Method);
 		ExperiencesPage objExperiencesPage= new ExperiencesPage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
+		//ProfileFunctions profileFunctions = new ProfileFunctions();
 		HomePage homepage = new HomePage(driver);
 		try
-		{	driver.resetApp();	
-			Thread.sleep(5000);
-			profileFunctions.OfferSigin();
+		{
 			generalFunctions.isElementPresent(homepage.homebottomicon, 20);
 			homepage.homebottomicon.click();
 			// Click Experiences
@@ -2807,7 +2804,6 @@ public class Experiences extends DriverSetUp
 			else
 			{	test.log(Status.FAIL, "Not Navigated To SHARE EXPERIENCES");
 			}
-			
 			if(generalFunctions.isElementPresent(objExperiencesPage.sortbutton, 30))
 			{	test.log(Status.PASS, "Sort icon displayed in Experience page");
 			}
@@ -2862,9 +2858,8 @@ public class Experiences extends DriverSetUp
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{	driver.resetApp();
-		    Thread.sleep(2000);
+			signInFunctions.SignContinue();
 			signInFunctions.TargetOfferUser();
-			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homepage.homebottomicon, 20);
 			homepage.homebottomicon.click();
 			// Click Experiences
@@ -2958,9 +2953,9 @@ public class Experiences extends DriverSetUp
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{	driver.resetApp();
-		    Thread.sleep(2000);
+		    signInFunctions.SignContinue();
 			signInFunctions.TargetOfferUser();
-			Thread.sleep(2000);
+			
 			generalFunctions.isElementPresent(homepage.homebottomicon, 20);
 			homepage.homebottomicon.click();
 			// Click Experiences

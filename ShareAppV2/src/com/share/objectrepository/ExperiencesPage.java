@@ -54,84 +54,59 @@ public class ExperiencesPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='indicatorOnBoarding']//android.view.View[@index='1']")
    public AndroidElement OnBoardingSwipe2;
 
- 
 
-    @AndroidFindBy(id = "tv_skip")
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/tvSkip']")
     public AndroidElement OnBoardingSkip;
 
- 
-
     @AndroidFindBy(id = "btn_continue")
-
     public AndroidElement OnBoardingContinue;
 
- 
-
     @AndroidFindBy(id = "android:id/button1")
-
     public AndroidElement AllowAllTheTime;
     
     @AndroidFindBy(id = "android:id/button2")
-
     public AndroidElement DontAllowaccess;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE EXPERIENCES']")
-
     public AndroidElement shareExperiences;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.Button[@text='SEE ALL']")
-
     public AndroidElement seeAll;
 
-    @AndroidFindBy(id = "textViewCategoryName4")
-    public AndroidElement shareOffers;
-
-    //Carrefour
     @AndroidFindBy(id="textViewCategoryName1")
-    public AndroidElement carrefourOffers;
-        
+    public AndroidElement Shopping;
+    
     @AndroidFindBy(id="textViewCategoryName2")
-    public AndroidElement Contests;
+    public AndroidElement Dining;
+    
+    @AndroidFindBy(id="textViewCategoryName3")
+    public AndroidElement Leisure;
+
+    @AndroidFindBy(id = "textViewCategoryName4")
+    public AndroidElement Carrefour;
 
     @AndroidFindBy(id="textViewCategoryName5")
-    public AndroidElement memberBenefits;
+    public AndroidElement Contests;
+    
+    @AndroidFindBy(id="textViewCategoryName6")
+    public AndroidElement Benefits;
 
- 
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE OFFERS']")
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SHOPPING']")
     public AndroidElement shareOffersPage;
 
- 
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR OFFERS']")
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CARREFOUR']")
     public AndroidElement carrefourOffersPage;
 
- 
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER CONTESTS']")
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='CONTESTS']")
     public AndroidElement memberContestsPage;
 
- 
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='MEMBER BENEFITS']")
-
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='BENEFITS']")
     public AndroidElement memberBenefitsPage;
 
  
 
 //    @AndroidFindBy(xpath = "//androidx.cardview.widget.CardView/android.view.ViewGroup[@index='0']/android.widget.TextView[@index='0']")
-
 //    public AndroidElement firstOffer;
-
- 
 
     @AndroidFindBy(xpath = "//androidx.cardview.widget.CardView[@index='0']")
     public AndroidElement firstOffer;
@@ -201,37 +176,24 @@ public class ExperiencesPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='ACTIVATED OFFERS']")
     public AndroidElement activatedOfferPage;
 
- 
-
 //    @AndroidFindBy(xpath = "//androidx.cardview.widget.CardView['1']/android.view.ViewGroup['0']/android.widget.Switch[@index='0']")
-
 //    public AndroidElement activateSwitch;
-
 
     @AndroidFindBy(className = "android.widget.Switch")
     public AndroidElement activateSwitch;
 
  
-
 //    public AndroidElement checkOfferTitle()[contains(@resource-id,'digit5') and @text='5']")
-
 //    {
-
 //        AndroidElement Title = driver.findElementByXPath("//androidx.cardview.widget.CardView['1']/android.view.ViewGroup['0']/android.widget.TextView[contains(@index='3'] and contains(@text,'\"+offerTitle+\"')]");
-
 //        return Title;
-
 //    }
 
- 
-
     public AndroidElement checkOfferTitle(String offerTitle)
-
-               {
-                   AndroidElement Title = driver.findElementByXPath("//androidx.cardview.widget.CardView[@index='0']/android.view.ViewGroup['0']/android.widget.TextView[contains(@resource-id,'textViewOfferTitle') and @text='"+offerTitle+"']");
-                    return Title;
-
-               }
+    {
+    	AndroidElement Title = driver.findElementByXPath("//androidx.cardview.widget.CardView[@index='0']/android.view.ViewGroup['0']/android.widget.TextView[contains(@resource-id,'textViewOfferTitle') and @text='"+offerTitle+"']");
+        return Title;
+    }
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='tv_title' and @text='NOT AVAILABLE']")
     public AndroidElement NotAvailable;
@@ -239,159 +201,95 @@ public class ExperiencesPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='tv_action' and @text='EXPLORE OTHER EXPERIENCES']")
     public AndroidElement exploreOtherExperiences;
 
-
     @AndroidFindBy(xpath = "//android.widget.ListView[@resource-id='android:id/resolver_list']")
     public AndroidElement shareOptions;
 
     @AndroidFindBy(xpath = "//androidx.cardview.widget.CardView[@index='2']")
-
     public AndroidElement offer;
 
     @AndroidFindBy(id = "ic_tv_experience_details_share")
-
     public AndroidElement detailedOfferShareIcon;
 
     @AndroidFindBy(id = "imageViewListFilterAction")
-
     public AndroidElement offerFilter;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='FILTERS']")
-
     public AndroidElement filtersPage;
 
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Dubai']")
-
     public AndroidElement locationDubai;
 
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Abu Dhabi']")
-
     public AndroidElement locationAbuDhabi;
 
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Ajman']")
-
     public AndroidElement locationAjman;
 
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Ras Al Khaimah']")
-
     public AndroidElement locationRasAlKhaimah;
 
-
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Sharjah']")
-
     public AndroidElement locationSharjah;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Umm Al Quwain']")
-
     public AndroidElement locationUmmAlQuwain;
     
     @AndroidFindBy(xpath = "//android.widget.CompoundButton[@text='Fujairah']")
 	public AndroidElement locationFujairah;
 
-
     @AndroidFindBy(id = "tv_nearby")
-
     public AndroidElement nearby;
 
-
     @AndroidFindBy(id = "action_clear_all")
-
     public AndroidElement clearAll;
 
- 
-
     @AndroidFindBy(id = "btn_show_experiences")
-
     public AndroidElement showExperiences;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='OFFER TYPE']")
-
     public AndroidElement offerType;
 
- 
-
     @AndroidFindBy(id = "tv_earn_only")
-
     public AndroidElement earnOnly;
 
- 
-
     @AndroidFindBy(id = "tv_burn_only")
-
     public AndroidElement burnOnly;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='AVAILABILITY']")
-
     public AndroidElement availability;
 
- 
-
     @AndroidFindBy(id = "tv_online")
-
     public AndroidElement online;
 
- 
-
     @AndroidFindBy(id = "tv_instore")
-
     public AndroidElement inStore;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='EXPIRY']")
-
     public AndroidElement expiry;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.SeekBar[@resource-id='sb_expiry']")
-
     public AndroidElement expirySeekBar;
 
- 
-
     @AndroidFindBy(id = "imageViewSearchAction")
-
     public AndroidElement searchIcon;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='SEARCH']")
-
     public AndroidElement searchPage;
 
- 
-
     @AndroidFindBy(id = "et_search")
-
     public AndroidElement searchField;
     
     @AndroidFindBy(id = "tv_title")
     public AndroidElement noResultfound;
 
- 
-
     @AndroidFindBy(xpath = "//android.widget.TextView[@text ='RECENT']")
     public AndroidElement recentSearchItem;
 
- 
-
     @AndroidFindBy(id = "ib_close")
-
     public AndroidElement searchClear;
 
- 
-
     @AndroidFindBy(id = "textViewOfferTitle")
-
     public AndroidElement searchResult;
-
- 
 
     public AndroidElement recentSearches(String searchValue)
     {
@@ -412,22 +310,22 @@ public class ExperiencesPage extends DriverSetUp  {
     
   //tijo
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer1']")
-    public AndroidElement category1iconcarrefouroffer;
+    public AndroidElement category1iconshopping;
   	
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer2']")
-    public AndroidElement category2iconmembercontests;	
+    public AndroidElement category2icondining;	
   	
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer3']")
-    public AndroidElement category3icondining;
+    public AndroidElement category3iconleisure;
   	
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer4']")
-    public AndroidElement category4iconshareoffers;
+    public AndroidElement category4iconcarrefour;
   	
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer5']")
-    public AndroidElement category5iconmemberbenefits;
+    public AndroidElement category5iconcontests;
   	
   	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/linearLayoutCategoryContainer6']")
-    public AndroidElement category6ileisure;
+    public AndroidElement category6ibenefits;
   	
   	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.ImageView")
     public AndroidElement backarrow;
@@ -472,11 +370,5 @@ public class ExperiencesPage extends DriverSetUp  {
 		
 	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.viewpager.widget.ViewPager/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView")
     public AndroidElement offerforyoupagecount;
-	
-
-	
-//V2 END
-
- 
 
 }

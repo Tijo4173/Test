@@ -144,7 +144,7 @@ public class GeneralFunctions extends DriverSetUp{
 		  {
 		  	case "CARREFOUR OFFERS":
 
-		  		objExperiencesPage.carrefourOffers.click();
+		  		objExperiencesPage.Carrefour.click();
 		  		try
 				{
 		  			isElementPresent(objExperiencesPage.carrefourOffersPage, 30);
@@ -161,7 +161,7 @@ public class GeneralFunctions extends DriverSetUp{
 			    break;
 			 case "SHARE OFFERS":
 
-				 objExperiencesPage.shareOffers.click();
+				 objExperiencesPage.Shopping.click();
 			  		try
 					{
 			  			isElementPresent(objExperiencesPage.shareOffersPage, 30);
@@ -195,11 +195,11 @@ public class GeneralFunctions extends DriverSetUp{
 
 			 case "MEMBER BENEFITS":
 
-				 objExperiencesPage.memberBenefits.click();
+				 objExperiencesPage.Benefits.click();
 				 try
 					{
-			  			isElementPresent(objExperiencesPage.memberBenefits, 30);
-						if(objExperiencesPage.memberBenefits.isDisplayed()==true)
+			  			isElementPresent(objExperiencesPage.Benefits, 30);
+						if(objExperiencesPage.Benefits.isDisplayed()==true)
 						{
 							displayedFlag=true;
 						}

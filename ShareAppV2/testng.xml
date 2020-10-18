@@ -3,17 +3,19 @@
 <suite name="ShareAppAutomationSuite" thread-count="2">
 	<test name="Regression">
 		<classes>
-			<class name="com.share.testscript.Home" />
-			<class name="com.share.testscript.Profile" />
-			<class name="com.share.testscript.Family" />
-			<class name="com.share.testscript.Experiences" />
+		<!--turn off location and blue-tooth-->
 			<class name="com.share.testscript.SplashScreen" />
-			<class name="com.share.testscript.NeedHelp" />
+			<class name="com.share.testscript.ZendeskChat" />
 			<class name="com.share.testscript.Registration" />
 			<class name="com.share.testscript.SignIn" />
-			<class name="com.share.testscript.SharePay" />
-			<class name="com.share.testscript.Assistant" />
-			<class name="com.share.testscript.Transactions" />
+			<!--<class name="com.share.testscript.Home" />-->
+			<!--<class name="com.share.testscript.Experiences" />-->
+			<!--<class name="com.share.testscript.SharePay" />	-->
+			<!--<class name="com.share.testscript.Family" />-->
+			<!--<class name="com.share.testscript.Profile" />-->
+			<!--<class name="com.share.testscript.Assistant" />-->
+			<!--<class name="com.share.testscript.Transactions" />-->
 		</classes>
 	</test> <!-- Test2 -->
 </suite> <!-- Suite -->
+

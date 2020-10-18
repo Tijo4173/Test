@@ -23,6 +23,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.share.functions.SignInFunctions;
 import com.share.testdata.DataDriven;
 import com.share.utility.Utilities;
 
@@ -79,7 +80,7 @@ public class DriverSetUp extends DataDriven {
 		extent.attachReporter(htmlReporter);
 		extent.setSystemInfo("Author", "Testhouse");
 		extent.setSystemInfo("Application", "ShareV2");
-		extent.setSystemInfo("Build Version", "2.3.3");
+		extent.setSystemInfo("Build Version", "2.4.2");
 			}
 
 	@BeforeTest(alwaysRun=true)

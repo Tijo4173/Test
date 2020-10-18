@@ -36,6 +36,7 @@ public class Assistant extends DriverSetUp
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{	driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
 			assistantPage.AssistantIcon.click();
@@ -186,8 +187,11 @@ public class Assistant extends DriverSetUp
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
 		AssistantFunctions assistantFunctions = new AssistantFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
-		{
+		{	driver.resetApp();
+			signInFunctions.SignContinue();
+			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 30);
 			assistantPage.AssistantIcon.click();
 
@@ -503,8 +507,12 @@ public class Assistant extends DriverSetUp
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.SignContinue();
+			signInFunctions.quickSignIn();
 			generalFunctions.isElementPresent(assistantPage.AssistantIcon, 60);
 			assistantPage.AssistantIcon.click();
 
@@ -1116,6 +1124,7 @@ public class Assistant extends DriverSetUp
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			// Click Experiences
 			//Thread.sleep(5000);
@@ -1160,6 +1169,7 @@ public class Assistant extends DriverSetUp
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			signInFunctions.quickSignIn();
 			// Click Experiences
 			//Thread.sleep(5000);

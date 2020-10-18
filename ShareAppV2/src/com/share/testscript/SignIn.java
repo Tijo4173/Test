@@ -28,11 +28,12 @@ public class SignIn extends DriverSetUp
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Launch the share app and click on Sign in button");
 		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		RegistrationPage registrationPage = new RegistrationPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SignInFunctions signInFunctions = new SignInFunctions();
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 
@@ -97,10 +98,11 @@ public class SignIn extends DriverSetUp
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Verify user can reset Password");
 		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SignInFunctions signInFunctions = new SignInFunctions();
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		try
@@ -214,10 +216,11 @@ public class SignIn extends DriverSetUp
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Verify user receiving reset password mail when the user do send again");
 		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SignInFunctions signInFunctions = new SignInFunctions();
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		try
@@ -334,11 +337,12 @@ public class SignIn extends DriverSetUp
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Verify user can view the password by clicking on the eye icon");
 		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		RegistrationPage registrationPage = new RegistrationPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SignInFunctions signInFunctions = new SignInFunctions();
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 
@@ -379,13 +383,14 @@ public class SignIn extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Sign in using invalid combinations");
-		//driver.resetApp();
+		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			//String pass = signpass;
@@ -441,6 +446,8 @@ public class SignIn extends DriverSetUp
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
 		test.info("Verify user is navigated to sign up page when clicking on sign up hyperlink in login screen  ");
 		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		RegistrationPage registrationPage = new RegistrationPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();

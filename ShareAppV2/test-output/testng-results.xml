@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="26" total="27" passed="1">
+<testng-results ignored="33" total="34" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="80768" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:12:16 IST">
+  <suite started-at="2020-10-15T16:31:46 IST" name="Default suite" finished-at="2020-10-15T16:32:44 IST" duration-ms="57657">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="80768" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:12:16 IST">
-      <class name="com.share.testscript.Registration">
-        <test-method status="PASS" signature="SetUp()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="SetUp" is-config="true" duration-ms="12300" started-at="2020-09-06T23:10:43 IST" finished-at="2020-09-06T23:10:55 IST">
+    <test started-at="2020-10-15T16:31:46 IST" name="Default test" finished-at="2020-10-15T16:32:44 IST" duration-ms="57657">
+      <class name="com.share.testscript.Profile">
+        <test-method is-config="true" signature="SetUp()[pri:0, instance:com.share.testscript.Profile@6a400542]" started-at="2020-10-15T16:31:46 IST" name="SetUp" finished-at="2020-10-15T16:31:46 IST" duration-ms="290" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- SetUp -->
-        <test-method status="PASS" signature="CreateDriver()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="CreateDriver" is-config="true" duration-ms="25381" started-at="2020-09-06T23:10:55 IST" finished-at="2020-09-06T23:11:21 IST">
+        <test-method is-config="true" signature="CreateDriver()[pri:0, instance:com.share.testscript.Profile@6a400542]" started-at="2020-10-15T16:31:46 IST" name="CreateDriver" finished-at="2020-10-15T16:32:10 IST" duration-ms="24378" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CreateDriver -->
-        <test-method status="PASS" signature="TC_Registration_052(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="TC_Registration_052" duration-ms="54672" started-at="2020-09-06T23:11:21 IST" finished-at="2020-09-06T23:12:15 IST">
+        <test-method signature="TC_Profile_61(java.lang.reflect.Method)[pri:34, instance:com.share.testscript.Profile@6a400542]" started-at="2020-10-15T16:32:10 IST" name="TC_Profile_61" finished-at="2020-10-15T16:32:43 IST" duration-ms="32545" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[public void com.share.testscript.Registration.TC_Registration_052(java.lang.reflect.Method) throws java.lang.Exception]]>
+                <![CDATA[public void com.share.testscript.Profile.TC_Profile_61(java.lang.reflect.Method) throws java.lang.Exception]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC_Registration_052 -->
-        <test-method status="PASS" signature="setTestResult(org.testng.ITestResult)[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="setTestResult" is-config="true" duration-ms="669" started-at="2020-09-06T23:12:15 IST" finished-at="2020-09-06T23:12:16 IST">
+        </test-method> <!-- TC_Profile_61 -->
+        <test-method is-config="true" signature="setTestResult(org.testng.ITestResult)[pri:0, instance:com.share.testscript.Profile@6a400542]" started-at="2020-10-15T16:32:43 IST" name="setTestResult" finished-at="2020-10-15T16:32:44 IST" duration-ms="648" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TC_Registration_052 status=SUCCESS method=Registration.TC_Registration_052(java.lang.reflect.Method)[pri:0, instance:com.share.testscript.Registration@32d2fa64] output={null}]]]>
+                <![CDATA[[TestResult name=TC_Profile_61 status=SUCCESS method=Profile.TC_Profile_61(java.lang.reflect.Method)[pri:34, instance:com.share.testscript.Profile@6a400542] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setTestResult -->
-        <test-method status="PASS" signature="reportClose()[pri:0, instance:com.share.testscript.Registration@32d2fa64]" name="reportClose" is-config="true" duration-ms="545" started-at="2020-09-06T23:12:16 IST" finished-at="2020-09-06T23:12:17 IST">
+        <test-method is-config="true" signature="reportClose()[pri:0, instance:com.share.testscript.Profile@6a400542]" started-at="2020-10-15T16:32:44 IST" name="reportClose" finished-at="2020-10-15T16:32:44 IST" duration-ms="579" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportClose -->
-      </class> <!-- com.share.testscript.Registration -->
+      </class> <!-- com.share.testscript.Profile -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

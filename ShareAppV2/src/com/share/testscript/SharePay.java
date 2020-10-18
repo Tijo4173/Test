@@ -1,5 +1,4 @@
 package com.share.testscript;
-
 import java.lang.reflect.Method;
 
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +8,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.share.functions.ProfileFunctions;
 import com.share.functions.SharePayFunctions;
+import com.share.functions.SignInFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.ProfilePage;
@@ -20,9 +20,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 
 public class SharePay extends DriverSetUp
 {
-
 	GeneralFunctions generalFunctions = new GeneralFunctions();
-
 	@Test(priority = 1)
 	public void TC_SharePay_001_002(Method method) throws Exception
 	{
@@ -31,18 +29,17 @@ public class SharePay extends DriverSetUp
 		test.log(Status.INFO, "Beam Wallet - SHARE Pay");
 		test.assignCategory("SHARE PAY");
 		System.out.println(TC_Method);
-
 		SharePayPage sharePayPage = new SharePayPage(driver);
 		SharePayFunctions sharePayFunctions = new SharePayFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
-		{
-			driver.resetApp();
+		{	driver.resetApp();
+			signInFunctions.SignContinue();//For sprint 18
 			sharePayFunctions.newUserPassPay();
 			//Verify Share Pay Icon displayed
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
-
 			}
 			else
 			{
@@ -62,22 +59,17 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "OnBoarding Not Displayed");
 				Assert.fail("OnBoarding Not Displayed");
 			}
-
 			//Verify Continue button displayed
-
 			if(generalFunctions.isElementPresent(sharePayPage.OnBoardingContinue, 30))
 			{
 				test.log(Status.PASS, "Continue Button Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Continue Button Not Displayed");
 				Assert.fail("Continue Button Not Displayed");
 			}
-
 			sharePayPage.OnBoardingContinue.click();
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -96,8 +88,6 @@ public class SharePay extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
-
 	@Test(priority = 2)
 	public void TC_SharePay_003(Method method) throws Exception
 	{
@@ -106,7 +96,6 @@ public class SharePay extends DriverSetUp
 		test.log(Status.INFO, "Beam Wallet - SHARE Pay");
 		test.assignCategory("SHARE PAY");
 		System.out.println(TC_Method);
-
 		SharePayPage sharePayPage = new SharePayPage(driver);
 		try
 		{
@@ -123,8 +112,6 @@ public class SharePay extends DriverSetUp
 
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -134,11 +121,6 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
 				Assert.fail("Share Pay Page Not Displayed");
 			}
-
-
-
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 60))
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
@@ -172,8 +154,6 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Add Card Icon Not Displayed");
 				Assert.fail("Add Card Icon Not Displayed");
 			}
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.pointBalance, 30))
 			{
 				test.log(Status.PASS, "Point Balance Displayed");
@@ -183,7 +163,6 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Point Balance Not Displayed");
 				Assert.fail("Point Balance Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(sharePayPage.aedValue, 30))
 			{
 				test.log(Status.PASS, "AED Value Displayed::"+sharePayPage.aedValue.getText());
@@ -202,10 +181,7 @@ public class SharePay extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
-
 	////----PASSCODE---////
-
 	//Verify New User is able to set up PIN on selecting Share Wallet - Add Card
 	@Test(priority = 6)
 	public void TC_SharePay_004_to_008(Method method) throws Exception {
@@ -220,10 +196,7 @@ public class SharePay extends DriverSetUp
 		try {
 			//New User login
 			///sharePayFunctions.newUserPassPay();
-
-
 			//Verify Share Pay Icon displayed
-
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
@@ -233,11 +206,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -257,10 +227,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
 				Assert.fail("Add A New Card Link Not Displayed");
 			}
-
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
 			//SetPinCode
 			if(generalFunctions.isElementPresent(profilePage.setupPinCode, 30)) {
 				test.log(Status.PASS, "SET UP PIN CODE Button is Present").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -280,7 +248,6 @@ public class SharePay extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "Setup PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			//PINCODE CONFIRM SCREEN
 			if(generalFunctions.isElementPresent(profilePage.confirmPassScreen, 30)) {
 				test.log(Status.PASS, "Confirm PINCODE Screen displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -288,7 +255,6 @@ public class SharePay extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "Confirm PINCODE Screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			//PINCODE SUCCESS
 			if(generalFunctions.isElementPresent(profilePage.pinSuccess, 30)) {
 				test.log(Status.PASS, "SUCCESS:"+profilePage.pinSuccess.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -327,7 +293,6 @@ public class SharePay extends DriverSetUp
 			System.out.println(TC_Method);
 			SharePayPage sharePayPage = new SharePayPage(driver);
 			ProfilePage profilePage = new ProfilePage(driver);
-
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
@@ -337,11 +302,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -355,17 +317,13 @@ public class SharePay extends DriverSetUp
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
 				Assert.fail("Add A New Card Link Not Displayed");
 			}
-
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
-
 			if(generalFunctions.isElementPresent(profilePage.setupPinCode, 20)) {
 				test.log(Status.PASS, " User is not able to Proceed with Share Wallet - Add card without setting up PIN").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}else {
@@ -402,10 +360,8 @@ public class SharePay extends DriverSetUp
 			ProfilePage profilePage = new ProfilePage(driver);
 			ProfileFunctions profileFunctions = new ProfileFunctions();
 			//New User login
-			//	sharePayFunctions.newUserPassPay();
-
+			//sharePayFunctions.newUserPassPay();
 			//Verify Share Pay Icon displayed
-
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
@@ -415,11 +371,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -433,16 +386,13 @@ public class SharePay extends DriverSetUp
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
 				Assert.fail("Add A New Card Link Not Displayed");
 			}
-
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
 			//Passcode
 			generalFunctions.isElementPresent(profilePage.setupPinCode, 30);
 			profilePage.setupPinCode.click();
@@ -476,7 +426,6 @@ public class SharePay extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-
 	//Verify New User is navigating to the previous screen when user clicks back arrow on any of the screens
 	@Test(priority = 4)
 	public void TC_SharePay_013_014(Method method) throws Exception {
@@ -488,11 +437,9 @@ public class SharePay extends DriverSetUp
 			System.out.println(TC_Method);
 			SharePayPage sharePayPage = new SharePayPage(driver);
 			ProfilePage profilePage = new ProfilePage(driver);
-
 			//New User login
 			//	sharePayFunctions.newUserPassPay();
 			//Verify Share Pay Icon displayed
-
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
@@ -502,11 +449,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -520,16 +464,13 @@ public class SharePay extends DriverSetUp
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
 				Assert.fail("Add A New Card Link Not Displayed");
 			}
-
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
 			//Passcode
 			generalFunctions.isElementPresent(profilePage.setupPinCode, 30);
 			profilePage.setupPinCode.click();
@@ -579,7 +520,6 @@ public class SharePay extends DriverSetUp
 		ProfilePage profilePage = new ProfilePage(driver);
 		//New User login
 		//	sharePayFunctions.newUserPassPay();
-
 		//Verify Share Pay Icon displayed
 		try {
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
@@ -591,11 +531,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -609,17 +546,13 @@ public class SharePay extends DriverSetUp
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
 				Assert.fail("Add A New Card Link Not Displayed");
 			}
-
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
-
 			//Passcode
 			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
 			profilePage.setUpPin.sendKeys("1234");
@@ -629,7 +562,6 @@ public class SharePay extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "The Add new card screen NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			driver.navigate().back();
 			generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 20);
 			driver.navigate().back();
@@ -665,11 +597,8 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
@@ -692,7 +621,6 @@ public class SharePay extends DriverSetUp
 
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
 			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
 			profilePage.setUpPin.sendKeys("1243");
 			Thread.sleep(500);
@@ -725,10 +653,11 @@ public class SharePay extends DriverSetUp
 
 		SharePayPage sharePayPage = new SharePayPage(driver);
 		SharePayFunctions sharePayFunctions = new SharePayFunctions();
-
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			sharePayFunctions.newUserPassPay();
 
 			//Verify Share Pay Icon displayed
@@ -976,26 +905,16 @@ public class SharePay extends DriverSetUp
 		test.log(Status.INFO, "Beam Wallet - SHARE Pay");
 		test.assignCategory("SHARE PAY");
 		System.out.println(TC_Method);
-
 		SharePayPage sharePayPage = new SharePayPage(driver);
 		ProfilePage profilePage = new ProfilePage(driver);
-		ProfileFunctions profileFunctions = new ProfileFunctions();
-
 		String CardNumber=map.get("CardNumber").toString();
 		String NameOnCard =map.get("NameOnCard").toString();
 		String ExpiryDate=map.get("ExpiryDate").toString();
 		String Cvv =map.get("Cvv").toString();
 		String TransactionAmount=map.get("TransactionAmount").toString();
 		try
-
 		{
-
-			//Login to the App
-			//generalFunctions.SignIn(EmailAddress, Password, signInPage);
-
 			//Verify Share Pay Icon displayed
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 60))
 			{
 				test.log(Status.PASS, "Share Pay Icon Displayed");
@@ -1005,29 +924,21 @@ public class SharePay extends DriverSetUp
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
 				Assert.fail("Share Pay Icon Not Displayed");
 			}
-
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
-
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
 			{
 				test.log(Status.PASS, "Share Pay Page Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
 				Assert.fail("Share Pay Page Not Displayed");
 			}
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
@@ -1036,7 +947,6 @@ public class SharePay extends DriverSetUp
 
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
-
 			// INSERT PASSCODE
 			generalFunctions.isElementPresent(profilePage.setUpPin, 30);
 			profilePage.setUpPin.sendKeys("1234");
@@ -1047,8 +957,6 @@ public class SharePay extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "The Add new card screen NOT displayed");
 			}
-
-
 			if(generalFunctions.isElementPresent(sharePayPage.addNewCardPage, 30))
 			{
 				test.log(Status.PASS, "Add New Card page Displayed");
@@ -1316,7 +1224,6 @@ public class SharePay extends DriverSetUp
 					Assert.fail("Share Pay Page Not Displayed");
 				}
 
-
 				if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 				{
 					test.log(Status.PASS, "Add A New Card Link Displayed");
@@ -1340,7 +1247,6 @@ public class SharePay extends DriverSetUp
 				}else {
 					test.log(Status.FAIL, "The Add new card screen NOT displayed");
 				}
-
 
 				if(generalFunctions.isElementPresent(sharePayPage.addNewCardPage, 30))
 				{

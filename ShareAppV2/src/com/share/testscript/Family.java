@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.share.functions.FamilyFunctions;
 import com.share.functions.RegistrationFunctions;
+import com.share.functions.SignInFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
 import com.share.objectrepository.FamilyPage;
@@ -37,10 +38,12 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN//can use new user
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -105,11 +108,11 @@ public class Family extends DriverSetUp
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
-
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN//can use new user
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -160,10 +163,12 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN//
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -237,11 +242,13 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
@@ -380,10 +387,12 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -490,10 +499,12 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		FamilyFunctions familyFunctions = new FamilyFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -565,21 +576,18 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
-
-
-
 			if(generalFunctions.isElementPresent(familyPage.familyGroupIcon, 30))
 			{
 				test.log(Status.PASS, "Group Icon Dispalyed");
 				familyPage.familyGroupIcon.click();
-
 			}
 			else
 			{
@@ -590,7 +598,7 @@ public class Family extends DriverSetUp
 
 			String _name = familyPage.familyMemberName.getText();
 			System.out.println(_name);
-
+			
 			familyPage.familyMember.click();
 
 			generalFunctions.isElementPresent(familyPage.familyPointBalance, 60);
@@ -639,7 +647,6 @@ public class Family extends DriverSetUp
 		test.log(Status.INFO, "Module:Family").assignCategory("FAMILY");
 		test.info("Verify Family member can edit and add contribution percentage to the Family group or family head");
 
-
 		String EmailAddress=map.get("Family_mem_user").toString();
 		String Pass=map.get("Family_mem_pass").toString();
 
@@ -647,11 +654,13 @@ public class Family extends DriverSetUp
 		
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -714,10 +723,11 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -787,10 +797,11 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 
@@ -851,15 +862,14 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 		try
 		{
 			driver.resetApp();
-
+			signInFunctions.SignContinue();
 			//LOGIN
-
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
 			if(familyPage.familyGroupIcon.isDisplayed())
 			{
 				test.log(Status.PASS, "Group Icon Displayed");
@@ -924,16 +934,15 @@ public class Family extends DriverSetUp
 		HomePage homePage = new HomePage(driver);
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		SignInPage signInPage = new SignInPage(driver);
 
 		try
 		{
 			driver.resetApp();
-
+			signInFunctions.SignContinue();
 			//LOGIN
-
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
-
 			if(familyPage.familyGroupIcon.isDisplayed())
 			{
 				test.log(Status.PASS, "Group Icon Displayed");
@@ -1068,10 +1077,11 @@ public class Family extends DriverSetUp
 		FamilyPage familyPage = new FamilyPage(driver);
 		RegistrationFunctions registrationFunctions= new RegistrationFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
 			driver.resetApp();
+			signInFunctions.SignContinue();
 			//LOGIN
 			registrationFunctions.LoginFun(registrationPage,EmailAddress,Pass,signInPage);
 

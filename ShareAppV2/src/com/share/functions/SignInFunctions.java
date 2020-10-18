@@ -180,4 +180,12 @@ public class SignInFunctions extends DriverSetUp{
 	    signInPage.signinElement.click();		
 	}
 	
+	public void SignContinue() throws Exception {
+		SignInPage signInPage = new SignInPage(driver);
+		generalFunctions.isElementPresent(signInPage.Signcontinue, 90);
+		signInPage.Signcontinue.click();	
+		signInPage.Signcontinue.click();	
+		signInPage.Signcontinue.click();	
+	}
+	
 }

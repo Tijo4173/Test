@@ -1,16 +1,11 @@
 package com.share.testscript;
 import java.lang.reflect.Method;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.Status;
-import com.share.functions.ProfileFunctions;
-import com.share.functions.SharePayFunctions;
 import com.share.functions.SignInFunctions;
 import com.share.general.DriverSetUp;
 import com.share.general.GeneralFunctions;
-import com.share.objectrepository.SignInPage;
 import com.share.objectrepository.TransactionsPage;
 import com.share.utility.Utilities;
 
@@ -28,17 +23,11 @@ public class Transactions extends DriverSetUp
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
-
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
-
-		//String EmailAddress=map.get("TransactionUser").toString();
-		//String Password=map.get("TransactionUserPassword").toString();
-
 		try
-		{
-			//generalFunctions.isElementPresent(signInPage.signinPresent, 30);
-			driver.resetApp();
+		{	driver.resetApp();
+			signInFunctions.SignContinue();//For sprint 18
 			signInFunctions.quickSignIn();
 
 			// Click Account
@@ -56,7 +45,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "My Account page Not Displayed");
 				Assert.fail("My Account page Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.pendingTitle, 30))
 			{
 				test.log(Status.PASS, "PENDING Title Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -140,12 +128,11 @@ public class Transactions extends DriverSetUp
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
-
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
-		{
-			driver.resetApp();
+		{	driver.resetApp();
+			signInFunctions.SignContinue();//For sprint 18
 			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
@@ -273,18 +260,16 @@ public class Transactions extends DriverSetUp
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
-
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
-		{
-			driver.resetApp();
+		{	driver.resetApp();
 			signInFunctions.quickSignIn();
+			signInFunctions.SignContinue();//For sprint 18
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
 			transactionsPage.accountIcon.click();
 			Thread.sleep(3000);
-
 			//Verify My Account page displayed
 			if(generalFunctions.isElementPresent(transactionsPage.myAccountPage, 90))
 			{
@@ -342,13 +327,11 @@ public class Transactions extends DriverSetUp
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
-
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
-
 		try
-		{
-			driver.resetApp();
+		{	driver.resetApp();
+			signInFunctions.SignContinue();//For sprint 18
 			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
@@ -365,7 +348,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "My Account page Not Displayed");
 				Assert.fail("My Account page Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.pendingTitle, 30))
 			{
 				test.log(Status.PASS, "PENDING Title Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -375,7 +357,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "PENDING Title Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("PENDING Title Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.pendingReceiptsSection, 30))
 			{
 				test.log(Status.PASS, "Pending Receipts Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -385,7 +366,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Pending Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Section Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.transactions, 30))
 			{
 				test.log(Status.PASS, "Transactions Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
@@ -395,7 +375,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Transactions Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Transactions Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.transactionIcon, 30))
 			{
 				test.log(Status.PASS, "Sponsor Name Displayed");
@@ -405,7 +384,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Sponsor Name Not Displayed");
 				Assert.fail("Sponsor Name Not Displayed");
 			}
-
 			if(generalFunctions.isElementPresent(transactionsPage.transactionPoints, 30))
 			{
 				test.log(Status.PASS, "Sponsor Point Displayed");
@@ -415,7 +393,6 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Sponsor Point Not Displayed");
 				Assert.fail("Sponsor Point Not Displayed");
 			}
-
 			String Point =generalFunctions.getText(transactionsPage.transactionPoints);
 			if(Point.contains("+")||Point.contains("-"))
 			{
@@ -426,14 +403,11 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Sponsor Point Not Contains '+' or '-'").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Sponsor Point Not Contains '+' or '-'");
 			}
-
 		}
 		catch(Exception e)
 		{
 			test.log(Status.FAIL, e.getMessage());
 			Assert.fail(e.getMessage());
 		}
-
-
 	}
 }

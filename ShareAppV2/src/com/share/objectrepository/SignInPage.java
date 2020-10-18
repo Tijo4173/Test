@@ -115,4 +115,9 @@ public class SignInPage {
 public By sendAgainToast = By.xpath("//android.widget.Toast[@index = '1']");
 
 public By signInErrorToast = By.xpath("//android.widget.Toast[@index = '1']");
+
+@AndroidFindBy(id = "buttonContinue")
+public AndroidElement Signcontinue;
+
+
 }

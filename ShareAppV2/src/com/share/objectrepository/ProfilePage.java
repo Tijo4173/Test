@@ -46,6 +46,9 @@ public class ProfilePage extends DriverSetUp {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Terms & Conditions']")
 	public AndroidElement termsNconditions;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='How It Works']")
+	public AndroidElement howitworks;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Privacy Policy']")
 	public AndroidElement privacyPolicy;
@@ -282,4 +285,17 @@ public class ProfilePage extends DriverSetUp {
 
 	@AndroidFindBy(id ="tv_enter_pin_title")
 	public AndroidElement pincodeSetupscreens;
+	
+	@AndroidFindBy(accessibility ="SHARE PAY")
+	public AndroidElement spaytutorialscreeninprofile;
+	
+	@AndroidFindBy(accessibility = "EXPERIENCES")
+	public AndroidElement exptutorialscreeninprofile;
+	
+	@AndroidFindBy(accessibility = "SHARE YOUR POINTS")
+	public AndroidElement syptutorialscreeninprofile;
+	
+	@AndroidFindBy(accessibility = "ETIHAD GUEST TRANSFER")
+	public AndroidElement ethiadtutorialscreeninprofile;
+
 }
