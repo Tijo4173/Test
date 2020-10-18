@@ -12,13 +12,10 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 public class ZendeskChatPage extends DriverSetUp{
 	
 	AndroidDriver<AndroidElement> driver;
-
 	public ZendeskChatPage(AndroidDriver<AndroidElement> driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver),this);
-
-	}
-	
+	}	
 	@AndroidFindBy(id = "textView8")
 	public AndroidElement chaticon;
 	
@@ -27,7 +24,4 @@ public class ZendeskChatPage extends DriverSetUp{
 	
 	@AndroidFindBy(id = "input_box_input_text")
 	public AndroidElement chatinputtext;
-	
-	
-
 }
