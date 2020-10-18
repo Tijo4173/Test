@@ -1109,7 +1109,7 @@ public class Assistant extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	//Sprint 16 implementation
+	//Sprint 16 implementation chat
 	@Test(priority=9)
 	public void TC_Assistant_013(Method method) throws Exception
 	{

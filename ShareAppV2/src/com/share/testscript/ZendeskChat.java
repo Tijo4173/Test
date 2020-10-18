@@ -14,6 +14,7 @@ import com.share.utility.Utilities;
 
 public class ZendeskChat extends DriverSetUp {
 	
+	GeneralFunctions generalFunctions = new GeneralFunctions();
 	//Sprint 16 implementations
 	@Test
 	public void Chat_001(Method method) throws Exception
