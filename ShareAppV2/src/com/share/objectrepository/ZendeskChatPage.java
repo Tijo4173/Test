@@ -1,9 +1,7 @@
 package com.share.objectrepository;
 
 import org.openqa.selenium.support.PageFactory;
-
 import com.share.general.DriverSetUp;
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
