@@ -39,8 +39,8 @@ public class Registration extends DriverSetUp {
 			signInFunctions.SignContinue();
 			RegistrationPage registrationPage = new RegistrationPage(driver);
 			RegistrationFunctions registrationFunctions = new RegistrationFunctions();
-			SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-			SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+			//SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+			//SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 			GeneralFunctions generalFunctions = new GeneralFunctions();
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
@@ -92,9 +92,9 @@ public class Registration extends DriverSetUp {
 			signInFunctions.SignContinue();
 			RegistrationPage registrationPage = new RegistrationPage(driver);
 			RegistrationFunctions registrationFunctions = new RegistrationFunctions();
-			SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-			SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-			SignInPage signInPage = new SignInPage(driver);
+			//SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
+			//SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+			//SignInPage signInPage = new SignInPage(driver);
 			GeneralFunctions generalFunctions = new GeneralFunctions();
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
 			generalFunctions.isElementPresent(registrationPage.startElement, 90);
@@ -604,7 +604,7 @@ public class Registration extends DriverSetUp {
 			if(first.isEmpty())
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)) {
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
 					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
@@ -613,7 +613,7 @@ public class Registration extends DriverSetUp {
 				else if(specialCharacters.contains(firstName))
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)){
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
 					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
@@ -621,7 +621,7 @@ public class Registration extends DriverSetUp {
 				else if(name == true)
 				{
 					if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)){
-						test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+						test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 					}else {
 						test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 					}
@@ -636,7 +636,7 @@ public class Registration extends DriverSetUp {
 			}else if(firstName.length()<=1)
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)){
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
 					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
@@ -709,40 +709,40 @@ public class Registration extends DriverSetUp {
 			if(last.isEmpty())
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)) {
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
-					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.FAIL, "Error Message not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
 
 			}	else if(specialCharacters.contains(lastName))
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)){
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
-					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.FAIL, "Error Message not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
 			}
 			else if(name == true)
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)) {
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
-					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.FAIL, "Error Message not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
 			}
 			else if(lastName.length()>30)
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)) {
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
-					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.FAIL, "Error Message not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
 			}else if(lastName.length()<=1)
 			{
 				if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)){
-					test.log(Status.PASS, "Error message Dispalyed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.PASS, "Error message Displayed: "+registrationPage.errorMessage.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}else {
-					test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+					test.log(Status.FAIL, "Error Message not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 				}
 			}else
 			{
@@ -751,7 +751,7 @@ public class Registration extends DriverSetUp {
 			if(registrationPage.continueButton.isEnabled()) {
 				test.log(Status.FAIL, "Continue button is Enabled");
 			}else {
-				test.log(Status.PASS, "Continue button is disabled");
+				test.log(Status.PASS, "Continue button is Disabled");
 			}
 		}catch(Exception e){
 			e.printStackTrace();

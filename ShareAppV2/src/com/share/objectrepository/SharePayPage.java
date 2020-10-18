@@ -27,10 +27,10 @@ public class SharePayPage extends DriverSetUp{
 	@AndroidFindBy(id = "option_home_pay")
 	public AndroidElement shareWalletButton;
 
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text='HOW IT WORKS']")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='PAY WITH CARD']")
 	public AndroidElement OnBoarding;
 
-	@AndroidFindBy(id = "btn_continue")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/btnContinue']")
 	public AndroidElement OnBoardingContinue;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text='SHARE WALLET']")

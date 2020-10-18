@@ -1290,7 +1290,7 @@ public class Home extends DriverSetUp{
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
 			generalFunctions.isElementPresent(homePage.homePointsField, 30);
@@ -1348,7 +1348,7 @@ public class Home extends DriverSetUp{
 
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
 			homePage.homePointsField.sendKeys("10.1");
@@ -1388,7 +1388,7 @@ public class Home extends DriverSetUp{
 			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
 			homePage.homePointsField.sendKeys("-10");
@@ -1432,7 +1432,7 @@ public class Home extends DriverSetUp{
 			homeFunctions.zeroPointuser();
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			homePage.homeSharePoints.click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
 			homePage.homePointsField.sendKeys("10.1");
@@ -1540,16 +1540,15 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "Default Offer Category NOT displayed");
 			}
-
 			if(homePage.homeOffers3.isDisplayed()) {
 				test.log(Status.PASS, "Member Benefits Offer Category displayed: "+homePage.homeOffers3.getText());
 			}else {
 				test.log(Status.FAIL, "Member Benefits Offer Category NOT displayed");
 			}
 			if(homePage.homeOffers4.isDisplayed()) {
-				test.log(Status.PASS, "Member Benefits Offer Category displayed: "+homePage.homeOffers4.getText());
+				test.log(Status.PASS, "Member Contests Offer Category displayed: "+homePage.homeOffers4.getText());
 			}else {
-				test.log(Status.FAIL, "Member Benefits Offer Category NOT displayed");
+				test.log(Status.FAIL, "Member Contests Offer Category NOT displayed");
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -1696,10 +1695,17 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "SEE ALL option is NOT displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
-
 			homePage.homeupdateSeeAll.click();
 			Thread.sleep(1500);
-			
+			//Verify OnBoarding displayed
+			if(generalFunctions.isElementPresent(objExperiencesPage.OnBoarding, 30))
+			{	test.log(Status.PASS, "OnBoarding Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "OnBoarding Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30);
+			objExperiencesPage.OnBoardingSkip.click();
 			try
 			{
 				generalFunctions.isElementPresent(objExperiencesPage.AllowAllTheTime, 30);

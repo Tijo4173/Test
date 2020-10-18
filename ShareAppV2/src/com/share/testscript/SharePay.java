@@ -57,7 +57,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "OnBoarding Not Displayed");
-				Assert.fail("OnBoarding Not Displayed");
 			}
 			//Verify Continue button displayed
 			if(generalFunctions.isElementPresent(sharePayPage.OnBoardingContinue, 30))
@@ -67,7 +66,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Continue Button Not Displayed");
-				Assert.fail("Continue Button Not Displayed");
 			}
 			sharePayPage.OnBoardingContinue.click();
 			if(generalFunctions.isElementPresent(sharePayPage.sharePayWallet, 60))
@@ -77,7 +75,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
@@ -119,17 +116,14 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 60))
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
-
 			}
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 
 //			try
@@ -152,7 +146,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add Card Icon Not Displayed");
-				Assert.fail("Add Card Icon Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.pointBalance, 30))
 			{
@@ -161,7 +154,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Point Balance Not Displayed");
-				Assert.fail("Point Balance Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.aedValue, 30))
 			{
@@ -170,7 +162,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "AED Value Not Displayed");
-				Assert.fail("AED Value Not Displayed");
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
 			generalFunctions.isElementPresent(sharePayPage.shareWalletButton, 20);
@@ -215,17 +206,14 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
 				test.log(Status.PASS, "Add A New Card Link Displayed");
 			}
-
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
@@ -311,7 +299,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
@@ -320,7 +307,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
@@ -369,7 +355,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
-				Assert.fail("Share Pay Icon Not Displayed");
 			}
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
@@ -380,7 +365,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
@@ -389,7 +373,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
@@ -447,7 +430,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
-				Assert.fail("Share Pay Icon Not Displayed");
 			}
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
@@ -458,7 +440,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
@@ -467,7 +448,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
@@ -540,7 +520,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
@@ -549,7 +528,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 			//Click Add A New Card Link
 			sharePayPage.AddANewCardLink.click();
@@ -595,7 +573,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Icon Not Displayed");
-				Assert.fail("Share Pay Icon Not Displayed");
 			}
 			// Click Share Pay Icon
 			sharePayPage.shareWalletButton.click();
@@ -606,7 +583,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Share Pay Page Not Displayed");
-				Assert.fail("Share Pay Page Not Displayed");
 			}
 			if(generalFunctions.isElementPresent(sharePayPage.AddANewCardLink, 90))
 			{
@@ -616,7 +592,6 @@ public class SharePay extends DriverSetUp
 			else
 			{
 				test.log(Status.FAIL, "Add A New Card Link Not Displayed");
-				Assert.fail("Add A New Card Link Not Displayed");
 			}
 
 			//Click Add A New Card Link
@@ -689,7 +664,6 @@ public class SharePay extends DriverSetUp
 			catch(Exception x)
 			{
 				test.log(Status.FAIL, "OnBoarding Not Displayed");
-				Assert.fail("OnBoarding Not Displayed");
 			}
 
 			//Verify Continue button displayed

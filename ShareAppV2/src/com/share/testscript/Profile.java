@@ -2630,7 +2630,7 @@ public class Profile extends DriverSetUp
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 	
-	//sprint 18 scripting
+	//Sprint 18 scripting [10 Test-cases joined in one script
 	@Test(priority=34)
 	public void TC_Profile_61_to_71(Method method) throws Exception
 	{	String TC_Method = method.getName();
@@ -2728,7 +2728,7 @@ public class Profile extends DriverSetUp
 				{	test.log(Status.INFO, "Access not given because of next testcases dependencies");
 					System.out.println("Location Access Denied");
 				}
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			
 			//Verify SHARE EXPERIENCES displayed
 			if(generalFunctions.isElementPresent(objExperiencesPage.shareExperiences, 30))
@@ -2763,7 +2763,7 @@ public class Profile extends DriverSetUp
 			{	test.log(Status.FAIL, "Share Points Now Navigation Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			profilePage.navigatesTutorialspage.click();
-			Thread.sleep(2200);
+			Thread.sleep(3000);
 			if(generalFunctions.isElementPresent(homePage.Shareyourpointspage, 90))
 			{	test.log(Status.PASS, "Navigated To Share Your Points Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
@@ -2799,7 +2799,7 @@ public class Profile extends DriverSetUp
 			{	test.log(Status.FAIL, "Go To Etihad Guest Transfer Link Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			profilePage.navigatesTutorialspage.click();
-			Thread.sleep(2200);
+			Thread.sleep(3000);
 			if(generalFunctions.isElementPresent(homePage.etihadGuesttransferpage, 90))
 			{	test.log(Status.PASS, "Navigated To Etihad Guest Transfer Page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}

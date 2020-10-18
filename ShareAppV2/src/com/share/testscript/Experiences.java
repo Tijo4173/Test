@@ -54,7 +54,7 @@ public class Experiences extends DriverSetUp
 		//Swipe left
 		generalFunctions.swipeHorizontal(0.9,0.01,0.5);
 		Thread.sleep(2000);
-		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30))
 		{	test.log(Status.FAIL, "Failed to swipe through the Onboarding screens").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			Assert.fail("Failed to swipe through the Onboarding screens");
 		}
@@ -103,11 +103,10 @@ public class Experiences extends DriverSetUp
 			test.log(Status.FAIL, "Continue Button Not Displayed");
 			Assert.fail("Continue Button Not Displayed");
 		}
-		
 		generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30);
 		objExperiencesPage.OnBoardingContinue.click();
 		Thread.sleep(1000);
-		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingSkip, 30))
+		if(generalFunctions.isElementPresent(objExperiencesPage.OnBoardingContinue, 30))
 		{
 			test.log(Status.FAIL, "Failed to Continue to the next Onboarding screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			Assert.fail("Failed to Continue to the next Onboarding screen");
@@ -674,7 +673,6 @@ public class Experiences extends DriverSetUp
 				test.log(Status.FAIL, "Offer Activate Button Not Displayed");
 			}
 			driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		
 		}
 		catch(Exception e)
 		{
@@ -682,7 +680,6 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
 	
 	//TC: Verify that user able to view collapsed category icons
 	@Test
@@ -792,7 +789,6 @@ public class Experiences extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
-	
 
     //Verify user able to activate offer from experience page & Deactivate it from activated tab
 	@Test
