@@ -414,7 +414,7 @@ public class Profile extends DriverSetUp
 	generalFunctions.isElementPresent(profilePage.avatar, 20);
 	profilePage.avatar.click();
 	try
-	{if(profilePage.personalDetails.isDisplayed()==true)
+	{if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
 		{test.log(Status.PASS, "Personal Details Displayed");
 		}
 	}
@@ -422,7 +422,6 @@ public class Profile extends DriverSetUp
 	{	test.log(Status.FAIL, "Personal Details Not Displayed");
 		Assert.fail("Personal Details Not Displayed");
 	}
-	//click on Personal Details 
 	profilePage.personalDetails.click();
 	Thread.sleep(1000);
 	//Edit Details
@@ -468,39 +467,29 @@ public class Profile extends DriverSetUp
 	{
 		try
 		{
+			boolean name;
+			Matcher match;
+			String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}~0123456789";
+			Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
 			String TC_method = method.getName();
 			test = extent.createTest(TC_method).assignCategory("Profile");
 			test.log(Status.INFO, "Module:Profile");
 			test.log(Status.INFO, "TC:Firstname validation using Special characters,null,numericals");
-			Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
 			System.out.println(TC_method);
-			//Pattern charac = Pattern.compile("[a-zA-z]");
-			//Pattern numerical = Pattern.compile("[0-9]");
-			//Pattern special = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");
-
-			boolean name;
-			Matcher match;
-			String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}~0123456789";
-
-			//String specialCharacters = "((\\d+)\\.\\s+(\\w+)\\s+(\\d+)\\s+)";
-
-			//String specialCharacters = "~`!@#$%^&*()-=+[{]}\\|;:\'\",<.>/?@[//[//]^_`{|}~0123456789".replaceAll("[\\[\\]]", "");
+	
 			RegistrationPage registrationPage = new RegistrationPage(driver);
 			ProfilePage profilePage = new ProfilePage(driver);
 			GeneralFunctions generalFunctions = new GeneralFunctions();
 		
 			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
-			try
-			{if(profilePage.personalDetails.isDisplayed()==true)
+			if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
 				{test.log(Status.PASS, "Personal Details Displayed");
 				}
-			}
-			catch(Exception x)
+			else
 			{	test.log(Status.FAIL, "Personal Details Not Displayed");
 				Assert.fail("Personal Details Not Displayed");
 			}
-			//click on Personal Details 
 			profilePage.personalDetails.click();
 			Thread.sleep(1000);
 			//Edit Details
@@ -578,10 +567,9 @@ public class Profile extends DriverSetUp
 		}else {
 		test.log(Status.PASS, "Update button is disabled");
 		}
-		
-		profilePage.navigateBack.click();
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-
+		//profilePage.navigateBack.click();
+		driver.navigate().back();
 	}catch(Exception e){
 	e.printStackTrace();
 	test.log(Status.FAIL, e.getCause());
@@ -595,19 +583,17 @@ public class Profile extends DriverSetUp
 
 	@Test(priority = 8, dataProvider = "registrationdata")//iteration
 	public void TC_Profile_4_4(Method method,String FName,String LName,String emailID, String MbNum,String first,String last,String password,String cCode) throws Exception{
-	try{
-
+	try{	
+	String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}~0123456789";
+	Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
+	boolean name;
+	Matcher match;
 	String TC_method = method.getName();
 	test = extent.createTest(TC_method).assignCategory("Profile");
 	test.log(Status.INFO, "Module:Profile");
 	test.log(Status.INFO, "TC:Lastname validation using Special characters,null,numericals");
 	System.out.println(TC_method);
 	//String specialCharacters = "((\\d+)\\.\\s+(\\w+)\\s+(\\d+)\\s+)";
-
-	String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}~0123456789";
-	Pattern pattern = Pattern.compile("[^A-Za-z0-9]");
-	boolean name;
-	Matcher match;
 
 	RegistrationPage registrationPage = new RegistrationPage(driver);
 	ProfilePage profilePage = new ProfilePage(driver);
@@ -616,7 +602,7 @@ public class Profile extends DriverSetUp
 	generalFunctions.isElementPresent(profilePage.avatar, 20);
 	profilePage.avatar.click();
 	try
-	{if(profilePage.personalDetails.isDisplayed()==true)
+	{if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
 		{test.log(Status.PASS, "Personal Details Displayed");
 		}
 	}
@@ -624,7 +610,6 @@ public class Profile extends DriverSetUp
 	{	test.log(Status.FAIL, "Personal Details Not Displayed");
 		Assert.fail("Personal Details Not Displayed");
 	}
-	//click on Personal Details 
 	profilePage.personalDetails.click();
 	Thread.sleep(1000);
 	//Edit Details
@@ -699,9 +684,9 @@ public class Profile extends DriverSetUp
 	test.log(Status.PASS, "Update button is disabled");
 
 	}
-	profilePage.navigateBack.click();
 	driver.pressKey(new KeyEvent(AndroidKey.BACK));
-
+	//profilePage.navigateBack.click();
+	driver.navigate().back();
 	}catch(Exception e){
 	e.printStackTrace();
 	test.log(Status.FAIL, e.getCause());
@@ -726,7 +711,7 @@ public class Profile extends DriverSetUp
 	generalFunctions.isElementPresent(profilePage.avatar, 20);
 	profilePage.avatar.click();
 	try
-	{if(profilePage.personalDetails.isDisplayed()==true)
+	{if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
 		{test.log(Status.PASS, "Personal Details Displayed");
 		}
 	}
@@ -734,7 +719,6 @@ public class Profile extends DriverSetUp
 	{	test.log(Status.FAIL, "Personal Details Not Displayed");
 		Assert.fail("Personal Details Not Displayed");
 	}
-	//click on Personal Details 
 	profilePage.personalDetails.click();
 	Thread.sleep(1000);
 	//Edit Details
@@ -891,8 +875,13 @@ public class Profile extends DriverSetUp
 		test.assignCategory("Profile");
 		System.out.println(TC_Method);
 		ProfilePage profilePage = new ProfilePage(driver);
+		ProfileFunctions profileFunctions = new ProfileFunctions();
+		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{
+			driver.resetApp();
+			signInFunctions.SignContinue();
+			profileFunctions.newUserSign();
 			//Click on Avatar icon
 			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();

@@ -17,7 +17,7 @@ public class ZendeskChat extends DriverSetUp {
 	GeneralFunctions generalFunctions = new GeneralFunctions();
 	//Sprint 16 implementations
 	@Test
-	public void Chat_001(Method method) throws Exception
+	public void Chat_01(Method method) throws Exception
 	{
 		String TC_method = method.getName();
 		System.out.println(TC_method);
@@ -48,13 +48,14 @@ public class ZendeskChat extends DriverSetUp {
 		}
 	}
 	@Test
-	public void Chat_002(Method method) throws Exception
+	public void Chat_02_03(Method method) throws Exception
 	{
 		String TC_method = method.getName();
 		System.out.println(TC_method);
 		test = extent.createTest(TC_method).assignCategory("CHAT");
 		test.log(Status.INFO, "Module:CHAT");
 		test.log(Status.INFO, "TC: Verify the user able to view Chat Screen with automated chat box message from join now");
+		test.log(Status.INFO, "TC: Verify the user able to send message from chat box");
 		driver.resetApp();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		signInFunctions.SignContinue();
@@ -67,10 +68,25 @@ public class ZendeskChat extends DriverSetUp {
 			registrationFunctions.startButton(registrationPage);
 			generalFunctions.isElementPresent(zendeskchatpage.chaticon, 20);
 			zendeskchatpage.chaticon.click();
+			Thread.sleep(1000);
 			if(generalFunctions.isElementPresent(zendeskchatpage.chatscreen, 20)) {
-				test.log(Status.PASS, "User should be able to view Chat Screen from join now").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+				test.log(Status.PASS, "User should be able to view chat screen from join now").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}else {
-				test.log(Status.FAIL, "User is not able to view need Chat screen from join now").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+				test.log(Status.FAIL, "User is not able to view need chat screen from join now").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}
+			if(generalFunctions.isElementPresent(zendeskchatpage.chatinputtext, 20)) {
+				test.log(Status.PASS, "User able to view input text box to send message from chat bot").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}else {
+				test.log(Status.FAIL, "User not able to view input text box to send message from chat bot").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}
+			zendeskchatpage.chatinputtext.click();
+			zendeskchatpage.chatinputtext.sendKeys("Hai");
+			zendeskchatpage.chatinputtextsend.click();
+			driver.hideKeyboard();
+			if(generalFunctions.isElementPresent(zendeskchatpage.replyMessage, 20)) {
+				test.log(Status.PASS, "User must be able to get reply message from shareapp ").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}else {
+				test.log(Status.FAIL, "User not able to get any reply message from shareapp").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}
 		}
 		catch(Exception e) {
@@ -81,7 +97,7 @@ public class ZendeskChat extends DriverSetUp {
 	}
 	
 	@Test
-	public void Chat_003(Method method) throws Exception
+	public void Chat_04(Method method) throws Exception
 	{
 		String TC_method = method.getName();
 		System.out.println(TC_method);
@@ -110,13 +126,14 @@ public class ZendeskChat extends DriverSetUp {
 		}
 	}
 	@Test
-	public void Chat_004(Method method) throws Exception
+	public void Chat_05_06(Method method) throws Exception
 	{
 		String TC_method = method.getName();
 		System.out.println(TC_method);
 		test = extent.createTest(TC_method).assignCategory("CHAT");
 		test.log(Status.INFO, "Module:CHAT");
 		test.log(Status.INFO, "TC: Verify the user able to view Chat Screen with automated chat box message from sigin in");
+		test.log(Status.INFO, "TC: Verify the user able to send message from chat box");
 		driver.resetApp();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		signInFunctions.SignContinue();
@@ -132,6 +149,20 @@ public class ZendeskChat extends DriverSetUp {
 				test.log(Status.PASS, "User should be able to view Chat Screen from SignIn screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}else {
 				test.log(Status.FAIL, "User is not able to view Chat Screen from SignIn screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}
+			if(generalFunctions.isElementPresent(zendeskchatpage.chatinputtext, 20)) {
+				test.log(Status.PASS, "User able to view input text box to send message from chat bot").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}else {
+				test.log(Status.FAIL, "User not able to view input text box to send message from chat bot").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}
+			zendeskchatpage.chatinputtext.click();
+			zendeskchatpage.chatinputtext.sendKeys("Hai");
+			zendeskchatpage.chatinputtextsend.click();
+			driver.hideKeyboard();
+			if(generalFunctions.isElementPresent(zendeskchatpage.replyMessage, 20)) {
+				test.log(Status.PASS, "User must be able to get reply message from shareapp ").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
+			}else {
+				test.log(Status.FAIL, "User not able to get any reply message from shareapp").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}
 		}
 		catch(Exception e) {

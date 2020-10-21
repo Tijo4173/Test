@@ -425,7 +425,7 @@ public class Family extends DriverSetUp
 
 			familyPage.getPointsButton.click();
 			Thread.sleep(3000);
-			generalFunctions.isElementPresent(familyPage.pointsSuccessMessage, 60);
+			//generalFunctions.isElementPresent(familyPage.pointsSuccessMessage, 60);
 			String _pointSuccessMessage = familyPage.pointsSuccessMessage.getText();
 
 			if(_pointSuccessMessage.contains(_name) && _pointSuccessMessage.contains(Points))

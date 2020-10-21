@@ -58,7 +58,7 @@ public class ExperiencesPage extends DriverSetUp  {
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/tvSkip']")
     public AndroidElement OnBoardingSkip;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/tn_continue']")
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/btn_continue']")
     public AndroidElement OnBoardingContinue;
 
     @AndroidFindBy(id = "android:id/button1")

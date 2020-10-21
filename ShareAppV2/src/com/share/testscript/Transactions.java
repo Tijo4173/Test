@@ -264,8 +264,8 @@ public class Transactions extends DriverSetUp
 		SignInFunctions signInFunctions = new SignInFunctions();
 		try
 		{	driver.resetApp();
-			signInFunctions.quickSignIn();
 			signInFunctions.SignContinue();//For sprint 18
+			signInFunctions.quickSignIn();
 			// Click Experiences
 			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
 			transactionsPage.accountIcon.click();

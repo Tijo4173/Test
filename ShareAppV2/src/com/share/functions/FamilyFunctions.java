@@ -107,22 +107,18 @@ public class FamilyFunctions extends DriverSetUp
 			test.log(Status.FAIL, "Group Icon Not Displayed");
 			Assert.fail("Group Icon Not Displayed");
 		}
-		
-		
 			//Click on add new member button
 			if(generalFunctions.isElementPresent(familyPage.addNewMemberButton, 30))
-			{
-				test.log(Status.PASS, "AddNewMemberButton Displayed");	
-				familyPage.addNewMemberButton.click();
+			{test.log(Status.PASS, "AddNewMemberButton Displayed");	
+				Thread.sleep(2000);
+				familyPage.addNewMemberButton.click();	
 			}
 			else
-			{
-				test.log(Status.FAIL, "AddNewMemberButton Not Displayed");
-				Assert.fail("AddNewMemberButton Not Displayed");
+			{	test.log(Status.FAIL, "AddNewMemberButton Not Displayed");
 			}
-			
-			
+				
 		//Click on EmailAddressField
+		
 		if(generalFunctions.isElementPresent(familyPage.emailAddressField, 30))
 		{
 			test.log(Status.PASS, "EmailAddressField Displayed");
@@ -157,14 +153,13 @@ public class FamilyFunctions extends DriverSetUp
 		System.out.println(er);
 		if(generalFunctions.isElementPresent(familyPage.addNewMemberButton, 10))
 		{
-			test.log(Status.PASS, "AddNewMemberButton Displayed");	
-			familyPage.addNewMemberButton.click();
+			test.log(Status.PASS, "AddNewMemberButton Displayed");		
 		}
 		else
 		{
 			test.log(Status.FAIL, "AddNewMemberButton Not Displayed");
-			Assert.fail("AddNewMemberButton Not Displayed");
-		}	
+		}
+		familyPage.addNewMemberButton.click();
 		//Click on EmailAddressField
 		if(generalFunctions.isElementPresent(familyPage.emailAddressField, 30))
 		{

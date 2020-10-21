@@ -1192,11 +1192,22 @@ public class Assistant extends DriverSetUp
 			}
 			
 			assistantPage.assistantchaticon.click();
+			Thread.sleep(1000);
 			
 			if(generalFunctions.isElementPresent(zendeskchatpage.chatscreen, 20)) {
 				test.log(Status.PASS, "User should be able to view Chat Screen from Assistant Screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}else {
 				test.log(Status.FAIL, "User is not able to view Chat Screen from Assistant Screen").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			zendeskchatpage.chatinputtext.click();
+			zendeskchatpage.chatinputtext.sendKeys("Hai");
+			zendeskchatpage.chatinputtextsend.click();
+			driver.hideKeyboard();
+			Thread.sleep(1000);
+			if(generalFunctions.isElementPresent(zendeskchatpage.replyMessageinAssitant, 20)) {
+				test.log(Status.PASS, "User must be able to get reply message from chatbot from assitant").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else {
+				test.log(Status.FAIL, "User not able to get any reply message from chatbot from assitant").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 		}
 		catch(Exception e)

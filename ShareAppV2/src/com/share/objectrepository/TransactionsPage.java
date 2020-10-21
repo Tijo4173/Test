@@ -15,10 +15,7 @@ public class TransactionsPage extends DriverSetUp  {
 	public TransactionsPage(AndroidDriver<AndroidElement> driver) {
 		this.driver = driver;
 		PageFactory.initElements(new AppiumFieldDecorator(driver),this);
-
 	}
-
-
 	// V2 START
 
 	@AndroidFindBy(id = "option_home_account")
@@ -72,11 +69,29 @@ public class TransactionsPage extends DriverSetUp  {
 	@AndroidFindBy(id = "tvDate")
 	public AndroidElement transactionsdate;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TODAY']")
+	public AndroidElement transactiontodaylabel;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Points shared']")
+	public AndroidElement pointsShared;
 
-	// V2 END
-
-
-
-
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='TRANSACTION DETAILS']")
+	public AndroidElement transactionDetailspage;
+	
+	//transaction detail page
+	@AndroidFindBy(id = "transaction_details")
+	public AndroidElement pointsSharedlabelindetailpage;
+	
+	@AndroidFindBy(id = "tv_transaction_subtitle")
+	public AndroidElement pointsSharedmember;
+	
+	@AndroidFindBy(id = "tv_declined")
+	public AndroidElement sharedPoints;
+	
+	@AndroidFindBy(id = "tv_transaction_details_value")
+	public AndroidElement sharedPointsinAED;
+	
+	@AndroidFindBy(id = "tv_transaction_date")
+	public AndroidElement sharedPointsdateandtime;
+	
 }

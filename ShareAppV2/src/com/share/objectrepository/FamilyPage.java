@@ -55,7 +55,7 @@ public class FamilyPage extends DriverSetUp  {
 	@AndroidFindBy(id = "textinput_error")
 	public AndroidElement invalidEmailWarning;
 
-	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ScrollView/android.view.ViewGroup/android.widget.LinearLayout")
+	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/add_member_button']")
 	public AndroidElement addNewMemberButton;
 
 	@AndroidFindBy(id = "family_progress")

@@ -155,7 +155,6 @@ public class ProfileFunctions extends DriverSetUp
 		SignInPage signInPage = new SignInPage(driver);
 
 		HomePage homePage = new HomePage(driver);
-
 		generalFuntions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
 		//generalFuntions.isElementPresent(signInPage.skipUpdate, 2);

@@ -16,6 +16,7 @@ import com.share.objectrepository.ExperiencesPage;
 import com.share.objectrepository.HomePage;
 import com.share.objectrepository.RegistrationPage;
 import com.share.objectrepository.SignInPage;
+import com.share.objectrepository.TransactionsPage;
 import com.share.utility.Utilities;
 
 import io.appium.java_client.MobileBy;
@@ -1196,42 +1197,34 @@ public class Home extends DriverSetUp{
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
-
 		try
 		{
 			generalFunctions.isElementPresent(homePage.homeElement, 90);
 			if(homePage.homeElement.isDisplayed()) {
-
 				test.log(Status.PASS, "Home Tab is PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
 			}else {
 				test.log(Status.FAIL, "Home Tab is NOT PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			if(homePage.shareExperiencesTab.isDisplayed()) {
 
 				test.log(Status.PASS, "Experiences Tab is PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
 			}else {
 				test.log(Status.FAIL, "Experiences Tab is NOT PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			if(homePage.sharePayTab.isDisplayed()) {
 
 				test.log(Status.PASS, "SharePay Tab is PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
 			}else {
 				test.log(Status.FAIL, "SharePay Tab is NOT PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			if(homePage.shareAssistantTab.isDisplayed()) {
 
 				test.log(Status.PASS, "Assistant Tab is PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
-
 			}else {
 				test.log(Status.FAIL, "Assistant Tab is NOT PRESENT").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			if(homePage.shareAccountTab.isDisplayed()) {
-
 				test.log(Status.PASS, "Account Tab is PRESENT");
-
 			}else {
 				test.log(Status.FAIL, "Account Tab is NOT PRESENT");
 			}
@@ -1240,7 +1233,6 @@ public class Home extends DriverSetUp{
 			e.getCause();
 			e.getMessage();
 			Assert.fail("Error Occured");
-
 		}
 	}
 
@@ -1251,7 +1243,6 @@ public class Home extends DriverSetUp{
 		test.log(Status.INFO, "Home");
 		test.info("TC:Verify user can click on See all on Experiences Screen");
 		System.out.println("Running Test"+" "+ TC_Method);
-
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		try
@@ -1264,15 +1255,12 @@ public class Home extends DriverSetUp{
 			}else {
 				test.log(Status.FAIL, "The Experiences Screen NOT displayed");
 			}
-
 		}catch(Exception e) {
 			e.printStackTrace();
 			e.getCause();
 			e.getMessage();
 			Assert.fail("Error Occured");
-
 		}
-
 	}
 
 	@Test(priority=23)//TC:Verify user can click on Share Your Points and able to share points
@@ -1281,40 +1269,129 @@ public class Home extends DriverSetUp{
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
 		test.info("TC:Verify user can click on Share Your Points & able to share points");
+		test.info("Points Burn via Share Your Points");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
-	
+		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		try
 		{
-			generalFunctions.isElementPresent(homePage.homeElement, 90);
+			generalFunctions.isElementPresent(homePage.homeElement, 10);
+			Thread.sleep(2000);
+			if(homePage.pointshome.isDisplayed()) {
+				test.log(Status.PASS, "Points Before SYP is :"+" "+homePage.pointshome.getText());
+			}else {
+				test.log(Status.FAIL, "Points not displayed");
+			}
+			String po = homePage.pointshome.getText();
+			System.out.println(po);
+			
+			if(homePage.pointsAed.isDisplayed()) {
+				test.log(Status.PASS, "Equivalent AED is displayed:"+" "+homePage.pointsAed.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else {
+				test.log(Status.FAIL, "Points in AED is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 			homePage.homeSharePoints.click();
 			Thread.sleep(2000);
 			generalFunctions.isElementPresent(homePage.homePointsBalance, 90);
 			homePage.homePointsFieldplaceholder.click();
 			generalFunctions.isElementPresent(homePage.homePointsField, 30);
 			homePage.homePointsField.sendKeys("10.1");
+			test.info("Point shared amount: 10.1");
 			driver.hideKeyboard();
-			//homePage.homePointsOption.click();
-			//homePage.PointsOptionFamily.click();
 			homePage.homePointsEmail.sendKeys("sharetest371@yopmail.com");
-			//generalFunctions.SimplyScrollDown();
+			test.info("Point shared to Account member: sharetest371@yopmail.com");
 			homePage.homePointsSubmit.click();
 			homePage.homePointsSubmitConfirm.click();
 			Thread.sleep(500);
 			generalFunctions.isElementPresent(homePage.PointsSuccess, 30);
 			if(homePage.PointsSuccess.isDisplayed()) {
-				test.log(Status.PASS, "Successfully Transferred points");
+				test.log(Status.PASS, "Successfully Transferred points").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}else {
-				test.log(Status.FAIL, "Points Transfer Failed");
+				test.log(Status.FAIL, "Points Transfer Failed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			generalFunctions.isElementPresent(homePage.PointsDoneButton, 30);
 			homePage.PointsDoneButton.click();
-			if(homePage.homeElement.isDisplayed()) {
-				test.log(Status.PASS, "Navigated to Homepage");
+			// Click Account
+			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
+			transactionsPage.accountIcon.click();
+			Thread.sleep(5000);
+		
+			if(generalFunctions.isElementPresent(transactionsPage.myAccountPage, 90))
+			{	test.log(Status.PASS, "Navigated to transaction list to verify the transaction").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Not navigated to transaction list").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.transactiontodaylabel, 20))
+			{	test.log(Status.PASS, "Transaction date displayed under:"+" "+transactionsPage.transactiontodaylabel.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Transaction date not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.pointsShared, 20))
+			{	test.log(Status.PASS, "Transaction label displayed as:"+" "+transactionsPage.pointsShared.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Transaction label not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			transactionsPage.pointsShared.click();
+			Thread.sleep(2000);
+			if(generalFunctions.isElementPresent(transactionsPage.transactionDetailspage, 20))
+			{	test.log(Status.PASS, "Navigated to transaction detail page to verify").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{	test.log(Status.FAIL, "Not navigated to transaction detail page").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.pointsSharedlabelindetailpage, 20))
+			{	test.log(Status.PASS, "Points shared label displayed in transaction detail page");
+				test.info("Label:"+" "+transactionsPage.pointsSharedlabelindetailpage.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Points shared label not displayed in transaction detail page");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.pointsSharedmember, 20))
+			{	test.log(Status.PASS, "Points shared member[Loyalty member] emaild id displayed in transaction detail page");
+				test.info("Share member:"+" "+transactionsPage.pointsSharedmember.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Points shared member not emaild id displayed in transaction detail page");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.sharedPoints, 20))
+			{	test.log(Status.PASS, "Point amount shared/burned displayed in detailed page");
+				test.info("Points Burned:"+" "+transactionsPage.sharedPoints.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Point amount shared/burned not displayed in detailed page");
+			}
+			String burn = transactionsPage.sharedPoints.getText();
+			if(generalFunctions.isElementPresent(transactionsPage.sharedPointsinAED, 20))
+			{	test.log(Status.PASS, "Equivalent AED amount shared/burned displayed in detailed page");
+				test.info("Points Burned AED:"+" "+transactionsPage.sharedPointsinAED.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Equivalent AED amount shared/burned not displayed in detailed page");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.sharedPointsdateandtime, 20))
+			{	test.log(Status.PASS, "Transaction date and time displayed in detail page");
+				test.info("Transaction Date:"+" "+transactionsPage.sharedPointsdateandtime.getText());
+			}
+			else
+			{	test.log(Status.FAIL, "Transaction date and time not displayed in detail page");
+			}
+			
+			driver.navigate().back();
+			homePage.homeElement.click();
+			if(homePage.pointshome.isDisplayed()) {
+				test.log(Status.PASS, "Updated points after SYP is:"+" "+homePage.pointshome.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}else {
-				test.log(Status.FAIL, "Not Navigated to Homepage");
+				test.log(Status.FAIL, "Points not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			if(homePage.pointsAed.isDisplayed()) {
+				test.log(Status.PASS, "Updated equivalent AED displayed as:"+" "+homePage.pointsAed.getText()).addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}else {
+				test.log(Status.FAIL, "Updated Points in AED is not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 			}
 			
 		}catch(Exception e) {

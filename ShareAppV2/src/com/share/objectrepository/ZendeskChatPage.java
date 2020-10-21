@@ -22,4 +22,15 @@ public class ZendeskChatPage extends DriverSetUp{
 	
 	@AndroidFindBy(id = "input_box_input_text")
 	public AndroidElement chatinputtext;
+	
+	@AndroidFindBy(accessibility = "Send")
+	public AndroidElement chatinputtextsend;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='What is your name?']")
+	public AndroidElement replyMessage;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='Welcome to SHARE Live Chat. Thank you for contacting us. One of our customer care representatives will assist you shortly.']")
+	public AndroidElement replyMessageinAssitant;
+	
+	
 }
