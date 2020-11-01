@@ -21,6 +21,7 @@ public class Transactions extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Transaction List");
+		test.info("Verify user able to view transaction account and pending receipts");
 		test.assignCategory("TRANSACTIONS");
 		System.out.println(TC_Method);
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
@@ -127,6 +128,7 @@ public class Transactions extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
+		test.info("Verify user able to view pending receipts and pending receipts list an verfy the image");
 		System.out.println(TC_Method);
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -259,6 +261,7 @@ public class Transactions extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
+		test.info("Verify user able to view pending receipts section and declined receipts section");
 		System.out.println(TC_Method);
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -300,16 +303,15 @@ public class Transactions extends DriverSetUp
 				test.log(Status.FAIL, "Pending Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
 				Assert.fail("Pending Receipts Section Not Displayed");
 			}
-
-			//if(generalFunctions.isElementPresent(transactionsPage.noTransactions, 30))
-			//{
-				//test.log(Status.PASS, "No Transactions Message Displayed");
-			//}
-			//else
-			//{
-				//test.log(Status.FAIL, "No Transactions Message Not Displayed");
-			//	Assert.fail("No Transactions Message Not Displayed");
-		//	}
+			
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptsection, 30))
+			{
+				test.log(Status.PASS, "Declined Receipts Section Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "Decline Receipts Section Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
 		}
 		catch(Exception e)
 		{
@@ -326,6 +328,7 @@ public class Transactions extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Transaction List");
 		test.assignCategory("TRANSACTIONS");
+		test.info("Verify user able to view pending receipts section with points and sponsor logo");
 		System.out.println(TC_Method);
 		TransactionsPage transactionsPage = new TransactionsPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -410,4 +413,149 @@ public class Transactions extends DriverSetUp
 			Assert.fail(e.getMessage());
 		}
 	}
+	@Test
+	public void TC_Transactions_07(Method method) throws Exception
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method);
+		test.log(Status.INFO, "Transaction List");
+		test.assignCategory("TRANSACTIONS");
+		test.info("Verify user able to view Decline receipts and declined reciepts list");
+		System.out.println(TC_Method);
+		TransactionsPage transactionsPage = new TransactionsPage(driver);
+		SignInFunctions signInFunctions = new SignInFunctions();
+		try
+		{	driver.resetApp();
+			signInFunctions.SignContinue();//For sprint 18
+			signInFunctions.quickSignIn();
+			// Click Experiences
+			generalFunctions.isElementPresent(transactionsPage.accountIcon, 90);
+			transactionsPage.accountIcon.click();
+			Thread.sleep(5000);
+
+			//Verify My Account page displayed
+			if(generalFunctions.isElementPresent(transactionsPage.myAccountPage, 90))
+			{
+				test.log(Status.PASS, "My account page displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "My account page Not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineTitle, 30))
+			{
+				test.log(Status.PASS, "Declined transactions title displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined transactions Title not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptsection, 30))
+			{
+				test.log(Status.PASS, "Declined receipts section displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined receipts section not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+
+			transactionsPage.declineReceiptsection.click();
+			if(generalFunctions.isElementPresent(transactionsPage.declinedReceiptsPage, 90))
+			{
+				test.log(Status.PASS, "Declined receipts page displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined receipts page not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptslist, 30))
+			{
+				test.log(Status.PASS, "Declined receipts list displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined receipts list not displayed");
+			}
+			
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptsdateandtime, 30))
+			{
+				test.log(Status.PASS, "Declined receipts date and time displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined receipts date and time not displayed");
+			}
+			transactionsPage.declinefirstReceipt.click();
+			Thread.sleep(1000);
+			if(generalFunctions.isElementPresent(transactionsPage.transactionDetailspage, 30))
+			{
+				test.log(Status.PASS, "Transaction details page displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "Transaction details page not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptTransactionlogo, 30))
+			{
+				test.log(Status.PASS, "Decline transaction logo displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			else
+			{
+				test.log(Status.FAIL, "Decline transaction logo not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptTransactionTitle, 30))
+			{
+				test.log(Status.PASS, "Decline transaction title displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Decline transaction title not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptTransactiondate, 30))
+			{
+				test.log(Status.PASS, "Decline transaction date and time displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Decline transaction date and time not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declineReceiptview, 30))
+			{
+				test.log(Status.PASS, "Decline transaction receipt view section displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Decline transaction receipt view section not displayed");
+			}
+			if(generalFunctions.isElementPresent(transactionsPage.declinedReceiptmessage, 30))
+			{
+				test.log(Status.PASS, "Receipt declined message displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Receipt declined message displayed not displayed");
+			}
+			transactionsPage.declineReceiptview.click();
+			Thread.sleep(1000);
+			if(generalFunctions.isElementPresent(transactionsPage.receiptImage, 30))
+			{
+				test.log(Status.PASS, "Declined receipt image displayed");
+			}
+			else
+			{
+				test.log(Status.FAIL, "Declined receipt image not displayed");
+			}
+			transactionsPage.backButton.click();
+			transactionsPage.backButton.click();
+			transactionsPage.backButton.click();
+			
+		}
+		catch(Exception e)
+		{
+			test.log(Status.FAIL, e.getMessage());
+			Assert.fail(e.getMessage());
+		}
+	}
+
 }

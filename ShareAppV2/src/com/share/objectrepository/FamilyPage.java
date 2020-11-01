@@ -18,10 +18,6 @@ public class FamilyPage extends DriverSetUp  {
 		PageFactory.initElements(new AppiumFieldDecorator(driver),this);
 
 	}
-
-
-
-
 	@AndroidFindBy(xpath = "//android.widget.FrameLayout[@content-desc='Account']/android.widget.ImageView")
 	public AndroidElement AccountIcon;
 
@@ -55,7 +51,7 @@ public class FamilyPage extends DriverSetUp  {
 	@AndroidFindBy(id = "textinput_error")
 	public AndroidElement invalidEmailWarning;
 
-	@AndroidFindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.maf.dl.sharesit:id/add_member_button']")
+	@AndroidFindBy(id = "add_member_button")
 	public AndroidElement addNewMemberButton;
 
 	@AndroidFindBy(id = "family_progress")
@@ -93,9 +89,6 @@ public class FamilyPage extends DriverSetUp  {
 
 	@AndroidFindBy(id = "textinput_error")
 	public AndroidElement errorMessageGiftPoints;
-
-
-
 
 	@AndroidFindBy(id = "family_member_edit_button")
 	public AndroidElement edit_family;
@@ -144,4 +137,6 @@ public class FamilyPage extends DriverSetUp  {
 
 	@AndroidFindBy(xpath = "//android.widget.RadioButton[@checked = 'true']")
 	public AndroidElement radioButtonSelected;
+	
 }
+

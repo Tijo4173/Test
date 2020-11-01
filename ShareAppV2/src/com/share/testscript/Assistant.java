@@ -31,6 +31,7 @@ public class Assistant extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
+		test.info("Verify user able to view assitant page with all faqs, and chat, call section");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -105,6 +106,7 @@ public class Assistant extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Assistant Faq");
+		test.info("Verify user able to view assitant page with all faqs sections");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
@@ -183,6 +185,7 @@ public class Assistant extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Assistant Faq");
+		test.info("Verify user able to view assitant all faq detail pages ");
 		test.assignCategory("ASSISTANT");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
@@ -505,6 +508,8 @@ public class Assistant extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
+		test.info("Verify user able to view share basic sections");
+		test.info("Verify user able to view share basic section details pages");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
 		SignInFunctions signInFunctions = new SignInFunctions();
@@ -688,6 +693,7 @@ public class Assistant extends DriverSetUp
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Assistant Faq");
 		test.assignCategory("ASSISTANT");
+		test.info("Verify user able to search keywords from assitant");
 		System.out.println(TC_Method);
 		AssistantPage assistantPage = new AssistantPage(driver);
 		String searchKeyWord="wallet";
@@ -796,7 +802,7 @@ public class Assistant extends DriverSetUp
 
 
 	@Test(priority=6)
-	public void TC_Assistant_010(Method method) throws Exception
+	public void TC_Assistant_011(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -904,7 +910,7 @@ public class Assistant extends DriverSetUp
 	}
 	
 	@Test(priority=7)
-	public void TC_Assistant_011(Method method) throws Exception
+	public void TC_Assistant_012(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -1040,7 +1046,7 @@ public class Assistant extends DriverSetUp
 	}
 	 */
 	@Test(priority=8)
-	public void TC_Assistant_012(Method method) throws Exception
+	public void TC_Assistant_013(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -1110,8 +1116,8 @@ public class Assistant extends DriverSetUp
 		}
 	}
 	//Sprint 16 implementation chat
-	@Test(priority=9)
-	public void TC_Assistant_013(Method method) throws Exception
+	//@Test(priority=9)
+	public void TC_Assistant_014(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
@@ -1154,8 +1160,8 @@ public class Assistant extends DriverSetUp
 	}
 	
 	
-	@Test(priority=10)
-	public void TC_Assistant_014(Method method) throws Exception
+	//@Test(priority=10)
+	public void TC_Assistant_015(Method method) throws Exception
 	{
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);

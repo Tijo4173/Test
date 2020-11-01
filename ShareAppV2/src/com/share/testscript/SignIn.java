@@ -22,21 +22,16 @@ public class SignIn extends DriverSetUp
 	@Test(priority = 6)
 	public void TC_SignIn_001_002_007(Method method) throws Exception
 	{
-
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
-		test.info("Launch the share app and click on Sign in button");
+		test.info("Launch the share app and click on Sign in button using valid credentials");
 		driver.resetApp();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		RegistrationPage registrationPage = new RegistrationPage(driver);
-		GeneralFunctions generalFunctions = new GeneralFunctions();
-		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-
+		GeneralFunctions generalFunctions = new GeneralFunctions();	
 		try
 		{
 
@@ -88,7 +83,7 @@ public class SignIn extends DriverSetUp
 	//		}
 	//	}
 
-	//Verify user can reset Password
+	//Verify user can Forgot Password
 	@Test(priority = 4)
 	public void TC_SignIn_003_004(Method method) throws Exception
 	{
@@ -96,15 +91,13 @@ public class SignIn extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
-		test.info("Verify user can reset Password");
+		test.info("Verify user can Forgot Password");
 		driver.resetApp();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
 		try
 		{
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
@@ -214,15 +207,13 @@ public class SignIn extends DriverSetUp
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
 		test.log(Status.INFO, "Module: Sign In").assignCategory("SIGNIN");
-		test.info("Verify user receiving reset password mail when the user do send again");
+		test.info("Verify user receiving forgot password mail when the user do send again");
 		driver.resetApp();
 		SignInFunctions signInFunctions = new SignInFunctions();
 		signInFunctions.SignContinue();//for sprint 18 builds
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		try
 		{
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
@@ -343,9 +334,6 @@ public class SignIn extends DriverSetUp
 		RegistrationPage registrationPage = new RegistrationPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
-
 		try
 		{
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
@@ -389,8 +377,7 @@ public class SignIn extends DriverSetUp
 		System.out.println(TC_Method);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
+		
 		try
 		{
 			//String pass = signpass;
@@ -452,8 +439,6 @@ public class SignIn extends DriverSetUp
 		RegistrationPage registrationPage = new RegistrationPage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
 		SignInPage signInPage = new SignInPage(driver);
-		SplashScreenPage splashScreenPage = new SplashScreenPage(driver);
-		SplashScreenFunctions splashScreenFunctions = new SplashScreenFunctions();
 		try
 		{
 			//splashScreenFunctions.splashScreenSkip(splashScreenPage);
@@ -476,7 +461,46 @@ public class SignIn extends DriverSetUp
 			e.getMessage();
 		}
 	}
-
+	
+	//Verify whether user is able to sign in with Unverified Email Address
+	@Test(priority = 7)
+	public void TC_SignIn_016(Method method) throws Exception 
+	{
+		String TC_Method = method.getName();
+		test = extent.createTest(TC_Method).assignCategory("SIGN IN");
+		test.log(Status.INFO, "Verify whether user is able to sign in with Unverified Email Address");
+		System.out.println(TC_Method);
+		driver.resetApp();
+		SignInFunctions signInFunctions = new SignInFunctions();
+		signInFunctions.SignContinue();//for sprint 18 builds
+		GeneralFunctions generalFunctions = new GeneralFunctions();
+		SignInPage signInPage = new SignInPage(driver);
+		String username = "shareautotest+6999@gmail.com";
+		String userpass ="Test@123";
+		try
+		{
+		generalFunctions.isElementPresent(signInPage.signinPresent, 60);
+		signInPage.signinPresent.click();
+		generalFunctions.isElementPresent(signInPage.useridElement, 60);
+		signInPage.useridElement.sendKeys(username);
+		signInPage.userpassElement.sendKeys(userpass);
+		signInPage.signinElement.click();
+		Thread.sleep(5000);
+		if(generalFunctions.isElementPresent(signInPage.checkYourEmail, 40)) 
+		{
+		test.log(Status.PASS, "Check Your Email screen Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		else 
+		{
+		test.log(Status.FAIL, "Check Your Email screen Not Displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_Method));
+		}
+		}
+	catch(Exception e)
+	{
+	test.log(Status.FAIL, e.getMessage());
+	Assert.fail(e.getMessage());
+	}
+	}
 }
 
 

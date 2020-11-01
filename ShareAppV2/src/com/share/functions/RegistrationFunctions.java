@@ -634,19 +634,13 @@ public class RegistrationFunctions extends DriverSetUp{
 
 	public void LoginFun(RegistrationPage registrationPage,String username,String password,SignInPage signInPage) throws Exception
 	{
-
-		HomePage homePage = new HomePage(driver);
 		generalFunctions.isElementPresent(signInPage.signinPresent, 30);
 		signInPage.signinPresent.click();
-		//generalFunctions.isElementPresent(signInPage.skipUpdate, 20);
-		//generalFunctions.skipupdate();
 		generalFunctions.isElementPresent(signInPage.useridElement, 90);
 		signInPage.useridElement.sendKeys(username);
 		signInPage.userpassElement.sendKeys(password);
 		signInPage.signinElement.click();
-		//generalFunctions.isElementPresent(signInPage.skipUpdate, 20);
-		//generalFunctions.skipupdate();
-			
+		Thread.sleep(5000);
 	}
 
 	//		try

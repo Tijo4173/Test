@@ -94,4 +94,37 @@ public class TransactionsPage extends DriverSetUp  {
 	@AndroidFindBy(id = "tv_transaction_date")
 	public AndroidElement sharedPointsdateandtime;
 	
+	@AndroidFindBy(id = "tv_declined_header")
+    public AndroidElement declineTitle;
+	
+	@AndroidFindBy(id = "tv_declined_header")
+    public AndroidElement declineReceiptsection;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text='DECLINED RECEIPTS']")
+	public AndroidElement declinedReceiptsPage;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/tv_pending_row_title']")
+	public AndroidElement declineReceiptslist;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.maf.dl.sharesit:id/tv_pending_row_subtitle']")
+	public AndroidElement declineReceiptsdateandtime;
+		
+	@AndroidFindBy(xpath = "//androidx.recyclerview.widget.RecyclerView['0']/android.view.ViewGroup[@index='0']")
+	public AndroidElement declinefirstReceipt;
+	
+	@AndroidFindBy(id = "iv_transaction_details_logo")
+    public AndroidElement declineReceiptTransactionlogo;
+	
+	@AndroidFindBy(id = "tv_transaction_title")
+    public AndroidElement declineReceiptTransactionTitle;
+	
+	@AndroidFindBy(id = "tv_transaction_date")
+    public AndroidElement declineReceiptTransactiondate;
+	
+	@AndroidFindBy(id = "include3")
+    public AndroidElement declineReceiptview;
+	
+	@AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView")
+    public AndroidElement declinedReceiptmessage;
+	
 }

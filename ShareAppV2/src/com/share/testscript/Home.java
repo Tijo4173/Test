@@ -127,7 +127,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=3)//TC:Verify user should view tutorial on clicking Submit receipt and Camera permissions
-	public void TC_Home_003_005(Method method) {
+	public void TC_Home_003_005_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -225,7 +225,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=4)//TC:Verify user can skip the tutorial by clicking on skip button in tutorials in receipt submit screen
-	public void TC_Home_053(Method method) {
+	public void TC_Home_006_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -291,7 +291,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=5)//TC:Verify user can selected dont show  in Intro Screen
-	public void TC_Home_004(Method method) {
+	public void TC_Home_007_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -377,7 +377,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=6)//TC:Verify user should be able to click normal receipt
-	public void TC_Home_006(Method method) {
+	public void TC_Home_008_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -413,7 +413,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=7)//TC:Verify user should be able to click Long receipt
-	public void TC_Home_007(Method method) {
+	public void TC_Home_009_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -448,7 +448,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=7)//TC:Verify user should not be able to upload more than 10 images
-	public void TC_Home_008(Method method) {
+	public void TC_Home_010_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -496,7 +496,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=8)//TC:Verify user can retake the images using Long receipt
-	public void TC_Home_009(Method method) {
+	public void TC_Home_011_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -583,7 +583,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=9)//TC:Verify user can retake the images using Normal receipt
-	public void TC_Home_010(Method method) {
+	public void TC_Home_012_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -663,7 +663,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=10)//TC:Verify user can click on cancel button to exit the receipt scanning
-	public void TC_Home_011(Method method) {
+	public void TC_Home_013_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -708,7 +708,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=11)//TC:Verify user can exit the receipt scanning by tapping on Cancel button
-	public void TC_Home_012(Method method) {
+	public void TC_Home_014_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -754,7 +754,7 @@ public class Home extends DriverSetUp{
 
 	}
 	@Test(priority=12)//TC:Verify user can discard the images of Normal receipt
-	public void TC_Home_013(Method method) {
+	public void TC_Home_015_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -812,7 +812,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=13)//TC:Verify user can discard the images of long receipt
-	public void TC_Home_014(Method method) {
+	public void TC_Home_016_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -881,7 +881,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=14)//TC:Verify user can submit long receipt
-	public void TC_Home_015(Method method) {
+	public void TC_Home_017_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -943,7 +943,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=15)//TC:Verify user can submit normal receipt
-	public void TC_Home_016(Method method) {
+	public void TC_Home_018_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1008,7 +1008,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=16)//TC:Verify user should be able to click normal receipt
-	public void TC_Home_056(Method method) {
+	public void TC_Home_019_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1043,7 +1043,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=17)//TC:Verify user can view the receipt tutorial by clicking on the i button in receipt scanning screen
-	public void TC_Home_064(Method method) {
+	public void TC_Home_020_RS(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1079,7 +1079,7 @@ public class Home extends DriverSetUp{
 
 	/////////////////********SHARE_ID**************////////////***************
 	@Test(priority=18)//TC:Verify user clicks on SHARE ID
-	public void TC_Home_017(Method method) {
+	public void TC_Home_021(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1123,7 +1123,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=19)//TC:Verify user able to view SHOP ONLINE & EARN SHARE POINTS section in the home screen
-	public void TC_Home_065(Method method) {
+	public void TC_Home_022(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1150,11 +1150,11 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=20)//TC:Verify user able to switch between the ‘Experiences’ and ‘Updates’ tabs in the home screen.
-	public void TC_Home_067(Method method)  {
+	public void TC_Home_023(Method method)  {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user able to switch between the ‘Experiences’ and ‘Updates’ tabs in the home screen.");
+		test.info("TC:Verify user able to switch between the Experiences and Updates tabs in the home screen.");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1188,7 +1188,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=21)//TC:Verify the app tabs: Home,Experiences,SharePay,Assistant,Account.
-	public void TC_Home_080(Method method) {
+	public void TC_Home_024(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1237,11 +1237,11 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=22)//TC//TC:Verify user can click on See all
-	public void TC_Home_068(Method method) {
+	public void TC_Home_025(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user can click on See all on Experiences Screen");
+		test.info("TC:Verify user can click on See all an navigates to Experiences Screen");
 		System.out.println("Running Test"+" "+ TC_Method);
 		HomePage homePage = new HomePage(driver);
 		GeneralFunctions generalFunctions = new GeneralFunctions();
@@ -1264,12 +1264,12 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=23)//TC:Verify user can click on Share Your Points and able to share points
-	public void TC_Home_070(Method method) throws Exception {
+	public void TC_Home_026_SYP(Method method) throws Exception {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
 		test.info("TC:Verify user can click on Share Your Points & able to share points");
-		test.info("Points Burn via Share Your Points");
+		test.info("Verify user can burn points via Share Your Points");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1365,7 +1365,6 @@ public class Home extends DriverSetUp{
 			else
 			{	test.log(Status.FAIL, "Point amount shared/burned not displayed in detailed page");
 			}
-			String burn = transactionsPage.sharedPoints.getText();
 			if(generalFunctions.isElementPresent(transactionsPage.sharedPointsinAED, 20))
 			{	test.log(Status.PASS, "Equivalent AED amount shared/burned displayed in detailed page");
 				test.info("Points Burned AED:"+" "+transactionsPage.sharedPointsinAED.getText());
@@ -1404,7 +1403,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=24)//TC:Verify the error message is displaying when we input points if the user points is Zero
-	public void TC_Home_071(Method method) {
+	public void TC_Home_027_SYP(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1447,7 +1446,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=25)//TC:Verify the validations of points and email fields
-	public void TC_Home_072(Method method) {
+	public void TC_Home_028_SYP(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1491,11 +1490,11 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=26)//TC:Verify all the titles are present in the Share Your Points screen
-	public void TC_Home_073(Method method) {
+	public void TC_Home_029_SYP(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:vVerify all the titles are present in the Share Your Points screen");
+		test.info("TC:Verify all the titles are present in the Share Your Points screen");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1543,7 +1542,7 @@ public class Home extends DriverSetUp{
 	}
 	//TC:Verify the validations messages of points and email fields
 	@Test(priority=27)
-	public void TC_Home_074(Method method) {
+	public void TC_Home_030_SYP(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1588,11 +1587,11 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=28)//TC:Verify user can view offer tiles on home screen under experiences tab
-	public void TC_Home_028(Method method) {
+	public void TC_Home_031(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user can view 4 offers on home screen under experiences tab");
+		test.info("TC:Verify user can view 4 offers on home screen under experiences section");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1640,7 +1639,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=29)//TC:Verify user can click on any offer
-	public void TC_Home_029(Method method) {
+	public void TC_Home_032(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1674,7 +1673,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=30)//TC:Verify user navigates to home screen when the user click on close button of offer description
-	public void TC_Home_030(Method method) {
+	public void TC_Home_033(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1710,7 +1709,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=31)//TC:Verify user can click on SEE ALL option in the Updates and able to navigate to the update screen
-	public void TC_Home_041(Method method) {
+	public void TC_Home_034(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1750,7 +1749,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=32)//TC:Verify user can click on SEE ALL option in the Experiences and able to navigate to the Experiences screen
-	public void TC_Home_042(Method method) {
+	public void TC_Home_035(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1820,7 +1819,7 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=33)//TC:Verify user can toggle from one tutorial screen to next by toggling from one to another and back
-	public void TC_Home_043(Method method) {
+	public void TC_Home_036(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1861,11 +1860,11 @@ public class Home extends DriverSetUp{
 
 
 	@Test(priority=34)//TC:Verify user able to navigate to a page (UPDATES) to see all the updates when clicking on ‘See all updates' option on the home screen.
-	public void TC_Home_N053(Method method) {
+	public void TC_Home_037(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user able to navigate to a page (UPDATES) to see all the updates when clicking on ‘See all updates' option on the home screen.");
+		test.info("TC:Verify user able to navigate to a page (UPDATES) to see all the updates when clicking on See all updates option on the home screen.");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1896,7 +1895,7 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=35)//TC:Verify News date,description,share,close button.
-	public void TC_Home_058_059_60_61_62(Method method) {
+	public void TC_Home_038_039_040_041_042(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
@@ -1951,11 +1950,11 @@ public class Home extends DriverSetUp{
 	}
 
 	@Test(priority=36)//TC:Verify user is able to share News.
-	public void TC_Home_N063(Method method) {
+	public void TC_Home_043(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user is able to share News");
+		test.info("TC:Verify user is able to share updates News");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -1989,11 +1988,11 @@ public class Home extends DriverSetUp{
 		}
 	}
 	@Test(priority=37)//TC:Verify user selected news detail screen is displayed
-	public void TC_Home_N064(Method method) {
+	public void TC_Home_044(Method method) {
 		String TC_Method = method.getName();
 		test = extent.createTest(TC_Method).assignCategory("Home");
 		test.log(Status.INFO, "Home");
-		test.info("TC:Verify user selected news detail screen is displayed");
+		test.info("TC:Verify user able to view detail screen is displayed");
 		System.out.println("Running Test"+" "+ TC_Method);
 
 		HomePage homePage = new HomePage(driver);
@@ -2026,7 +2025,7 @@ public class Home extends DriverSetUp{
 
 		//TC:Verify the header SHOP ONLINE AND EARN SHARE POINTS displayed
 		@Test(priority=38)
-		public void TC_Home_SO001(Method method) throws InterruptedException {
+		public void TC_Home_045(Method method) throws InterruptedException {
 			String TC_Method = method.getName();
 			test = extent.createTest(TC_Method).assignCategory("Home");
 			test.log(Status.INFO, "Module:Home");

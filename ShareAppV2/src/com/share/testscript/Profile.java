@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
@@ -21,6 +22,9 @@ import com.share.objectrepository.HomePage;
 import com.share.objectrepository.SharePayPage;
 import com.share.objectrepository.SignInPage;
 import com.share.utility.Utilities;
+
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
@@ -407,12 +411,17 @@ public class Profile extends DriverSetUp
 	test.log(Status.INFO, "Module:Profile");
 	test.log(Status.INFO, "TC:Verify the user is able to select other title radio button[Miss and Ms]");
 	System.out.println(TC_method);
+	driver.resetApp();
 	RegistrationPage registrationPage = new RegistrationPage(driver);
 	ProfilePage profilePage = new ProfilePage(driver);
 	GeneralFunctions generalFunctions = new GeneralFunctions();
+	ProfileFunctions profileFunctions = new ProfileFunctions();
+	SignInFunctions signInFunctions = new SignInFunctions();
+	signInFunctions.SignContinue();
+	profileFunctions.newUserSign();
 	//Click on Avatar icon
-	generalFunctions.isElementPresent(profilePage.avatar, 20);
-	profilePage.avatar.click();
+	//generalFunctions.isElementPresent(profilePage.avatar, 20);
+	//profilePage.avatar.click();
 	try
 	{if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
 		{test.log(Status.PASS, "Personal Details Displayed");
@@ -435,6 +444,7 @@ public class Profile extends DriverSetUp
 	test.log(Status.FAIL, "Edit Details Not Displayed");
 	Assert.fail("Edit Details Not Displayed");
 	}
+	generalFunctions.SimplyScrollDown();
 	registrationPage.titleMiss.click();
 	
 	if(registrationPage.titleMiss.isEnabled())
@@ -453,6 +463,8 @@ public class Profile extends DriverSetUp
 	}else {
 	test.log(Status.FAIL, "The title selected Wrong");
 	}
+	driver.pressKey(new KeyEvent(AndroidKey.BACK));
+	driver.navigate().back();
 	}catch (Exception e) {
 	e.printStackTrace();
 	test.log(Status.FAIL, e.getCause());
@@ -465,8 +477,6 @@ public class Profile extends DriverSetUp
 	@Test(priority = 7, dataProvider = "registrationdata")//iteration
 	public void TC_Profile_4_3(Method method,String FName,String LName,String emailID, String MbNum,String first,String last,String password,String cCode ) throws Exception
 	{
-		try
-		{
 			boolean name;
 			Matcher match;
 			String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}~0123456789";
@@ -480,7 +490,9 @@ public class Profile extends DriverSetUp
 			RegistrationPage registrationPage = new RegistrationPage(driver);
 			ProfilePage profilePage = new ProfilePage(driver);
 			GeneralFunctions generalFunctions = new GeneralFunctions();
-		
+			
+			try
+			{
 			generalFunctions.isElementPresent(profilePage.avatar, 20);
 			profilePage.avatar.click();
 			if(generalFunctions.isElementPresent(profilePage.personalDetails,30))
@@ -490,6 +502,7 @@ public class Profile extends DriverSetUp
 			{	test.log(Status.FAIL, "Personal Details Not Displayed");
 				Assert.fail("Personal Details Not Displayed");
 			}
+			Thread.sleep(1500);
 			profilePage.personalDetails.click();
 			Thread.sleep(1000);
 			//Edit Details
@@ -503,7 +516,7 @@ public class Profile extends DriverSetUp
 		test.log(Status.FAIL, "Edit Details Not Displayed");
 		Assert.fail("Edit Details Not Displayed");
 		}
-	
+		generalFunctions.SimplyScrollDown();
 		profilePage.editFName.clear();
 		profilePage.editFName.sendKeys(first);
 		profilePage.editLName.click();
@@ -513,11 +526,7 @@ public class Profile extends DriverSetUp
 		System.out.println("FIRST"+firstName);
 		match = pattern.matcher(firstName);
 		name = match.find();
-	
-		//String firstName=driver.findElement(By.xpath("//android.view.ViewGroup[@index='3']/android.widget.LinearLayout[@index='0']/android.widget.FrameLayout[@index='0']/android.widget.EditText[@index='0']")).getText().toString();
-	
 		System.out.println(first.contains(firstName));
-	
 		if(first.isEmpty())
 		{
 			if(generalFunctions.isElementPresent(registrationPage.errorMessage, 10)) {
@@ -525,7 +534,6 @@ public class Profile extends DriverSetUp
 			}else {
 				test.log(Status.FAIL, "Error Message not displayed").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 			}
-	
 		}
 			else if(specialCharacters.contains(firstName))
 		{
@@ -561,15 +569,14 @@ public class Profile extends DriverSetUp
 		{
 			test.log(Status.INFO, "VALID INPUT");
 		}
-		
 		if(profilePage.upadateButton.isEnabled()) {
-		test.log(Status.FAIL, "Update button is Enabled");
+		test.log(Status.FAIL, "Update button is Enabled").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 		}else {
-		test.log(Status.PASS, "Update button is disabled");
+		test.log(Status.PASS, "Update button is disabled").addScreenCaptureFromPath(Utilities.getScreenshot(driver, TC_method));
 		}
+		
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
-		//profilePage.navigateBack.click();
-		driver.navigate().back();
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}catch(Exception e){
 	e.printStackTrace();
 	test.log(Status.FAIL, e.getCause());
@@ -610,6 +617,7 @@ public class Profile extends DriverSetUp
 	{	test.log(Status.FAIL, "Personal Details Not Displayed");
 		Assert.fail("Personal Details Not Displayed");
 	}
+	Thread.sleep(1500);
 	profilePage.personalDetails.click();
 	Thread.sleep(1000);
 	//Edit Details
@@ -622,6 +630,7 @@ public class Profile extends DriverSetUp
 	test.log(Status.FAIL, "Edit Details Not Displayed");
 	Assert.fail("Edit Details Not Displayed");
 	}
+	generalFunctions.SimplyScrollDown();
 	profilePage.editLName.clear();
 	profilePage.editLName.sendKeys(last);
 	profilePage.editFName.click();
@@ -685,8 +694,7 @@ public class Profile extends DriverSetUp
 
 	}
 	driver.pressKey(new KeyEvent(AndroidKey.BACK));
-	//profilePage.navigateBack.click();
-	driver.navigate().back();
+	driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}catch(Exception e){
 	e.printStackTrace();
 	test.log(Status.FAIL, e.getCause());
@@ -719,6 +727,7 @@ public class Profile extends DriverSetUp
 	{	test.log(Status.FAIL, "Personal Details Not Displayed");
 		Assert.fail("Personal Details Not Displayed");
 	}
+	Thread.sleep(1500);
 	profilePage.personalDetails.click();
 	Thread.sleep(1000);
 	//Edit Details
@@ -2620,7 +2629,7 @@ public class Profile extends DriverSetUp
 	}
 	
 	//Sprint 18 scripting [10 Test-cases joined in one script
-	@Test(priority=34)
+	//@Test(priority=34)
 	public void TC_Profile_61_to_71(Method method) throws Exception
 	{	String TC_Method = method.getName();
 		test = extent.createTest(TC_Method);
